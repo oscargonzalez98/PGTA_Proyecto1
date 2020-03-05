@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\oscar\\Desktop\\PGTA_Proyecto\\Clases\\Clases.csproj",
+      "projectUniqueName": "C:\\Users\\oscar\\Desktop\\PGTA_Proyecto1\\Clases\\Clases.csproj",
       "projectName": "Clases",
-      "projectPath": "C:\\Users\\oscar\\Desktop\\PGTA_Proyecto\\Clases\\Clases.csproj",
+      "projectPath": "C:\\Users\\oscar\\Desktop\\PGTA_Proyecto1\\Clases\\Clases.csproj",
       "packagesPath": "C:\\Users\\oscar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\oscar\\Desktop\\PGTA_Proyecto\\Clases\\obj\\",
+      "outputPath": "C:\\Users\\oscar\\Desktop\\PGTA_Proyecto1\\Clases\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\oscar\\AppData\\Roaming\\NuGet\\NuGet.Config",
