@@ -56,6 +56,10 @@ namespace Clases
         public string TimeofApplicability_Velocity = "";
         public double TimeofApplicability_Velocity_seconds;
 
+        public string AirSpeed = "";
+        public string IM = "";
+        public double AirSpeed_velocity;
+
         public string AircraftOperationalStatus = "";
         public string RA = "";
         public string TC = "";
@@ -375,19 +379,6 @@ namespace Clases
             return time;
         }
 
-        public double Calculate_TimeofAppliability_Velocity(string paquete)
-        {
-            double time = 0;
-            i = 0;
-            while (i < (paquete.Length))
-            {
-                int bin = int.Parse(Char.ToString(paquete[i]));
-                time = time + Math.Pow(2, 16 - i) * bin;
-                i = i + 1;
-            }
-            return time;
-        }
-
         public void CalculatePositionWGS84_coordinates(string paquete)
         {
 
@@ -475,6 +466,50 @@ namespace Clases
 
             latWGS84_HR = latWGS84_HR * compA2_lat;
             lonWGS84_HR = lonWGS84_HR * compA2_lon;
+        }
+
+        public double Calculate_TimeofAppliability_Velocity(string paquete)
+        {
+            double time = 0;
+            i = 0;
+            while (i < (paquete.Length))
+            {
+                int bin = int.Parse(Char.ToString(paquete[i]));
+                time = time + Math.Pow(2, 16 - i) * bin;
+                i = i + 1;
+            }
+            return time;
+        }
+
+        public void Calculate_AirSpeed(string paquete)
+        {
+
+            string velocity = paquete.Substring(1, 15);
+
+            if (Convert.ToInt32(paquete[0]) == 0)
+            {
+                IM = "IAS";
+                int i = 1;
+                int exp = 0;
+
+                while (i < paquete.Length)
+                {
+                    int bin = Convert.ToInt32(paquete[i]);
+                    AirSpeed_velocity = AirSpeed_velocity + (Math.Pow(2, -exp)) * bin;
+                    exp = exp - 1;
+                    i = i + 1;
+                }
+
+            }
+            else
+            {
+                IM = "Mach";
+
+
+
+            }
+
+
         }
 
         public void Calculate_AircraftOperationalStatus(string paquete)
@@ -770,18 +805,18 @@ namespace Clases
             if (Char.ToString(FSPEC_fake[9]) == "1") // 9 I021/150 Air Speed 
             {
                 i = 0;
-                while (i < 3)
+                while (i < 2)
                 {
                     string string1 = Convert.ToString(paquete[data_position + i]);
                     string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                     string2 = AddZeros(string2);
-                    TimeofApplicability_Velocity = String.Concat(TimeofApplicability_Velocity, string2);
+                    AirSpeed = String.Concat(AirSpeed, string2);
                     i = i + 1;
                 }
 
                 data_position = data_position + 2;
 
-
+                Calculate_AirSpeed(AirSpeed);
 
             }
 
