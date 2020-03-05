@@ -25,7 +25,7 @@ namespace ConsoleApp1
             
 
             ///// esto ira dentro de un while (al final no, pero no tocar)
-            CAT21 newCAT21 = listaCAT21[3];
+            CAT21 newCAT21 = listaCAT21[0];
             string[] paquete = newCAT21.paquete;
             newCAT21.Calculate_FSPEC(paquete);
             int i = paquete.Length;

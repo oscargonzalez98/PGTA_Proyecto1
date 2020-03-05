@@ -59,6 +59,7 @@ namespace Clases
         public string AirSpeed = "";
         public string IM = "";
         public double AirSpeed_velocity;
+        public double AirSpeed_Mach;
 
         public string AircraftOperationalStatus = "";
         public string RA = "";
@@ -128,6 +129,44 @@ namespace Clases
 
             return paquete;
 
+        }
+
+        public double ComputeComplementoA2(string bits) //hace el complemento A2
+        {
+            if (bits == "1")
+                return -1;
+            if (bits == "0")
+                return 0;
+            else
+            {
+                if (Convert.ToString(bits[0]) == "0")
+                {
+                    int num = Convert.ToInt32(bits, 2);
+                    return Convert.ToSingle(num);
+                }
+                else
+                {
+                    //elimino primer bit
+                    string bitss = bits.Substring(1, bits.Length - 1);
+
+                    //creo nuevo string cambiando 0s por 1s y viceversa
+                    string newbits = "";
+                    int i = 0;
+                    while (i < bitss.Length)
+                    {
+                        if (Convert.ToString(bitss[i]) == "1")
+                            newbits = newbits + "0";
+                        if (Convert.ToString(bitss[i]) == "0")
+                            newbits = newbits + "1";
+                        i++;
+                    }
+
+                    //convertimos a int
+                    double num = Convert.ToInt32(newbits, 2);
+
+                    return -(num + 1);
+                }
+            }
         }
 
         public void Calculate_DataSourceIdentification(string paquete)
@@ -505,8 +544,8 @@ namespace Clases
             {
                 IM = "Mach";
 
-
-
+                AirSpeed_Mach = Convert.ToInt32(velocity);
+                AirSpeed_Mach = AirSpeed_Mach * 0.001;
             }
 
 
@@ -776,6 +815,7 @@ namespace Clases
                 data_position = data_position + 8;
 
                 CalculatePositionWGS84_HRcoordinates(PositioninWGS_HRcoordinates);
+                // calculado con funcion
 
             }
 
@@ -824,6 +864,7 @@ namespace Clases
             {
                 data_position = data_position + 2;
             }
+
 
             if (Char.ToString(FSPEC_fake[11]) == "1") // 11 I021/080 Target Address
             {
