@@ -104,6 +104,8 @@ namespace LibreriaClases
                 {
                     CAT21 newcat21 = new CAT21(arraystring);
                     listaCAT21.Add(newcat21);
+
+                    // no borrar
                     //newcat21.Calculate_FSPEC(newcat21.paquete);
                     //int uno = newcat21.SIC;
                     //int dos = 0;

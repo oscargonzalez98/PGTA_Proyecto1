@@ -17,7 +17,7 @@ namespace ConsoleApp1
             List<CAT10> listaCAT10 = new List<CAT10>();
             List<CAT21> listaCAT21 = new List<CAT21>();
 
-            string path= "C:/Users/oscar/Dropbox/Oscar/Sistemes Aeroespacials/4A/PGTA/Proyecto1/Proyecto/AST/adsb_v21_bcn.ast";
+            string path= "C:/Users/oscar/Desktop/PGTA_Proyecto1/ConsoleApp1/adsb_v21_bcn.ast";
             Fichero newFichero = new Fichero(path);
             newFichero.leer();
             listaCAT21=newFichero.GetListCAT21(); // devuelve lista de clases CAT21, cada una con un paquete
