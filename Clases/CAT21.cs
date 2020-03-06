@@ -88,50 +88,50 @@ namespace Clases
             return octeto;
         }
 
-        public string ComplementoA2(string paquete)
-        {
-            if (Convert.ToString(paquete[paquete.Length - 1]) == "1")
-            {
-                var aStringBuilder = new StringBuilder(paquete);
-                aStringBuilder.Remove(paquete.Length - 1, 1);
-                aStringBuilder.Insert(paquete.Length - 1, "0");
-                paquete = aStringBuilder.ToString();
-            }
+        //public string ComplementoA2(string paquete)
+        //{
+        //    if (Convert.ToString(paquete[paquete.Length - 1]) == "1")
+        //    {
+        //        var aStringBuilder = new StringBuilder(paquete);
+        //        aStringBuilder.Remove(paquete.Length - 1, 1);
+        //        aStringBuilder.Insert(paquete.Length - 1, "0");
+        //        paquete = aStringBuilder.ToString();
+        //    }
 
-            else
-            {
-                var aStringBuilder = new StringBuilder(paquete);
-                aStringBuilder.Remove(paquete.Length - 1, 1);
-                aStringBuilder.Insert(paquete.Length - 1, "1");
-                paquete = aStringBuilder.ToString();
-            }
+        //    else
+        //    {
+        //        var aStringBuilder = new StringBuilder(paquete);
+        //        aStringBuilder.Remove(paquete.Length - 1, 1);
+        //        aStringBuilder.Insert(paquete.Length - 1, "1");
+        //        paquete = aStringBuilder.ToString();
+        //    }
 
-            i = 0;
-            while (i < paquete.Length)
-            {
-                if (Convert.ToString(paquete[i]) == "0")
-                {
-                    var aStringBuilder = new StringBuilder(paquete);
-                    aStringBuilder.Remove(i, 1);
-                    aStringBuilder.Insert(i, "1");
-                    paquete = aStringBuilder.ToString();
-                }
+        //    i = 0;
+        //    while (i < paquete.Length)
+        //    {
+        //        if (Convert.ToString(paquete[i]) == "0")
+        //        {
+        //            var aStringBuilder = new StringBuilder(paquete);
+        //            aStringBuilder.Remove(i, 1);
+        //            aStringBuilder.Insert(i, "1");
+        //            paquete = aStringBuilder.ToString();
+        //        }
 
-                else
-                {
-                    var aStringBuilder = new StringBuilder(paquete);
-                    aStringBuilder.Remove(i, 1);
-                    aStringBuilder.Insert(i, "0");
-                    paquete = aStringBuilder.ToString();
-                }
-                i = i + 1;
-            }
+        //        else
+        //        {
+        //            var aStringBuilder = new StringBuilder(paquete);
+        //            aStringBuilder.Remove(i, 1);
+        //            aStringBuilder.Insert(i, "0");
+        //            paquete = aStringBuilder.ToString();
+        //        }
+        //        i = i + 1;
+        //    }
 
-            return paquete;
+        //    return paquete;
 
-        }
+        //}
 
-        public double ComputeComplementoA2(string bits) //hace el complemento A2
+        public double Calculate_ComplementoA2(string bits) //hace el complemento A2
         {
             if (bits == "1")
                 return -1;
@@ -405,119 +405,43 @@ namespace Clases
             TrackNumber_number = Convert.ToInt32(string1,2);
         }
 
-        public double Calculate_TimeofAppliability_Position(string paquete)
+        public void Calculate_TimeofAppliability_Position(string paquete)
         {
-            double time = 0;
-            i = 0;
-            while (i < (paquete.Length))
-            {
-                int bin = int.Parse(Char.ToString(paquete[i]));
-                time = time + Math.Pow(2, 16 - i) * bin;
-                i = i + 1;
-            }
-            return time;
+            double time = Convert.ToInt32(paquete);
+            TimeofApplicability_Position_seconds = time * (1 / 128);
+
         }
 
         public void CalculatePositionWGS84_coordinates(string paquete)
         {
+            string str1 = paquete.Substring(0, 24);
+            string str2 = paquete.Substring(24, 24);
 
+            double a1 = Calculate_ComplementoA2(str1);
+            double b1 = Calculate_ComplementoA2(str2);
 
-            string lat = PositioninWGS_coordinates.Substring(0, 24);    
-            string lon = PositioninWGS_coordinates.Substring(24, 24);
-            int compA2_lat = 1;
-            int compA2_lon = 1;
+            latWGS84 = a1 * (180 / Math.Pow(2, 23));
+            lonWGS84 = b1 * (180 / Math.Pow(2, 23));
 
-            if (Convert.ToString(lat[0]) == "1")
-            {
-                lat = ComplementoA2(lat);
-                compA2_lat = -1;
-            }
-
-            if (Convert.ToString(lon[0]) == "1")
-            {
-                lon = ComplementoA2(lon);
-                compA2_lon = -1;
-            }
-
-
-            int i = 0;
-            int exp = 0;
-            while (i < lat.Length)
-            {
-                int bin = int.Parse(Char.ToString(lat[i]));
-                latWGS84 = latWGS84 + (180 / (Math.Pow(2, exp))) * bin;
-                i = i + 1;
-                exp = exp + 1;
-            }
-
-            i = 0;
-            exp = 0;
-            while (i < lon.Length)
-            {
-                int bin = int.Parse(Char.ToString(lon[i]));
-                lonWGS84 = lonWGS84 + (180 / (Math.Pow(2, exp))) * bin;
-                i = i + 1;
-                exp = exp + 1;
-            }
-
-            latWGS84 = latWGS84 * compA2_lat;
-            lonWGS84 = lonWGS84 * compA2_lon;
         }
 
         public void CalculatePositionWGS84_HRcoordinates(string paquete)
         {
-            string lat = paquete.Substring(0, 32);
-            string lon = paquete.Substring(32, 32);
-            int compA2_lat = 1;
-            int compA2_lon = 1;
 
-            if (Convert.ToString(lat[0]) == "1")
-            {
-                lat = ComplementoA2(lat);
-                compA2_lat = -1;
-            }
+            string str1 = paquete.Substring(0, 32);
+            string str2 = paquete.Substring(32, 32);
 
-            if (Convert.ToString(lon[0]) == "1")
-            {
-                lon = ComplementoA2(lon);
-                compA2_lon = -1;
-            }
+            double a1 = Calculate_ComplementoA2(str1);
+            double b1 = Calculate_ComplementoA2(str2);
 
-            int i = 1;
-            int exp = 0;
-            while (i < lat.Length)
-            {
-                int bin = int.Parse(Char.ToString(lat[i]));
-                latWGS84_HR = latWGS84_HR + (180 / (Math.Pow(2, exp))) * bin;
-                i = i + 1;
-                exp = exp + 1;
-            }
-
-            i = 1;
-            exp = 0;
-            while (i < lon.Length)
-            {
-                int bin = int.Parse(Char.ToString(lon[i]));
-                lonWGS84_HR = lonWGS84_HR + (180 / (Math.Pow(2, exp))) * bin;
-                i = i + 1;
-                exp = exp + 1;
-            }
-
-            latWGS84_HR = latWGS84_HR * compA2_lat;
-            lonWGS84_HR = lonWGS84_HR * compA2_lon;
+            latWGS84_HR = a1 * (180 / Math.Pow(2, 30));
+            lonWGS84_HR = b1 * (180 / Math.Pow(2, 30));
         }
 
-        public double Calculate_TimeofAppliability_Velocity(string paquete)
+        public void Calculate_TimeofAppliability_Velocity(string paquete)
         {
-            double time = 0;
-            i = 0;
-            while (i < (paquete.Length))
-            {
-                int bin = int.Parse(Char.ToString(paquete[i]));
-                time = time + Math.Pow(2, 16 - i) * bin;
-                i = i + 1;
-            }
-            return time;
+            double time = Convert.ToInt32(paquete);
+            TimeofApplicability_Position_seconds = time * (1 / 128);
         }
 
         public void Calculate_AirSpeed(string paquete)
@@ -776,7 +700,7 @@ namespace Clases
                 }
                 data_position = data_position + 3;
 
-                TimeofApplicability_Position_seconds=Calculate_TimeofAppliability_Position(TimeofApplicability_Position);
+                Calculate_TimeofAppliability_Position(TimeofApplicability_Position);
             }
 
             if (Char.ToString(FSPEC_fake[5]) == "1") // 6 I021/130 Position in WGS-84 coordinates
@@ -815,7 +739,6 @@ namespace Clases
                 data_position = data_position + 8;
 
                 CalculatePositionWGS84_HRcoordinates(PositioninWGS_HRcoordinates);
-                // calculado con funcion
 
             }
 
@@ -838,7 +761,7 @@ namespace Clases
 
                 data_position = data_position + 3;
 
-                TimeofApplicability_Velocity_seconds=Calculate_TimeofAppliability_Velocity(TimeofApplicability_Velocity);
+                Calculate_TimeofAppliability_Velocity(TimeofApplicability_Velocity);
 
             }
 
