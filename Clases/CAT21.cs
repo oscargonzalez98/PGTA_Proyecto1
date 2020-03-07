@@ -63,7 +63,7 @@ namespace Clases
 
         public string TrueAirSpeed = "";
         public double TrueAirSpeed_number;
-        public string RE="";
+        public string RE_TAS="";
 
         public string TargetAddress_bin = "";
         public string TargetAdress_real = "";
@@ -97,6 +97,42 @@ namespace Clases
         public string VN;
         public string LTT = "";
 
+        public string Mode3ACode_bin = "";
+        public string Mode3ACode_oct = "";
+
+        public string RollAngle = "";
+        public double RollAngle_degrees;
+
+        public string FlightLevel = "";
+        public double FlightLevel_FL;
+
+        public string MagneticHeading = "";
+        public double MagneticHeading_degrees;
+
+        public string TargetStatus = "";
+        public string ICF = "";
+        public string LNAV = "";
+        public string PS = "";
+        public string SS = "";
+
+        public string BarometricVerticalRate = "";
+        public string RE_BVR = "";
+        public double BarometricVerticalRate_fmin;
+
+        public string GeometricVerticalRate = "";
+        public string RE_GVR = "";
+        public double GeometricVerticalRate_fmin;
+
+        public string AirborneGoundVector = "";
+        public string RE_AGV = "";
+        public double GroundSpeed;
+        public double TrackAngle;
+
+        public string TrackAngleRate = "";
+        public double TrackAngleRate_degs;
+
+        public string TimeofASTERIXReportTransmission = "";
+        public int TimeofASTERIXReportTransmission_seconds;
 
         public string AircraftOperationalStatus = "";
         public string RA = "";
@@ -124,7 +160,6 @@ namespace Clases
 
             return octeto;
         }
-
         public double Calculate_ComplementoA2(string bits)
         {
             if (bits == "1")
@@ -162,7 +197,6 @@ namespace Clases
                 }
             }
         }
-
         public void Calculate_DataSourceIdentification(string paquete)
         {
             string string1 = paquete.Substring(0, 8);
@@ -172,7 +206,6 @@ namespace Clases
             SIC= Convert.ToInt32(string2, 2);
 
         }
-
         public void Calculate_TargetReportDescriptor(string paquete)
         {
             string str1 = paquete.Substring(0, 3);
@@ -392,20 +425,17 @@ namespace Clases
 
 
         }
-
         public void Calculate_TrackNumber(string paquete)
         {
             string string1 = paquete.Substring(4, 12);
             TrackNumber_number = Convert.ToInt32(string1,2);
         }
-
         public void Calculate_TimeofAppliability_Position(string paquete)
         {
             double time = Convert.ToInt32(paquete,2);
             TimeofApplicability_Position_seconds = time * (1 / 128);
 
         }
-
         public void CalculatePositionWGS84_coordinates(string paquete)
         {
             string str1 = paquete.Substring(0, 24);
@@ -418,7 +448,6 @@ namespace Clases
             lonWGS84 = b1 * (180 / Math.Pow(2, 23));
 
         }
-
         public void CalculatePositionWGS84_HRcoordinates(string paquete)
         {
 
@@ -431,13 +460,11 @@ namespace Clases
             latWGS84_HR = a1 * (180 / Math.Pow(2, 30));
             lonWGS84_HR = b1 * (180 / Math.Pow(2, 30));
         }
-
         public void Calculate_TimeofAppliability_Velocity(string paquete)
         {
             double time = Convert.ToInt32(paquete,2);
             TimeofApplicability_Position_seconds = time * (1 / 128);
         }
-
         public void Calculate_AirSpeed(string paquete)
         {
 
@@ -460,26 +487,24 @@ namespace Clases
 
 
         }
-
         public void Calculate_TrueAirSpeed(string paquete)
         {
             string ra1 = Convert.ToString(paquete[0]);
 
             if (ra1 == "0")
             {
-                RE = "Value in defined range.";
+                RE_TAS = "Value in defined range.";
             }
 
             else
             {
-                RE = "Value exceeds defined range.";
+                RE_TAS = "Value exceeds defined range.";
             }
 
             string tas = paquete.Substring(1, 15);
             TrueAirSpeed_number = Convert.ToInt32(tas);
 
         }
-
         public void Calculate_TimeofMessageReception_HRPosition(string paquete)
         {
             string fsi1 = paquete.Substring(0, 2);
@@ -513,7 +538,6 @@ namespace Clases
             TimeofMessageReception_HRPosition_seconds = seconds1 * (Math.Pow(2, -30));
 
         }
-
         public void Calculate_TimeofMessageReception_HRVelocity(string paquete)
         {
             string fsi1 = paquete.Substring(0, 2);
@@ -547,7 +571,6 @@ namespace Clases
             TimeofMessageReception_HRVelocity_seconds = seconds1 * (Math.Pow(2, -30));
 
         }
-
         public void Calculate_MOPSVersion(string paquete)
         {
             string vns1 = Convert.ToString(paquete[0]);
@@ -606,6 +629,143 @@ namespace Clases
                 LTT = "Not Assigned";
             }
 
+        }
+        public void Calculate_TargetStatus(string paquete)
+        {
+            int icf1 = Convert.ToInt32(paquete[0]);
+            if (icf1 == 0)
+            {
+                ICF = "No intent change active.";
+            }
+
+            else
+            {
+                ICF = "Intent change active.";
+            }
+
+            int lnav1 = Convert.ToInt32(paquete[1]);
+            if (icf1 == 0)
+            {
+                LNAV = "LNAV Mode engaged.";
+            }
+
+            else
+            {
+                LNAV= "LNAV Mode not engaged.";
+            }
+
+            string ps = paquete.Substring(3, 3);
+            int ps1 = Convert.ToInt32(ps, 2);
+            if (ps1 == 0)
+            {
+                PS= "No emergency / not reported.";
+            }
+
+            if (ps1 == 1)
+            {
+                PS = "General emergency.";
+            }
+
+            if (ps1 == 2)
+            {
+                PS = "Lifeguard / medical emergency.";
+            }
+
+            if (ps1 == 3)
+            {
+                PS = "Minimum fuel.";
+            }
+
+            if (ps1 == 4)
+            {
+                PS = "No communications.";
+            }
+
+            if (ps1 == 5)
+            {
+                PS = "Unlawful interference.";
+            }
+
+            if (ps1 == 6)
+            {
+                PS = "“Downed” Aircraft.";
+            }
+
+            string ss = paquete.Substring(6, 2);
+            int ss1 = Convert.ToInt32(ss, 2);
+            if (ss1 == 0)
+            {
+                SS = "No condition reported.";
+            }
+
+            if (ss1 == 1)
+            {
+                SS = "Permanent Alert (Emergency condition).";
+            }
+
+            if (ss1 == 2)
+            {
+                SS = "Temporary Alert (change in Mode 3/A Code other than emergency).";
+            }
+
+            if (ss1 == 3)
+            {
+                SS = "SPI set.";
+            }
+        }
+        public void Calculate_AirborneGroundVector(string paquete)
+        {
+            string str1 = paquete.Substring(0, 16);
+            string str2 = paquete.Substring(16, 16);
+
+            if (str1[0] == Convert.ToChar("0"))
+            {
+                RE_AGV = "Value in defined range.";
+            }
+
+            else
+            {
+                RE_AGV = "Value exceeds defined range.";
+            }
+
+            string str3 = str1.Substring(1, 15);
+
+            GroundSpeed = Convert.ToInt32(str3, 2) * Math.Pow(2, -14);
+            TrackAngle = Convert.ToInt32(str2, 2) * (360 / Math.Pow(2, 16));
+        }
+        public void Calculate_BarometricVerticalRate(string paquete)
+        {
+            string str1 = Convert.ToString(paquete[0]);
+            if (str1 == "0")
+            {
+                RE_BVR = "Value in defined range.";
+            }
+
+            else
+            {
+                RE_BVR = "Value exceeds defined range.";
+            }
+
+            string str2 = paquete.Substring(1, 15);
+
+            BarometricVerticalRate_fmin= Calculate_ComplementoA2(str2)*6.25;
+        }
+        public void Calculate_GeometricVerticalRate(string paquete)
+        {
+            string str1 = Convert.ToString(paquete[0]);
+            if (str1 == "0")
+            {
+                RE_GVR = "Value in defined range.";
+            }
+
+            else
+            {
+                RE_GVR = "Value exceeds defined range.";
+            }
+
+            string str2 = paquete.Substring(1, 15);
+
+            GeometricVerticalRate_fmin = Calculate_ComplementoA2(str2) * 6.25;
         }
 
         public void Calculate_AircraftOperationalStatus(string paquete)
@@ -696,7 +856,6 @@ namespace Clases
 
 
         }
-
 
         public string Calculate_FSPEC(string[] paquete)
         {
@@ -1072,10 +1231,34 @@ namespace Clases
 
             if (Char.ToString(FSPEC_fake[18]) == "1")// 17 I021/090 Quality Indicators
             {
+                string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                string_packet = AddZeros(string_packet);
+
+
+                //
+                int i = 0;
+                while (Char.ToString(string_packet[string_packet.Length - 1]) == "1")
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    QualityIndicators = String.Concat(QualityIndicators, string2);
+                    string_packet = QualityIndicators;
+                    i = i + 1;
+                }
+                data_position = data_position + i;
+
+                Calculate_TargetReportDescriptor(QualityIndicators);
+
+                if ((QualityIndicators.Length) == 8)
+                {
+                    data_position = data_position + 1;
+                }
+
 
             }
 
-            if (Char.ToString(FSPEC_fake[18]) == "1")// 18 I021/210 MOPS Version
+            if (Char.ToString(FSPEC_fake[19]) == "1")// 18 I021/210 MOPS Version
             {
                 i = 0;
                 while (i < 1)
@@ -1092,25 +1275,197 @@ namespace Clases
                 Calculate_MOPSVersion(MOPSVersion);
             }
 
-            if (Char.ToString(FSPEC_fake[19]) == "1") // 19 I021/070 Mode 3/A Code
+            if (Char.ToString(FSPEC_fake[20]) == "1") // 19 I021/070 Mode 3/A Code
             {
+
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    Mode3ACode_bin = String.Concat(Mode3ACode_bin, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                int int1 = Convert.ToInt32(Mode3ACode_bin, 2); // pasamos de binario a decimal
+                Mode3ACode_oct = Convert.ToString(int1, 8); // pasamos de decimal a octal
 
             }
 
-            if (Char.ToString(FSPEC_fake[20]) == "1") // 20 I021/230 Roll Angle
+            if (Char.ToString(FSPEC_fake[21]) == "1") // 20 I021/230 Roll Angle
             {
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    RollAngle = String.Concat(RollAngle, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                int int1 = Convert.ToInt32(RollAngle, 2);
+                RollAngle_degrees = int1 * 0.01;
+            }
+
+            if (Char.ToString(FSPEC_fake[22]) == "1") // 21 I021/145 Flight Level
+            {
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    FlightLevel = String.Concat(FlightLevel, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                FlightLevel_FL = (Calculate_ComplementoA2(FlightLevel)) / 4;
 
             }
 
-            if (Char.ToString(FSPEC_fake[21]) == "1") // 21 I021/145 Flight Level
+            if (Char.ToString(FSPEC_fake[23]) == "1") // FX - Field extension indicator
             {
-                
-            }
-
-            if (Char.ToString(FSPEC_fake[22]) == "1") // FX - Field extension indicator
-            {
-                data_position = data_position + 4;
+                data_position = data_position;
             } // FX
+
+            if (Char.ToString(FSPEC_fake[24]) == "1") // 22 I021/152 Magnetic Heading
+            {
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    MagneticHeading = String.Concat(MagneticHeading, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                MagneticHeading_degrees = (Convert.ToInt32(MagneticHeading, 2)) * (360 / Math.Pow(2, 16));
+            }
+
+            if (Char.ToString(FSPEC_fake[25]) == "1") // 23 I021/200 Target Status 
+            {
+                i = 0;
+                while (i < 1)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TargetStatus = String.Concat(TargetStatus, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 1;
+
+                Calculate_TargetStatus(TargetStatus);
+            }
+
+            if (Char.ToString(FSPEC_fake[26]) == "1") // 24 I021/155 Barometric Vertical Rate
+            {
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    BarometricVerticalRate = String.Concat(BarometricVerticalRate, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                Calculate_BarometricVerticalRate(BarometricVerticalRate);
+
+
+            }
+
+            if (Char.ToString(FSPEC_fake[27]) == "1") // 25 I021/157 Geometric Vertical Rate
+            {
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    GeometricVerticalRate = String.Concat(GeometricVerticalRate, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                Calculate_GeometricVerticalRate(GeometricVerticalRate);
+
+            }
+
+            if (Char.ToString(FSPEC_fake[28]) == "1") // 26 I021/160 Airborne Ground Vector 
+            {
+                i = 0;
+                while (i < 4)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    AirborneGoundVector = String.Concat(AirborneGoundVector, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 4;
+
+                Calculate_AirborneGroundVector(AirborneGoundVector);
+            }
+
+            if (Char.ToString(FSPEC_fake[29]) == "1") // 27 I021/165 Track Angle Rate
+            {
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TrackAngleRate = String.Concat(TrackAngleRate, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                string str1 = TrackAngleRate.Substring(6, 10);
+                TrackAngleRate_degs = (Calculate_ComplementoA2(str1)) / 32;
+            }
+
+            if (Char.ToString(FSPEC_fake[30]) == "1") // 28 I021/077 Time of Report Transmission 
+            {
+                i = 0;
+                while (i < 3)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TimeofASTERIXReportTransmission = String.Concat(TimeofASTERIXReportTransmission, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 3;
+
+                TimeofASTERIXReportTransmission_seconds = (Convert.ToInt32(TimeofASTERIXReportTransmission, 2)) / 128;
+
+            }
+
+            if (Char.ToString(FSPEC_fake[31]) == "1") // FX - Field extension indicator 
+            { 
+
+            }// FX
+
+
 
             return FSPEC;
 
