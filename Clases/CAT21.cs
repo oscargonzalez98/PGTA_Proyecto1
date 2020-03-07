@@ -61,6 +61,43 @@ namespace Clases
         public double AirSpeed_velocity;
         public double AirSpeed_Mach;
 
+        public string TrueAirSpeed = "";
+        public double TrueAirSpeed_number;
+        public string RE="";
+
+        public string TargetAddress_bin = "";
+        public string TargetAdress_real = "";
+
+        public string TimeofMessageReception_Position;
+        public double TimeofMessageReception_Position_seconds;
+
+        public string TimeofMessageReception_HRPosition = "";
+        public double TimeofMessageReception_HRPosition_seconds;
+        public string FSI = "";
+
+        public string TimeofMessageReception_Velocity = "";
+        public double TimeofMessageReception_Velocity_seconds;
+
+        public string TimeofMessageReception_HRVelocity = "";
+        public double TimeofMessageReception_HRVelocity_seconds;
+
+        public string GeometricHeight = "";
+        public double GeometricHeight_feet;
+
+        public string QualityIndicators = "";
+        public int NACv;
+        public int NUCp;
+        public string NIC_Baro = "";
+        public string SIL = "";
+        public string SDA = "";
+        public string GVA = "";
+
+        public string MOPSVersion = "";
+        public string VNS = "";
+        public string VN;
+        public string LTT = "";
+
+
         public string AircraftOperationalStatus = "";
         public string RA = "";
         public string TC = "";
@@ -88,50 +125,7 @@ namespace Clases
             return octeto;
         }
 
-        //public string ComplementoA2(string paquete)
-        //{
-        //    if (Convert.ToString(paquete[paquete.Length - 1]) == "1")
-        //    {
-        //        var aStringBuilder = new StringBuilder(paquete);
-        //        aStringBuilder.Remove(paquete.Length - 1, 1);
-        //        aStringBuilder.Insert(paquete.Length - 1, "0");
-        //        paquete = aStringBuilder.ToString();
-        //    }
-
-        //    else
-        //    {
-        //        var aStringBuilder = new StringBuilder(paquete);
-        //        aStringBuilder.Remove(paquete.Length - 1, 1);
-        //        aStringBuilder.Insert(paquete.Length - 1, "1");
-        //        paquete = aStringBuilder.ToString();
-        //    }
-
-        //    i = 0;
-        //    while (i < paquete.Length)
-        //    {
-        //        if (Convert.ToString(paquete[i]) == "0")
-        //        {
-        //            var aStringBuilder = new StringBuilder(paquete);
-        //            aStringBuilder.Remove(i, 1);
-        //            aStringBuilder.Insert(i, "1");
-        //            paquete = aStringBuilder.ToString();
-        //        }
-
-        //        else
-        //        {
-        //            var aStringBuilder = new StringBuilder(paquete);
-        //            aStringBuilder.Remove(i, 1);
-        //            aStringBuilder.Insert(i, "0");
-        //            paquete = aStringBuilder.ToString();
-        //        }
-        //        i = i + 1;
-        //    }
-
-        //    return paquete;
-
-        //}
-
-        public double Calculate_ComplementoA2(string bits) //hace el complemento A2
+        public double Calculate_ComplementoA2(string bits)
         {
             if (bits == "1")
                 return -1;
@@ -407,7 +401,7 @@ namespace Clases
 
         public void Calculate_TimeofAppliability_Position(string paquete)
         {
-            double time = Convert.ToInt32(paquete);
+            double time = Convert.ToInt32(paquete,2);
             TimeofApplicability_Position_seconds = time * (1 / 128);
 
         }
@@ -440,7 +434,7 @@ namespace Clases
 
         public void Calculate_TimeofAppliability_Velocity(string paquete)
         {
-            double time = Convert.ToInt32(paquete);
+            double time = Convert.ToInt32(paquete,2);
             TimeofApplicability_Position_seconds = time * (1 / 128);
         }
 
@@ -452,16 +446,8 @@ namespace Clases
             if (Convert.ToInt32(paquete[0]) == 0)
             {
                 IM = "IAS";
-                int i = 1;
-                int exp = 0;
-
-                while (i < paquete.Length)
-                {
-                    int bin = Convert.ToInt32(paquete[i]);
-                    AirSpeed_velocity = AirSpeed_velocity + (Math.Pow(2, -exp)) * bin;
-                    exp = exp - 1;
-                    i = i + 1;
-                }
+                double vel1 = Convert.ToInt32(velocity);
+                TimeofApplicability_Position_seconds = vel1 * (1 / Math.Pow(2,14));
 
             }
             else
@@ -472,6 +458,153 @@ namespace Clases
                 AirSpeed_Mach = AirSpeed_Mach * 0.001;
             }
 
+
+        }
+
+        public void Calculate_TrueAirSpeed(string paquete)
+        {
+            string ra1 = Convert.ToString(paquete[0]);
+
+            if (ra1 == "0")
+            {
+                RE = "Value in defined range.";
+            }
+
+            else
+            {
+                RE = "Value exceeds defined range.";
+            }
+
+            string tas = paquete.Substring(1, 15);
+            TrueAirSpeed_number = Convert.ToInt32(tas);
+
+        }
+
+        public void Calculate_TimeofMessageReception_HRPosition(string paquete)
+        {
+            string fsi1 = paquete.Substring(0, 2);
+            int fsi2 = Convert.ToInt32(fsi1, 2);
+
+            if (fsi2 == 11)
+            {
+                FSI = "Reserved.";
+            }
+
+            if (fsi2 == 10)
+            {
+                string seconds = Convert.ToString(TimeofMessageReception_Position_seconds);
+                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds -1.";
+            }
+
+            if (fsi2 == 01)
+            {
+                string seconds = Convert.ToString(TimeofMessageReception_Position_seconds);
+                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds +1.";
+            }
+
+            if (fsi2 == 00)
+            {
+                string seconds = Convert.ToString(TimeofMessageReception_Position_seconds);
+                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds.";
+            }
+
+            string str1 = paquete.Substring(2, 30);
+            int seconds1 = Convert.ToInt32(str1, 2);
+            TimeofMessageReception_HRPosition_seconds = seconds1 * (Math.Pow(2, -30));
+
+        }
+
+        public void Calculate_TimeofMessageReception_HRVelocity(string paquete)
+        {
+            string fsi1 = paquete.Substring(0, 2);
+            int fsi2 = Convert.ToInt32(fsi1, 2);
+
+            if (fsi2 == 11)
+            {
+                FSI = "Reserved.";
+            }
+
+            if (fsi2 == 10)
+            {
+                string seconds = Convert.ToString(TimeofMessageReception_Velocity_seconds);
+                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds -1.";
+            }
+
+            if (fsi2 == 01)
+            {
+                string seconds = Convert.ToString(TimeofMessageReception_Velocity_seconds);
+                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds +1.";
+            }
+
+            if (fsi2 == 00)
+            {
+                string seconds = Convert.ToString(TimeofMessageReception_Velocity_seconds);
+                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds.";
+            }
+
+            string str1 = paquete.Substring(2, 30);
+            int seconds1 = Convert.ToInt32(str1, 2);
+            TimeofMessageReception_HRVelocity_seconds = seconds1 * (Math.Pow(2, -30));
+
+        }
+
+        public void Calculate_MOPSVersion(string paquete)
+        {
+            string vns1 = Convert.ToString(paquete[0]);
+            if (vns1 == "0")
+            {
+                VNS = "The MOPS Version is supported by the GS.";
+            }
+
+            else
+            {
+                VNS = "The MOPS Version is not supported by the GS.";
+            }
+
+            string vn = paquete.Substring(3, 3);
+            int vn1 = Convert.ToInt32(vn, 2);
+            if (vn1 == 0)
+            {
+                VN = "ED102/DO-260 [Ref. 8].";
+            }
+
+            if (vn1 == 1)
+            {
+                VN = "DO-260A [Ref. 9].";
+            }
+
+            if (vn1 == 2)
+            {
+                VN = "ED102A/DO-260B [Ref. 11].";
+            }
+
+
+            string ltt = paquete.Substring(5, 3);
+            int ltt1 = Convert.ToInt32(ltt, 2);
+            if (ltt1 == 0)
+            {
+                LTT = "Other.";
+            }
+
+            if (ltt1 == 1)
+            {
+                LTT = "UAT";
+            }
+
+            if (ltt1 == 2)
+            {
+                LTT = "1090 ES.";
+            }
+
+            if (ltt1 == 4)
+            {
+                LTT = "VDL 4.";
+            }
+
+            if (ltt1 == 4 || ltt1==5 || ltt1==6 || ltt1==7)
+            {
+                LTT = "Not Assigned";
+            }
 
         }
 
@@ -740,11 +873,11 @@ namespace Clases
 
                 CalculatePositionWGS84_HRcoordinates(PositioninWGS_HRcoordinates);
 
-            }
+            } // FX
 
             if (Char.ToString(FSPEC_fake[7]) == "1") //FX
             {
-                data_position = data_position + 3;
+                data_position = data_position;
             }
 
             if (Char.ToString(FSPEC_fake[8]) == "1") // 8 I021/072 Time of Applicability for Velocity
@@ -785,34 +918,199 @@ namespace Clases
 
             if (Char.ToString(FSPEC_fake[10]) == "1") // 10 I021/151 True Air Speed
             {
-                data_position = data_position + 2;
-            }
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TrueAirSpeed = String.Concat(TrueAirSpeed, string2);
+                    i = i + 1;
+                }
 
+                data_position = data_position + 2;
+
+                Calculate_TrueAirSpeed(TrueAirSpeed);
+
+            }
 
             if (Char.ToString(FSPEC_fake[11]) == "1") // 11 I021/080 Target Address
             {
+
+                string hexa = "";
+
+                i = 0;
+                while (i < 3)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    char a = string1[0];
+                    char b = string1[1];
+                    hexa=string.Concat(hexa,a);
+                    hexa= string.Concat(hexa,b);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TargetAddress_bin = String.Concat(TargetAddress_bin, string2);
+                    i = i + 1;
+                }
+
                 data_position = data_position + 3;
+
+                TargetAdress_real = hexa;
+
+
+                
+
             }
 
             if (Char.ToString(FSPEC_fake[12]) == "1") // 12 I021/073 Time of Message Reception of Position
+            {
+
+                i = 0;
+                while (i < 3)
                 {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TrueAirSpeed = String.Concat(TrueAirSpeed, string2);
+                    i = i + 1;
+                }
+
                 data_position = data_position + 3;
+
+                double time = Convert.ToInt32(TimeofMessageReception_Position, 2);
+                TimeofApplicability_Position_seconds = time * (1 / 128);
+
             }
 
             if (Char.ToString(FSPEC_fake[13]) == "1") // 13 I021 / 074 Time of Message Reception of Position-High
             {
-                data_position = data_position + 3;
+
+                i = 0;
+                while (i < 4)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TimeofMessageReception_HRPosition = String.Concat(TimeofMessageReception_HRPosition, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 4;
+
+                Calculate_TimeofMessageReception_HRPosition(TimeofMessageReception_HRPosition);
             }
 
             if (Char.ToString(FSPEC_fake[14]) == "1") // 14 I021/075 Time of Message Reception of Velocity 
             {
+                i = 0;
+                while (i < 3)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TimeofMessageReception_Velocity = String.Concat(TimeofMessageReception_Velocity, string2);
+                    i = i + 1;
+                }
+
                 data_position = data_position + 3;
+
+                int time = Convert.ToInt32(TimeofMessageReception_Velocity, 2);
+                TimeofMessageReception_Velocity_seconds = time * 1 / 128;
+
             }
 
             if (Char.ToString(FSPEC_fake[15]) == "1") // FX - Field extension indicator 
             {
-                data_position = data_position + 3;
+                data_position = data_position;
+            }// FX
+
+            if (Char.ToString(FSPEC_fake[16]) == "1") // 15 I021 / 076 Time of Message Reception of Velocity-High Precision
+            {
+                i = 0;
+                while (i < 4)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TimeofMessageReception_HRVelocity = String.Concat(TimeofMessageReception_HRVelocity, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 4;
+
+                Calculate_TimeofMessageReception_HRVelocity(TimeofMessageReception_HRVelocity);
             }
+
+            if (Char.ToString(FSPEC_fake[17]) == "1") // 16 I021/140 Geometric Height
+            {
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    GeometricHeight = String.Concat(GeometricHeight, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                if (GeometricHeight[0] == Convert.ToChar("0"))
+                {
+                    string str1 = GeometricHeight.Substring(1, 15);
+                    GeometricHeight_feet = Calculate_ComplementoA2(str1);
+                    GeometricHeight_feet = GeometricHeight_feet * 6.25;
+                }
+                else
+                {
+                    string str1 = GeometricHeight.Substring(1, 15);
+                    GeometricHeight_feet = Convert.ToInt32(str1, 2);
+                    GeometricHeight_feet = GeometricHeight_feet * 6.25;
+                }
+
+            }
+
+            if (Char.ToString(FSPEC_fake[18]) == "1")// 17 I021/090 Quality Indicators
+            {
+
+            }
+
+            if (Char.ToString(FSPEC_fake[18]) == "1")// 18 I021/210 MOPS Version
+            {
+                i = 0;
+                while (i < 1)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    MOPSVersion = String.Concat(MOPSVersion, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 1;
+
+                Calculate_MOPSVersion(MOPSVersion);
+            }
+
+            if (Char.ToString(FSPEC_fake[19]) == "1") // 19 I021/070 Mode 3/A Code
+            {
+
+            }
+
+            if (Char.ToString(FSPEC_fake[20]) == "1") // 20 I021/230 Roll Angle
+            {
+
+            }
+
+            if (Char.ToString(FSPEC_fake[21]) == "1") // 21 I021/145 Flight Level
+            {
+                
+            }
+
+            if (Char.ToString(FSPEC_fake[22]) == "1") // FX - Field extension indicator
+            {
+                data_position = data_position + 4;
+            } // FX
 
             return FSPEC;
 

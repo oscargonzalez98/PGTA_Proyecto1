@@ -28,11 +28,7 @@ namespace ConsoleApp1
             CAT21 newCAT21 = listaCAT21[0];
             string[] paquete = newCAT21.paquete;
             newCAT21.Calculate_FSPEC(paquete);
-            int i = paquete.Length;
-            string FSPEC=newCAT21.Calculate_FSPEC(paquete);
-
-
-            i = 1;
+            int i = 1;
 
 
 
