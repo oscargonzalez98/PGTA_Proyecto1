@@ -20,15 +20,15 @@ namespace ConsoleApp1
             string path= "C:/Users/oscar/Desktop/PGTA_Proyecto1/ConsoleApp1/adsb_v21_bcn.ast";
             Fichero newFichero = new Fichero(path);
             newFichero.leer();
-            listaCAT21=newFichero.GetListCAT21(); // devuelve lista de clases CAT21, cada una con un paquete
+            listaCAT21 = newFichero.GetListCAT21(); // devuelve lista de clases CAT21, cada una con un paquete
 
-            
+
 
             ///// esto ira dentro de un while (al final no, pero no tocar)
-            CAT21 newCAT21 = listaCAT21[0];
-            string[] paquete = newCAT21.paquete;
-            newCAT21.Calculate_FSPEC(paquete);
-            int i = 1;
+            //CAT21 newCAT21 = listaCAT21[2];
+            //string[] paquete = newCAT21.paquete;
+            //newCAT21.Calculate_FSPEC(paquete);
+            //int i = 1;
 
 
 

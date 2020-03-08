@@ -134,6 +134,49 @@ namespace Clases
         public string TimeofASTERIXReportTransmission = "";
         public int TimeofASTERIXReportTransmission_seconds;
 
+        public string TargetIdentification = "";
+        public string TargetIdentification_decoded = "";
+
+        public string EmitterCategory = "";
+        public string ECAT = "";
+
+        public string MetInformation = "";
+        public double WindSpeed;
+        public double WindDirection;
+        public double Temperature;
+        public double Turbulence;
+
+        public string SelectedAltitude = "";
+        public string SAS = "";
+        public string Source = "";
+        public double SelectedAltitude_ft;
+
+        public string FinalStateSelectedAltitude = "";
+        public string MV = "";
+        public string AH = "";
+        public string AM = "";
+        public double FinalStateSelectedAltitude_ft;
+
+        public string TrajectoryIntent = "";
+        public string NAV = "";
+        public string NVB = "";
+        public int REP;
+        public string TCA = "";
+        public string NC = "";
+        public int TCP;
+        public double TI_ALtitude;
+        public double TI_Latitude;
+        public double TI_Longitude;
+        public string PointType = "";
+        public string TD = "";
+        public string TRA = "";
+        public string TOA = "";
+        public int TOV;
+        public double TTR;
+
+        public string ServiceManagement;
+        public double RP;
+
         public string AircraftOperationalStatus = "";
         public string RA = "";
         public string TC = "";
@@ -142,6 +185,60 @@ namespace Clases
         public string CDTI_A = "";
         public string TCAS = "";
         public string SA = "";
+
+        public string SurfaceCapabilitiesandCharacteristicas = "";
+        public string POA = "";
+        public string CDTI_S="";
+        public string B2low = "";
+        public string RAS = "";
+        public string IDENT = "";
+        public string Length="";
+        public string Width="";
+
+        public string ModeSMBData = "";
+
+        public string ACASResolutionAdvisoryReport = "";
+        public int TYP;
+        public int STYP;
+        public int ARA_ACAS;
+        public int RAC;
+        public int RAT;
+        public int MTE;
+        public int TTI;
+        public int TID;
+
+        public string MessageAmplitude = "";
+        public double MessageAmplitude_dBm;
+
+        public string ReceiverID = "";
+        public int ReceiverID_number;
+
+        public string DataAges = "";
+        public double AOS;
+        public double TRD;
+        public double M3A;
+        public double QI;
+        public double TI;
+        public double MAM;
+        public double GH;
+        public double FL;
+        public double ISA;
+        public double FSA;
+        public double AS;
+        public double TAS;
+        public double MH;
+        public double BVR;
+        public double GVR;
+        public double GV;
+        public double TAR;
+        public double TI_DA;
+        public double TS_DA;
+        public double MET;
+        public double ROA;
+        public double ARA;
+        public double SCC;
+
+
 
 
 
@@ -767,7 +864,547 @@ namespace Clases
 
             GeometricVerticalRate_fmin = Calculate_ComplementoA2(str2) * 6.25;
         }
+        public void Compute_TargetIdentification(string paquete)
+        {
+            int i = 0;
+            while (i < 8)
+            {
+                string str1 = paquete.Substring(i * 6, 6);
 
+                int b1 = Convert.ToInt32(Convert.ToString(str1[5]));
+                int b2 = Convert.ToInt32(Convert.ToString(str1[4]));
+                int b3 = Convert.ToInt32(Convert.ToString(str1[3]));
+                int b4 = Convert.ToInt32(Convert.ToString(str1[2]));
+                int b5 = Convert.ToInt32(Convert.ToString(str1[1]));
+                int b6 = Convert.ToInt32(Convert.ToString(str1[0]));
+
+                if (b4 == 0 && b3 == 0 && b2 == 0 && b1 == 1 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "A");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 1 && b1 == 0 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "B");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 1 && b1 == 1 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "C");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 0 && b1 == 0 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "D");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 0 && b1 == 1 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "E");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 1 && b1 == 0 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "F");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 1 && b1 == 1 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "G");
+                }
+                if (b4 == 1 && b3 == 0 && b2 == 0 && b1 == 0 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "H");
+                }
+                if (b4 == 1 && b3 == 0 && b2 == 0 && b1 == 1 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "I");
+                }
+                if (b4 == 1 && b3 == 0 && b2 == 1 && b1 == 0 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "J");
+                }
+                if (b4 == 1 && b3 == 0 && b2 == 1 && b1 == 1 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "K");
+                }
+                if (b4 == 1 && b3 == 1 && b2 == 0 && b1 == 0 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "L");
+                }
+                if (b4 == 1 && b3 == 1 && b2 == 0 && b1 == 1 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "M");
+                }
+                if (b4 == 1 && b3 == 1 && b2 == 1 && b1 == 0 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "N");
+                }
+                if (b4 == 1 && b3 == 1 && b2 == 1 && b1 == 1 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "O");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 0 && b1 == 0 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "P");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 0 && b1 == 1 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "Q");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 1 && b1 == 0 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "R");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 1 && b1 == 1 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "S");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 0 && b1 == 0 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "T");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 0 && b1 == 1 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "U");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 1 && b1 == 0 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "V");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 1 && b1 == 1 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "W");
+                }
+                if (b4 == 1 && b3 == 0 && b2 == 0 && b1 == 0 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "X");
+                }
+                if (b4 == 1 && b3 == 0 && b2 == 0 && b1 == 1 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "Y");
+                }
+                if (b4 == 1 && b3 == 0 && b2 == 1 && b1 == 0 && b5 == 1 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "Z");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 0 && b1 == 0 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "0");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 0 && b1 == 1 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "1");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 1 && b1 == 0 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "2");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 1 && b1 == 1 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "3");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 0 && b1 == 0 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "4");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 0 && b1 == 1 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "5");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 1 && b1 == 0 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "6");
+                }
+                if (b4 == 0 && b3 == 1 && b2 == 1 && b1 == 1 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "7");
+                }
+                if (b4 == 1 && b3 == 0 && b2 == 0 && b1 == 0 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "8");
+                }
+                if (b4 == 1 && b3 == 0 && b2 == 0 && b1 == 1 && b5 == 1 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "9");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 0 && b1 == 0 && b5 == 0 && b6 == 1)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "");
+                }
+                if (b4 == 0 && b3 == 0 && b2 == 0 && b1 == 0 && b5 == 0 && b6 == 0)
+                {
+                    TargetIdentification_decoded = String.Concat(TargetIdentification_decoded, "");
+                }
+
+                i = i + 1;
+
+            }
+
+        }
+        public void Calculate_EmitterCategory(string paquete)
+        {
+            int ecat = Convert.ToInt32(paquete, 2);
+            if (ecat == 0)
+            {
+                ECAT = "No ADS-B Emitter Category Information.";
+            }
+            if (ecat == 1)
+            {
+                ECAT = "Light aircraft <= 15500 lbs.";
+            }
+            if (ecat == 2)
+            {
+                ECAT = "15500 lbs < small aircraft <75000 lbs.";
+            }
+            if (ecat == 3)
+            {
+                ECAT = "75000 lbs < medium a/c  < 300000 lbs.";
+            }
+            if (ecat == 4)
+            {
+                ECAT = "High Vortex Large.";
+            }
+            if (ecat == 5)
+            {
+                ECAT = "300000 lbs <= heavy aircraft.";
+            }
+            if (ecat == 6)
+            {
+                ECAT = "Highly manoeuvrable (5g acceleration capability) and high speed (>400 knots cruise).";
+            }
+            if (ecat == 7 || ecat==8 || ecat==9)
+            {
+                ECAT = "Reserved";
+            }
+            if (ecat == 10)
+            {
+                ECAT = "Rotocraft.";
+            }
+            if (ecat == 11)
+            {
+                ECAT = "Glider/Sailplane.";
+            }
+            if (ecat == 12)
+            {
+                ECAT = "Lighter-than-air.";
+            }
+            if (ecat == 13)
+            {
+                ECAT = "Unmanned aerial vehicle.";
+            }
+            if (ecat == 14)
+            {
+                ECAT = "Space/Transatmospheric Vehicle.";
+            }
+            if (ecat == 15)
+            {
+                ECAT = "Ultralight/Handglider/Paraglider.";
+            }
+            if (ecat == 16)
+            {
+                ECAT = "Parachutist/Skydiver.";
+            }
+            if (ecat == 17 || ecat==18 || ecat==19)
+            {
+                ECAT = "Reserved.";
+            }
+            if (ecat == 20)
+            {
+                ECAT = "Suerface emergency vehicle";
+            }
+            if (ecat == 21)
+            {
+                ECAT = "Surface service vehicle.";
+            }
+            if (ecat == 22)
+            {
+                ECAT = "Fixed ground or tethered obstruction.";
+            }
+            if (ecat == 23)
+            {
+                ECAT = "Cluster obstacle.";
+            }
+            if (ecat == 24)
+            {
+                ECAT = "Line obstacle.";
+            }
+
+
+        }
+        public void Calculate_MetInformation(string paquete)
+        {
+
+            int counter = 8;
+            string ws = "";
+            string wd = "";
+            string temp = "";
+            string turb = "";
+
+            if (Convert.ToString(paquete[0]) == "1")
+            {
+                ws = paquete.Substring(counter, 16);
+                counter = counter + 16;
+
+                WindSpeed = Convert.ToInt32(ws, 2);
+            }
+
+            if (Convert.ToString(paquete[1]) == "1")
+            {
+                wd = paquete.Substring(counter, 16);
+                counter = counter + 16;
+
+                WindDirection = Convert.ToInt32(wd, 2);
+            }
+
+            if (Convert.ToString(paquete[2]) == "1")
+            {
+                temp = paquete.Substring(counter, 16);
+                counter = counter + 16;
+
+                Temperature = Calculate_ComplementoA2(temp) * 0.25;
+            }
+
+            if (Convert.ToString(paquete[3]) == "1")
+            {
+                turb = paquete.Substring(counter, 8);
+                counter = counter + 8;
+
+                Turbulence = Convert.ToInt32(turb, 2);
+            }
+
+
+        }
+        public void Calculate_SelectedAltitude(string paquete)
+        {
+            int sas = Convert.ToInt32(paquete[0]);
+            if (sas == 0)
+            {
+                SAS = "No source information provided.";
+            }
+
+            if (sas == 1)
+            {
+                SAS = "Source information provided.";
+            }
+
+            string source1 = Convert.ToString(paquete[1]);
+            string source2 = Convert.ToString(paquete[2]);
+
+            if (source1 == "0" && source2 == "0")
+            {
+                Source = "Unknown";
+            }
+
+            if (source1 == "0" && source2 == "1")
+            {
+                Source = "Aircraft Altitude (Holding Altitude).";
+            }
+
+            if (source1 == "1" && source2 == "0")
+            {
+                Source = "MCP/FCU Selected Altitude.";
+            }
+            if (source1 == "1" && source2 == "1")
+            {
+                Source = "FMS Selected Altitude.";
+            }
+
+            string alt = paquete.Substring(3, 13);
+            SelectedAltitude_ft = Calculate_ComplementoA2(alt) * 25;
+
+        }
+        public void Calculate_FinalStateSelectedAltitude(string paquete)
+        {
+            string mv1 = Convert.ToString(paquete[0]);
+            if (mv1 == "0")
+            {
+                MV = "Not actice or unknown.";
+            }
+            else
+            {
+                MV = "Active.";
+            }
+
+            string ah1 = Convert.ToString(paquete[1]);
+            if (ah1 == "0")
+            {
+                AH = "Not actice or unknown.";
+            }
+            else
+            {
+                AH = "Active.";
+            }
+
+            string am1 = Convert.ToString(paquete[1]);
+            if (am1 == "0")
+            {
+                AM = "Not actice or unknown.";
+            }
+            else
+            {
+                AM = "Active.";
+            }
+
+            string alt1 = paquete.Substring(3, 13);
+            FinalStateSelectedAltitude_ft = Calculate_ComplementoA2(alt1) * 25;
+        }
+        public void Calculate_TrajectoryIntent(string paquete)
+        {
+            int counter = 8;
+            string trajectoryintentstatus = "";
+            string trajectoryintentdata = "";
+
+            if (Convert.ToString(paquete[0]) == "1")
+            {
+                trajectoryintentstatus = paquete.Substring(counter, 8);
+                counter = counter + 8;
+
+                string str1 = Convert.ToString(trajectoryintentstatus[0]);
+                if (str1 == "0")
+                {
+                    NAV = "Trajectory Intent Data is available for this aircraft.";
+                }
+
+                else
+                {
+                    NAV = "Trajectory Intent Data is not available for this aircraft.";
+                }
+
+                string str2 = Convert.ToString(trajectoryintentstatus[0]);
+                if (str2 == "0")
+                {
+                    NVB = "Trajectory Intent Data is valid.";
+                }
+
+                else
+                {
+                    NVB = "Trajectory Intent Data is not valid.";
+                }
+            }
+
+            if (Convert.ToString(paquete[1]) == "1")
+            {
+                trajectoryintentdata = paquete.Substring(counter, 128);
+                counter = counter + 128;
+
+                string rep1 = trajectoryintentdata.Substring(0, 8);
+                string tca1 = trajectoryintentdata.Substring(8,1);
+                string nc1 = trajectoryintentdata.Substring(9, 1);
+                string tcp1 = trajectoryintentdata.Substring(10, 6);
+                string alt1 = trajectoryintentdata.Substring(16, 16);
+                string lat1 = trajectoryintentdata.Substring(32, 24);
+                string lon1 = trajectoryintentdata.Substring(56, 24);
+                string pointtype1 = trajectoryintentdata.Substring(80, 4);
+                string td1 = trajectoryintentdata.Substring(84, 2);
+                string tra1 = trajectoryintentdata.Substring(86, 1);
+                string toa1 = trajectoryintentdata.Substring(87, 1);
+                string tov1 = trajectoryintentdata.Substring(88, 24);
+                string ttr1 = trajectoryintentdata.Substring(112, 16);
+
+                REP = Convert.ToInt32(rep1, 2);
+
+                if (Convert.ToString(tca1) == "0")
+                {
+                    TCA = "TCP number available";
+                }
+                else
+                {
+                    TCA = "TCP number not available.";
+                }
+
+                if (Convert.ToString(nc1) == "0")
+                {
+                    NC = "TCP compliance.";
+
+                }
+                else
+                {
+                    NC = "TCP non-compliance.";
+                }
+
+                TCP = Convert.ToInt32(tcp1, 2);
+                TI_ALtitude = Calculate_ComplementoA2(alt1) * 10;
+                TI_Latitude = Calculate_ComplementoA2(lat1) * 180 / (Math.Pow(2, 23));
+                TI_Longitude = Calculate_ComplementoA2(lon1) * 180 / (Math.Pow(2, 23));
+
+                int int1 = Convert.ToInt32(pointtype1);
+                if (int1 == 0)
+                {
+                    PointType = "Unknown";
+                }
+                if (int1 == 1)
+                {
+                    PointType = "Fly by Waypoint (LT)";
+                }
+                if (int1 == 2)
+                {
+                    PointType = "Fly over waypoint (LT).";
+                }
+                if (int1 == 3)
+                {
+                    PointType = "Hold pattern (LT).";
+                }
+                if (int1 == 4)
+                {
+                    PointType = "Procedure hold (LT).";
+                }
+                if (int1 == 5)
+                {
+                    PointType = "Procedure turn (LT).";
+                }
+                if (int1 == 6)
+                {
+                    PointType = "RF leg (LT).";
+                }
+                if (int1 == 7)
+                {
+                    PointType = "Top of climb (VT).";
+                }
+                if (int1 == 8)
+                {
+                    PointType = "Top of descent (VT).";
+                }
+                if (int1 == 9)
+                {
+                    PointType = "Start of level (VT).";
+                }
+                if (int1 == 10)
+                {
+                    PointType = "Cross-over altitude (VT).";
+                }
+                if (int1 == 11)
+                {
+                    PointType = "Transition altitude (VT).";
+                }
+
+                string str1 = Convert.ToString(td1[0]);
+                string str2 = Convert.ToString(td1[1]);
+
+                if (str1 == "0" && str2 == "8")
+                {
+                    TD = "N/A";
+                }
+                if (str1 == "0" && str2 == "1")
+                {
+                    TD = "Turn right.";
+                }
+                if (str1 == "1" && str2 == "0")
+                {
+                    TD = "Turn left.";
+                }
+                else
+                {
+                    TD = "No turn.";
+                }
+
+                if (tra1 == "0")
+                {
+                    TRA = "TTR not available.";
+                }
+                else
+                {
+                    TRA = "TTR available.";
+                }
+
+                TOV = Convert.ToInt32(tov1, 2);
+                TTR = Convert.ToInt32(ttr1, 2) * 0.01;
+            }
+        }
         public void Calculate_AircraftOperationalStatus(string paquete)
         {
 
@@ -782,7 +1419,7 @@ namespace Clases
             }
 
 
-            string TC1 = Convert.ToString(((paquete.Substring(1, 2)), 2));
+            string TC1 = Convert.ToString((paquete.Substring(1, 2)));
 
             if (Convert.ToInt32(TC1, 2) == 0)
             {
@@ -856,8 +1493,477 @@ namespace Clases
 
 
         }
+        public void Calculate_SurfaceCapabilitiesandCharacterístics(string paquete)
+        {
+            string poa1 = Convert.ToString(paquete[3]);
+            if (poa1 == "0")
+            {
+                POA = "Position transmitted is not ADS-B position reference point.";
+            }
+            else
+            {
+                POA = "Position transmitted is the ADS-B position reference point ";
+            }
 
-        public string Calculate_FSPEC(string[] paquete)
+            string cdtis1 = Convert.ToString(paquete[4]);
+            if (cdtis1 == "0")
+            {
+                CDTI_S = "CDTI not operational.";
+            }
+            else
+            {
+                CDTI_S = "CDTI operational.";
+            }
+
+            string b2low1 = Convert.ToString(paquete[5]);
+            if (b2low1 == "0")
+            {
+                B2low = "≥ 70 Watts.";
+            }
+            else
+            {
+                B2low = "< 70 Watts.";
+            }
+
+            string ras1 = Convert.ToString(paquete[6]);
+            if (ras1 == "0")
+            {
+                RAS = "Aircraft not receiving ATC-services.";
+            }
+            else
+            {
+                RAS = "Aircraft receiving ATC services.";
+            }
+
+
+            string ident1 = paquete.Substring(6,2);
+            if (ident1 == "0")
+            {
+                IDENT = "IDENT switch not active.";
+            }
+            else
+            {
+                IDENT = "IDENT switch active.";
+            }
+
+            if (paquete.Length > 8)
+            {
+                int int2 = Convert.ToInt32(paquete.Substring(12, 4));
+
+                if (VN == "DO-260A [Ref. 9].")
+                {
+                    if (int2 == 0)
+                    {
+                        Width = "W < 11.5 ";
+                        Length = "L < 15";
+                    }
+                    if (int2 == 1)
+                    {
+                        Width = "W < 23";
+                        Length = "L < 15";
+                    }
+                    if (int2 == 2)
+                    {
+                        Width = "W < 28.5";
+                        Length = "L < 25";
+                    }
+                    if (int2 == 3)
+                    {
+                        Width = "W < 28.5";
+                        Length = "L < 25";
+                    }
+                    if (int2 == 4)
+                    {
+                        Width = "W < 33";
+                        Length = "L < 35";
+                    }
+                    if (int2 == 5)
+                    {
+                        Width = "W < 38";
+                        Length = "L < 35";
+                    }
+                    if (int2 == 6)
+                    {
+                        Width = "W < 39.5";
+                        Length = "L < 45";
+                    }
+                    if (int2 == 7)
+                    {
+                        Width = "W < 45";
+                        Length = "L < 45";
+                    }
+                    if (int2 == 8)
+                    {
+                        Width = "W < 45";
+                        Length = "L < 55";
+                    }
+                    if (int2 == 9)
+                    {
+                        Width = "W < 52";
+                        Length = "L < 55";
+                    }
+                    if (int2 == 10)
+                    {
+                        Width = "W < 59.5";
+                        Length = "L < 65";
+                    }
+                    if (int2 == 11)
+                    {
+                        Width = "W < 67";
+                        Length = "L < 65";
+                    }
+                    if (int2 == 12)
+                    {
+                        Width = "W < 72.5";
+                        Length = "L < 75";
+                    }
+                    if (int2 == 13)
+                    {
+                        Width = "W < 80";
+                        Length = "L < 75";
+                    }
+                    if (int2 == 14)
+                    {
+                        Width = "W < 80";
+                        Length = "L < 85";
+                    }
+                    if (int2 == 15)
+                    {
+                        Width = "W > 80";
+                        Length = "L < 85";
+                    }
+
+                }
+
+                if (VN == "ED102A/DO-260B [Ref. 11].")
+                {
+                    if (int2 == 0)
+                    {
+                        Width = "W < 11.5 ";
+                        Length = "L < 15";
+                    }
+                    if (int2 == 1)
+                    {
+                        Width = "W < 23";
+                        Length = "L < 15";
+                    }
+                    if (int2 == 2)
+                    {
+                        Width = "W < 28.5";
+                        Length = "L < 25";
+                    }
+                    if (int2 == 3)
+                    {
+                        Width = "W < 28.5";
+                        Length = "L < 25";
+                    }
+                    if (int2 == 4)
+                    {
+                        Width = "W < 33";
+                        Length = "L < 35";
+                    }
+                    if (int2 == 5)
+                    {
+                        Width = "W < 38";
+                        Length = "L < 35";
+                    }
+                    if (int2 == 6)
+                    {
+                        Width = "W < 39.5";
+                        Length = "L < 45";
+                    }
+                    if (int2 == 7)
+                    {
+                        Width = "W < 45";
+                        Length = "L < 45";
+                    }
+                    if (int2 == 8)
+                    {
+                        Width = "W < 45";
+                        Length = "L < 55";
+                    }
+                    if (int2 == 9)
+                    {
+                        Width = "W < 52";
+                        Length = "L < 55";
+                    }
+                    if (int2 == 10)
+                    {
+                        Width = "W < 59.5";
+                        Length = "L < 65";
+                    }
+                    if (int2 == 11)
+                    {
+                        Width = "W < 67";
+                        Length = "L < 65";
+                    }
+                    if (int2 == 12)
+                    {
+                        Width = "W < 72.5";
+                        Length = "L < 75";
+                    }
+                    if (int2 == 13)
+                    {
+                        Width = "W < 80";
+                        Length = "L < 75";
+                    }
+                    if (int2 == 14)
+                    {
+                        Width = "W < 80";
+                        Length = "L < 85";
+                    }
+                    if (int2 == 15)
+                    {
+                        Width = "W > 80";
+                        Length = "L < 85";
+                    }
+                }
+            }
+
+        }
+        public void Calculate_ACASResolutionAdvisoryReport(string paquete)
+        {
+            string typ1 = paquete.Substring(0, 5);
+            TYP = Convert.ToInt32(typ1, 2);
+
+            string styp1 = paquete.Substring(5, 3);
+            STYP = Convert.ToInt32(styp1, 2);
+
+            string ara1 = paquete.Substring(8, 14);
+            ARA_ACAS = Convert.ToInt32(ara1, 2);
+
+            string rac1 = paquete.Substring(22, 4);
+            RAC = Convert.ToInt32(rac1, 2);
+
+            string rat1 = paquete.Substring(26, 1);
+            RAT = Convert.ToInt32(rat1);
+
+            string mte = paquete.Substring(27, 1);
+            MTE = Convert.ToInt32(mte, 2);
+
+            string tti1 = paquete.Substring(28, 2);
+            TTI = Convert.ToInt32(tti1, 2);
+
+            string tid1 = paquete.Substring(30, 26);
+            TID = Convert.ToInt32(tid1, 2);
+        }
+        public void Calculate_ReceiverID(string paquete)
+        {
+            ReceiverID_number = Convert.ToInt32(paquete);
+        }
+        public void Calculate_Data_Ages(string paquete)
+        {
+            int counter = 32;
+            if (Convert.ToString(paquete[0]) == "1")
+            {
+                string aos1=paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+                               
+                AOS = Convert.ToInt32(aos1, 2)*0.1;
+            }
+            
+            if (Convert.ToString(paquete[1]) == "1")
+            {
+                string trd1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                TRD = Convert.ToInt32(trd1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[2]) == "1")
+            {
+                string m3a1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                M3A = Convert.ToInt32(m3a1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[3]) == "1")
+            {
+                string qi1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                QI = Convert.ToInt32(qi1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[4]) == "1")
+            {
+                string ti1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                TI = Convert.ToInt32(ti1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[5]) == "1")
+            {
+                string mam1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                MAM = Convert.ToInt32(mam1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[6]) == "1")
+            {
+                string gh1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                GH = Convert.ToInt32(gh1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[8]) == "1")
+            {
+                string fl1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                FL = Convert.ToInt32(fl1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[9]) == "1")
+            {
+                string isa1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                ISA = Convert.ToInt32(isa1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[10]) == "1")
+            {
+                string fsa1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                FSA = Convert.ToInt32(fsa1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[11]) == "1")
+            {
+                string as1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                AS = Convert.ToInt32(as1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[12]) == "1")
+            {
+                string tas1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                TAS = Convert.ToInt32(tas1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[13]) == "1")
+            {
+                string mh1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                MH = Convert.ToInt32(mh1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[14]) == "1")
+            {
+                string bvr1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                BVR = Convert.ToInt32(bvr1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[16]) == "1")
+            {
+                string gvr1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                GVR = Convert.ToInt32(gvr1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[17]) == "1")
+            {
+                string gv1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                GV = Convert.ToInt32(gv1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[18]) == "1")
+            {
+                string tar1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                TAR = Convert.ToInt32(tar1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[19]) == "1")
+            {
+                string ti1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                TI_DA = Convert.ToInt32(ti1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[20]) == "1")
+            {
+                string ts1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                TS_DA = Convert.ToInt32(ts1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[21]) == "1")
+            {
+                string met1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                MET = Convert.ToInt32(met1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[22]) == "1")
+            {
+                string roa1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                ROA = Convert.ToInt32(roa1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[24]) == "1")
+            {
+                string ara1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                ARA = Convert.ToInt32(ara1, 2) * 0.1;
+            }
+
+            if (Convert.ToString(paquete[25]) == "1")
+            {
+                string scc1 = paquete.Substring(counter, 8);
+
+                counter = counter + 8;
+
+                SCC = Convert.ToInt32(scc1, 2) * 0.1;
+            }
+        }
+
+
+        public void Calculate_FSPEC(string[] paquete)
         {
             int j = 3;
             bool found = false;
@@ -919,6 +2025,7 @@ namespace Clases
             {
                 string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                 string_packet = AddZeros(string_packet);
+                TargetReportDescriptor = string_packet;
 
 
                 //
@@ -936,7 +2043,7 @@ namespace Clases
 
                 Calculate_TargetReportDescriptor(TargetReportDescriptor);
 
-                if ((TargetReportDescriptor.Length) == 8)
+                if ((string_packet.Length) == 8)
                 {
                     data_position = data_position + 1;
                 }
@@ -1130,14 +2237,14 @@ namespace Clases
                     string string1 = Convert.ToString(paquete[data_position + i]);
                     string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                     string2 = AddZeros(string2);
-                    TrueAirSpeed = String.Concat(TrueAirSpeed, string2);
+                    TimeofMessageReception_Position = String.Concat(TimeofMessageReception_Position, string2);
                     i = i + 1;
                 }
 
                 data_position = data_position + 3;
 
-                double time = Convert.ToInt32(TimeofMessageReception_Position, 2);
-                TimeofApplicability_Position_seconds = time * (1 / 128);
+                TimeofMessageReception_Position_seconds = Convert.ToInt32(TimeofMessageReception_Position, 2);
+                TimeofMessageReception_Position_seconds = TimeofMessageReception_Position_seconds / 128;
 
             }
 
@@ -1233,6 +2340,7 @@ namespace Clases
             {
                 string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                 string_packet = AddZeros(string_packet);
+                QualityIndicators = string_packet;
 
 
                 //
@@ -1248,12 +2356,12 @@ namespace Clases
                 }
                 data_position = data_position + i;
 
-                Calculate_TargetReportDescriptor(QualityIndicators);
-
-                if ((QualityIndicators.Length) == 8)
+                if ((string_packet.Length) == 8)
                 {
                     data_position = data_position + 1;
                 }
+
+
 
 
             }
@@ -1465,9 +2573,293 @@ namespace Clases
 
             }// FX
 
+            if (Char.ToString(FSPEC_fake[32]) == "1") // 29 I021/170 Target Identification
+            {
+                i = 0;
+                while (i < 6)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TargetIdentification = String.Concat(TargetIdentification, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 6;
+
+                Compute_TargetIdentification(TargetIdentification);
+                string a = TargetIdentification_decoded;
+            }
+
+            if (Char.ToString(FSPEC_fake[33]) == "1") // 30 I021/020 Emitter Category 
+            {
+                i = 0;
+                while (i < 1)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    EmitterCategory = String.Concat(EmitterCategory, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 1;
+
+                Calculate_EmitterCategory(EmitterCategory);
+
+            }
+
+            if (Char.ToString(FSPEC_fake[34]) == "1") // 31 I021/220 Met Information
+            {
+                string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                string_packet = AddZeros(string_packet);
+                MetInformation = string_packet;
+
+                //
+                int i = 0;
+                while (Char.ToString(string_packet[string_packet.Length - 1]) == "1")
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    MetInformation = String.Concat(MetInformation, string2);
+                    string_packet = MetInformation;
+                    i = i + 1;
+                }
+                data_position = data_position + i;
+
+                if ((string_packet.Length) == 8)
+                {
+                    data_position = data_position + 1;
+                }
+
+                Calculate_MetInformation(MetInformation);
+
+            }
+
+            if (Char.ToString(FSPEC_fake[35]) == "1") // 32 I021/146 Selected Altitude  
+            {
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    SelectedAltitude = String.Concat(SelectedAltitude, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                Calculate_SelectedAltitude(SelectedAltitude);
+                double ab = SelectedAltitude_ft;
+            }
+
+            if (Char.ToString(FSPEC_fake[36]) == "1") // 33 I021/148 Final State Selected Altitude 
+            {
+                i = 0;
+                while (i < 2)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    FinalStateSelectedAltitude = String.Concat(FinalStateSelectedAltitude, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 2;
+
+                Calculate_FinalStateSelectedAltitude(FinalStateSelectedAltitude);
+
+            }
+
+            if (Char.ToString(FSPEC_fake[37]) == "1") // 34 I021/110 Trajectory Intent
+            {
+                string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                string_packet = AddZeros(string_packet);
+                TrajectoryIntent = string_packet;
+
+                //
+                int i = 0;
+                while (Char.ToString(string_packet[string_packet.Length - 1]) == "1")
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    TrajectoryIntent = String.Concat(TrajectoryIntent, string2);
+                    string_packet = TrajectoryIntent;
+                    i = i + 1;
+                }
+                data_position = data_position + i;
+
+                if ((string_packet.Length) == 8)
+                {
+                    data_position = data_position + 1;
+                }
+
+                Calculate_TrajectoryIntent(TrajectoryIntent);
+            }
+
+            if (Char.ToString(FSPEC_fake[38]) == "1") // 28 I021/077 Time of Report Transmission 
+            {
+                i = 0;
+                while (i < 1)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    ServiceManagement = String.Concat(ServiceManagement, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 1;
+
+                RP = Convert.ToInt32(ServiceManagement, 2) * 0.5;
+
+            }
+
+            if (Char.ToString(FSPEC_fake[39]) == "1") // FX - Field extension indicator 
+            {
+
+            }// FX
+
+            if (Char.ToString(FSPEC_fake[40]) == "1") // 36 I021/008 Aircraft Operational Status
+            {
+                i = 0;
+                while (i < 1)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    AircraftOperationalStatus = String.Concat(AircraftOperationalStatus, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 1;
+
+                Calculate_AircraftOperationalStatus(AircraftOperationalStatus);
+            }
+
+            if (Char.ToString(FSPEC_fake[41]) == "1") // 37 I021/271 Surface Capabilities and Characteristics
+            {
+                string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                string_packet = AddZeros(string_packet);
+                SurfaceCapabilitiesandCharacteristicas = string_packet;
 
 
-            return FSPEC;
+
+                //
+                int i = 0;
+                while (Char.ToString(string_packet[string_packet.Length - 1]) == "1")
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    SurfaceCapabilitiesandCharacteristicas = String.Concat(SurfaceCapabilitiesandCharacteristicas, string2);
+                    string_packet = SurfaceCapabilitiesandCharacteristicas;
+                    i = i + 1;
+                }
+                data_position = data_position + i;
+
+                if ((string_packet.Length) == 8)
+                {
+                    data_position = data_position + 1;
+                }
+
+                Calculate_SurfaceCapabilitiesandCharacterístics(SurfaceCapabilitiesandCharacteristicas);
+
+            }
+
+            if (Char.ToString(FSPEC_fake[42]) == "1") // 38 I021/132 Message Amplitude 
+            {
+                i = 0;
+                while (i < 1)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    MessageAmplitude = String.Concat(MessageAmplitude, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 1;
+
+                MessageAmplitude_dBm = Calculate_ComplementoA2(MessageAmplitude);
+            }
+
+            if (Char.ToString(FSPEC_fake[43]) == "1") // 39 I021/250 Mode S MB Data
+            {
+
+
+            }
+
+            if (Char.ToString(FSPEC_fake[44]) == "1") // 40 I021/260 ACAS Resolution Advisory Report 
+            {
+                i = 0;
+                while (i < 7)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    ACASResolutionAdvisoryReport = String.Concat(ACASResolutionAdvisoryReport, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 7;
+
+                Calculate_ACASResolutionAdvisoryReport(ACASResolutionAdvisoryReport);
+            }
+
+            if (Char.ToString(FSPEC_fake[45]) == "1") // 41 I021/400 Receiver ID
+            {
+                i = 0;
+                while (i < 1)
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    ReceiverID = String.Concat(ReceiverID, string2);
+                    i = i + 1;
+                }
+
+                data_position = data_position + 1;
+
+                Calculate_ReceiverID(ReceiverID);
+            }
+
+            if (Char.ToString(FSPEC_fake[46]) == "1") // 42 I021/295 Data Ages 
+            {
+                string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                string_packet = AddZeros(string_packet);
+                DataAges = string_packet;
+
+                //
+                int i = 0;
+                while (Char.ToString(string_packet[string_packet.Length - 1]) == "1")
+                {
+                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string2 = AddZeros(string2);
+                    DataAges = String.Concat(DataAges, string2);
+                    string_packet = DataAges;
+                    i = i + 1;
+                }
+                data_position = data_position + i;
+
+                if ((DataAges.Length) == 8)
+                {
+                    data_position = data_position + 1;
+                }
+
+                Calculate_SurfaceCapabilitiesandCharacterístics(DataAges);
+
+            }
+
+            if (Char.ToString(FSPEC_fake[47]) == "1") // FX - Field extension indicator 
+            {
+
+            }// FX
+
 
         }
 

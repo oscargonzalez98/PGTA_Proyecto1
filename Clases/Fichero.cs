@@ -85,6 +85,8 @@ namespace LibreriaClases
                 listahex.Add(arrayhex);
             }
 
+            i = 0;
+
             for (int q = 0; q < listahex.Count; q++)
             {
                 string[] arraystring = listahex[q];
@@ -106,14 +108,16 @@ namespace LibreriaClases
                     listaCAT21.Add(newcat21);
 
                     // no borrar
-                    //newcat21.Calculate_FSPEC(newcat21.paquete);
+                    newcat21.Calculate_FSPEC(newcat21.paquete);
                     //int uno = newcat21.SIC;
                     //int dos = 0;
                 }
                 //}
-
+                i = i + 1;
 
             }
+
+            int a = 0;
 
 
             //    public DataTable getTablaCAT10()
@@ -132,4 +136,4 @@ namespace LibreriaClases
 
     }
 }
-
+ 
