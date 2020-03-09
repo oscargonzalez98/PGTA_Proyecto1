@@ -93,7 +93,10 @@ namespace LibreriaClases
                 if (CAT == 10)
                 {
                     CAT10 newcat10 = new CAT10(arraystring);
+                    newcat10.Calculate_FSPEC(arraystring);
                     listaCAT10.Add(newcat10);
+
+
                 }
 
                 if (CAT == 21)

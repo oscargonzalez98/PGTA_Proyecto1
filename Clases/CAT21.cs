@@ -48,15 +48,10 @@ namespace Clases
         public string PositioninWGS_coordinates;
         public double latWGS84 = 0;
         public double lonWGS84 = 0;
-        public double latitudeREAL = 0;
-        public double longitudeREAL = 0;
-
 
         public string PositioninWGS_HRcoordinates = "";
         public double latWGS84_HR = 0;
         public double lonWGS84_HR = 0;
-        public double latitudeREAL_HR = 0;
-        public double longitudeREAL_HR = 0;
 
         public string TimeofApplicability_Velocity = "";
         public double TimeofApplicability_Velocity_seconds;
@@ -242,10 +237,6 @@ namespace Clases
         public double ROA;
         public double ARA;
         public double SCC;
-
-
-
-
 
         public CAT21(string[] packet)
         {
@@ -604,7 +595,7 @@ namespace Clases
             }
 
             string tas = paquete.Substring(1, 15);
-            TrueAirSpeed_number = Convert.ToInt32(tas);
+            TrueAirSpeed_number = Convert.ToInt32(tas,2);
 
         }
         public void Calculate_TimeofMessageReception_HRPosition(string paquete)
@@ -2046,12 +2037,13 @@ namespace Clases
                 }
                 data_position = data_position +i;
 
-                Calculate_TargetReportDescriptor(TargetReportDescriptor);
-
                 if ((string_packet.Length) == 8)
                 {
                     data_position = data_position + 1;
                 }
+
+                Calculate_TargetReportDescriptor(TargetReportDescriptor);
+
 
             }
 
@@ -2685,7 +2677,7 @@ namespace Clases
                 int i = 0;
                 while (Char.ToString(string_packet[string_packet.Length - 1]) == "1")
                 {
-                    string string1 = Convert.ToString(paquete[data_position + i]);
+                    string string1 = Convert.ToString(paquete[data_position + i ]);
                     string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                     string2 = AddZeros(string2);
                     TrajectoryIntent = String.Concat(TrajectoryIntent, string2);
