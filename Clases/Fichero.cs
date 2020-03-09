@@ -14,11 +14,9 @@ namespace LibreriaClases
     public class Fichero
     {
         string path;
-        //List<CAT10> listaCAT10 = new List<CAT10>();
-        //List<CAT20> listaCAT20 = new List<CAT20>();
+        List<CAT10> listaCAT10 = new List<CAT10>();
         List<CAT21> listaCAT21 = new List<CAT21>();
         DataTable tablaCAT10 = new DataTable();
-        DataTable tablaCAT20 = new DataTable();
         DataTable tablaCAT21 = new DataTable();
 
 
@@ -27,14 +25,10 @@ namespace LibreriaClases
             this.path = nombre;
         }
 
-        //public List<CAT10> getListCAT10()
-        //{
-        //    return listaCAT10;
-        //}
-        //public List<CAT20> getListCAT20()
-        //{
-        //    return listaCAT20;
-        //}
+        public List<CAT10> getListCAT10()
+        {
+            return listaCAT10;
+        }
         public List<CAT21> GetListCAT21()
         {
             return listaCAT21;
@@ -87,33 +81,35 @@ namespace LibreriaClases
 
             i = 0;
 
+            tablaCAT21.Columns.Add("Tiempo(s)", typeof(int));
+            tablaCAT21.Columns.Add("Latitud WGS84", typeof(double));
+            tablaCAT21.Columns.Add("Longitud WGS84", typeof(double));
+
             for (int q = 0; q < listahex.Count; q++)
             {
                 string[] arraystring = listahex[q];
                 int CAT = int.Parse(arraystring[0], System.Globalization.NumberStyles.HexNumber);
 
-                //if (CAT == 10)
-                //{
-                //    CAT10 newcat10 = new CAT10(arraystring);
-                //    listaCAT10.Add(newcat10);
-                //}
-                //else if (CAT == 20)
-                //{
-                //    CAT20 newcat20 = new CAT20(arraystring);
-                //    listaCAT20.Add(newcat20);
-                //}
+                if (CAT == 10)
+                {
+                    CAT10 newcat10 = new CAT10(arraystring);
+                    listaCAT10.Add(newcat10);
+                }
+
                 if (CAT == 21)
                 {
                     CAT21 newcat21 = new CAT21(arraystring);
+                    newcat21.Calculate_FSPEC(newcat21.paquete);
                     listaCAT21.Add(newcat21);
 
                     // no borrar
-                    newcat21.Calculate_FSPEC(newcat21.paquete);
-                    //int uno = newcat21.SIC;
-                    //int dos = 0;
+                    //double a1 = newcat21.TimeofMessageReception_Position_seconds;
+                    //double b = newcat21.latWGS84;
+                    //double c = newcat21.lonWGS84;
+
+                    //tablaCAT21.Rows.Add(a1,b,c);
                 }
                 //}
-                i = i + 1;
 
             }
 

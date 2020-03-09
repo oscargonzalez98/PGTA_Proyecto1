@@ -48,10 +48,15 @@ namespace Clases
         public string PositioninWGS_coordinates;
         public double latWGS84 = 0;
         public double lonWGS84 = 0;
+        public double latitudeREAL = 0;
+        public double longitudeREAL = 0;
+
 
         public string PositioninWGS_HRcoordinates = "";
         public double latWGS84_HR = 0;
         public double lonWGS84_HR = 0;
+        public double latitudeREAL_HR = 0;
+        public double longitudeREAL_HR = 0;
 
         public string TimeofApplicability_Velocity = "";
         public double TimeofApplicability_Velocity_seconds;
@@ -245,7 +250,6 @@ namespace Clases
         public CAT21(string[] packet)
         {
             this.paquete = packet;
-            this.SAC = SAC;
         }
 
         public string AddZeros(string octeto)
@@ -543,7 +547,6 @@ namespace Clases
 
             latWGS84 = a1 * (180 / Math.Pow(2, 23));
             lonWGS84 = b1 * (180 / Math.Pow(2, 23));
-
         }
         public void CalculatePositionWGS84_HRcoordinates(string paquete)
         {
@@ -556,6 +559,8 @@ namespace Clases
 
             latWGS84_HR = a1 * (180 / Math.Pow(2, 30));
             lonWGS84_HR = b1 * (180 / Math.Pow(2, 30));
+
+
         }
         public void Calculate_TimeofAppliability_Velocity(string paquete)
         {
@@ -2139,12 +2144,11 @@ namespace Clases
 
                 CalculatePositionWGS84_HRcoordinates(PositioninWGS_HRcoordinates);
 
-            } // FX
+            } 
 
             if (Char.ToString(FSPEC_fake[7]) == "1") //FX
             {
-                data_position = data_position;
-            }
+            }// FX
 
             if (Char.ToString(FSPEC_fake[8]) == "1") // 8 I021/072 Time of Applicability for Velocity
             {
@@ -2287,7 +2291,6 @@ namespace Clases
 
             if (Char.ToString(FSPEC_fake[15]) == "1") // FX - Field extension indicator 
             {
-                data_position = data_position;
             }// FX
 
             if (Char.ToString(FSPEC_fake[16]) == "1") // 15 I021 / 076 Time of Message Reception of Velocity-High Precision
@@ -2441,7 +2444,6 @@ namespace Clases
 
             if (Char.ToString(FSPEC_fake[23]) == "1") // FX - Field extension indicator
             {
-                data_position = data_position;
             } // FX
 
             if (Char.ToString(FSPEC_fake[24]) == "1") // 22 I021/152 Magnetic Heading
