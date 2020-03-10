@@ -85,6 +85,8 @@ namespace LibreriaClases
             tablaCAT21.Columns.Add("Latitud WGS84", typeof(double));
             tablaCAT21.Columns.Add("Longitud WGS84", typeof(double));
 
+            i = 0;
+
             for (int q = 0; q < listahex.Count; q++)
             {
                 string[] arraystring = listahex[q];
@@ -101,22 +103,28 @@ namespace LibreriaClases
 
                 if (CAT == 21)
                 {
-                    CAT21 newcat21 = new CAT21(arraystring);
-                    newcat21.Calculate_FSPEC(newcat21.paquete);
-                    listaCAT21.Add(newcat21);
+                    //try
+                    //{
 
-                    // no borrar
-                    //double a1 = newcat21.TimeofMessageReception_Position_seconds;
-                    //double b = newcat21.latWGS84;
-                    //double c = newcat21.lonWGS84;
+                        CAT21 newcat21 = new CAT21(arraystring);
+                        newcat21.Calculate_FSPEC(newcat21.paquete);
+                        listaCAT21.Add(newcat21);
 
-                    //tablaCAT21.Rows.Add(a1,b,c);
+                        // no borrar
+                        //double a1 = newcat21.TimeofMessageReception_Position_seconds;
+                        //double b = newcat21.latWGS84;
+                        //double c = newcat21.lonWGS84;
+
+                        //tablaCAT21.Rows.Add(a1,b,c);
+                    //}
+                    //catch
+                    //{
+                    //    Console.WriteLine(q);
+                    //    Console.ReadKey();
+                    //}
                 }
-                //}
-
+                
             }
-
-            int a = 0;
 
 
             //    public DataTable getTablaCAT10()

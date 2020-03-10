@@ -314,8 +314,6 @@ namespace Clases
 
         }
 
-
-
         public void Calculate_FSPEC(string[] paquete)
         {
             int j = 3;
