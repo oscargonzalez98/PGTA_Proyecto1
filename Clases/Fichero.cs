@@ -115,25 +115,25 @@ namespace LibreriaClases
 
                 if (CAT == 21)
                 {
-                    //try
-                    //{
+                    try
+                    {
 
                         CAT21 newcat21 = new CAT21(arraystring);
                         newcat21.Calculate_FSPEC(newcat21.paquete);
                         listaCAT21.Add(newcat21);
 
-                        // no borrar
+                        //no borrar
                         //double a1 = newcat21.TimeofMessageReception_Position_seconds;
                         //double b = newcat21.latWGS84;
                         //double c = newcat21.lonWGS84;
 
-                        //tablaCAT21.Rows.Add(a1,b,c);
-                    //}
-                    //catch
-                    //{
-                    //    Console.WriteLine(q);
-                    //    Console.ReadKey();
-                    //}
+                        //tablaCAT21.Rows.Add(a1, b, c);
+                    }
+                    catch
+                    {
+                        Console.WriteLine(q);
+                        Console.ReadKey();
+                    }
                 }
                 
             }

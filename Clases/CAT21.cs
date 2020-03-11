@@ -1930,12 +1930,12 @@ namespace Clases
             int j = 3;
             bool found = false;
 
-            while (found ==false)
-            { 
+            while (found == false)
+            {
                 FSPEC = Convert.ToString(Convert.ToInt32(paquete[j], 16), 2);// Convertir de hex a binario paquete [3]
                 FSPEC = AddZeros(FSPEC);
 
-                if (Char.ToString(FSPEC[FSPEC.Length-1]) == "1")
+                if (Char.ToString(FSPEC[FSPEC.Length - 1]) == "1")
                 {
                     while (Char.ToString(FSPEC[FSPEC.Length - 1]) != "0")
                     {
@@ -1954,7 +1954,7 @@ namespace Clases
 
             FSPEC_fake = FSPEC;
 
-            while (FSPEC_fake.Length < (7*8))
+            while (FSPEC_fake.Length < (7 * 8))
             {
                 FSPEC_fake = String.Concat(FSPEC_fake, "0");
             }
@@ -1990,10 +1990,10 @@ namespace Clases
                 // primero leemos el primer paquete y lo pasamos a binario
 
                 string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
-                string_packet=AddZeros(string_packet);
+                string_packet = AddZeros(string_packet);
 
-                if((Convert.ToString(string_packet[7]))=="0") // si ultima posicion es un 0 guardamos el octeto y pasamos al siguiente
-                { 
+                if ((Convert.ToString(string_packet[7])) == "0") // si ultima posicion es un 0 guardamos el octeto y pasamos al siguiente
+                {
                     TargetReportDescriptor = string_packet;
                     data_position = data_position + 1;
                 }
@@ -2001,7 +2001,7 @@ namespace Clases
                 {
                     i = 0;
                     data_position = data_position + 1;
-                    while((Convert.ToString(string_packet[string_packet.Length-1])) == "1")
+                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length<24)
                     {
                         string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string_packet2 = AddZeros(string_packet2);
@@ -2140,7 +2140,7 @@ namespace Clases
                 string8 = Convert.ToString(Convert.ToInt32(string8, 16), 2);
                 string8 = AddZeros(string8);
 
-                PositioninWGS_HRcoordinates = String.Concat(string1, string2, string3,string4,string5,string6,string7,string8);
+                PositioninWGS_HRcoordinates = String.Concat(string1, string2, string3, string4, string5, string6, string7, string8);
 
                 data_position = data_position + 8;
 
@@ -2215,8 +2215,8 @@ namespace Clases
                     string string1 = Convert.ToString(paquete[data_position + i]);
                     char a = string1[0];
                     char b = string1[1];
-                    hexa=string.Concat(hexa,a);
-                    hexa= string.Concat(hexa,b);
+                    hexa = string.Concat(hexa, a);
+                    hexa = string.Concat(hexa, b);
                     string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                     string2 = AddZeros(string2);
                     TargetAddress_bin = String.Concat(TargetAddress_bin, string2);
@@ -2352,7 +2352,7 @@ namespace Clases
                 {
                     i = 0;
                     data_position = data_position + 1;
-                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1")
+                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length<32)
                     {
                         string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string_packet2 = AddZeros(string_packet2);
@@ -2568,7 +2568,7 @@ namespace Clases
             }
 
             if (Char.ToString(FSPEC_fake[31]) == "1") // FX - Field extension indicator 
-            { 
+            {
 
             }// FX
 
@@ -2627,7 +2627,7 @@ namespace Clases
                 {
                     i = 0;
                     data_position = data_position + 1;
-                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1")
+                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length<64)
                     {
                         string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string_packet2 = AddZeros(string_packet2);
@@ -2695,7 +2695,7 @@ namespace Clases
 
                 if ((Convert.ToString(string_packet[7])) == "1") // si ultimo valor =1 hacemos un bucle que vaya concatenando todos los octetos acabados en 1
                 {
-                    while (Convert.ToString(string_packet[string_packet.Length - 1]) == "1")
+                    while (Convert.ToString(string_packet[string_packet.Length - 1]) == "1" && string_packet.Length<(18*8))
                     {
                         string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position + 1], 16), 2);
                         string_packet2 = AddZeros(string_packet2);
@@ -2767,7 +2767,7 @@ namespace Clases
                 {
                     i = 0;
                     data_position = data_position + 1;
-                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length<16)
+                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length < 16)
                     {
                         string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string_packet2 = AddZeros(string_packet2);
@@ -2857,19 +2857,19 @@ namespace Clases
                 {
                     i = 0;
                     data_position = data_position + 1;
-                    while (((Convert.ToString(string_packet[string_packet.Length - 1])) == "1") && (string_packet.Length<32) )
+                    while (((Convert.ToString(string_packet[string_packet.Length - 1])) == "1") && (string_packet.Length < 32))
                     {
-                     string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
-                     string_packet2 = AddZeros(string_packet2);
-                     string_packet = string.Concat(string_packet, string_packet2);
-                     data_position = data_position + 1;
-                     i = i + 1;
+                        string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                        string_packet2 = AddZeros(string_packet2);
+                        string_packet = string.Concat(string_packet, string_packet2);
+                        data_position = data_position + 1;
+                        i = i + 1;
                     }
                 }
 
 
                 DataAges = string_packet;
-                data_position = Calculate_Data_Ages(DataAges,paquete,data_position);   
+                data_position = Calculate_Data_Ages(DataAges, paquete, data_position);
             }
 
             if (Char.ToString(FSPEC_fake[47]) == "1") // FX - Field extension indicator 
