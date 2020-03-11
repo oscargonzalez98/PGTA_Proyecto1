@@ -79,13 +79,9 @@ namespace LibreriaClases
                 listahex.Add(arrayhex);
             }
 
-            i = 0;
-
-            tablaCAT21.Columns.Add("Tiempo(s)", typeof(int));
-            tablaCAT21.Columns.Add("Latitud WGS84", typeof(double));
-            tablaCAT21.Columns.Add("Longitud WGS84", typeof(double));
-
-            i = 0;
+            //tablaCAT21.Columns.Add("Tiempo(s)", typeof(int));
+            //tablaCAT21.Columns.Add("Latitud WGS84", typeof(double));
+            //tablaCAT21.Columns.Add("Longitud WGS84", typeof(double));
 
             for (int q = 0; q < listahex.Count; q++)
             {
@@ -94,9 +90,25 @@ namespace LibreriaClases
 
                 if (CAT == 10)
                 {
+                    //try
+                    //{
                     CAT10 newcat10 = new CAT10(arraystring);
-                    newcat10.Calculate_FSPEC(arraystring);
+                    newcat10.Calculate_FSPEC(newcat10.paquete);
                     listaCAT10.Add(newcat10);
+
+
+                    //    //no borrar
+                    //    //double a1 = newcat21.TimeofMessageReception_Position_seconds;
+                    //    //double b = newcat21.latWGS84;
+                    //    //double c = newcat21.lonWGS84;
+
+                    //    //tablaCAT21.Rows.Add(a1, b, c);
+                    //}
+                    //catch
+                    //{
+                    //Console.WriteLine(q);
+                    //Console.ReadKey();
+                    //}
 
 
                 }

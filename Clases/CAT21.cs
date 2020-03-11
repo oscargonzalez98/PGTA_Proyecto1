@@ -1967,21 +1967,22 @@ namespace Clases
 
             if (Char.ToString(FSPEC_fake[0]) == "1") // 1 I021/010 Data Source Identification
             {
-                int i = 0;
-                while (i < 2)
-                {
-                    string string1= Convert.ToString(paquete[data_position + i]);
-                    string string2=Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                    string2=AddZeros(string2);
-                    DataSourseIdentification = String.Concat(DataSourseIdentification, string2);
-                    i = i + 1;
 
-                }
+                string string1 = Convert.ToString(paquete[data_position]);
+                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                string1 = AddZeros(string1);
+
+                string string2 = Convert.ToString(paquete[data_position + 1]);
+                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                string2 = AddZeros(string2);
+
                 data_position = data_position + 2;
+
+                DataSourseIdentification = String.Concat(string1, string2);
 
                 Calculate_DataSourceIdentification(DataSourseIdentification);
 
-            } 
+            }  // 1 I021/010 Data Source Identification
 
             if (Char.ToString(FSPEC_fake[1]) == "1") // 2 I021/040 Target Report Descriptor
             {
@@ -2014,100 +2015,138 @@ namespace Clases
 
                 Calculate_TargetReportDescriptor(TargetReportDescriptor);
 
-            }
+            }// 2 I021/040 Target Report Descriptor
 
             if (Char.ToString(FSPEC_fake[2]) == "1") // 3 I021/161 Track Number 
             {
-                int i = 0;
-                while (i < 2)
-                {
-                    string string1 = Convert.ToString(paquete[data_position + i]);
-                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                    string2 = AddZeros(string2);
-                    TrackNumber = String.Concat(TrackNumber, string2);
-                    i = i + 1;
-                }
+                string string1 = Convert.ToString(paquete[data_position]);
+                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                string1 = AddZeros(string1);
+
+                string string2 = Convert.ToString(paquete[data_position + 1]);
+                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                string2 = AddZeros(string2);
+
+
+                TrackNumber = String.Concat(string1, string2);
 
                 data_position = data_position + 2;
 
                 Calculate_TrackNumber(TrackNumber);
-            }
+            }// 3 I021/161 Track Number 
 
             if (Char.ToString(FSPEC_fake[3]) == "1") // 4 I021/015 Service Identification 
             {
-                int i = 0;
-                while (i < 1)
-                {
-                    string string1 = Convert.ToString(paquete[data_position + i]);
-                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                    string2 = AddZeros(string2);
-                    ServiceIdentification = String.Concat(ServiceIdentification, string2);
-                    i = i + 1;
-                }
+                string string1 = Convert.ToString(paquete[data_position]);
+                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                string1 = AddZeros(string1);
+
+                ServiceIdentification = String.Concat(string1);
 
                 data_position = data_position + 1;
 
                 ServiceIdentification_number = Convert.ToInt32(ServiceIdentification, 2);
 
-            }
+            } // 4 I021/015 Service Identification 
 
             if (Char.ToString(FSPEC_fake[4]) == "1") // 5 I021/071 Time of Applicability for Position
             {
-                int i = 0;
-                while (i < 3)
-                {
-                    string string1 = Convert.ToString(paquete[data_position + i]);
-                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                    string2=AddZeros(string2);
+                string string1 = Convert.ToString(paquete[data_position]);
+                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                string1 = AddZeros(string1);
 
-                    TimeofApplicability_Position = String.Concat(TimeofApplicability_Position, string2);
-                    i = i + 1;
-                }
+                string string2 = Convert.ToString(paquete[data_position + 1]);
+                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                string2 = AddZeros(string2);
+
+                string string3 = Convert.ToString(paquete[data_position + 2]);
+                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                string3 = AddZeros(string3);
+
+                TimeofApplicability_Position = String.Concat(string1, string2, string3);
+
                 data_position = data_position + 3;
 
                 Calculate_TimeofAppliability_Position(TimeofApplicability_Position);
-            }
+            }// 5 I021/071 Time of Applicability for Position
 
             if (Char.ToString(FSPEC_fake[5]) == "1") // 6 I021/130 Position in WGS-84 coordinates
             {
 
-                int i = 0;
-                while (i < 6)
-                {
-                    string string1 = Convert.ToString(paquete[data_position + i]);
-                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                    string2 = AddZeros(string2);
+                string string1 = Convert.ToString(paquete[data_position]);
+                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                string1 = AddZeros(string1);
 
-                    PositioninWGS_coordinates = String.Concat(PositioninWGS_coordinates, string2);
-                    i = i + 1;
-                }
+                string string2 = Convert.ToString(paquete[data_position + 1]);
+                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                string2 = AddZeros(string2);
+
+                string string3 = Convert.ToString(paquete[data_position + 2]);
+                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                string3 = AddZeros(string3);
+
+                string string4 = Convert.ToString(paquete[data_position + 3]);
+                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
+                string4 = AddZeros(string4);
+
+                string string5 = Convert.ToString(paquete[data_position + 4]);
+                string5 = Convert.ToString(Convert.ToInt32(string5, 16), 2);
+                string5 = AddZeros(string5);
+
+                string string6 = Convert.ToString(paquete[data_position + 5]);
+                string6 = Convert.ToString(Convert.ToInt32(string6, 16), 2);
+                string6 = AddZeros(string6);
+
+                PositioninWGS_coordinates = String.Concat(string1, string2, string3, string4, string5, string6);
 
                 data_position = data_position + 6;
 
                 CalculatePositionWGS84_coordinates(PositioninWGS_coordinates);
-                var a = latWGS84;
-                var b = lonWGS84;
 
-            }
+            }// 6 I021/130 Position in WGS-84 coordinates
 
             if (Char.ToString(FSPEC_fake[6]) == "1") // 7 I021/131 Position in WGS-84 co-ordinates, high res
             {
-                i = 0;
-                while (i < 8)
-                {
-                    string string1 = Convert.ToString(paquete[data_position + i]);
-                    string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                    string2 = AddZeros(string2);
 
-                    PositioninWGS_HRcoordinates = String.Concat(PositioninWGS_HRcoordinates, string2);
-                    i = i + 1;
-                }
+                string string1 = Convert.ToString(paquete[data_position]);
+                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                string1 = AddZeros(string1);
+
+                string string2 = Convert.ToString(paquete[data_position + 1]);
+                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                string2 = AddZeros(string2);
+
+                string string3 = Convert.ToString(paquete[data_position + 2]);
+                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                string3 = AddZeros(string3);
+
+                string string4 = Convert.ToString(paquete[data_position + 3]);
+                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
+                string4 = AddZeros(string4);
+
+                string string5 = Convert.ToString(paquete[data_position + 4]);
+                string5 = Convert.ToString(Convert.ToInt32(string5, 16), 2);
+                string5 = AddZeros(string5);
+
+                string string6 = Convert.ToString(paquete[data_position + 5]);
+                string6 = Convert.ToString(Convert.ToInt32(string6, 16), 2);
+                string6 = AddZeros(string6);
+
+                string string7 = Convert.ToString(paquete[data_position + 6]);
+                string7 = Convert.ToString(Convert.ToInt32(string7, 16), 2);
+                string7 = AddZeros(string7);
+
+                string string8 = Convert.ToString(paquete[data_position + 7]);
+                string8 = Convert.ToString(Convert.ToInt32(string8, 16), 2);
+                string8 = AddZeros(string8);
+
+                PositioninWGS_HRcoordinates = String.Concat(string1, string2, string3,string4,string5,string6,string7,string8);
 
                 data_position = data_position + 8;
 
                 CalculatePositionWGS84_HRcoordinates(PositioninWGS_HRcoordinates);
 
-            } 
+            } // 7 I021/131 Position in WGS-84 co-ordinates, high res
 
             if (Char.ToString(FSPEC_fake[7]) == "1") //FX
             {
@@ -2837,225 +2876,6 @@ namespace Clases
             {
 
             }// FX
-
-
         }
-
-
     }
-
-    
-
-
 }
-
-//public void Calculate_Data_Ages(string paquete)
-//{
-//    int counter = 32;
-//    if (Convert.ToString(paquete[0]) == "1")
-//    {
-//        string aos1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        AOS = Convert.ToInt32(aos1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[1]) == "1")
-//    {
-//        string trd1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        TRD = Convert.ToInt32(trd1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[2]) == "1")
-//    {
-//        string m3a1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        M3A = Convert.ToInt32(m3a1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[3]) == "1")
-//    {
-//        string qi1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        QI = Convert.ToInt32(qi1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[4]) == "1")
-//    {
-//        string ti1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        TI = Convert.ToInt32(ti1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[5]) == "1")
-//    {
-//        string mam1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        MAM = Convert.ToInt32(mam1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[6]) == "1")
-//    {
-//        string gh1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        GH = Convert.ToInt32(gh1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[8]) == "1")
-//    {
-//        string fl1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        FL = Convert.ToInt32(fl1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[9]) == "1")
-//    {
-//        string isa1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        ISA = Convert.ToInt32(isa1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[10]) == "1")
-//    {
-//        string fsa1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        FSA = Convert.ToInt32(fsa1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[11]) == "1")
-//    {
-//        string as1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        AS = Convert.ToInt32(as1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[12]) == "1")
-//    {
-//        string tas1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        TAS = Convert.ToInt32(tas1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[13]) == "1")
-//    {
-//        string mh1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        MH = Convert.ToInt32(mh1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[14]) == "1")
-//    {
-//        string bvr1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        BVR = Convert.ToInt32(bvr1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[16]) == "1")
-//    {
-//        string gvr1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        GVR = Convert.ToInt32(gvr1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[17]) == "1")
-//    {
-//        string gv1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        GV = Convert.ToInt32(gv1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[18]) == "1")
-//    {
-//        string tar1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        TAR = Convert.ToInt32(tar1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[19]) == "1")
-//    {
-//        string ti1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        TI_DA = Convert.ToInt32(ti1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[20]) == "1")
-//    {
-//        string ts1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        TS_DA = Convert.ToInt32(ts1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[21]) == "1")
-//    {
-//        string met1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        MET = Convert.ToInt32(met1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[22]) == "1")
-//    {
-//        string roa1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        ROA = Convert.ToInt32(roa1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[24]) == "1")
-//    {
-//        string ara1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        ARA = Convert.ToInt32(ara1, 2) * 0.1;
-//    }
-
-//    if (Convert.ToString(paquete[25]) == "1")
-//    {
-//        string scc1 = paquete.Substring(counter, 8);
-
-//        counter = counter + 8;
-
-//        SCC = Convert.ToInt32(scc1, 2) * 0.1;
-//    }
-//}
