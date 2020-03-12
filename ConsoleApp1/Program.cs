@@ -22,7 +22,7 @@ namespace ConsoleApp1
             string path3 = "C:/Users/oscar/Desktop/PGTA_Proyecto1/ConsoleApp1/mlat_160510-lebl-220001.ast"; // MLAT
             string path4 = "C:/Users/oscar/Desktop/PGTA_Proyecto1/ConsoleApp1/smr_mlat_160510-lebl-220001.ast"; // SMR + MLAT;
 
-            Fichero newfichero = new Fichero(path1);
+            Fichero newfichero = new Fichero(path2);
             newfichero.leer();
 
             listaCAT21 = newfichero.GetListCAT21(); // devuelve lista de clases CAT21, cada una con un paquete

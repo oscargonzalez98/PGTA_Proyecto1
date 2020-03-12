@@ -698,7 +698,7 @@ namespace Clases
                     TargetReportDescriptor = string_packet;
                     data_position = data_position + 1;
                 }
-                if ((Convert.ToString(string_packet[7])) == "1") // si ultimo valor =1 hacemos un bucle que vaya concatenando todos los octetos acabados en 1
+                if ((Convert.ToString(string_packet[7])) == "1" && string_packet.Length<24) // si ultimo valor =1 hacemos un bucle que vaya concatenando todos los octetos acabados en 1
                 {
                     i = 0;
                     data_position = data_position + 1;
@@ -941,7 +941,7 @@ namespace Clases
                 {
                     i = 0;
                     data_position = data_position + 1;
-                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1")
+                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length<24)
                     {
                         string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string_packet2 = AddZeros(string_packet2);
@@ -1165,7 +1165,7 @@ namespace Clases
                 {
                     i = 0;
                     data_position = data_position + 1;
-                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1")
+                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length<24)
                     {
                         string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string_packet2 = AddZeros(string_packet2);
