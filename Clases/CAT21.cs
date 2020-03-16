@@ -526,7 +526,7 @@ namespace Clases
         public void Calculate_TimeofAppliability_Position(string paquete)
         {
             double time = Convert.ToInt32(paquete, 2);
-            TimeofApplicability_Position_seconds = time * (1 / 128);
+            TimeofApplicability_Position_seconds = time / 128;
 
         }
         public void CalculatePositionWGS84_coordinates(string paquete)
@@ -595,7 +595,7 @@ namespace Clases
                 RE_TAS = "Value exceeds defined range.";
             }
 
-            string tas = paquete.Substring(1, 15);
+            string tas = paquete.Substring(1, paquete.Length-1);
             TrueAirSpeed_number = Convert.ToInt32(tas, 2);
 
         }
@@ -2015,7 +2015,7 @@ namespace Clases
 
                 Calculate_TargetReportDescriptor(TargetReportDescriptor);
 
-            }// 2 I021/040 Target Report Descriptor
+                }// 2 I021/040 Target Report Descriptor
 
             if (Char.ToString(FSPEC_fake[2]) == "1") // 3 I021/161 Track Number 
             {
@@ -2166,6 +2166,8 @@ namespace Clases
 
                 data_position = data_position + 3;
 
+                TimeofApplicability_Velocity_seconds = Convert.ToInt32(TimeofApplicability_Velocity, 2) / 128;
+
             }
 
             if (Char.ToString(FSPEC_fake[9]) == "1") // 9 I021/150 Air Speed 
@@ -2189,16 +2191,15 @@ namespace Clases
             if (Char.ToString(FSPEC_fake[10]) == "1") // 10 I021/151 True Air Speed
             {
                 i = 0;
-                while (i < 2)
+                while (i < 2 && data_position<paquete.Length)
                 {
                     string string1 = Convert.ToString(paquete[data_position + i]);
                     string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                     string2 = AddZeros(string2);
                     TrueAirSpeed = String.Concat(TrueAirSpeed, string2);
                     i = i + 1;
+                    data_position = data_position + 1;
                 }
-
-                data_position = data_position + 2;
 
                 Calculate_TrueAirSpeed(TrueAirSpeed);
 
@@ -2385,21 +2386,25 @@ namespace Clases
 
             if (Char.ToString(FSPEC_fake[20]) == "1") // 19 I021/070 Mode 3/A Code
             {
+                bool bool1=false;
 
                 i = 0;
-                while (i < 2)
+                while (i < 2 && data_position<paquete.Length)
                 {
                     string string1 = Convert.ToString(paquete[data_position + i]);
                     string string2 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                     string2 = AddZeros(string2);
                     Mode3ACode_bin = String.Concat(Mode3ACode_bin, string2);
                     i = i + 1;
+                    data_position = data_position + 1;
+                    bool1 = true;
                 }
 
-                data_position = data_position + 2;
-
-                int int1 = Convert.ToInt32(Mode3ACode_bin, 2); // pasamos de binario a decimal
-                Mode3ACode_oct = Convert.ToString(int1, 8); // pasamos de decimal a octal
+                if (bool1 == true) 
+                {
+                    int int1 = Convert.ToInt32(Mode3ACode_bin, 2); // pasamos de binario a decimal
+                    Mode3ACode_oct = Convert.ToString(int1, 8); // pasamos de decimal a octal
+                }
 
             }
 

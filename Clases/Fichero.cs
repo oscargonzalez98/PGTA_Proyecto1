@@ -15,8 +15,10 @@ namespace LibreriaClases
     {
         string path;
         List<CAT10> listaCAT10 = new List<CAT10>();
+        List<CAT20> listaCAT20 = new List<CAT20>();
         List<CAT21> listaCAT21 = new List<CAT21>();
         DataTable tablaCAT10 = new DataTable();
+        DataTable tablaCAT20 = new DataTable();
         DataTable tablaCAT21 = new DataTable();
 
 
@@ -29,6 +31,12 @@ namespace LibreriaClases
         {
             return listaCAT10;
         }
+
+        public List<CAT20> GetListCAT20()
+        {
+            return listaCAT20;
+        }
+
         public List<CAT21> GetListCAT21()
         {
             return listaCAT21;
@@ -90,37 +98,12 @@ namespace LibreriaClases
 
                 if (CAT == 10)
                 {
-                    //try
-                    //{
-                    CAT10 newcat10 = new CAT10(arraystring);
-                    newcat10.Calculate_FSPEC(newcat10.paquete);
-                    listaCAT10.Add(newcat10);
-
-
-                    //    //no borrar
-                    //    //double a1 = newcat21.TimeofMessageReception_Position_seconds;
-                    //    //double b = newcat21.latWGS84;
-                    //    //double c = newcat21.lonWGS84;
-
-                    //    //tablaCAT21.Rows.Add(a1, b, c);
-                    //}
-                    //catch
-                    //{
-                    //Console.WriteLine(q);
-                    //Console.ReadKey();
-                    //}
-
-
-                }
-
-                if (CAT == 21)
-                {
                     try
                     {
+                        CAT10 newcat10 = new CAT10(arraystring);
+                        newcat10.Calculate_FSPEC(newcat10.paquete);
+                        listaCAT10.Add(newcat10);
 
-                        CAT21 newcat21 = new CAT21(arraystring);
-                        newcat21.Calculate_FSPEC(newcat21.paquete);
-                        listaCAT21.Add(newcat21);
 
                         //no borrar
                         //double a1 = newcat21.TimeofMessageReception_Position_seconds;
@@ -134,8 +117,58 @@ namespace LibreriaClases
                         Console.WriteLine(q);
                         Console.ReadKey();
                     }
+
+
                 }
-                
+
+                if (CAT == 20)
+                {
+                    try
+                    {
+                        CAT20 newcat20 = new CAT20(arraystring);
+                        //newcat20.Calculate_FSPEC(newcat20.paquete);
+                        listaCAT20.Add(newcat20);
+
+
+                        //no borrar
+                        //double a1 = newcat21.TimeofMessageReception_Position_seconds;
+                        //double b = newcat21.latWGS84;
+                        //double c = newcat21.lonWGS84;
+
+                        //tablaCAT21.Rows.Add(a1, b, c);
+                    }
+                    catch
+                    {
+                        Console.WriteLine(q);
+                        Console.ReadKey();
+                    }
+
+
+                }
+
+                if (CAT == 21)
+                {
+                    //try
+                    //{
+
+                        CAT21 newcat21 = new CAT21(arraystring);
+                        newcat21.Calculate_FSPEC(newcat21.paquete);
+                        listaCAT21.Add(newcat21);
+
+                    //    no borrar
+                    //double a1 = newcat21.TimeofMessageReception_Position_seconds;
+                    //    double b = newcat21.latWGS84;
+                    //    double c = newcat21.lonWGS84;
+
+                        //tablaCAT21.Rows.Add(a1, b, c);
+                    //}
+                    //catch
+                    //{
+                    //    Console.WriteLine(q);
+                    //    Console.ReadKey();
+                    //}
+                }
+
             }
 
 
