@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Portada));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btBrowsefile = new System.Windows.Forms.Button();
             this.tb_direction = new System.Windows.Forms.TextBox();
@@ -39,11 +40,17 @@
             this.btCAT20 = new System.Windows.Forms.Button();
             this.btCAT10 = new System.Windows.Forms.Button();
             this.panelTablaCAT21 = new System.Windows.Forms.Panel();
-            this.dgvCAT21 = new System.Windows.Forms.DataGridView();
-            this.lbl_Title = new System.Windows.Forms.Label();
-            this.tableLayoutPanel_Background = new System.Windows.Forms.TableLayoutPanel();
-            this.btProcessData = new System.Windows.Forms.Button();
             this.panelTablaCAT10 = new System.Windows.Forms.Panel();
+            this.dgvCAT10 = new System.Windows.Forms.DataGridView();
+            this.Number1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataSourceIdentifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MessageType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetReportDescriptor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositionWGS84Coordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositioninPolarCoordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositioninCartedianCoordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCAT21 = new System.Windows.Forms.DataGridView();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataSourceIdentification = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TargetReportDescriptor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,22 +58,21 @@
             this.TimeofApplicabilityPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WGS84Coordinates_LAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WGS84Coordinates_LATHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PositioninCartedianCoordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PositioninPolarCoordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PositionWGS84Coordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeofDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetReportDescriptor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MessageType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataSourceIdentifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Number1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvCAT10 = new System.Windows.Forms.DataGridView();
+            this.btMap = new System.Windows.Forms.Button();
+            this.bt_FastBackward = new System.Windows.Forms.Button();
+            this.bt_Backward = new System.Windows.Forms.Button();
+            this.bt_Forward = new System.Windows.Forms.Button();
+            this.bt_FastForward = new System.Windows.Forms.Button();
+            this.lbl_Title = new System.Windows.Forms.Label();
+            this.tableLayoutPanel_Background = new System.Windows.Forms.TableLayoutPanel();
+            this.btProcessData = new System.Windows.Forms.Button();
             this.panelFondo.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTablaCAT21.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT21)).BeginInit();
-            this.tableLayoutPanel_Background.SuspendLayout();
             this.panelTablaCAT10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT21)).BeginInit();
+            this.tableLayoutPanel_Background.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -126,10 +132,13 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 7;
+            this.tableLayoutPanel1.ColumnCount = 10;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
@@ -138,7 +147,12 @@
             this.tableLayoutPanel1.Controls.Add(this.btTables, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btCAT20, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btCAT10, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panelTablaCAT21, 6, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panelTablaCAT21, 9, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btMap, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.bt_FastBackward, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.bt_Backward, 6, 1);
+            this.tableLayoutPanel1.Controls.Add(this.bt_Forward, 7, 1);
+            this.tableLayoutPanel1.Controls.Add(this.bt_FastForward, 8, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 32);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
@@ -168,13 +182,14 @@
             this.btTables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btTables.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btTables.BackColor = System.Drawing.SystemColors.Control;
             this.btTables.Location = new System.Drawing.Point(3, 3);
             this.btTables.Name = "btTables";
             this.btTables.Size = new System.Drawing.Size(114, 44);
             this.btTables.TabIndex = 16;
             this.btTables.Text = "Table";
             this.btTables.UseVisualStyleBackColor = false;
+            this.btTables.Click += new System.EventHandler(this.btTables_Click_1);
             // 
             // btCAT20
             // 
@@ -210,7 +225,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTablaCAT21.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tableLayoutPanel1.SetColumnSpan(this.panelTablaCAT21, 97);
+            this.tableLayoutPanel1.SetColumnSpan(this.panelTablaCAT21, 96);
             this.panelTablaCAT21.Controls.Add(this.panelTablaCAT10);
             this.panelTablaCAT21.Controls.Add(this.dgvCAT21);
             this.panelTablaCAT21.Location = new System.Drawing.Point(3, 103);
@@ -218,6 +233,93 @@
             this.panelTablaCAT21.Size = new System.Drawing.Size(1145, 278);
             this.panelTablaCAT21.TabIndex = 17;
             this.panelTablaCAT21.Visible = false;
+            // 
+            // panelTablaCAT10
+            // 
+            this.panelTablaCAT10.Controls.Add(this.dgvCAT10);
+            this.panelTablaCAT10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTablaCAT10.Location = new System.Drawing.Point(0, 0);
+            this.panelTablaCAT10.Name = "panelTablaCAT10";
+            this.panelTablaCAT10.Size = new System.Drawing.Size(1145, 278);
+            this.panelTablaCAT10.TabIndex = 1;
+            this.panelTablaCAT10.Visible = false;
+            // 
+            // dgvCAT10
+            // 
+            this.dgvCAT10.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvCAT10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCAT10.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Number1,
+            this.DataSourceIdentifier,
+            this.MessageType,
+            this.TargetReportDescriptor,
+            this.TimeofDay,
+            this.PositionWGS84Coordinates,
+            this.PositioninPolarCoordinates,
+            this.PositioninCartedianCoordinates});
+            this.dgvCAT10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCAT10.Location = new System.Drawing.Point(0, 0);
+            this.dgvCAT10.Name = "dgvCAT10";
+            this.dgvCAT10.RowHeadersWidth = 51;
+            this.dgvCAT10.RowTemplate.Height = 24;
+            this.dgvCAT10.Size = new System.Drawing.Size(1145, 278);
+            this.dgvCAT10.TabIndex = 0;
+            // 
+            // Number1
+            // 
+            this.Number1.HeaderText = "#";
+            this.Number1.MinimumWidth = 6;
+            this.Number1.Name = "Number1";
+            this.Number1.Width = 125;
+            // 
+            // DataSourceIdentifier
+            // 
+            this.DataSourceIdentifier.HeaderText = "SAC/SIC";
+            this.DataSourceIdentifier.MinimumWidth = 6;
+            this.DataSourceIdentifier.Name = "DataSourceIdentifier";
+            this.DataSourceIdentifier.Width = 125;
+            // 
+            // MessageType
+            // 
+            this.MessageType.HeaderText = "Message Type";
+            this.MessageType.MinimumWidth = 6;
+            this.MessageType.Name = "MessageType";
+            this.MessageType.Width = 125;
+            // 
+            // TargetReportDescriptor
+            // 
+            this.TargetReportDescriptor.HeaderText = "Target Report Descriptor";
+            this.TargetReportDescriptor.MinimumWidth = 6;
+            this.TargetReportDescriptor.Name = "TargetReportDescriptor";
+            this.TargetReportDescriptor.Width = 125;
+            // 
+            // TimeofDay
+            // 
+            this.TimeofDay.HeaderText = "Time of Day";
+            this.TimeofDay.MinimumWidth = 6;
+            this.TimeofDay.Name = "TimeofDay";
+            this.TimeofDay.Width = 125;
+            // 
+            // PositionWGS84Coordinates
+            // 
+            this.PositionWGS84Coordinates.HeaderText = "WGS-84 Co-ordinates LAT/LON";
+            this.PositionWGS84Coordinates.MinimumWidth = 6;
+            this.PositionWGS84Coordinates.Name = "PositionWGS84Coordinates";
+            this.PositionWGS84Coordinates.Width = 125;
+            // 
+            // PositioninPolarCoordinates
+            // 
+            this.PositioninPolarCoordinates.HeaderText = "Measured Position in Polar Coordinates Rho/Theta";
+            this.PositioninPolarCoordinates.MinimumWidth = 6;
+            this.PositioninPolarCoordinates.Name = "PositioninPolarCoordinates";
+            this.PositioninPolarCoordinates.Width = 125;
+            // 
+            // PositioninCartedianCoordinates
+            // 
+            this.PositioninCartedianCoordinates.HeaderText = "Position in Cartesian Coordinates X/Y";
+            this.PositioninCartedianCoordinates.MinimumWidth = 6;
+            this.PositioninCartedianCoordinates.Name = "PositioninCartedianCoordinates";
+            this.PositioninCartedianCoordinates.Width = 125;
             // 
             // dgvCAT21
             // 
@@ -239,6 +341,119 @@
             this.dgvCAT21.RowTemplate.Height = 24;
             this.dgvCAT21.Size = new System.Drawing.Size(1145, 278);
             this.dgvCAT21.TabIndex = 0;
+            // 
+            // Number
+            // 
+            this.Number.HeaderText = "#";
+            this.Number.MinimumWidth = 6;
+            this.Number.Name = "Number";
+            this.Number.Width = 125;
+            // 
+            // DataSourceIdentification
+            // 
+            this.DataSourceIdentification.HeaderText = "SAC/SIC";
+            this.DataSourceIdentification.MinimumWidth = 6;
+            this.DataSourceIdentification.Name = "DataSourceIdentification";
+            this.DataSourceIdentification.Width = 125;
+            // 
+            // TargetReportDescriptor1
+            // 
+            this.TargetReportDescriptor1.HeaderText = "Target Report Descriptor";
+            this.TargetReportDescriptor1.MinimumWidth = 6;
+            this.TargetReportDescriptor1.Name = "TargetReportDescriptor1";
+            this.TargetReportDescriptor1.Width = 125;
+            // 
+            // TrackNumber
+            // 
+            this.TrackNumber.HeaderText = "Track Number";
+            this.TrackNumber.MinimumWidth = 6;
+            this.TrackNumber.Name = "TrackNumber";
+            this.TrackNumber.Width = 125;
+            // 
+            // TimeofApplicabilityPosition
+            // 
+            this.TimeofApplicabilityPosition.HeaderText = "Time of Applicability for Position";
+            this.TimeofApplicabilityPosition.MinimumWidth = 6;
+            this.TimeofApplicabilityPosition.Name = "TimeofApplicabilityPosition";
+            this.TimeofApplicabilityPosition.Width = 125;
+            // 
+            // WGS84Coordinates_LAT
+            // 
+            this.WGS84Coordinates_LAT.HeaderText = "WGS-84 Co-ordinates LAT/LON";
+            this.WGS84Coordinates_LAT.MinimumWidth = 6;
+            this.WGS84Coordinates_LAT.Name = "WGS84Coordinates_LAT";
+            this.WGS84Coordinates_LAT.Width = 125;
+            // 
+            // WGS84Coordinates_LATHR
+            // 
+            this.WGS84Coordinates_LATHR.HeaderText = "WGS-84 Co-ordinates (HR) LAT/LON";
+            this.WGS84Coordinates_LATHR.MinimumWidth = 6;
+            this.WGS84Coordinates_LATHR.Name = "WGS84Coordinates_LATHR";
+            this.WGS84Coordinates_LATHR.Width = 125;
+            // 
+            // btMap
+            // 
+            this.btMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btMap.BackColor = System.Drawing.SystemColors.Control;
+            this.btMap.Location = new System.Drawing.Point(123, 3);
+            this.btMap.Name = "btMap";
+            this.btMap.Size = new System.Drawing.Size(114, 44);
+            this.btMap.TabIndex = 19;
+            this.btMap.Text = "Map";
+            this.btMap.UseVisualStyleBackColor = false;
+            this.btMap.Click += new System.EventHandler(this.btMap_Click);
+            // 
+            // bt_FastBackward
+            // 
+            this.bt_FastBackward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_FastBackward.Image = ((System.Drawing.Image)(resources.GetObject("bt_FastBackward.Image")));
+            this.bt_FastBackward.Location = new System.Drawing.Point(603, 53);
+            this.bt_FastBackward.Name = "bt_FastBackward";
+            this.bt_FastBackward.Size = new System.Drawing.Size(44, 44);
+            this.bt_FastBackward.TabIndex = 20;
+            this.bt_FastBackward.UseVisualStyleBackColor = true;
+            // 
+            // bt_Backward
+            // 
+            this.bt_Backward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_Backward.Image = ((System.Drawing.Image)(resources.GetObject("bt_Backward.Image")));
+            this.bt_Backward.Location = new System.Drawing.Point(653, 53);
+            this.bt_Backward.Name = "bt_Backward";
+            this.bt_Backward.Size = new System.Drawing.Size(44, 44);
+            this.bt_Backward.TabIndex = 21;
+            this.bt_Backward.UseVisualStyleBackColor = true;
+            this.bt_Backward.Click += new System.EventHandler(this.bt_Backward_Click);
+            // 
+            // bt_Forward
+            // 
+            this.bt_Forward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_Forward.Image = ((System.Drawing.Image)(resources.GetObject("bt_Forward.Image")));
+            this.bt_Forward.Location = new System.Drawing.Point(703, 53);
+            this.bt_Forward.Name = "bt_Forward";
+            this.bt_Forward.Size = new System.Drawing.Size(44, 44);
+            this.bt_Forward.TabIndex = 22;
+            this.bt_Forward.UseVisualStyleBackColor = true;
+            this.bt_Forward.Click += new System.EventHandler(this.bt_Forward_Click);
+            // 
+            // bt_FastForward
+            // 
+            this.bt_FastForward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_FastForward.Image = ((System.Drawing.Image)(resources.GetObject("bt_FastForward.Image")));
+            this.bt_FastForward.Location = new System.Drawing.Point(753, 53);
+            this.bt_FastForward.Name = "bt_FastForward";
+            this.bt_FastForward.Size = new System.Drawing.Size(44, 44);
+            this.bt_FastForward.TabIndex = 23;
+            this.bt_FastForward.UseVisualStyleBackColor = true;
             // 
             // lbl_Title
             // 
@@ -295,142 +510,6 @@
             this.btProcessData.UseVisualStyleBackColor = true;
             this.btProcessData.Click += new System.EventHandler(this.btProcessData_Click_1);
             // 
-            // panelTablaCAT10
-            // 
-            this.panelTablaCAT10.Controls.Add(this.dgvCAT10);
-            this.panelTablaCAT10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTablaCAT10.Location = new System.Drawing.Point(0, 0);
-            this.panelTablaCAT10.Name = "panelTablaCAT10";
-            this.panelTablaCAT10.Size = new System.Drawing.Size(1145, 278);
-            this.panelTablaCAT10.TabIndex = 1;
-            this.panelTablaCAT10.Visible = false;
-            // 
-            // Number
-            // 
-            this.Number.HeaderText = "#";
-            this.Number.MinimumWidth = 6;
-            this.Number.Name = "Number";
-            this.Number.Width = 125;
-            // 
-            // DataSourceIdentification
-            // 
-            this.DataSourceIdentification.HeaderText = "SAC/SIC";
-            this.DataSourceIdentification.MinimumWidth = 6;
-            this.DataSourceIdentification.Name = "DataSourceIdentification";
-            this.DataSourceIdentification.Width = 125;
-            // 
-            // TargetReportDescriptor1
-            // 
-            this.TargetReportDescriptor1.HeaderText = "Target Report Descriptor";
-            this.TargetReportDescriptor1.MinimumWidth = 6;
-            this.TargetReportDescriptor1.Name = "TargetReportDescriptor1";
-            this.TargetReportDescriptor1.Width = 125;
-            // 
-            // TrackNumber
-            // 
-            this.TrackNumber.HeaderText = "Track Number";
-            this.TrackNumber.MinimumWidth = 6;
-            this.TrackNumber.Name = "TrackNumber";
-            this.TrackNumber.Width = 125;
-            // 
-            // TimeofApplicabilityPosition
-            // 
-            this.TimeofApplicabilityPosition.HeaderText = "Time of Applicability for Position";
-            this.TimeofApplicabilityPosition.MinimumWidth = 6;
-            this.TimeofApplicabilityPosition.Name = "TimeofApplicabilityPosition";
-            this.TimeofApplicabilityPosition.Width = 125;
-            // 
-            // WGS84Coordinates_LAT
-            // 
-            this.WGS84Coordinates_LAT.HeaderText = "WGS-84 Co-ordinates LAT/LON";
-            this.WGS84Coordinates_LAT.MinimumWidth = 6;
-            this.WGS84Coordinates_LAT.Name = "WGS84Coordinates_LAT";
-            this.WGS84Coordinates_LAT.Width = 125;
-            // 
-            // WGS84Coordinates_LATHR
-            // 
-            this.WGS84Coordinates_LATHR.HeaderText = "WGS-84 Co-ordinates (HR) LAT/LON";
-            this.WGS84Coordinates_LATHR.MinimumWidth = 6;
-            this.WGS84Coordinates_LATHR.Name = "WGS84Coordinates_LATHR";
-            this.WGS84Coordinates_LATHR.Width = 125;
-            // 
-            // PositioninCartedianCoordinates
-            // 
-            this.PositioninCartedianCoordinates.HeaderText = "Position in Cartesian Coordinates X/Y";
-            this.PositioninCartedianCoordinates.MinimumWidth = 6;
-            this.PositioninCartedianCoordinates.Name = "PositioninCartedianCoordinates";
-            this.PositioninCartedianCoordinates.Width = 125;
-            // 
-            // PositioninPolarCoordinates
-            // 
-            this.PositioninPolarCoordinates.HeaderText = "Measured Position in Polar Coordinates Rho/Theta";
-            this.PositioninPolarCoordinates.MinimumWidth = 6;
-            this.PositioninPolarCoordinates.Name = "PositioninPolarCoordinates";
-            this.PositioninPolarCoordinates.Width = 125;
-            // 
-            // PositionWGS84Coordinates
-            // 
-            this.PositionWGS84Coordinates.HeaderText = "WGS-84 Co-ordinates LAT/LON";
-            this.PositionWGS84Coordinates.MinimumWidth = 6;
-            this.PositionWGS84Coordinates.Name = "PositionWGS84Coordinates";
-            this.PositionWGS84Coordinates.Width = 125;
-            // 
-            // TimeofDay
-            // 
-            this.TimeofDay.HeaderText = "Time of Day";
-            this.TimeofDay.MinimumWidth = 6;
-            this.TimeofDay.Name = "TimeofDay";
-            this.TimeofDay.Width = 125;
-            // 
-            // TargetReportDescriptor
-            // 
-            this.TargetReportDescriptor.HeaderText = "Target Report Descriptor";
-            this.TargetReportDescriptor.MinimumWidth = 6;
-            this.TargetReportDescriptor.Name = "TargetReportDescriptor";
-            this.TargetReportDescriptor.Width = 125;
-            // 
-            // MessageType
-            // 
-            this.MessageType.HeaderText = "Message Type";
-            this.MessageType.MinimumWidth = 6;
-            this.MessageType.Name = "MessageType";
-            this.MessageType.Width = 125;
-            // 
-            // DataSourceIdentifier
-            // 
-            this.DataSourceIdentifier.HeaderText = "SAC/SIC";
-            this.DataSourceIdentifier.MinimumWidth = 6;
-            this.DataSourceIdentifier.Name = "DataSourceIdentifier";
-            this.DataSourceIdentifier.Width = 125;
-            // 
-            // Number1
-            // 
-            this.Number1.HeaderText = "#";
-            this.Number1.MinimumWidth = 6;
-            this.Number1.Name = "Number1";
-            this.Number1.Width = 125;
-            // 
-            // dgvCAT10
-            // 
-            this.dgvCAT10.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvCAT10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCAT10.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Number1,
-            this.DataSourceIdentifier,
-            this.MessageType,
-            this.TargetReportDescriptor,
-            this.TimeofDay,
-            this.PositionWGS84Coordinates,
-            this.PositioninPolarCoordinates,
-            this.PositioninCartedianCoordinates});
-            this.dgvCAT10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCAT10.Location = new System.Drawing.Point(0, 0);
-            this.dgvCAT10.Name = "dgvCAT10";
-            this.dgvCAT10.RowHeadersWidth = 51;
-            this.dgvCAT10.RowTemplate.Height = 24;
-            this.dgvCAT10.Size = new System.Drawing.Size(1145, 278);
-            this.dgvCAT10.TabIndex = 0;
-            // 
             // Portada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -445,11 +524,11 @@
             this.panelFondo.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelTablaCAT21.ResumeLayout(false);
+            this.panelTablaCAT10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT21)).EndInit();
             this.tableLayoutPanel_Background.ResumeLayout(false);
             this.tableLayoutPanel_Background.PerformLayout();
-            this.panelTablaCAT10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT10)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -489,6 +568,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PositionWGS84Coordinates;
         private System.Windows.Forms.DataGridViewTextBoxColumn PositioninPolarCoordinates;
         private System.Windows.Forms.DataGridViewTextBoxColumn PositioninCartedianCoordinates;
+        private System.Windows.Forms.Button btMap;
+        private System.Windows.Forms.Button bt_FastBackward;
+        private System.Windows.Forms.Button bt_Backward;
+        private System.Windows.Forms.Button bt_Forward;
+        private System.Windows.Forms.Button bt_FastForward;
     }
 }
 
