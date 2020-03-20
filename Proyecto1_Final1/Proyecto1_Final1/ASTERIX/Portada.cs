@@ -27,7 +27,7 @@ namespace ASTERIX
             this.BackgroundImage = img;
             this.BackgroundImageLayout = ImageLayout.Stretch;
 
-            lb_Instructions.Text = "Please click Browse File to select a file to decode.";
+            lb_Instructions.Text = "Please click Browse File to decode.";
 
         }
 

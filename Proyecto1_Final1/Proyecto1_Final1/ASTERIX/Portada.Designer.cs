@@ -88,7 +88,6 @@
             this.Controls.Add(this.bt_BrowseFile);
             this.Controls.Add(this.lb_Title);
             this.Name = "Portada";
-            this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
 

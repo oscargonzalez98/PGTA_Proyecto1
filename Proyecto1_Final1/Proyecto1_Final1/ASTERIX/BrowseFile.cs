@@ -20,7 +20,13 @@ namespace ASTERIX
         public BrowseFile()
         {
             InitializeComponent();
+
+            Bitmap img = new Bitmap(Application.StartupPath + @"\img\Captura.png");
+            this.BackgroundImage = img;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+
             lblError.Text = "";
+            lbTitle.Text = "BROWSE A FILE AND SELECT IT TO DECODE";
         }
 
         public List<CAT21> ListaCAT21

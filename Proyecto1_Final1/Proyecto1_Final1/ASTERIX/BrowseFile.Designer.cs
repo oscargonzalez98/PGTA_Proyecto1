@@ -33,6 +33,7 @@
             this.bt_Decode = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lblError = new System.Windows.Forms.Label();
+            this.lbTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bt_SelectFile
@@ -77,11 +78,23 @@
             this.lblError.TabIndex = 3;
             this.lblError.Text = "label1";
             // 
+            // lbTitle
+            // 
+            this.lbTitle.AutoSize = true;
+            this.lbTitle.BackColor = System.Drawing.Color.White;
+            this.lbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lbTitle.Location = new System.Drawing.Point(24, 80);
+            this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Size = new System.Drawing.Size(109, 39);
+            this.lbTitle.TabIndex = 4;
+            this.lbTitle.Text = "label1";
+            // 
             // BrowseFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(922, 450);
+            this.Controls.Add(this.lbTitle);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.bt_Decode);
             this.Controls.Add(this.tbDirection);
@@ -100,5 +113,6 @@
         private System.Windows.Forms.Button bt_Decode;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label lbTitle;
     }
 }

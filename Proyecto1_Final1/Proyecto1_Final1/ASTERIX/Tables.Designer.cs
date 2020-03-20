@@ -34,6 +34,17 @@
             this.btCAT20 = new System.Windows.Forms.Button();
             this.btCAT21 = new System.Windows.Forms.Button();
             this.panelCAT10 = new System.Windows.Forms.Panel();
+            this.panelCAT20 = new System.Windows.Forms.Panel();
+            this.panelCAT21 = new System.Windows.Forms.Panel();
+            this.dgvCAT21 = new System.Windows.Forms.DataGridView();
+            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataSourceIdentification = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetReportDescriptor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrackNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofApplicabilityPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WGS84Coordinates_LAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WGS84Coordinates_LATHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCAT20 = new System.Windows.Forms.DataGridView();
             this.dgvCAT10 = new System.Windows.Forms.DataGridView();
             this.Number1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataSourceIdentifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,24 +58,14 @@
             this.bt_Backward = new System.Windows.Forms.Button();
             this.bt_Forward = new System.Windows.Forms.Button();
             this.bt_FastForward = new System.Windows.Forms.Button();
-            this.panelCAT20 = new System.Windows.Forms.Panel();
-            this.dgvCAT20 = new System.Windows.Forms.DataGridView();
-            this.panelCAT21 = new System.Windows.Forms.Panel();
-            this.dgvCAT21 = new System.Windows.Forms.DataGridView();
-            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataSourceIdentification = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetReportDescriptor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrackNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeofApplicabilityPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WGS84Coordinates_LAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WGS84Coordinates_LATHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lb_Pages = new System.Windows.Forms.Label();
             this.tlpTables.SuspendLayout();
             this.panelCAT10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT10)).BeginInit();
             this.panelCAT20.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT20)).BeginInit();
             this.panelCAT21.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT10)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpTables
@@ -89,6 +90,7 @@
             this.tlpTables.Controls.Add(this.bt_Backward, 4, 0);
             this.tlpTables.Controls.Add(this.bt_Forward, 5, 0);
             this.tlpTables.Controls.Add(this.bt_FastForward, 6, 0);
+            this.tlpTables.Controls.Add(this.lb_Pages, 7, 0);
             this.tlpTables.Location = new System.Drawing.Point(12, 12);
             this.tlpTables.Name = "tlpTables";
             this.tlpTables.RowCount = 2;
@@ -149,6 +151,108 @@
             this.panelCAT10.Size = new System.Drawing.Size(1202, 370);
             this.panelCAT10.TabIndex = 11;
             this.panelCAT10.Visible = false;
+            // 
+            // panelCAT20
+            // 
+            this.panelCAT20.Controls.Add(this.panelCAT21);
+            this.panelCAT20.Controls.Add(this.dgvCAT20);
+            this.panelCAT20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCAT20.Location = new System.Drawing.Point(0, 0);
+            this.panelCAT20.Name = "panelCAT20";
+            this.panelCAT20.Size = new System.Drawing.Size(1202, 370);
+            this.panelCAT20.TabIndex = 2;
+            this.panelCAT20.Visible = false;
+            // 
+            // panelCAT21
+            // 
+            this.panelCAT21.Controls.Add(this.dgvCAT21);
+            this.panelCAT21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCAT21.Location = new System.Drawing.Point(0, 0);
+            this.panelCAT21.Name = "panelCAT21";
+            this.panelCAT21.Size = new System.Drawing.Size(1202, 370);
+            this.panelCAT21.TabIndex = 1;
+            this.panelCAT21.Visible = false;
+            // 
+            // dgvCAT21
+            // 
+            this.dgvCAT21.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvCAT21.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCAT21.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Number,
+            this.DataSourceIdentification,
+            this.TargetReportDescriptor1,
+            this.TrackNumber,
+            this.TimeofApplicabilityPosition,
+            this.WGS84Coordinates_LAT,
+            this.WGS84Coordinates_LATHR});
+            this.dgvCAT21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCAT21.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvCAT21.Location = new System.Drawing.Point(0, 0);
+            this.dgvCAT21.Name = "dgvCAT21";
+            this.dgvCAT21.RowHeadersWidth = 51;
+            this.dgvCAT21.RowTemplate.Height = 24;
+            this.dgvCAT21.Size = new System.Drawing.Size(1202, 370);
+            this.dgvCAT21.TabIndex = 1;
+            // 
+            // Number
+            // 
+            this.Number.HeaderText = "#";
+            this.Number.MinimumWidth = 6;
+            this.Number.Name = "Number";
+            this.Number.Width = 125;
+            // 
+            // DataSourceIdentification
+            // 
+            this.DataSourceIdentification.HeaderText = "SAC/SIC";
+            this.DataSourceIdentification.MinimumWidth = 6;
+            this.DataSourceIdentification.Name = "DataSourceIdentification";
+            this.DataSourceIdentification.Width = 125;
+            // 
+            // TargetReportDescriptor1
+            // 
+            this.TargetReportDescriptor1.HeaderText = "Target Report Descriptor";
+            this.TargetReportDescriptor1.MinimumWidth = 6;
+            this.TargetReportDescriptor1.Name = "TargetReportDescriptor1";
+            this.TargetReportDescriptor1.Width = 125;
+            // 
+            // TrackNumber
+            // 
+            this.TrackNumber.HeaderText = "Track Number";
+            this.TrackNumber.MinimumWidth = 6;
+            this.TrackNumber.Name = "TrackNumber";
+            this.TrackNumber.Width = 125;
+            // 
+            // TimeofApplicabilityPosition
+            // 
+            this.TimeofApplicabilityPosition.HeaderText = "Time of Applicability for Position";
+            this.TimeofApplicabilityPosition.MinimumWidth = 6;
+            this.TimeofApplicabilityPosition.Name = "TimeofApplicabilityPosition";
+            this.TimeofApplicabilityPosition.Width = 125;
+            // 
+            // WGS84Coordinates_LAT
+            // 
+            this.WGS84Coordinates_LAT.HeaderText = "WGS-84 Co-ordinates LAT/LON";
+            this.WGS84Coordinates_LAT.MinimumWidth = 6;
+            this.WGS84Coordinates_LAT.Name = "WGS84Coordinates_LAT";
+            this.WGS84Coordinates_LAT.Width = 125;
+            // 
+            // WGS84Coordinates_LATHR
+            // 
+            this.WGS84Coordinates_LATHR.HeaderText = "WGS-84 Co-ordinates (HR) LAT/LON";
+            this.WGS84Coordinates_LATHR.MinimumWidth = 6;
+            this.WGS84Coordinates_LATHR.Name = "WGS84Coordinates_LATHR";
+            this.WGS84Coordinates_LATHR.Width = 125;
+            // 
+            // dgvCAT20
+            // 
+            this.dgvCAT20.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCAT20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCAT20.Location = new System.Drawing.Point(0, 0);
+            this.dgvCAT20.Name = "dgvCAT20";
+            this.dgvCAT20.RowHeadersWidth = 51;
+            this.dgvCAT20.RowTemplate.Height = 24;
+            this.dgvCAT20.Size = new System.Drawing.Size(1202, 370);
+            this.dgvCAT20.TabIndex = 0;
             // 
             // dgvCAT10
             // 
@@ -238,6 +342,7 @@
             this.bt_FastBackward.Size = new System.Drawing.Size(44, 44);
             this.bt_FastBackward.TabIndex = 12;
             this.bt_FastBackward.UseVisualStyleBackColor = true;
+            this.bt_FastBackward.Click += new System.EventHandler(this.bt_FastBackward_Click);
             // 
             // bt_Backward
             // 
@@ -278,107 +383,18 @@
             this.bt_FastForward.UseVisualStyleBackColor = true;
             this.bt_FastForward.Click += new System.EventHandler(this.bt_FastForward_Click);
             // 
-            // panelCAT20
+            // lb_Pages
             // 
-            this.panelCAT20.Controls.Add(this.panelCAT21);
-            this.panelCAT20.Controls.Add(this.dgvCAT20);
-            this.panelCAT20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCAT20.Location = new System.Drawing.Point(0, 0);
-            this.panelCAT20.Name = "panelCAT20";
-            this.panelCAT20.Size = new System.Drawing.Size(1202, 370);
-            this.panelCAT20.TabIndex = 2;
-            this.panelCAT20.Visible = false;
-            // 
-            // dgvCAT20
-            // 
-            this.dgvCAT20.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCAT20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCAT20.Location = new System.Drawing.Point(0, 0);
-            this.dgvCAT20.Name = "dgvCAT20";
-            this.dgvCAT20.RowHeadersWidth = 51;
-            this.dgvCAT20.RowTemplate.Height = 24;
-            this.dgvCAT20.Size = new System.Drawing.Size(1202, 370);
-            this.dgvCAT20.TabIndex = 0;
-            // 
-            // panelCAT21
-            // 
-            this.panelCAT21.Controls.Add(this.dgvCAT21);
-            this.panelCAT21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCAT21.Location = new System.Drawing.Point(0, 0);
-            this.panelCAT21.Name = "panelCAT21";
-            this.panelCAT21.Size = new System.Drawing.Size(1202, 370);
-            this.panelCAT21.TabIndex = 1;
-            this.panelCAT21.Visible = false;
-            // 
-            // dgvCAT21
-            // 
-            this.dgvCAT21.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvCAT21.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCAT21.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Number,
-            this.DataSourceIdentification,
-            this.TargetReportDescriptor1,
-            this.TrackNumber,
-            this.TimeofApplicabilityPosition,
-            this.WGS84Coordinates_LAT,
-            this.WGS84Coordinates_LATHR});
-            this.dgvCAT21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCAT21.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvCAT21.Location = new System.Drawing.Point(0, 0);
-            this.dgvCAT21.Name = "dgvCAT21";
-            this.dgvCAT21.RowHeadersWidth = 51;
-            this.dgvCAT21.RowTemplate.Height = 24;
-            this.dgvCAT21.Size = new System.Drawing.Size(1202, 370);
-            this.dgvCAT21.TabIndex = 1;
-            // 
-            // Number
-            // 
-            this.Number.HeaderText = "#";
-            this.Number.MinimumWidth = 6;
-            this.Number.Name = "Number";
-            this.Number.Width = 125;
-            // 
-            // DataSourceIdentification
-            // 
-            this.DataSourceIdentification.HeaderText = "SAC/SIC";
-            this.DataSourceIdentification.MinimumWidth = 6;
-            this.DataSourceIdentification.Name = "DataSourceIdentification";
-            this.DataSourceIdentification.Width = 125;
-            // 
-            // TargetReportDescriptor1
-            // 
-            this.TargetReportDescriptor1.HeaderText = "Target Report Descriptor";
-            this.TargetReportDescriptor1.MinimumWidth = 6;
-            this.TargetReportDescriptor1.Name = "TargetReportDescriptor1";
-            this.TargetReportDescriptor1.Width = 125;
-            // 
-            // TrackNumber
-            // 
-            this.TrackNumber.HeaderText = "Track Number";
-            this.TrackNumber.MinimumWidth = 6;
-            this.TrackNumber.Name = "TrackNumber";
-            this.TrackNumber.Width = 125;
-            // 
-            // TimeofApplicabilityPosition
-            // 
-            this.TimeofApplicabilityPosition.HeaderText = "Time of Applicability for Position";
-            this.TimeofApplicabilityPosition.MinimumWidth = 6;
-            this.TimeofApplicabilityPosition.Name = "TimeofApplicabilityPosition";
-            this.TimeofApplicabilityPosition.Width = 125;
-            // 
-            // WGS84Coordinates_LAT
-            // 
-            this.WGS84Coordinates_LAT.HeaderText = "WGS-84 Co-ordinates LAT/LON";
-            this.WGS84Coordinates_LAT.MinimumWidth = 6;
-            this.WGS84Coordinates_LAT.Name = "WGS84Coordinates_LAT";
-            this.WGS84Coordinates_LAT.Width = 125;
-            // 
-            // WGS84Coordinates_LATHR
-            // 
-            this.WGS84Coordinates_LATHR.HeaderText = "WGS-84 Co-ordinates (HR) LAT/LON";
-            this.WGS84Coordinates_LATHR.MinimumWidth = 6;
-            this.WGS84Coordinates_LATHR.Name = "WGS84Coordinates_LATHR";
-            this.WGS84Coordinates_LATHR.Width = 125;
+            this.lb_Pages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_Pages.AutoSize = true;
+            this.lb_Pages.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.lb_Pages.Location = new System.Drawing.Point(563, 0);
+            this.lb_Pages.Name = "lb_Pages";
+            this.lb_Pages.Size = new System.Drawing.Size(642, 50);
+            this.lb_Pages.TabIndex = 16;
+            this.lb_Pages.Text = "          label1";
             // 
             // Tables
             // 
@@ -387,14 +403,14 @@
             this.ClientSize = new System.Drawing.Size(1232, 450);
             this.Controls.Add(this.tlpTables);
             this.Name = "Tables";
-            this.Text = "Tables";
             this.tlpTables.ResumeLayout(false);
+            this.tlpTables.PerformLayout();
             this.panelCAT10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT10)).EndInit();
             this.panelCAT20.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT20)).EndInit();
             this.panelCAT21.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCAT10)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -430,5 +446,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WGS84Coordinates_LAT;
         private System.Windows.Forms.DataGridViewTextBoxColumn WGS84Coordinates_LATHR;
         private System.Windows.Forms.DataGridView dgvCAT20;
+        private System.Windows.Forms.Label lb_Pages;
     }
 }
