@@ -40,5 +40,6 @@ namespace ASTERIX
             gMapControl1.AutoScroll = true;
             
         }
+
     }
 }

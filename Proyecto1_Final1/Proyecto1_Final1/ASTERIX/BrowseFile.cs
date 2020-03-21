@@ -114,5 +114,10 @@ namespace ASTERIX
         {
 
         }
+
+        private void BrowseFile_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

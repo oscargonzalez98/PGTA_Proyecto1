@@ -39,7 +39,7 @@
             // bt_SelectFile
             // 
             this.bt_SelectFile.Location = new System.Drawing.Point(31, 162);
-            this.bt_SelectFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bt_SelectFile.Margin = new System.Windows.Forms.Padding(2);
             this.bt_SelectFile.Name = "bt_SelectFile";
             this.bt_SelectFile.Size = new System.Drawing.Size(126, 26);
             this.bt_SelectFile.TabIndex = 0;
@@ -50,7 +50,7 @@
             // tbDirection
             // 
             this.tbDirection.Location = new System.Drawing.Point(171, 166);
-            this.tbDirection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbDirection.Margin = new System.Windows.Forms.Padding(2);
             this.tbDirection.Name = "tbDirection";
             this.tbDirection.Size = new System.Drawing.Size(327, 20);
             this.tbDirection.TabIndex = 1;
@@ -59,7 +59,7 @@
             // bt_Decode
             // 
             this.bt_Decode.Location = new System.Drawing.Point(256, 237);
-            this.bt_Decode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bt_Decode.Margin = new System.Windows.Forms.Padding(2);
             this.bt_Decode.Name = "bt_Decode";
             this.bt_Decode.Size = new System.Drawing.Size(98, 35);
             this.bt_Decode.TabIndex = 2;
@@ -98,19 +98,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(600, 366);
-=======
-            this.ClientSize = new System.Drawing.Size(922, 450);
-            this.Controls.Add(this.lbTitle);
->>>>>>> 55b98eb5a930d5e4357c1ed761a69fe28c90550f
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.bt_Decode);
             this.Controls.Add(this.tbDirection);
             this.Controls.Add(this.bt_SelectFile);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "BrowseFile";
             this.Text = "BrowseFile";
+            this.Load += new System.EventHandler(this.BrowseFile_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

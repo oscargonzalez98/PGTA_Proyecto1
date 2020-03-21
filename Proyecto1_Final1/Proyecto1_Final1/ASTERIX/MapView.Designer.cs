@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
+            this.gMapControl2 = new GMap.NET.WindowsForms.GMapControl();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -62,6 +63,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.gMapControl2);
             this.Controls.Add(this.gMapControl1);
             this.Name = "MapView";
             this.Text = "MapView";
@@ -73,5 +75,6 @@
         #endregion
 
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
+        private GMap.NET.WindowsForms.GMapControl gMapControl2;
     }
 }
