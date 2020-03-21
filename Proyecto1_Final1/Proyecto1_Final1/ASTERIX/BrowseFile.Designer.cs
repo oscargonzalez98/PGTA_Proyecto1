@@ -38,9 +38,10 @@
             // 
             // bt_SelectFile
             // 
-            this.bt_SelectFile.Location = new System.Drawing.Point(41, 199);
+            this.bt_SelectFile.Location = new System.Drawing.Point(31, 162);
+            this.bt_SelectFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bt_SelectFile.Name = "bt_SelectFile";
-            this.bt_SelectFile.Size = new System.Drawing.Size(168, 32);
+            this.bt_SelectFile.Size = new System.Drawing.Size(126, 26);
             this.bt_SelectFile.TabIndex = 0;
             this.bt_SelectFile.Text = "Select File";
             this.bt_SelectFile.UseVisualStyleBackColor = true;
@@ -48,16 +49,19 @@
             // 
             // tbDirection
             // 
-            this.tbDirection.Location = new System.Drawing.Point(228, 204);
+            this.tbDirection.Location = new System.Drawing.Point(171, 166);
+            this.tbDirection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbDirection.Name = "tbDirection";
-            this.tbDirection.Size = new System.Drawing.Size(435, 22);
+            this.tbDirection.Size = new System.Drawing.Size(327, 20);
             this.tbDirection.TabIndex = 1;
+            this.tbDirection.TextChanged += new System.EventHandler(this.tbDirection_TextChanged);
             // 
             // bt_Decode
             // 
-            this.bt_Decode.Location = new System.Drawing.Point(341, 292);
+            this.bt_Decode.Location = new System.Drawing.Point(256, 237);
+            this.bt_Decode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bt_Decode.Name = "bt_Decode";
-            this.bt_Decode.Size = new System.Drawing.Size(130, 43);
+            this.bt_Decode.Size = new System.Drawing.Size(98, 35);
             this.bt_Decode.TabIndex = 2;
             this.bt_Decode.Text = "Decode";
             this.bt_Decode.UseVisualStyleBackColor = true;
@@ -72,9 +76,10 @@
             this.lblError.AutoSize = true;
             this.lblError.BackColor = System.Drawing.Color.White;
             this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.lblError.Location = new System.Drawing.Point(353, 238);
+            this.lblError.Location = new System.Drawing.Point(265, 193);
+            this.lblError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(109, 39);
+            this.lblError.Size = new System.Drawing.Size(86, 31);
             this.lblError.TabIndex = 3;
             this.lblError.Text = "label1";
             // 
@@ -91,14 +96,19 @@
             // 
             // BrowseFile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
+            this.ClientSize = new System.Drawing.Size(600, 366);
+=======
             this.ClientSize = new System.Drawing.Size(922, 450);
             this.Controls.Add(this.lbTitle);
+>>>>>>> 55b98eb5a930d5e4357c1ed761a69fe28c90550f
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.bt_Decode);
             this.Controls.Add(this.tbDirection);
             this.Controls.Add(this.bt_SelectFile);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "BrowseFile";
             this.Text = "BrowseFile";
             this.ResumeLayout(false);

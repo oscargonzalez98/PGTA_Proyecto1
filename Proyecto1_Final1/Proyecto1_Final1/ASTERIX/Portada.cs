@@ -47,5 +47,11 @@ namespace ASTERIX
             Tables Tables1 = new Tables(listaCAT10, listaCAT20, listaCAT21);
             Tables1.ShowDialog();
         }
+
+        private void btn_mapviewer_Click(object sender, EventArgs e)
+        {
+            MapView mapView = new MapView();
+            mapView.ShowDialog();
+        }
     }
 }

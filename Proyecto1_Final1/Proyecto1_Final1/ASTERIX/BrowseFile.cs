@@ -109,5 +109,10 @@ namespace ASTERIX
 
 
         }
+
+        private void tbDirection_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
