@@ -66,6 +66,13 @@
             this.TimeofMessageReceptionPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeofMessageReceptionPositionHP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeofMessageReceptionVelocity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofMessageReceptionVelocityHP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GeometricHeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QualityIndicators = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MopsVersion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mode3ACode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RollAngle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FlightLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpTables.SuspendLayout();
             this.panelCAT10.SuspendLayout();
             this.panelCAT20.SuspendLayout();
@@ -198,7 +205,14 @@
             this.TargetAddress,
             this.TimeofMessageReceptionPosition,
             this.TimeofMessageReceptionPositionHP,
-            this.TimeofMessageReceptionVelocity});
+            this.TimeofMessageReceptionVelocity,
+            this.TimeofMessageReceptionVelocityHP,
+            this.GeometricHeight,
+            this.QualityIndicators,
+            this.MopsVersion,
+            this.Mode3ACode,
+            this.RollAngle,
+            this.FlightLevel});
             this.dgvCAT21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCAT21.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvCAT21.Location = new System.Drawing.Point(0, 0);
@@ -459,6 +473,55 @@
             this.TimeofMessageReceptionVelocity.Name = "TimeofMessageReceptionVelocity";
             this.TimeofMessageReceptionVelocity.Width = 125;
             // 
+            // TimeofMessageReceptionVelocityHP
+            // 
+            this.TimeofMessageReceptionVelocityHP.HeaderText = "Time of Message Reception for Velocity (HP) (h:m:s)";
+            this.TimeofMessageReceptionVelocityHP.MinimumWidth = 6;
+            this.TimeofMessageReceptionVelocityHP.Name = "TimeofMessageReceptionVelocityHP";
+            this.TimeofMessageReceptionVelocityHP.Width = 125;
+            // 
+            // GeometricHeight
+            // 
+            this.GeometricHeight.HeaderText = "Geometric Height (ft)";
+            this.GeometricHeight.MinimumWidth = 6;
+            this.GeometricHeight.Name = "GeometricHeight";
+            this.GeometricHeight.Width = 125;
+            // 
+            // QualityIndicators
+            // 
+            this.QualityIndicators.HeaderText = "Quality Indicators (s)";
+            this.QualityIndicators.MinimumWidth = 6;
+            this.QualityIndicators.Name = "QualityIndicators";
+            this.QualityIndicators.Width = 125;
+            // 
+            // MopsVersion
+            // 
+            this.MopsVersion.HeaderText = "Mops Version";
+            this.MopsVersion.MinimumWidth = 6;
+            this.MopsVersion.Name = "MopsVersion";
+            this.MopsVersion.Width = 125;
+            // 
+            // Mode3ACode
+            // 
+            this.Mode3ACode.HeaderText = "Mode 3/A Code";
+            this.Mode3ACode.MinimumWidth = 6;
+            this.Mode3ACode.Name = "Mode3ACode";
+            this.Mode3ACode.Width = 125;
+            // 
+            // RollAngle
+            // 
+            this.RollAngle.HeaderText = "Roll Angle (º)";
+            this.RollAngle.MinimumWidth = 6;
+            this.RollAngle.Name = "RollAngle";
+            this.RollAngle.Width = 125;
+            // 
+            // FlightLevel
+            // 
+            this.FlightLevel.HeaderText = "Flight Level";
+            this.FlightLevel.MinimumWidth = 6;
+            this.FlightLevel.Name = "FlightLevel";
+            this.FlightLevel.Width = 125;
+            // 
             // Tables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -517,5 +580,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeofMessageReceptionPosition;
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeofMessageReceptionPositionHP;
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeofMessageReceptionVelocity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeofMessageReceptionVelocityHP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GeometricHeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QualityIndicators;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MopsVersion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mode3ACode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RollAngle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FlightLevel;
     }
 }

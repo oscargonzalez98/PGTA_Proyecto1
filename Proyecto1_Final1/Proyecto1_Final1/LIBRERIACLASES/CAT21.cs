@@ -2394,9 +2394,10 @@ namespace LIBRERIACLASES
                     string2 = AddZeros(string2);
                     Mode3ACode_bin = String.Concat(Mode3ACode_bin, string2);
                     i = i + 1;
-                    data_position = data_position + 1;
                     bool1 = true;
                 }
+
+                data_position = data_position + 2;
 
                 if (bool1 == true) 
                 {
@@ -2438,7 +2439,7 @@ namespace LIBRERIACLASES
 
                 data_position = data_position + 2;
 
-                FlightLevel_FL = (Calculate_ComplementoA2(FlightLevel)) / 4;
+                FlightLevel_FL = Math.Round((Calculate_ComplementoA2(FlightLevel)) / 4);
 
             }
 
