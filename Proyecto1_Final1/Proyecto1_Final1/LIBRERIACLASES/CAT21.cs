@@ -22,17 +22,17 @@ namespace LIBRERIACLASES
         public string ARC = "";
         public string RC = "";
         public string RAB = "";
-        public string DCR;
-        public string GBS;
-        public string SIM;
-        public string TST;
-        public string SAA;
-        public string CL;
-        public string IPC;
-        public string NOGO;
-        public string CPR;
-        public string LDPJ;
-        public string RCF;
+        public string DCR = "";
+        public string GBS = "";
+        public string SIM = "";
+        public string TST = "";
+        public string SAA = "";
+        public string CL = "";
+        public string IPC = "";
+        public string NOGO = "";
+        public string CPR = "";
+        public string LDPJ = "";
+        public string RCF = "";
 
         public string TrackNumber = "";
         public int TrackNumber_number;
@@ -43,7 +43,7 @@ namespace LIBRERIACLASES
         public string TimeofApplicability_Position = "";
         public double TimeofApplicability_Position_seconds;
 
-        public string PositioninWGS_coordinates;
+        public string PositioninWGS_coordinates= "";
         public double latWGS84 = 0;
         public double lonWGS84 = 0;
 
@@ -66,7 +66,7 @@ namespace LIBRERIACLASES
         public string TargetAddress_bin = "";
         public string TargetAdress_real = "";
 
-        public string TimeofMessageReception_Position;
+        public string TimeofMessageReception_Position= "";
         public double TimeofMessageReception_Position_seconds;
 
         public string TimeofMessageReception_HRPosition = "";
@@ -92,7 +92,7 @@ namespace LIBRERIACLASES
 
         public string MOPSVersion = "";
         public string VNS = "";
-        public string VN;
+        public string VN= "";
         public string LTT = "";
 
         public string Mode3ACode_bin = "";

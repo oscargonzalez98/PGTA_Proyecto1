@@ -96,9 +96,127 @@ namespace ASTERIX
                 dgvCAT21.Rows[n].Cells[1].Value = String.Concat(listaCAT21[i].SAC, "/", listaCAT21[i].SIC);
                 dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
                 dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
-                dgvCAT21.Rows[n].Cells[4].Value = listaCAT21[i].TimeofApplicability_Position_seconds;
-                dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString());
-                dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString());
+
+                // Convertimos en horas:mins:secs
+                double TOA_Position_seconds= listaCAT21[i].TimeofApplicability_Position_seconds;
+
+                double double1 = (TOA_Position_seconds / 3600);
+                int horas = Convert.ToInt32(Math.Floor(double1));
+
+                double double2 = (double1 - horas)*60;
+                int mins = Convert.ToInt32(Math.Floor(double2));
+
+                double secs = (double2 - mins) * 60;
+                
+                if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                {
+                    dgvCAT21.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                }
+                else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
+
+                if(listaCAT21[i].PositioninWGS_coordinates.Length>0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
+
+                if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
+
+                // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
+
+                // Convertimos en horas:mins:secs
+                double1 = (TOA_Velocity_seconds / 3600);
+                horas = Convert.ToInt32(Math.Floor(double1));
+
+                double2 = (double1 - horas) * 60;
+                mins = Convert.ToInt32(Math.Floor(double2));
+
+                secs = (double2 - mins) * 60;
+
+                if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                {
+                    dgvCAT21.Rows[n].Cells[7].Value = horas + ":" + mins + ":" + secs;
+                }
+                else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
+
+                if (listaCAT21[i].AirSpeed.Length>0)
+                {
+
+                    string str1 = listaCAT21[i].IM;
+                    if (str1 == "0")
+                    {
+                        dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_velocity).ToString() + " (IAS)";
+                    }
+
+                    else { dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_Mach).ToString() + " (Mach)"; }
+                }
+
+                else { dgvCAT21.Rows[n].Cells[8].Value = "No info."; }
+
+                if (listaCAT21[i].TrueAirSpeed.Length>0)
+                {
+                    if (listaCAT21[i].RE_TAS=="0")
+                    {
+                        dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number.ToString() + "(Value excedes defined range.)"; }
+
+                }
+                else { dgvCAT21.Rows[n].Cells[9].Value = "No info."; }
+
+                dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
+
+
+                double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+
+                // Convertimos en horas:mins:secs
+                double1 = (TOMR_Position_seconds / 3600);
+                horas = Convert.ToInt32(Math.Floor(double1));
+
+                double2 = (double1 - horas) * 60;
+                mins = Convert.ToInt32(Math.Floor(double2));
+
+                secs = (double2 - mins) * 60;
+                if (listaCAT21[i].TimeofMessageReception_Position.Length>0)
+                {
+                    dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                }
+                else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
+
+
+                double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
+
+                // Convertimos en horas:mins:secs
+                double1 = (TOMR_HPPosition_seconds / 3600);
+                horas = Convert.ToInt32(Math.Floor(double1));
+
+                double2 = (double1 - horas) * 60;
+                mins = Convert.ToInt32(Math.Floor(double2));
+
+                secs = (double2 - mins) * 60;
+                if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
+                {
+                    dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                }
+                else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
+
+                double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+
+                // Convertimos en horas:mins:secs
+                double1 = (TOMR_HPPVelocity_seconds / 3600);
+                horas = Convert.ToInt32(Math.Floor(double1));
+
+                double2 = (double1 - horas) * 60;
+                mins = Convert.ToInt32(Math.Floor(double2));
+
+                secs = (double2 - mins) * 60;
+                if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
+                {
+                    dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                }
+                else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
+
+                // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
 
                 i = i + 1;
             }
@@ -177,9 +295,127 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[1].Value = String.Concat(listaCAT21[i].SAC, "/", listaCAT21[i].SIC);
                     dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
                     dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
-                    dgvCAT21.Rows[n].Cells[4].Value = listaCAT21[i].TimeofApplicability_Position_seconds;
-                    dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString());
-                    dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString());
+
+                    // Convertimos en horas:mins:secs
+                    double TOA_Position_seconds = listaCAT21[i].TimeofApplicability_Position_seconds;
+
+                    double double1 = (TOA_Position_seconds / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_Velocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[7].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT21[i].AirSpeed.Length > 0)
+                    {
+
+                        string str1 = listaCAT21[i].IM;
+                        if (str1 == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_velocity).ToString() + " (IAS)";
+                        }
+
+                        else { dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_Mach).ToString() + " (Mach)"; }
+                    }
+
+                    else { dgvCAT21.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT21[i].TrueAirSpeed.Length > 0)
+                    {
+                        if (listaCAT21[i].RE_TAS == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number.ToString() + "(Value excedes defined range.)"; }
+
+                    }
+                    else { dgvCAT21.Rows[n].Cells[9].Value = "No info."; }
+
+                    dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
+
+
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_Position_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
+
+
+                    double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPosition_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
+
+                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
 
                     i = i + 1;
                 }
@@ -258,9 +494,127 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[1].Value = String.Concat(listaCAT21[i].SAC, "/", listaCAT21[i].SIC);
                     dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
                     dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
-                    dgvCAT21.Rows[n].Cells[4].Value = listaCAT21[i].TimeofApplicability_Position_seconds;
-                    dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString());
-                    dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString());
+
+                    // Convertimos en horas:mins:secs
+                    double TOA_Position_seconds = listaCAT21[i].TimeofApplicability_Position_seconds;
+
+                    double double1 = (TOA_Position_seconds / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_Velocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[7].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT21[i].AirSpeed.Length > 0)
+                    {
+
+                        string str1 = listaCAT21[i].IM;
+                        if (str1 == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_velocity).ToString() + " (IAS)";
+                        }
+
+                        else { dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_Mach).ToString() + " (Mach)"; }
+                    }
+
+                    else { dgvCAT21.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT21[i].TrueAirSpeed.Length > 0)
+                    {
+                        if (listaCAT21[i].RE_TAS == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number.ToString() + "(Value excedes defined range.)"; }
+
+                    }
+                    else { dgvCAT21.Rows[n].Cells[9].Value = "No info."; }
+
+                    dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
+
+
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_Position_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
+
+
+                    double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPosition_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
+
+                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
 
                     i = i + 1;
                 }
@@ -369,9 +723,127 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[1].Value = String.Concat(listaCAT21[i].SAC, "/", listaCAT21[i].SIC);
                     dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
                     dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
-                    dgvCAT21.Rows[n].Cells[4].Value = listaCAT21[i].TimeofApplicability_Position_seconds;
-                    dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString());
-                    dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString());
+
+                    // Convertimos en horas:mins:secs
+                    double TOA_Position_seconds = listaCAT21[i].TimeofApplicability_Position_seconds;
+
+                    double double1 = (TOA_Position_seconds / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_Velocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[7].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT21[i].AirSpeed.Length > 0)
+                    {
+
+                        string str1 = listaCAT21[i].IM;
+                        if (str1 == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_velocity).ToString() + " (IAS)";
+                        }
+
+                        else { dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_Mach).ToString() + " (Mach)"; }
+                    }
+
+                    else { dgvCAT21.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT21[i].TrueAirSpeed.Length > 0)
+                    {
+                        if (listaCAT21[i].RE_TAS == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number.ToString() + "(Value excedes defined range.)"; }
+
+                    }
+                    else { dgvCAT21.Rows[n].Cells[9].Value = "No info."; }
+
+                    dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
+
+
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_Position_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
+
+
+                    double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPosition_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
+
+                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
 
                     i = i + 1;
                 }
@@ -427,9 +899,127 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[1].Value = String.Concat(listaCAT21[i].SAC, "/", listaCAT21[i].SIC);
                     dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
                     dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
-                    dgvCAT21.Rows[n].Cells[4].Value = listaCAT21[i].TimeofApplicability_Position_seconds;
-                    dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString());
-                    dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString());
+
+                    // Convertimos en horas:mins:secs
+                    double TOA_Position_seconds = listaCAT21[i].TimeofApplicability_Position_seconds;
+
+                    double double1 = (TOA_Position_seconds / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_Velocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[7].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT21[i].AirSpeed.Length > 0)
+                    {
+
+                        string str1 = listaCAT21[i].IM;
+                        if (str1 == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_velocity).ToString() + " (IAS)";
+                        }
+
+                        else { dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_Mach).ToString() + " (Mach)"; }
+                    }
+
+                    else { dgvCAT21.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT21[i].TrueAirSpeed.Length > 0)
+                    {
+                        if (listaCAT21[i].RE_TAS == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number.ToString() + "(Value excedes defined range.)"; }
+
+                    }
+                    else { dgvCAT21.Rows[n].Cells[9].Value = "No info."; }
+
+                    dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
+
+
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_Position_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
+
+
+                    double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPosition_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
+
+                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
 
                     i = i + 1;
                 }

@@ -37,13 +37,6 @@
             this.panelCAT20 = new System.Windows.Forms.Panel();
             this.panelCAT21 = new System.Windows.Forms.Panel();
             this.dgvCAT21 = new System.Windows.Forms.DataGridView();
-            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataSourceIdentification = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetReportDescriptor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrackNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeofApplicabilityPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WGS84Coordinates_LAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WGS84Coordinates_LATHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCAT20 = new System.Windows.Forms.DataGridView();
             this.dgvCAT10 = new System.Windows.Forms.DataGridView();
             this.Number1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +52,20 @@
             this.bt_Forward = new System.Windows.Forms.Button();
             this.bt_FastForward = new System.Windows.Forms.Button();
             this.lb_Pages = new System.Windows.Forms.Label();
+            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataSourceIdentification = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetReportDescriptor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrackNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofApplicabilityPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WGS84Coordinates_LAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WGS84Coordinates_LATHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofApplicabilityVelocity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AirSpeed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrueAirSpeed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofMessageReceptionPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofMessageReceptionPositionHP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofMessageReceptionVelocity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpTables.SuspendLayout();
             this.panelCAT10.SuspendLayout();
             this.panelCAT20.SuspendLayout();
@@ -184,7 +191,14 @@
             this.TrackNumber,
             this.TimeofApplicabilityPosition,
             this.WGS84Coordinates_LAT,
-            this.WGS84Coordinates_LATHR});
+            this.WGS84Coordinates_LATHR,
+            this.TimeofApplicabilityVelocity,
+            this.AirSpeed,
+            this.TrueAirSpeed,
+            this.TargetAddress,
+            this.TimeofMessageReceptionPosition,
+            this.TimeofMessageReceptionPositionHP,
+            this.TimeofMessageReceptionVelocity});
             this.dgvCAT21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCAT21.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvCAT21.Location = new System.Drawing.Point(0, 0);
@@ -193,55 +207,6 @@
             this.dgvCAT21.RowTemplate.Height = 24;
             this.dgvCAT21.Size = new System.Drawing.Size(1202, 370);
             this.dgvCAT21.TabIndex = 1;
-            // 
-            // Number
-            // 
-            this.Number.HeaderText = "#";
-            this.Number.MinimumWidth = 6;
-            this.Number.Name = "Number";
-            this.Number.Width = 125;
-            // 
-            // DataSourceIdentification
-            // 
-            this.DataSourceIdentification.HeaderText = "SAC/SIC";
-            this.DataSourceIdentification.MinimumWidth = 6;
-            this.DataSourceIdentification.Name = "DataSourceIdentification";
-            this.DataSourceIdentification.Width = 125;
-            // 
-            // TargetReportDescriptor1
-            // 
-            this.TargetReportDescriptor1.HeaderText = "Target Report Descriptor";
-            this.TargetReportDescriptor1.MinimumWidth = 6;
-            this.TargetReportDescriptor1.Name = "TargetReportDescriptor1";
-            this.TargetReportDescriptor1.Width = 125;
-            // 
-            // TrackNumber
-            // 
-            this.TrackNumber.HeaderText = "Track Number";
-            this.TrackNumber.MinimumWidth = 6;
-            this.TrackNumber.Name = "TrackNumber";
-            this.TrackNumber.Width = 125;
-            // 
-            // TimeofApplicabilityPosition
-            // 
-            this.TimeofApplicabilityPosition.HeaderText = "Time of Applicability for Position";
-            this.TimeofApplicabilityPosition.MinimumWidth = 6;
-            this.TimeofApplicabilityPosition.Name = "TimeofApplicabilityPosition";
-            this.TimeofApplicabilityPosition.Width = 125;
-            // 
-            // WGS84Coordinates_LAT
-            // 
-            this.WGS84Coordinates_LAT.HeaderText = "WGS-84 Co-ordinates LAT/LON";
-            this.WGS84Coordinates_LAT.MinimumWidth = 6;
-            this.WGS84Coordinates_LAT.Name = "WGS84Coordinates_LAT";
-            this.WGS84Coordinates_LAT.Width = 125;
-            // 
-            // WGS84Coordinates_LATHR
-            // 
-            this.WGS84Coordinates_LATHR.HeaderText = "WGS-84 Co-ordinates (HR) LAT/LON";
-            this.WGS84Coordinates_LATHR.MinimumWidth = 6;
-            this.WGS84Coordinates_LATHR.Name = "WGS84Coordinates_LATHR";
-            this.WGS84Coordinates_LATHR.Width = 125;
             // 
             // dgvCAT20
             // 
@@ -396,6 +361,104 @@
             this.lb_Pages.TabIndex = 16;
             this.lb_Pages.Text = "          label1";
             // 
+            // Number
+            // 
+            this.Number.HeaderText = "#";
+            this.Number.MinimumWidth = 6;
+            this.Number.Name = "Number";
+            this.Number.Width = 125;
+            // 
+            // DataSourceIdentification
+            // 
+            this.DataSourceIdentification.HeaderText = "SAC/SIC";
+            this.DataSourceIdentification.MinimumWidth = 6;
+            this.DataSourceIdentification.Name = "DataSourceIdentification";
+            this.DataSourceIdentification.Width = 125;
+            // 
+            // TargetReportDescriptor1
+            // 
+            this.TargetReportDescriptor1.HeaderText = "Target Report Descriptor";
+            this.TargetReportDescriptor1.MinimumWidth = 6;
+            this.TargetReportDescriptor1.Name = "TargetReportDescriptor1";
+            this.TargetReportDescriptor1.Width = 125;
+            // 
+            // TrackNumber
+            // 
+            this.TrackNumber.HeaderText = "Track Number";
+            this.TrackNumber.MinimumWidth = 6;
+            this.TrackNumber.Name = "TrackNumber";
+            this.TrackNumber.Width = 125;
+            // 
+            // TimeofApplicabilityPosition
+            // 
+            this.TimeofApplicabilityPosition.HeaderText = "Time of Applicability for Position (h/m/s)";
+            this.TimeofApplicabilityPosition.MinimumWidth = 6;
+            this.TimeofApplicabilityPosition.Name = "TimeofApplicabilityPosition";
+            this.TimeofApplicabilityPosition.Width = 125;
+            // 
+            // WGS84Coordinates_LAT
+            // 
+            this.WGS84Coordinates_LAT.HeaderText = "WGS-84 Co-ordinates LAT/LON";
+            this.WGS84Coordinates_LAT.MinimumWidth = 6;
+            this.WGS84Coordinates_LAT.Name = "WGS84Coordinates_LAT";
+            this.WGS84Coordinates_LAT.Width = 125;
+            // 
+            // WGS84Coordinates_LATHR
+            // 
+            this.WGS84Coordinates_LATHR.HeaderText = "WGS-84 Co-ordinates (HR) LAT/LON";
+            this.WGS84Coordinates_LATHR.MinimumWidth = 6;
+            this.WGS84Coordinates_LATHR.Name = "WGS84Coordinates_LATHR";
+            this.WGS84Coordinates_LATHR.Width = 125;
+            // 
+            // TimeofApplicabilityVelocity
+            // 
+            this.TimeofApplicabilityVelocity.HeaderText = "Time of Applicability for Velocity (h/m/s)";
+            this.TimeofApplicabilityVelocity.MinimumWidth = 6;
+            this.TimeofApplicabilityVelocity.Name = "TimeofApplicabilityVelocity";
+            this.TimeofApplicabilityVelocity.Width = 125;
+            // 
+            // AirSpeed
+            // 
+            this.AirSpeed.HeaderText = "Air Speed (IAS[NM/s] or Mach)";
+            this.AirSpeed.MinimumWidth = 6;
+            this.AirSpeed.Name = "AirSpeed";
+            this.AirSpeed.Width = 125;
+            // 
+            // TrueAirSpeed
+            // 
+            this.TrueAirSpeed.HeaderText = "True Airspeed (knots)";
+            this.TrueAirSpeed.MinimumWidth = 6;
+            this.TrueAirSpeed.Name = "TrueAirSpeed";
+            this.TrueAirSpeed.Width = 125;
+            // 
+            // TargetAddress
+            // 
+            this.TargetAddress.HeaderText = "Target Address";
+            this.TargetAddress.MinimumWidth = 6;
+            this.TargetAddress.Name = "TargetAddress";
+            this.TargetAddress.Width = 125;
+            // 
+            // TimeofMessageReceptionPosition
+            // 
+            this.TimeofMessageReceptionPosition.HeaderText = "Time of Message Reception for Position (h:m:s)";
+            this.TimeofMessageReceptionPosition.MinimumWidth = 6;
+            this.TimeofMessageReceptionPosition.Name = "TimeofMessageReceptionPosition";
+            this.TimeofMessageReceptionPosition.Width = 125;
+            // 
+            // TimeofMessageReceptionPositionHP
+            // 
+            this.TimeofMessageReceptionPositionHP.HeaderText = "Time of Message Reception for Position (High Precision) (HP) (h:m:s)";
+            this.TimeofMessageReceptionPositionHP.MinimumWidth = 6;
+            this.TimeofMessageReceptionPositionHP.Name = "TimeofMessageReceptionPositionHP";
+            this.TimeofMessageReceptionPositionHP.Width = 125;
+            // 
+            // TimeofMessageReceptionVelocity
+            // 
+            this.TimeofMessageReceptionVelocity.HeaderText = "Time of Message Reception for Velocity (h:m:s)";
+            this.TimeofMessageReceptionVelocity.MinimumWidth = 6;
+            this.TimeofMessageReceptionVelocity.Name = "TimeofMessageReceptionVelocity";
+            this.TimeofMessageReceptionVelocity.Width = 125;
+            // 
             // Tables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -438,6 +501,8 @@
         private System.Windows.Forms.Panel panelCAT20;
         private System.Windows.Forms.Panel panelCAT21;
         private System.Windows.Forms.DataGridView dgvCAT21;
+        private System.Windows.Forms.DataGridView dgvCAT20;
+        private System.Windows.Forms.Label lb_Pages;
         private System.Windows.Forms.DataGridViewTextBoxColumn Number;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataSourceIdentification;
         private System.Windows.Forms.DataGridViewTextBoxColumn TargetReportDescriptor1;
@@ -445,7 +510,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeofApplicabilityPosition;
         private System.Windows.Forms.DataGridViewTextBoxColumn WGS84Coordinates_LAT;
         private System.Windows.Forms.DataGridViewTextBoxColumn WGS84Coordinates_LATHR;
-        private System.Windows.Forms.DataGridView dgvCAT20;
-        private System.Windows.Forms.Label lb_Pages;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeofApplicabilityVelocity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AirSpeed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrueAirSpeed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TargetAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeofMessageReceptionPosition;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeofMessageReceptionPositionHP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeofMessageReceptionVelocity;
     }
 }
