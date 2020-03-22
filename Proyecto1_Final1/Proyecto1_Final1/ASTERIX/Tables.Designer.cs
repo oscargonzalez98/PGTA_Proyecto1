@@ -37,21 +37,6 @@
             this.panelCAT20 = new System.Windows.Forms.Panel();
             this.panelCAT21 = new System.Windows.Forms.Panel();
             this.dgvCAT21 = new System.Windows.Forms.DataGridView();
-            this.dgvCAT20 = new System.Windows.Forms.DataGridView();
-            this.dgvCAT10 = new System.Windows.Forms.DataGridView();
-            this.Number1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataSourceIdentifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MessageType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetReportDescriptor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeofDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PositionWGS84Coordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PositioninPolarCoordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PositioninCartedianCoordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bt_FastBackward = new System.Windows.Forms.Button();
-            this.bt_Backward = new System.Windows.Forms.Button();
-            this.bt_Forward = new System.Windows.Forms.Button();
-            this.bt_FastForward = new System.Windows.Forms.Button();
-            this.lb_Pages = new System.Windows.Forms.Label();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataSourceIdentification = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TargetReportDescriptor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +58,21 @@
             this.Mode3ACode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RollAngle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FlightLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCAT20 = new System.Windows.Forms.DataGridView();
+            this.dgvCAT10 = new System.Windows.Forms.DataGridView();
+            this.Number1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataSourceIdentifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MessageType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetReportDescriptor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositionWGS84Coordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositioninPolarCoordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositioninCartedianCoordinates = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bt_FastBackward = new System.Windows.Forms.Button();
+            this.bt_Backward = new System.Windows.Forms.Button();
+            this.bt_Forward = new System.Windows.Forms.Button();
+            this.bt_FastForward = new System.Windows.Forms.Button();
+            this.lb_Pages = new System.Windows.Forms.Label();
             this.tlpTables.SuspendLayout();
             this.panelCAT10.SuspendLayout();
             this.panelCAT20.SuspendLayout();
@@ -221,6 +221,154 @@
             this.dgvCAT21.RowTemplate.Height = 24;
             this.dgvCAT21.Size = new System.Drawing.Size(1202, 370);
             this.dgvCAT21.TabIndex = 1;
+            this.dgvCAT21.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCAT21_CellClick);
+            // 
+            // Number
+            // 
+            this.Number.HeaderText = "#";
+            this.Number.MinimumWidth = 6;
+            this.Number.Name = "Number";
+            this.Number.Width = 125;
+            // 
+            // DataSourceIdentification
+            // 
+            this.DataSourceIdentification.HeaderText = "SAC/SIC";
+            this.DataSourceIdentification.MinimumWidth = 6;
+            this.DataSourceIdentification.Name = "DataSourceIdentification";
+            this.DataSourceIdentification.Width = 125;
+            // 
+            // TargetReportDescriptor1
+            // 
+            this.TargetReportDescriptor1.HeaderText = "Target Report Descriptor";
+            this.TargetReportDescriptor1.MinimumWidth = 6;
+            this.TargetReportDescriptor1.Name = "TargetReportDescriptor1";
+            this.TargetReportDescriptor1.Width = 125;
+            // 
+            // TrackNumber
+            // 
+            this.TrackNumber.HeaderText = "Track Number";
+            this.TrackNumber.MinimumWidth = 6;
+            this.TrackNumber.Name = "TrackNumber";
+            this.TrackNumber.Width = 125;
+            // 
+            // TimeofApplicabilityPosition
+            // 
+            this.TimeofApplicabilityPosition.HeaderText = "Time of Applicability for Position (h/m/s)";
+            this.TimeofApplicabilityPosition.MinimumWidth = 6;
+            this.TimeofApplicabilityPosition.Name = "TimeofApplicabilityPosition";
+            this.TimeofApplicabilityPosition.Width = 125;
+            // 
+            // WGS84Coordinates_LAT
+            // 
+            this.WGS84Coordinates_LAT.HeaderText = "WGS-84 Co-ordinates LAT/LON";
+            this.WGS84Coordinates_LAT.MinimumWidth = 6;
+            this.WGS84Coordinates_LAT.Name = "WGS84Coordinates_LAT";
+            this.WGS84Coordinates_LAT.Width = 125;
+            // 
+            // WGS84Coordinates_LATHR
+            // 
+            this.WGS84Coordinates_LATHR.HeaderText = "WGS-84 Co-ordinates (HR) LAT/LON";
+            this.WGS84Coordinates_LATHR.MinimumWidth = 6;
+            this.WGS84Coordinates_LATHR.Name = "WGS84Coordinates_LATHR";
+            this.WGS84Coordinates_LATHR.Width = 125;
+            // 
+            // TimeofApplicabilityVelocity
+            // 
+            this.TimeofApplicabilityVelocity.HeaderText = "Time of Applicability for Velocity (h/m/s)";
+            this.TimeofApplicabilityVelocity.MinimumWidth = 6;
+            this.TimeofApplicabilityVelocity.Name = "TimeofApplicabilityVelocity";
+            this.TimeofApplicabilityVelocity.Width = 125;
+            // 
+            // AirSpeed
+            // 
+            this.AirSpeed.HeaderText = "Air Speed (IAS[NM/s] or Mach)";
+            this.AirSpeed.MinimumWidth = 6;
+            this.AirSpeed.Name = "AirSpeed";
+            this.AirSpeed.Width = 125;
+            // 
+            // TrueAirSpeed
+            // 
+            this.TrueAirSpeed.HeaderText = "True Airspeed (knots)";
+            this.TrueAirSpeed.MinimumWidth = 6;
+            this.TrueAirSpeed.Name = "TrueAirSpeed";
+            this.TrueAirSpeed.Width = 125;
+            // 
+            // TargetAddress
+            // 
+            this.TargetAddress.HeaderText = "Target Address";
+            this.TargetAddress.MinimumWidth = 6;
+            this.TargetAddress.Name = "TargetAddress";
+            this.TargetAddress.Width = 125;
+            // 
+            // TimeofMessageReceptionPosition
+            // 
+            this.TimeofMessageReceptionPosition.HeaderText = "Time of Message Reception for Position (h:m:s)";
+            this.TimeofMessageReceptionPosition.MinimumWidth = 6;
+            this.TimeofMessageReceptionPosition.Name = "TimeofMessageReceptionPosition";
+            this.TimeofMessageReceptionPosition.Width = 125;
+            // 
+            // TimeofMessageReceptionPositionHP
+            // 
+            this.TimeofMessageReceptionPositionHP.HeaderText = "Time of Message Reception for Position (High Precision) (HP) (h:m:s)";
+            this.TimeofMessageReceptionPositionHP.MinimumWidth = 6;
+            this.TimeofMessageReceptionPositionHP.Name = "TimeofMessageReceptionPositionHP";
+            this.TimeofMessageReceptionPositionHP.Width = 125;
+            // 
+            // TimeofMessageReceptionVelocity
+            // 
+            this.TimeofMessageReceptionVelocity.HeaderText = "Time of Message Reception for Velocity (h:m:s)";
+            this.TimeofMessageReceptionVelocity.MinimumWidth = 6;
+            this.TimeofMessageReceptionVelocity.Name = "TimeofMessageReceptionVelocity";
+            this.TimeofMessageReceptionVelocity.Width = 125;
+            // 
+            // TimeofMessageReceptionVelocityHP
+            // 
+            this.TimeofMessageReceptionVelocityHP.HeaderText = "Time of Message Reception for Velocity (HP) (h:m:s)";
+            this.TimeofMessageReceptionVelocityHP.MinimumWidth = 6;
+            this.TimeofMessageReceptionVelocityHP.Name = "TimeofMessageReceptionVelocityHP";
+            this.TimeofMessageReceptionVelocityHP.Width = 125;
+            // 
+            // GeometricHeight
+            // 
+            this.GeometricHeight.HeaderText = "Geometric Height (ft)";
+            this.GeometricHeight.MinimumWidth = 6;
+            this.GeometricHeight.Name = "GeometricHeight";
+            this.GeometricHeight.Width = 125;
+            // 
+            // QualityIndicators
+            // 
+            this.QualityIndicators.HeaderText = "Quality Indicators (s)";
+            this.QualityIndicators.MinimumWidth = 6;
+            this.QualityIndicators.Name = "QualityIndicators";
+            this.QualityIndicators.Width = 125;
+            // 
+            // MopsVersion
+            // 
+            this.MopsVersion.HeaderText = "Mops Version";
+            this.MopsVersion.MinimumWidth = 6;
+            this.MopsVersion.Name = "MopsVersion";
+            this.MopsVersion.Width = 125;
+            // 
+            // Mode3ACode
+            // 
+            this.Mode3ACode.HeaderText = "Mode 3/A Code";
+            this.Mode3ACode.MinimumWidth = 6;
+            this.Mode3ACode.Name = "Mode3ACode";
+            this.Mode3ACode.Width = 125;
+            // 
+            // RollAngle
+            // 
+            this.RollAngle.HeaderText = "Roll Angle (º)";
+            this.RollAngle.MinimumWidth = 6;
+            this.RollAngle.Name = "RollAngle";
+            this.RollAngle.Width = 125;
+            // 
+            // FlightLevel
+            // 
+            this.FlightLevel.HeaderText = "Flight Level";
+            this.FlightLevel.MinimumWidth = 6;
+            this.FlightLevel.Name = "FlightLevel";
+            this.FlightLevel.Width = 125;
             // 
             // dgvCAT20
             // 
@@ -374,153 +522,6 @@
             this.lb_Pages.Size = new System.Drawing.Size(642, 50);
             this.lb_Pages.TabIndex = 16;
             this.lb_Pages.Text = "          label1";
-            // 
-            // Number
-            // 
-            this.Number.HeaderText = "#";
-            this.Number.MinimumWidth = 6;
-            this.Number.Name = "Number";
-            this.Number.Width = 125;
-            // 
-            // DataSourceIdentification
-            // 
-            this.DataSourceIdentification.HeaderText = "SAC/SIC";
-            this.DataSourceIdentification.MinimumWidth = 6;
-            this.DataSourceIdentification.Name = "DataSourceIdentification";
-            this.DataSourceIdentification.Width = 125;
-            // 
-            // TargetReportDescriptor1
-            // 
-            this.TargetReportDescriptor1.HeaderText = "Target Report Descriptor";
-            this.TargetReportDescriptor1.MinimumWidth = 6;
-            this.TargetReportDescriptor1.Name = "TargetReportDescriptor1";
-            this.TargetReportDescriptor1.Width = 125;
-            // 
-            // TrackNumber
-            // 
-            this.TrackNumber.HeaderText = "Track Number";
-            this.TrackNumber.MinimumWidth = 6;
-            this.TrackNumber.Name = "TrackNumber";
-            this.TrackNumber.Width = 125;
-            // 
-            // TimeofApplicabilityPosition
-            // 
-            this.TimeofApplicabilityPosition.HeaderText = "Time of Applicability for Position (h/m/s)";
-            this.TimeofApplicabilityPosition.MinimumWidth = 6;
-            this.TimeofApplicabilityPosition.Name = "TimeofApplicabilityPosition";
-            this.TimeofApplicabilityPosition.Width = 125;
-            // 
-            // WGS84Coordinates_LAT
-            // 
-            this.WGS84Coordinates_LAT.HeaderText = "WGS-84 Co-ordinates LAT/LON";
-            this.WGS84Coordinates_LAT.MinimumWidth = 6;
-            this.WGS84Coordinates_LAT.Name = "WGS84Coordinates_LAT";
-            this.WGS84Coordinates_LAT.Width = 125;
-            // 
-            // WGS84Coordinates_LATHR
-            // 
-            this.WGS84Coordinates_LATHR.HeaderText = "WGS-84 Co-ordinates (HR) LAT/LON";
-            this.WGS84Coordinates_LATHR.MinimumWidth = 6;
-            this.WGS84Coordinates_LATHR.Name = "WGS84Coordinates_LATHR";
-            this.WGS84Coordinates_LATHR.Width = 125;
-            // 
-            // TimeofApplicabilityVelocity
-            // 
-            this.TimeofApplicabilityVelocity.HeaderText = "Time of Applicability for Velocity (h/m/s)";
-            this.TimeofApplicabilityVelocity.MinimumWidth = 6;
-            this.TimeofApplicabilityVelocity.Name = "TimeofApplicabilityVelocity";
-            this.TimeofApplicabilityVelocity.Width = 125;
-            // 
-            // AirSpeed
-            // 
-            this.AirSpeed.HeaderText = "Air Speed (IAS[NM/s] or Mach)";
-            this.AirSpeed.MinimumWidth = 6;
-            this.AirSpeed.Name = "AirSpeed";
-            this.AirSpeed.Width = 125;
-            // 
-            // TrueAirSpeed
-            // 
-            this.TrueAirSpeed.HeaderText = "True Airspeed (knots)";
-            this.TrueAirSpeed.MinimumWidth = 6;
-            this.TrueAirSpeed.Name = "TrueAirSpeed";
-            this.TrueAirSpeed.Width = 125;
-            // 
-            // TargetAddress
-            // 
-            this.TargetAddress.HeaderText = "Target Address";
-            this.TargetAddress.MinimumWidth = 6;
-            this.TargetAddress.Name = "TargetAddress";
-            this.TargetAddress.Width = 125;
-            // 
-            // TimeofMessageReceptionPosition
-            // 
-            this.TimeofMessageReceptionPosition.HeaderText = "Time of Message Reception for Position (h:m:s)";
-            this.TimeofMessageReceptionPosition.MinimumWidth = 6;
-            this.TimeofMessageReceptionPosition.Name = "TimeofMessageReceptionPosition";
-            this.TimeofMessageReceptionPosition.Width = 125;
-            // 
-            // TimeofMessageReceptionPositionHP
-            // 
-            this.TimeofMessageReceptionPositionHP.HeaderText = "Time of Message Reception for Position (High Precision) (HP) (h:m:s)";
-            this.TimeofMessageReceptionPositionHP.MinimumWidth = 6;
-            this.TimeofMessageReceptionPositionHP.Name = "TimeofMessageReceptionPositionHP";
-            this.TimeofMessageReceptionPositionHP.Width = 125;
-            // 
-            // TimeofMessageReceptionVelocity
-            // 
-            this.TimeofMessageReceptionVelocity.HeaderText = "Time of Message Reception for Velocity (h:m:s)";
-            this.TimeofMessageReceptionVelocity.MinimumWidth = 6;
-            this.TimeofMessageReceptionVelocity.Name = "TimeofMessageReceptionVelocity";
-            this.TimeofMessageReceptionVelocity.Width = 125;
-            // 
-            // TimeofMessageReceptionVelocityHP
-            // 
-            this.TimeofMessageReceptionVelocityHP.HeaderText = "Time of Message Reception for Velocity (HP) (h:m:s)";
-            this.TimeofMessageReceptionVelocityHP.MinimumWidth = 6;
-            this.TimeofMessageReceptionVelocityHP.Name = "TimeofMessageReceptionVelocityHP";
-            this.TimeofMessageReceptionVelocityHP.Width = 125;
-            // 
-            // GeometricHeight
-            // 
-            this.GeometricHeight.HeaderText = "Geometric Height (ft)";
-            this.GeometricHeight.MinimumWidth = 6;
-            this.GeometricHeight.Name = "GeometricHeight";
-            this.GeometricHeight.Width = 125;
-            // 
-            // QualityIndicators
-            // 
-            this.QualityIndicators.HeaderText = "Quality Indicators (s)";
-            this.QualityIndicators.MinimumWidth = 6;
-            this.QualityIndicators.Name = "QualityIndicators";
-            this.QualityIndicators.Width = 125;
-            // 
-            // MopsVersion
-            // 
-            this.MopsVersion.HeaderText = "Mops Version";
-            this.MopsVersion.MinimumWidth = 6;
-            this.MopsVersion.Name = "MopsVersion";
-            this.MopsVersion.Width = 125;
-            // 
-            // Mode3ACode
-            // 
-            this.Mode3ACode.HeaderText = "Mode 3/A Code";
-            this.Mode3ACode.MinimumWidth = 6;
-            this.Mode3ACode.Name = "Mode3ACode";
-            this.Mode3ACode.Width = 125;
-            // 
-            // RollAngle
-            // 
-            this.RollAngle.HeaderText = "Roll Angle (º)";
-            this.RollAngle.MinimumWidth = 6;
-            this.RollAngle.Name = "RollAngle";
-            this.RollAngle.Width = 125;
-            // 
-            // FlightLevel
-            // 
-            this.FlightLevel.HeaderText = "Flight Level";
-            this.FlightLevel.MinimumWidth = 6;
-            this.FlightLevel.Name = "FlightLevel";
-            this.FlightLevel.Width = 125;
             // 
             // Tables
             // 

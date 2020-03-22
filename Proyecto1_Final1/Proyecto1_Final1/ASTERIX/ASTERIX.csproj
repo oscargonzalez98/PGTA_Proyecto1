@@ -78,6 +78,12 @@
     <Compile Include="Tables.Designer.cs">
       <DependentUpon>Tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="TargetReportDescriptorCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TargetReportDescriptorCAT21.Designer.cs">
+      <DependentUpon>TargetReportDescriptorCAT21.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BrowseFile.resx">
       <DependentUpon>BrowseFile.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +104,9 @@
     </Compile>
     <EmbeddedResource Include="Tables.resx">
       <DependentUpon>Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TargetReportDescriptorCAT21.resx">
+      <DependentUpon>TargetReportDescriptorCAT21.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
