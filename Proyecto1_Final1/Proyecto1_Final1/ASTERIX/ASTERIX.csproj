@@ -64,6 +64,12 @@
     <Compile Include="MapView.Designer.cs">
       <DependentUpon>MapView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MOPSVersionCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MOPSVersionCAT21.Designer.cs">
+      <DependentUpon>MOPSVersionCAT21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Portada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,11 +90,20 @@
     <Compile Include="TargetReportDescriptorCAT21.Designer.cs">
       <DependentUpon>TargetReportDescriptorCAT21.cs</DependentUpon>
     </Compile>
+    <Compile Include="TargetStatusCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TargetStatusCAT21.Designer.cs">
+      <DependentUpon>TargetStatusCAT21.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BrowseFile.resx">
       <DependentUpon>BrowseFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MapView.resx">
       <DependentUpon>MapView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOPSVersionCAT21.resx">
+      <DependentUpon>MOPSVersionCAT21.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Portada.resx">
       <DependentUpon>Portada.cs</DependentUpon>
@@ -107,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TargetReportDescriptorCAT21.resx">
       <DependentUpon>TargetReportDescriptorCAT21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TargetStatusCAT21.resx">
+      <DependentUpon>TargetStatusCAT21.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -86,9 +86,10 @@ namespace LIBRERIACLASES
         public int NACv;
         public int NUCp;
         public string NIC_Baro = "";
-        public string SIL = "";
-        public string SDA = "";
-        public string GVA = "";
+        public string SIL= "";
+        public int SDA;
+        public int GVA;
+        public int PIC;
 
         public string MOPSVersion = "";
         public string VNS = "";
@@ -663,9 +664,54 @@ namespace LIBRERIACLASES
             TimeofMessageReception_HRVelocity_seconds = seconds1 * (Math.Pow(2, -30));
 
         }
+
+        public void Calculate_QualityIndicators(string paquete)
+        {
+            if(paquete.Length>0)
+            {
+                string str1 = paquete.Substring(0, 3);
+                string str2 = paquete.Substring(3, 4);
+
+                NACv = Convert.ToInt32(str1, 2);
+                NUCp = Convert.ToInt32(str2, 2);
+
+                if(paquete.Length>18)
+                {
+                    string str3 = Convert.ToString(paquete[8]);
+                    NIC_Baro = str3;
+
+                    string str5 = paquete.Substring(11,4);
+                    NUCp = Convert.ToInt32(str5, 2);
+
+                    if(paquete.Length>16)
+                    {
+                        string str6 = paquete.Substring(18,1);
+                        if (str6 == "0") { SIL = "Measured per flight-hour."; }
+                        else { SIL = "Measured per sample."; }
+
+                        string str7 = paquete.Substring(19,2);
+                        SDA = Convert.ToInt32(str7, 2);
+
+                        string str8 = paquete.Substring(21, 2);
+                        GVA = Convert.ToInt32(str8, 2);
+
+                        if(paquete.Length>24)
+                        {
+                            string str9 = paquete.Substring(24, 4);
+                            PIC = Convert.ToInt32(str9, 2);
+                        }
+                    }
+
+                }
+
+
+            }
+        }
+
+
         public void Calculate_MOPSVersion(string paquete)
         {
-            string vns1 = Convert.ToString(paquete[0]);
+            string vns1 = Convert.ToString(paquete[1]);
             if (vns1 == "0")
             {
                 VNS = "The MOPS Version is supported by the GS.";
@@ -676,7 +722,7 @@ namespace LIBRERIACLASES
                 VNS = "The MOPS Version is not supported by the GS.";
             }
 
-            string vn = paquete.Substring(3, 3);
+            string vn = paquete.Substring(2, 3);
             int vn1 = Convert.ToInt32(vn, 2);
             if (vn1 == 0)
             {
@@ -2362,6 +2408,8 @@ namespace LIBRERIACLASES
                 }
 
                 QualityIndicators = string_packet;
+
+                Calculate_QualityIndicators(QualityIndicators);
 
             }
 

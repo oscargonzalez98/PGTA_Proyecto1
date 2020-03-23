@@ -52,3 +52,5 @@ C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\bin\Debug\GMap.NET.Core.dll
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\bin\Debug\GMap.NET.WindowsForms.dll
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TargetReportDescriptorCAT21.resources
+C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.MOPSVersionCAT21.resources
+C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TargetStatusCAT21.resources

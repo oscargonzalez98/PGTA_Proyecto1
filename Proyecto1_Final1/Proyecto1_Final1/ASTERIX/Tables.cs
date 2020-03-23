@@ -271,8 +271,71 @@ namespace ASTERIX
                 }
                 else { dgvCAT21.Rows[n].Cells[20].Value = "No info."; }
 
+                if (listaCAT21[i].MagneticHeading.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 21
+                {
+                    dgvCAT21.Rows[n].Cells[21].Value = listaCAT21[i].MagneticHeading_degrees;
+                }
+                else { dgvCAT21.Rows[n].Cells[21].Value = "No info."; }
+
+                if (listaCAT21[i].TargetStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 22
+                {
+                    dgvCAT21.Rows[n].Cells[22].Value = "Click Here for more information.";
+                }
+                else { dgvCAT21.Rows[n].Cells[22].Value = "No info."; }
+
+                if (listaCAT21[i].BarometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 23
+                {
+                    if (listaCAT21[i].RE_BVR == "Value in defined range.")
+                    { 
+                        dgvCAT21.Rows[n].Cells[23].Value = listaCAT21[i].BarometricVerticalRate_fmin;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[23].Value = String.Concat(Convert.ToInt32(listaCAT21[i].BarometricVerticalRate_fmin), "(Range exceeded.)"); }
+                }
+                else { dgvCAT21.Rows[n].Cells[23].Value = "No info."; }
+
+                if (listaCAT21[i].GeometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 24
+                {
+                    if (listaCAT21[i].RE_GVR == "Value in defined range.")
+                    {
+                        dgvCAT21.Rows[n].Cells[24].Value = listaCAT21[i].GeometricVerticalRate_fmin;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[24].Value = String.Concat(Convert.ToInt32(listaCAT21[i].GeometricVerticalRate_fmin), "(Range exceeded.)"); }
+                }
+                else { dgvCAT21.Rows[n].Cells[24].Value = "No info."; }
+
+                if (listaCAT21[i].AirborneGoundVector.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 25
+                {
+                    if (listaCAT21[i].RE_AGV == "Value in defined range.")
+                    {
+                        dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(),"/",listaCAT21[i].TrackAngle.ToString());
+                    }
+                    else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
+                }
+                else { dgvCAT21.Rows[n].Cells[25].Value = "No info."; }
+
+                if (listaCAT21[i].TrackAngleRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 26
+                {
+                    dgvCAT21.Rows[n].Cells[26].Value = listaCAT21[i].TrackAngleRate_degs;
+                }
+                else { dgvCAT21.Rows[n].Cells[26].Value = "No info."; }
 
 
+                double TORT_seconds = listaCAT21[i].TimeofASTERIXReportTransmission_seconds;
+
+                // Convertimos en horas:mins:secs
+                double1 = (TORT_seconds / 3600);
+                horas = Convert.ToInt32(Math.Floor(double1));
+
+                double2 = (double1 - horas) * 60;
+                mins = Convert.ToInt32(Math.Floor(double2));
+
+                secs = (double2 - mins) * 60;
+
+                if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
+                {
+                    dgvCAT21.Rows[n].Cells[27].Value = String.Concat(horas, ":", mins, ":", secs);
+                }
+                else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
 
 
 
@@ -620,20 +683,37 @@ namespace ASTERIX
 
         private void dgvCAT21_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int c = e.ColumnIndex;
-            int r = e.RowIndex;
-            int i = (int)dgvCAT21.Rows[r].Cells[0].Value-1;
 
-            if(listaCAT21[i].TargetReportDescriptor.Length>0)
+
+            try 
             {
-                if (c == 2)
+                int c = e.ColumnIndex;
+                int r = e.RowIndex;
+                int i = (int)dgvCAT21.Rows[r].Cells[0].Value - 1;
+
+                if (listaCAT21[i].TargetReportDescriptor.Length > 0)
                 {
-                    TargetReportDescriptorCAT21 TRP1 = new TargetReportDescriptorCAT21(listaCAT21, i);
-                    TRP1.ShowDialog();
+                    if (c == 2)
+                    {
+                        TargetReportDescriptorCAT21 TRP1 = new TargetReportDescriptorCAT21(listaCAT21, i);
+                        TRP1.ShowDialog();
+                    }
+
+                    if (c == 17)
+                    {
+                        MOPSVersionCAT21 MVCAT21 = new MOPSVersionCAT21(listaCAT21, i);
+                        MVCAT21.ShowDialog();
+                    }
+
+                    if(c==22)
+                    {
+                        TargetStatusCAT21 TS1CAT21 = new TargetStatusCAT21(listaCAT21, i);
+                        TS1CAT21.ShowDialog();
+                    }
+
                 }
             }
-
-
+            catch { }
         }
     }
 }

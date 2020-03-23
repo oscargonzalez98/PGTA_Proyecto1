@@ -23,7 +23,6 @@ namespace ASTERIX
             InitializeComponent();
             this.listaCAT21 = listaCAT21;
             this.i = i;
-
         }
 
         private void label1_Click(object sender, EventArgs e)
