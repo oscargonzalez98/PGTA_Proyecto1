@@ -58,11 +58,23 @@
     <Compile Include="BrowseFile.Designer.cs">
       <DependentUpon>BrowseFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="FinalStateSelectedAltitudeCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinalStateSelectedAltitudeCAT21.Designer.cs">
+      <DependentUpon>FinalStateSelectedAltitudeCAT21.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MapView.Designer.cs">
       <DependentUpon>MapView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MetInfoCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MetInfoCAT21.Designer.cs">
+      <DependentUpon>MetInfoCAT21.cs</DependentUpon>
     </Compile>
     <Compile Include="MOPSVersionCAT21.cs">
       <SubType>Form</SubType>
@@ -78,6 +90,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectedAltitudeCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectedAltitudeCAT21.Designer.cs">
+      <DependentUpon>SelectedAltitudeCAT21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tables.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,11 +114,23 @@
     <Compile Include="TargetStatusCAT21.Designer.cs">
       <DependentUpon>TargetStatusCAT21.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrajectoryIntentCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrajectoryIntentCAT21.Designer.cs">
+      <DependentUpon>TrajectoryIntentCAT21.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BrowseFile.resx">
       <DependentUpon>BrowseFile.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FinalStateSelectedAltitudeCAT21.resx">
+      <DependentUpon>FinalStateSelectedAltitudeCAT21.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapView.resx">
       <DependentUpon>MapView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MetInfoCAT21.resx">
+      <DependentUpon>MetInfoCAT21.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MOPSVersionCAT21.resx">
       <DependentUpon>MOPSVersionCAT21.cs</DependentUpon>
@@ -117,6 +147,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SelectedAltitudeCAT21.resx">
+      <DependentUpon>SelectedAltitudeCAT21.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tables.resx">
       <DependentUpon>Tables.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TargetStatusCAT21.resx">
       <DependentUpon>TargetStatusCAT21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrajectoryIntentCAT21.resx">
+      <DependentUpon>TrajectoryIntentCAT21.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

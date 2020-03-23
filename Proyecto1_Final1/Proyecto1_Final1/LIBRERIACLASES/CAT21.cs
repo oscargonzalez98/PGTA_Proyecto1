@@ -1212,13 +1212,13 @@ namespace LIBRERIACLASES
         }
         public void Calculate_SelectedAltitude(string paquete)
         {
-            int sas = Convert.ToInt32(paquete[0]);
-            if (sas == 0)
+            string sas = Convert.ToString(paquete[0]);
+            if (sas == "0")
             {
                 SAS = "No source information provided.";
             }
 
-            if (sas == 1)
+            if (sas == "1")
             {
                 SAS = "Source information provided.";
             }
@@ -2710,7 +2710,6 @@ namespace LIBRERIACLASES
                 data_position = data_position + 2;
 
                 Calculate_SelectedAltitude(SelectedAltitude);
-                double ab = SelectedAltitude_ft;
             }
 
             if (Char.ToString(FSPEC_fake[36]) == "1") // 33 I021/148 Final State Selected Altitude 

@@ -337,6 +337,51 @@ namespace ASTERIX
                 }
                 else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
 
+                if (listaCAT21[i].TargetIdentification.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 28
+                {
+                    dgvCAT21.Rows[n].Cells[28].Value = listaCAT21[i].TargetIdentification_decoded;
+                }
+                else { dgvCAT21.Rows[n].Cells[28].Value = "No info."; }
+
+                if (listaCAT21[i].EmitterCategory.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 29
+                {
+                    dgvCAT21.Rows[n].Cells[29].Value = listaCAT21[i].ECAT;
+                }
+                else { dgvCAT21.Rows[n].Cells[29].Value = "No info."; }
+
+                if (listaCAT21[i].MetInformation.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 30
+                {
+                    dgvCAT21.Rows[n].Cells[30].Value = "Click Here for more information.";
+                }
+                else { dgvCAT21.Rows[n].Cells[30].Value = "No info."; }
+
+                if (listaCAT21[i].SelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 31
+                {
+                    dgvCAT21.Rows[n].Cells[31].Value = listaCAT21[i].SelectedAltitude_ft;
+                }
+                else { dgvCAT21.Rows[n].Cells[31].Value = "No info."; }
+
+                if (listaCAT21[i].FinalStateSelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 32
+                {
+                    dgvCAT21.Rows[n].Cells[32].Value = listaCAT21[i].FinalStateSelectedAltitude_ft;
+                }
+                else { dgvCAT21.Rows[n].Cells[32].Value = "No info."; }
+
+                if (listaCAT21[i].TrajectoryIntent.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 33
+                {
+                    dgvCAT21.Rows[n].Cells[33].Value = "Click Here for more information.";
+                }
+                else { dgvCAT21.Rows[n].Cells[33].Value = "No info."; }
+
+                if (listaCAT21[i].ServiceManagement.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 34
+                {
+                    dgvCAT21.Rows[n].Cells[34].Value = listaCAT21[i].RP ;
+                }
+                else { dgvCAT21.Rows[n].Cells[34].Value = "No info."; }
+
+
+
+
 
 
 
@@ -698,20 +743,66 @@ namespace ASTERIX
                         TargetReportDescriptorCAT21 TRP1 = new TargetReportDescriptorCAT21(listaCAT21, i);
                         TRP1.ShowDialog();
                     }
+                }
 
+                if(listaCAT21[i].MOPSVersion.Length>0)
+                {
                     if (c == 17)
                     {
                         MOPSVersionCAT21 MVCAT21 = new MOPSVersionCAT21(listaCAT21, i);
                         MVCAT21.ShowDialog();
                     }
+                }
 
-                    if(c==22)
+                if (listaCAT21[i].TargetStatus.Length > 0)
+                {
+                    if (c == 22)
                     {
                         TargetStatusCAT21 TS1CAT21 = new TargetStatusCAT21(listaCAT21, i);
                         TS1CAT21.ShowDialog();
                     }
-
                 }
+
+                if (listaCAT21[i].MetInformation.Length > 0)
+                {
+                    if (c == 30)
+                    {
+                        MetInfoCAT21 METCAT21 = new MetInfoCAT21(listaCAT21, i);
+                        METCAT21.ShowDialog();
+                    }
+                }
+
+                if (listaCAT21[i].SelectedAltitude.Length > 0)
+                {
+                    if (c == 31)
+                    {
+                        SelectedAltitudeCAT21 SACAT21 = new SelectedAltitudeCAT21(listaCAT21, i);
+                        SACAT21.ShowDialog();
+                    }
+                }
+
+                if(listaCAT21[i].FinalStateSelectedAltitude.Length>0)
+                {
+                    if(c == 32)
+                    {
+                        FinalStateSelectedAltitudeCAT21 FSACAT21 = new FinalStateSelectedAltitudeCAT21(listaCAT21, i);
+                        FSACAT21.ShowDialog();
+
+                    }
+                }
+
+                if (listaCAT21[i].TrajectoryIntent.Length > 0)
+                {
+                    if (c == 32)
+                    {
+                        TrajectoryIntentCAT21 TACAT21 = new TrajectoryIntentCAT21(listaCAT21, i);
+                        TACAT21.ShowDialog();
+
+                    }
+                }
+
+
+
             }
             catch { }
         }
