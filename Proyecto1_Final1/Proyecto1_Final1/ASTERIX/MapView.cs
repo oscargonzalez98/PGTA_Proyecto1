@@ -41,5 +41,24 @@ namespace ASTERIX
             
         }
 
+
+        
+
+        private void btnTWR_Click(object sender, EventArgs e)
+        {
+            gMapControl1.Zoom = 13;
+        }
+
+        private void btn_TMA_Click(object sender, EventArgs e)
+        {
+            gMapControl1.Zoom = 11;
+
+        }
+
+        private void btnFIR_Click(object sender, EventArgs e)
+        {
+            gMapControl1.Zoom = 8;
+
+        }
     }
 }

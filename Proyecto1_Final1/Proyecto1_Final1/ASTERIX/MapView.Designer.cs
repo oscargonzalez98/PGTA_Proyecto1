@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
-            this.gMapControl2 = new GMap.NET.WindowsForms.GMapControl();
+            this.btnTWR = new System.Windows.Forms.Button();
+            this.btn_TMA = new System.Windows.Forms.Button();
+            this.btnFIR = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -58,12 +60,44 @@
             this.gMapControl1.TabIndex = 0;
             this.gMapControl1.Zoom = 0D;
             // 
+            // btnTWR
+            // 
+            this.btnTWR.Location = new System.Drawing.Point(197, 46);
+            this.btnTWR.Name = "btnTWR";
+            this.btnTWR.Size = new System.Drawing.Size(75, 23);
+            this.btnTWR.TabIndex = 1;
+            this.btnTWR.Text = "TWR";
+            this.btnTWR.UseVisualStyleBackColor = true;
+            this.btnTWR.Click += new System.EventHandler(this.btnTWR_Click);
+            // 
+            // btn_TMA
+            // 
+            this.btn_TMA.Location = new System.Drawing.Point(116, 46);
+            this.btn_TMA.Name = "btn_TMA";
+            this.btn_TMA.Size = new System.Drawing.Size(75, 23);
+            this.btn_TMA.TabIndex = 2;
+            this.btn_TMA.Text = "TMA";
+            this.btn_TMA.UseVisualStyleBackColor = true;
+            this.btn_TMA.Click += new System.EventHandler(this.btn_TMA_Click);
+            // 
+            // btnFIR
+            // 
+            this.btnFIR.Location = new System.Drawing.Point(35, 46);
+            this.btnFIR.Name = "btnFIR";
+            this.btnFIR.Size = new System.Drawing.Size(75, 23);
+            this.btnFIR.TabIndex = 3;
+            this.btnFIR.Text = "FIR";
+            this.btnFIR.UseVisualStyleBackColor = true;
+            this.btnFIR.Click += new System.EventHandler(this.btnFIR_Click);
+            // 
             // MapView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.gMapControl2);
+            this.Controls.Add(this.btnFIR);
+            this.Controls.Add(this.btn_TMA);
+            this.Controls.Add(this.btnTWR);
             this.Controls.Add(this.gMapControl1);
             this.Name = "MapView";
             this.Text = "MapView";
@@ -75,6 +109,8 @@
         #endregion
 
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
-        private GMap.NET.WindowsForms.GMapControl gMapControl2;
+        private System.Windows.Forms.Button btnTWR;
+        private System.Windows.Forms.Button btn_TMA;
+        private System.Windows.Forms.Button btnFIR;
     }
 }
