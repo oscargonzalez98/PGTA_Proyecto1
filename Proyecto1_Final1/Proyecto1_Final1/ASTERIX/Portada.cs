@@ -50,7 +50,7 @@ namespace ASTERIX
 
         private void btn_mapviewer_Click(object sender, EventArgs e)
         {
-            MapView mapView = new MapView();
+            MapView mapView = new MapView(listaCAT10, listaCAT20, listaCAT21);
             mapView.ShowDialog();
         }
     }

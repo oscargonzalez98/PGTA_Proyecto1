@@ -12,6 +12,7 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using LIBRERIACLASES;
 
 namespace ASTERIX
 {
@@ -23,8 +24,15 @@ namespace ASTERIX
 
         double LatInicial = 41.2969444;
         double LongInicial = 2.0783333333333336;
-        public MapView()
+        public List<CAT10> listaCAT10;
+        public List<CAT20> listaCAT20;
+        public List<CAT21> listaCAT21;
+        public MapView(List<CAT10> listaCAT10, List<CAT20> listaCAT20, List<CAT21> listaCAT21)
         {
+            this.listaCAT10 = listaCAT10;
+            this.listaCAT20 = listaCAT20;
+            this.listaCAT21 = listaCAT21;
+
             InitializeComponent();
         }
 

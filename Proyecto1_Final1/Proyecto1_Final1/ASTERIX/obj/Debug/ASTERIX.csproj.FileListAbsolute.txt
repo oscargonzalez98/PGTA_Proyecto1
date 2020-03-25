@@ -58,3 +58,10 @@ C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.SelectedAltitudeCAT21.resources
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.FinalStateSelectedAltitudeCAT21.resources
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TrajectoryIntentCAT21.resources
+C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.FinalStateSelectedAltitudeCAT21.resources
+C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.MetInfoCAT21.resources
+C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.MOPSVersionCAT21.resources
+C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.SelectedAltitudeCAT21.resources
+C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TargetReportDescriptorCAT21.resources
+C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TargetStatusCAT21.resources
+C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TrajectoryIntentCAT21.resources
