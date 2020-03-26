@@ -379,10 +379,47 @@ namespace ASTERIX
                 }
                 else { dgvCAT21.Rows[n].Cells[34].Value = "No info."; }
 
+                if (listaCAT21[i].AircraftOperationalStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 35
+                {
+                    dgvCAT21.Rows[n].Cells[35].Value = "Click Here for more information.";
+                }
+                else { dgvCAT21.Rows[n].Cells[35].Value = "No info."; }
 
+                if (listaCAT21[i].SurfaceCapabilitiesandCharacteristicas.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 36
+                {
+                    dgvCAT21.Rows[n].Cells[36].Value = "Click Here for more information.";
+                }
+                else { dgvCAT21.Rows[n].Cells[36].Value = "No info."; }
 
+                if (listaCAT21[i].MessageAmplitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 37
+                {
+                    dgvCAT21.Rows[n].Cells[37].Value = listaCAT21[i].MessageAmplitude_dBm;
+                }
+                else { dgvCAT21.Rows[n].Cells[37].Value = "No info."; }
 
+                if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
+                {
+                    dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                }
+                else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
+                if (listaCAT21[i].ACASResolutionAdvisoryReport.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 39
+                {
+                    dgvCAT21.Rows[n].Cells[39].Value = "Click Here for more information.";
+                }
+                else { dgvCAT21.Rows[n].Cells[39].Value = "No info."; }
+
+                if (listaCAT21[i].ReceiverID.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 40
+                {
+                    dgvCAT21.Rows[n].Cells[40].Value = listaCAT21[i].ReceiverID_number;
+                }
+                else { dgvCAT21.Rows[n].Cells[40].Value = "No info."; }
+
+                if (listaCAT21[i].DataAges.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 41
+                {
+                    dgvCAT21.Rows[n].Cells[41].Value = "Click Here for more information.";
+                }
+                else { dgvCAT21.Rows[n].Cells[41].Value = "No info."; }
 
 
                 i = i + 1;
@@ -460,18 +497,333 @@ namespace ASTERIX
 
                     dgvCAT21.Rows[n].Cells[0].Value = i + 1;
                     dgvCAT21.Rows[n].Cells[1].Value = String.Concat(listaCAT21[i].SAC, "/", listaCAT21[i].SIC);
+                    dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
+                    dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
 
-                    if (listaCAT21[i].TargetReportDescriptor.Length>0)
-                    {
-                        dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
-                    }
-                    else { dgvCAT21.Rows[n].Cells[2].Value = "No info."; }
+                    // Convertimos en horas:mins:secs
+                    double TOA_Position_seconds = listaCAT21[i].TimeofApplicability_Position_seconds;
 
-                    if (listaCAT21[i].TrackNumber.Length > 0)
+                    double double1 = (TOA_Position_seconds / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
+                        dgvCAT21.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
                     }
-                    else { dgvCAT21.Rows[n].Cells[3].Value = "No info."; }
+                    else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_Velocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[7].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT21[i].AirSpeed.Length > 0)
+                    {
+
+                        string str1 = listaCAT21[i].IM;
+                        if (str1 == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_velocity).ToString() + " (IAS)";
+                        }
+
+                        else { dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_Mach).ToString() + " (Mach)"; }
+                    }
+
+                    else { dgvCAT21.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT21[i].TrueAirSpeed.Length > 0)
+                    {
+                        if (listaCAT21[i].RE_TAS == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number.ToString() + "(Value excedes defined range.)"; }
+
+                    }
+                    else { dgvCAT21.Rows[n].Cells[9].Value = "No info."; }
+
+                    dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
+
+
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_Position_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
+
+
+                    double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPosition_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
+
+                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_HRVelocity_seconds = listaCAT21[i].TimeofMessageReception_HRVelocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_HRVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofMessageReception_HRVelocity.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 14
+                    {
+                        dgvCAT21.Rows[n].Cells[14].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[14].Value = "No info."; }
+
+                    if (listaCAT21[i].GeometricHeight.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 15
+                    {
+                        dgvCAT21.Rows[n].Cells[15].Value = listaCAT21[i].GeometricHeight_feet;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[15].Value = "No info."; }
+
+                    if (listaCAT21[i].QualityIndicators.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 16
+                    {
+                        dgvCAT21.Rows[n].Cells[16].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[16].Value = "No info."; }
+
+                    if (listaCAT21[i].MOPSVersion.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 17
+                    {
+                        dgvCAT21.Rows[n].Cells[17].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[17].Value = "No info."; }
+
+                    if (listaCAT21[i].Mode3ACode_bin.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 18
+                    {
+                        dgvCAT21.Rows[n].Cells[18].Value = listaCAT21[i].Mode3ACode_oct;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[18].Value = "No info."; }
+
+                    if (listaCAT21[i].RollAngle.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 19
+                    {
+                        dgvCAT21.Rows[n].Cells[19].Value = listaCAT21[i].RollAngle_degrees;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[19].Value = "No info."; }
+
+                    if (listaCAT21[i].FlightLevel.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 20
+                    {
+                        dgvCAT21.Rows[n].Cells[20].Value = String.Concat("FL" + listaCAT21[i].FlightLevel_FL.ToString());
+                    }
+                    else { dgvCAT21.Rows[n].Cells[20].Value = "No info."; }
+
+                    if (listaCAT21[i].MagneticHeading.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 21
+                    {
+                        dgvCAT21.Rows[n].Cells[21].Value = listaCAT21[i].MagneticHeading_degrees;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[21].Value = "No info."; }
+
+                    if (listaCAT21[i].TargetStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 22
+                    {
+                        dgvCAT21.Rows[n].Cells[22].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[22].Value = "No info."; }
+
+                    if (listaCAT21[i].BarometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 23
+                    {
+                        if (listaCAT21[i].RE_BVR == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[23].Value = listaCAT21[i].BarometricVerticalRate_fmin;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[23].Value = String.Concat(Convert.ToInt32(listaCAT21[i].BarometricVerticalRate_fmin), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[23].Value = "No info."; }
+
+                    if (listaCAT21[i].GeometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 24
+                    {
+                        if (listaCAT21[i].RE_GVR == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[24].Value = listaCAT21[i].GeometricVerticalRate_fmin;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[24].Value = String.Concat(Convert.ToInt32(listaCAT21[i].GeometricVerticalRate_fmin), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[24].Value = "No info."; }
+
+                    if (listaCAT21[i].AirborneGoundVector.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 25
+                    {
+                        if (listaCAT21[i].RE_AGV == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString());
+                        }
+                        else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[25].Value = "No info."; }
+
+                    if (listaCAT21[i].TrackAngleRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 26
+                    {
+                        dgvCAT21.Rows[n].Cells[26].Value = listaCAT21[i].TrackAngleRate_degs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[26].Value = "No info."; }
+
+
+                    double TORT_seconds = listaCAT21[i].TimeofASTERIXReportTransmission_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TORT_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
+                    {
+                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(horas, ":", mins, ":", secs);
+                    }
+                    else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
+
+                    if (listaCAT21[i].TargetIdentification.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 28
+                    {
+                        dgvCAT21.Rows[n].Cells[28].Value = listaCAT21[i].TargetIdentification_decoded;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[28].Value = "No info."; }
+
+                    if (listaCAT21[i].EmitterCategory.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 29
+                    {
+                        dgvCAT21.Rows[n].Cells[29].Value = listaCAT21[i].ECAT;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[29].Value = "No info."; }
+
+                    if (listaCAT21[i].MetInformation.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 30
+                    {
+                        dgvCAT21.Rows[n].Cells[30].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[30].Value = "No info."; }
+
+                    if (listaCAT21[i].SelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 31
+                    {
+                        dgvCAT21.Rows[n].Cells[31].Value = listaCAT21[i].SelectedAltitude_ft;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[31].Value = "No info."; }
+
+                    if (listaCAT21[i].FinalStateSelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 32
+                    {
+                        dgvCAT21.Rows[n].Cells[32].Value = listaCAT21[i].FinalStateSelectedAltitude_ft;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[32].Value = "No info."; }
+
+                    if (listaCAT21[i].TrajectoryIntent.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 33
+                    {
+                        dgvCAT21.Rows[n].Cells[33].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[33].Value = "No info."; }
+
+                    if (listaCAT21[i].ServiceManagement.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 34
+                    {
+                        dgvCAT21.Rows[n].Cells[34].Value = listaCAT21[i].RP;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[34].Value = "No info."; }
+
+                    if (listaCAT21[i].AircraftOperationalStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 35
+                    {
+                        dgvCAT21.Rows[n].Cells[35].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[35].Value = "No info."; }
+
+                    if (listaCAT21[i].SurfaceCapabilitiesandCharacteristicas.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 36
+                    {
+                        dgvCAT21.Rows[n].Cells[36].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[36].Value = "No info."; }
+
+                    if (listaCAT21[i].MessageAmplitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 37
+                    {
+                        dgvCAT21.Rows[n].Cells[37].Value = listaCAT21[i].MessageAmplitude_dBm;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[37].Value = "No info."; }
+
+                    if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
+                    {
+                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
+
+                    if (listaCAT21[i].ACASResolutionAdvisoryReport.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 39
+                    {
+                        dgvCAT21.Rows[n].Cells[39].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[39].Value = "No info."; }
+
+                    if (listaCAT21[i].ReceiverID.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 40
+                    {
+                        dgvCAT21.Rows[n].Cells[40].Value = listaCAT21[i].ReceiverID_number;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[40].Value = "No info."; }
+
+                    if (listaCAT21[i].DataAges.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 41
+                    {
+                        dgvCAT21.Rows[n].Cells[41].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[41].Value = "No info."; }
+
 
                     i = i + 1;
                 }
@@ -546,11 +898,335 @@ namespace ASTERIX
                 {
                     int n = dgvCAT21.Rows.Add();
 
-
                     dgvCAT21.Rows[n].Cells[0].Value = i + 1;
                     dgvCAT21.Rows[n].Cells[1].Value = String.Concat(listaCAT21[i].SAC, "/", listaCAT21[i].SIC);
                     dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
                     dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
+
+                    // Convertimos en horas:mins:secs
+                    double TOA_Position_seconds = listaCAT21[i].TimeofApplicability_Position_seconds;
+
+                    double double1 = (TOA_Position_seconds / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_Velocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[7].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT21[i].AirSpeed.Length > 0)
+                    {
+
+                        string str1 = listaCAT21[i].IM;
+                        if (str1 == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_velocity).ToString() + " (IAS)";
+                        }
+
+                        else { dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_Mach).ToString() + " (Mach)"; }
+                    }
+
+                    else { dgvCAT21.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT21[i].TrueAirSpeed.Length > 0)
+                    {
+                        if (listaCAT21[i].RE_TAS == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number.ToString() + "(Value excedes defined range.)"; }
+
+                    }
+                    else { dgvCAT21.Rows[n].Cells[9].Value = "No info."; }
+
+                    dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
+
+
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_Position_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
+
+
+                    double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPosition_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
+
+                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_HRVelocity_seconds = listaCAT21[i].TimeofMessageReception_HRVelocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_HRVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofMessageReception_HRVelocity.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 14
+                    {
+                        dgvCAT21.Rows[n].Cells[14].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[14].Value = "No info."; }
+
+                    if (listaCAT21[i].GeometricHeight.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 15
+                    {
+                        dgvCAT21.Rows[n].Cells[15].Value = listaCAT21[i].GeometricHeight_feet;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[15].Value = "No info."; }
+
+                    if (listaCAT21[i].QualityIndicators.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 16
+                    {
+                        dgvCAT21.Rows[n].Cells[16].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[16].Value = "No info."; }
+
+                    if (listaCAT21[i].MOPSVersion.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 17
+                    {
+                        dgvCAT21.Rows[n].Cells[17].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[17].Value = "No info."; }
+
+                    if (listaCAT21[i].Mode3ACode_bin.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 18
+                    {
+                        dgvCAT21.Rows[n].Cells[18].Value = listaCAT21[i].Mode3ACode_oct;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[18].Value = "No info."; }
+
+                    if (listaCAT21[i].RollAngle.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 19
+                    {
+                        dgvCAT21.Rows[n].Cells[19].Value = listaCAT21[i].RollAngle_degrees;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[19].Value = "No info."; }
+
+                    if (listaCAT21[i].FlightLevel.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 20
+                    {
+                        dgvCAT21.Rows[n].Cells[20].Value = String.Concat("FL" + listaCAT21[i].FlightLevel_FL.ToString());
+                    }
+                    else { dgvCAT21.Rows[n].Cells[20].Value = "No info."; }
+
+                    if (listaCAT21[i].MagneticHeading.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 21
+                    {
+                        dgvCAT21.Rows[n].Cells[21].Value = listaCAT21[i].MagneticHeading_degrees;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[21].Value = "No info."; }
+
+                    if (listaCAT21[i].TargetStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 22
+                    {
+                        dgvCAT21.Rows[n].Cells[22].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[22].Value = "No info."; }
+
+                    if (listaCAT21[i].BarometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 23
+                    {
+                        if (listaCAT21[i].RE_BVR == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[23].Value = listaCAT21[i].BarometricVerticalRate_fmin;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[23].Value = String.Concat(Convert.ToInt32(listaCAT21[i].BarometricVerticalRate_fmin), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[23].Value = "No info."; }
+
+                    if (listaCAT21[i].GeometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 24
+                    {
+                        if (listaCAT21[i].RE_GVR == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[24].Value = listaCAT21[i].GeometricVerticalRate_fmin;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[24].Value = String.Concat(Convert.ToInt32(listaCAT21[i].GeometricVerticalRate_fmin), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[24].Value = "No info."; }
+
+                    if (listaCAT21[i].AirborneGoundVector.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 25
+                    {
+                        if (listaCAT21[i].RE_AGV == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString());
+                        }
+                        else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[25].Value = "No info."; }
+
+                    if (listaCAT21[i].TrackAngleRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 26
+                    {
+                        dgvCAT21.Rows[n].Cells[26].Value = listaCAT21[i].TrackAngleRate_degs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[26].Value = "No info."; }
+
+
+                    double TORT_seconds = listaCAT21[i].TimeofASTERIXReportTransmission_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TORT_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
+                    {
+                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(horas, ":", mins, ":", secs);
+                    }
+                    else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
+
+                    if (listaCAT21[i].TargetIdentification.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 28
+                    {
+                        dgvCAT21.Rows[n].Cells[28].Value = listaCAT21[i].TargetIdentification_decoded;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[28].Value = "No info."; }
+
+                    if (listaCAT21[i].EmitterCategory.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 29
+                    {
+                        dgvCAT21.Rows[n].Cells[29].Value = listaCAT21[i].ECAT;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[29].Value = "No info."; }
+
+                    if (listaCAT21[i].MetInformation.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 30
+                    {
+                        dgvCAT21.Rows[n].Cells[30].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[30].Value = "No info."; }
+
+                    if (listaCAT21[i].SelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 31
+                    {
+                        dgvCAT21.Rows[n].Cells[31].Value = listaCAT21[i].SelectedAltitude_ft;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[31].Value = "No info."; }
+
+                    if (listaCAT21[i].FinalStateSelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 32
+                    {
+                        dgvCAT21.Rows[n].Cells[32].Value = listaCAT21[i].FinalStateSelectedAltitude_ft;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[32].Value = "No info."; }
+
+                    if (listaCAT21[i].TrajectoryIntent.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 33
+                    {
+                        dgvCAT21.Rows[n].Cells[33].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[33].Value = "No info."; }
+
+                    if (listaCAT21[i].ServiceManagement.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 34
+                    {
+                        dgvCAT21.Rows[n].Cells[34].Value = listaCAT21[i].RP;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[34].Value = "No info."; }
+
+                    if (listaCAT21[i].AircraftOperationalStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 35
+                    {
+                        dgvCAT21.Rows[n].Cells[35].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[35].Value = "No info."; }
+
+                    if (listaCAT21[i].SurfaceCapabilitiesandCharacteristicas.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 36
+                    {
+                        dgvCAT21.Rows[n].Cells[36].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[36].Value = "No info."; }
+
+                    if (listaCAT21[i].MessageAmplitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 37
+                    {
+                        dgvCAT21.Rows[n].Cells[37].Value = listaCAT21[i].MessageAmplitude_dBm;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[37].Value = "No info."; }
+
+                    if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
+                    {
+                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
+
+                    if (listaCAT21[i].ACASResolutionAdvisoryReport.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 39
+                    {
+                        dgvCAT21.Rows[n].Cells[39].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[39].Value = "No info."; }
+
+                    if (listaCAT21[i].ReceiverID.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 40
+                    {
+                        dgvCAT21.Rows[n].Cells[40].Value = listaCAT21[i].ReceiverID_number;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[40].Value = "No info."; }
+
+                    if (listaCAT21[i].DataAges.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 41
+                    {
+                        dgvCAT21.Rows[n].Cells[41].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[41].Value = "No info."; }
+
 
                     i = i + 1;
                 }
@@ -660,6 +1336,330 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
                     dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
 
+                    // Convertimos en horas:mins:secs
+                    double TOA_Position_seconds = listaCAT21[i].TimeofApplicability_Position_seconds;
+
+                    double double1 = (TOA_Position_seconds / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_Velocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[7].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT21[i].AirSpeed.Length > 0)
+                    {
+
+                        string str1 = listaCAT21[i].IM;
+                        if (str1 == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_velocity).ToString() + " (IAS)";
+                        }
+
+                        else { dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_Mach).ToString() + " (Mach)"; }
+                    }
+
+                    else { dgvCAT21.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT21[i].TrueAirSpeed.Length > 0)
+                    {
+                        if (listaCAT21[i].RE_TAS == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number.ToString() + "(Value excedes defined range.)"; }
+
+                    }
+                    else { dgvCAT21.Rows[n].Cells[9].Value = "No info."; }
+
+                    dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
+
+
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_Position_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
+
+
+                    double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPosition_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
+
+                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_HRVelocity_seconds = listaCAT21[i].TimeofMessageReception_HRVelocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_HRVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofMessageReception_HRVelocity.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 14
+                    {
+                        dgvCAT21.Rows[n].Cells[14].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[14].Value = "No info."; }
+
+                    if (listaCAT21[i].GeometricHeight.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 15
+                    {
+                        dgvCAT21.Rows[n].Cells[15].Value = listaCAT21[i].GeometricHeight_feet;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[15].Value = "No info."; }
+
+                    if (listaCAT21[i].QualityIndicators.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 16
+                    {
+                        dgvCAT21.Rows[n].Cells[16].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[16].Value = "No info."; }
+
+                    if (listaCAT21[i].MOPSVersion.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 17
+                    {
+                        dgvCAT21.Rows[n].Cells[17].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[17].Value = "No info."; }
+
+                    if (listaCAT21[i].Mode3ACode_bin.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 18
+                    {
+                        dgvCAT21.Rows[n].Cells[18].Value = listaCAT21[i].Mode3ACode_oct;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[18].Value = "No info."; }
+
+                    if (listaCAT21[i].RollAngle.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 19
+                    {
+                        dgvCAT21.Rows[n].Cells[19].Value = listaCAT21[i].RollAngle_degrees;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[19].Value = "No info."; }
+
+                    if (listaCAT21[i].FlightLevel.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 20
+                    {
+                        dgvCAT21.Rows[n].Cells[20].Value = String.Concat("FL" + listaCAT21[i].FlightLevel_FL.ToString());
+                    }
+                    else { dgvCAT21.Rows[n].Cells[20].Value = "No info."; }
+
+                    if (listaCAT21[i].MagneticHeading.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 21
+                    {
+                        dgvCAT21.Rows[n].Cells[21].Value = listaCAT21[i].MagneticHeading_degrees;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[21].Value = "No info."; }
+
+                    if (listaCAT21[i].TargetStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 22
+                    {
+                        dgvCAT21.Rows[n].Cells[22].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[22].Value = "No info."; }
+
+                    if (listaCAT21[i].BarometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 23
+                    {
+                        if (listaCAT21[i].RE_BVR == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[23].Value = listaCAT21[i].BarometricVerticalRate_fmin;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[23].Value = String.Concat(Convert.ToInt32(listaCAT21[i].BarometricVerticalRate_fmin), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[23].Value = "No info."; }
+
+                    if (listaCAT21[i].GeometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 24
+                    {
+                        if (listaCAT21[i].RE_GVR == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[24].Value = listaCAT21[i].GeometricVerticalRate_fmin;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[24].Value = String.Concat(Convert.ToInt32(listaCAT21[i].GeometricVerticalRate_fmin), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[24].Value = "No info."; }
+
+                    if (listaCAT21[i].AirborneGoundVector.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 25
+                    {
+                        if (listaCAT21[i].RE_AGV == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString());
+                        }
+                        else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[25].Value = "No info."; }
+
+                    if (listaCAT21[i].TrackAngleRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 26
+                    {
+                        dgvCAT21.Rows[n].Cells[26].Value = listaCAT21[i].TrackAngleRate_degs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[26].Value = "No info."; }
+
+
+                    double TORT_seconds = listaCAT21[i].TimeofASTERIXReportTransmission_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TORT_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
+                    {
+                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(horas, ":", mins, ":", secs);
+                    }
+                    else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
+
+                    if (listaCAT21[i].TargetIdentification.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 28
+                    {
+                        dgvCAT21.Rows[n].Cells[28].Value = listaCAT21[i].TargetIdentification_decoded;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[28].Value = "No info."; }
+
+                    if (listaCAT21[i].EmitterCategory.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 29
+                    {
+                        dgvCAT21.Rows[n].Cells[29].Value = listaCAT21[i].ECAT;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[29].Value = "No info."; }
+
+                    if (listaCAT21[i].MetInformation.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 30
+                    {
+                        dgvCAT21.Rows[n].Cells[30].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[30].Value = "No info."; }
+
+                    if (listaCAT21[i].SelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 31
+                    {
+                        dgvCAT21.Rows[n].Cells[31].Value = listaCAT21[i].SelectedAltitude_ft;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[31].Value = "No info."; }
+
+                    if (listaCAT21[i].FinalStateSelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 32
+                    {
+                        dgvCAT21.Rows[n].Cells[32].Value = listaCAT21[i].FinalStateSelectedAltitude_ft;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[32].Value = "No info."; }
+
+                    if (listaCAT21[i].TrajectoryIntent.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 33
+                    {
+                        dgvCAT21.Rows[n].Cells[33].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[33].Value = "No info."; }
+
+                    if (listaCAT21[i].ServiceManagement.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 34
+                    {
+                        dgvCAT21.Rows[n].Cells[34].Value = listaCAT21[i].RP;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[34].Value = "No info."; }
+
+                    if (listaCAT21[i].AircraftOperationalStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 35
+                    {
+                        dgvCAT21.Rows[n].Cells[35].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[35].Value = "No info."; }
+
+                    if (listaCAT21[i].SurfaceCapabilitiesandCharacteristicas.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 36
+                    {
+                        dgvCAT21.Rows[n].Cells[36].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[36].Value = "No info."; }
+
+                    if (listaCAT21[i].MessageAmplitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 37
+                    {
+                        dgvCAT21.Rows[n].Cells[37].Value = listaCAT21[i].MessageAmplitude_dBm;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[37].Value = "No info."; }
+
+                    if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
+                    {
+                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
+
+                    if (listaCAT21[i].ACASResolutionAdvisoryReport.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 39
+                    {
+                        dgvCAT21.Rows[n].Cells[39].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[39].Value = "No info."; }
+
+                    if (listaCAT21[i].ReceiverID.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 40
+                    {
+                        dgvCAT21.Rows[n].Cells[40].Value = listaCAT21[i].ReceiverID_number;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[40].Value = "No info."; }
+
+                    if (listaCAT21[i].DataAges.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 41
+                    {
+                        dgvCAT21.Rows[n].Cells[41].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[41].Value = "No info."; }
+
 
                     i = i + 1;
                 }
@@ -716,6 +1716,331 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[2].Value = "Click Here for more information.";
                     dgvCAT21.Rows[n].Cells[3].Value = listaCAT21[i].TrackNumber_number;
 
+                    // Convertimos en horas:mins:secs
+                    double TOA_Position_seconds = listaCAT21[i].TimeofApplicability_Position_seconds;
+
+                    double double1 = (TOA_Position_seconds / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_Velocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[7].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT21[i].AirSpeed.Length > 0)
+                    {
+
+                        string str1 = listaCAT21[i].IM;
+                        if (str1 == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_velocity).ToString() + " (IAS)";
+                        }
+
+                        else { dgvCAT21.Rows[n].Cells[8].Value = (listaCAT21[i].AirSpeed_Mach).ToString() + " (Mach)"; }
+                    }
+
+                    else { dgvCAT21.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT21[i].TrueAirSpeed.Length > 0)
+                    {
+                        if (listaCAT21[i].RE_TAS == "0")
+                        {
+                            dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[9].Value = listaCAT21[i].TrueAirSpeed_number.ToString() + "(Value excedes defined range.)"; }
+
+                    }
+                    else { dgvCAT21.Rows[n].Cells[9].Value = "No info."; }
+
+                    dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
+
+
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_Position_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
+
+
+                    double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPosition_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
+
+                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOMR_HPPVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+                    if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
+                    {
+                        dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
+
+                    // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
+
+                    double TOA_HRVelocity_seconds = listaCAT21[i].TimeofMessageReception_HRVelocity_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TOA_HRVelocity_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofMessageReception_HRVelocity.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 14
+                    {
+                        dgvCAT21.Rows[n].Cells[14].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[14].Value = "No info."; }
+
+                    if (listaCAT21[i].GeometricHeight.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 15
+                    {
+                        dgvCAT21.Rows[n].Cells[15].Value = listaCAT21[i].GeometricHeight_feet;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[15].Value = "No info."; }
+
+                    if (listaCAT21[i].QualityIndicators.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 16
+                    {
+                        dgvCAT21.Rows[n].Cells[16].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[16].Value = "No info."; }
+
+                    if (listaCAT21[i].MOPSVersion.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 17
+                    {
+                        dgvCAT21.Rows[n].Cells[17].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[17].Value = "No info."; }
+
+                    if (listaCAT21[i].Mode3ACode_bin.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 18
+                    {
+                        dgvCAT21.Rows[n].Cells[18].Value = listaCAT21[i].Mode3ACode_oct;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[18].Value = "No info."; }
+
+                    if (listaCAT21[i].RollAngle.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 19
+                    {
+                        dgvCAT21.Rows[n].Cells[19].Value = listaCAT21[i].RollAngle_degrees;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[19].Value = "No info."; }
+
+                    if (listaCAT21[i].FlightLevel.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 20
+                    {
+                        dgvCAT21.Rows[n].Cells[20].Value = String.Concat("FL" + listaCAT21[i].FlightLevel_FL.ToString());
+                    }
+                    else { dgvCAT21.Rows[n].Cells[20].Value = "No info."; }
+
+                    if (listaCAT21[i].MagneticHeading.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 21
+                    {
+                        dgvCAT21.Rows[n].Cells[21].Value = listaCAT21[i].MagneticHeading_degrees;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[21].Value = "No info."; }
+
+                    if (listaCAT21[i].TargetStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 22
+                    {
+                        dgvCAT21.Rows[n].Cells[22].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[22].Value = "No info."; }
+
+                    if (listaCAT21[i].BarometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 23
+                    {
+                        if (listaCAT21[i].RE_BVR == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[23].Value = listaCAT21[i].BarometricVerticalRate_fmin;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[23].Value = String.Concat(Convert.ToInt32(listaCAT21[i].BarometricVerticalRate_fmin), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[23].Value = "No info."; }
+
+                    if (listaCAT21[i].GeometricVerticalRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 24
+                    {
+                        if (listaCAT21[i].RE_GVR == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[24].Value = listaCAT21[i].GeometricVerticalRate_fmin;
+                        }
+                        else { dgvCAT21.Rows[n].Cells[24].Value = String.Concat(Convert.ToInt32(listaCAT21[i].GeometricVerticalRate_fmin), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[24].Value = "No info."; }
+
+                    if (listaCAT21[i].AirborneGoundVector.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 25
+                    {
+                        if (listaCAT21[i].RE_AGV == "Value in defined range.")
+                        {
+                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString());
+                        }
+                        else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
+                    }
+                    else { dgvCAT21.Rows[n].Cells[25].Value = "No info."; }
+
+                    if (listaCAT21[i].TrackAngleRate.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 26
+                    {
+                        dgvCAT21.Rows[n].Cells[26].Value = listaCAT21[i].TrackAngleRate_degs;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[26].Value = "No info."; }
+
+
+                    double TORT_seconds = listaCAT21[i].TimeofASTERIXReportTransmission_seconds;
+
+                    // Convertimos en horas:mins:secs
+                    double1 = (TORT_seconds / 3600);
+                    horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double2 = (double1 - horas) * 60;
+                    mins = Convert.ToInt32(Math.Floor(double2));
+
+                    secs = (double2 - mins) * 60;
+
+                    if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
+                    {
+                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(horas, ":", mins, ":", secs);
+                    }
+                    else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
+
+                    if (listaCAT21[i].TargetIdentification.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 28
+                    {
+                        dgvCAT21.Rows[n].Cells[28].Value = listaCAT21[i].TargetIdentification_decoded;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[28].Value = "No info."; }
+
+                    if (listaCAT21[i].EmitterCategory.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 29
+                    {
+                        dgvCAT21.Rows[n].Cells[29].Value = listaCAT21[i].ECAT;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[29].Value = "No info."; }
+
+                    if (listaCAT21[i].MetInformation.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 30
+                    {
+                        dgvCAT21.Rows[n].Cells[30].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[30].Value = "No info."; }
+
+                    if (listaCAT21[i].SelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 31
+                    {
+                        dgvCAT21.Rows[n].Cells[31].Value = listaCAT21[i].SelectedAltitude_ft;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[31].Value = "No info."; }
+
+                    if (listaCAT21[i].FinalStateSelectedAltitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 32
+                    {
+                        dgvCAT21.Rows[n].Cells[32].Value = listaCAT21[i].FinalStateSelectedAltitude_ft;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[32].Value = "No info."; }
+
+                    if (listaCAT21[i].TrajectoryIntent.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 33
+                    {
+                        dgvCAT21.Rows[n].Cells[33].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[33].Value = "No info."; }
+
+                    if (listaCAT21[i].ServiceManagement.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 34
+                    {
+                        dgvCAT21.Rows[n].Cells[34].Value = listaCAT21[i].RP;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[34].Value = "No info."; }
+
+                    if (listaCAT21[i].AircraftOperationalStatus.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 35
+                    {
+                        dgvCAT21.Rows[n].Cells[35].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[35].Value = "No info."; }
+
+                    if (listaCAT21[i].SurfaceCapabilitiesandCharacteristicas.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 36
+                    {
+                        dgvCAT21.Rows[n].Cells[36].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[36].Value = "No info."; }
+
+                    if (listaCAT21[i].MessageAmplitude.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 37
+                    {
+                        dgvCAT21.Rows[n].Cells[37].Value = listaCAT21[i].MessageAmplitude_dBm;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[37].Value = "No info."; }
+
+                    if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
+                    {
+                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
+
+                    if (listaCAT21[i].ACASResolutionAdvisoryReport.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 39
+                    {
+                        dgvCAT21.Rows[n].Cells[39].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[39].Value = "No info."; }
+
+                    if (listaCAT21[i].ReceiverID.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 40
+                    {
+                        dgvCAT21.Rows[n].Cells[40].Value = listaCAT21[i].ReceiverID_number;
+                    }
+                    else { dgvCAT21.Rows[n].Cells[40].Value = "No info."; }
+
+                    if (listaCAT21[i].DataAges.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 41
+                    {
+                        dgvCAT21.Rows[n].Cells[41].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT21.Rows[n].Cells[41].Value = "No info."; }
+
+
                     i = i + 1;
                 }
 
@@ -745,7 +2070,15 @@ namespace ASTERIX
                     }
                 }
 
-                if(listaCAT21[i].MOPSVersion.Length>0)
+                if (listaCAT21[i].QualityIndicators.Length > 0)
+                {
+                    if (c == 16)
+                    {
+
+                    }
+                }
+
+                if (listaCAT21[i].MOPSVersion.Length>0)
                 {
                     if (c == 17)
                     {
@@ -787,19 +2120,54 @@ namespace ASTERIX
                     {
                         FinalStateSelectedAltitudeCAT21 FSACAT21 = new FinalStateSelectedAltitudeCAT21(listaCAT21, i);
                         FSACAT21.ShowDialog();
-
                     }
                 }
 
                 if (listaCAT21[i].TrajectoryIntent.Length > 0)
                 {
-                    if (c == 32)
+                    if (c == 33)
                     {
                         TrajectoryIntentCAT21 TACAT21 = new TrajectoryIntentCAT21(listaCAT21, i);
                         TACAT21.ShowDialog();
-
                     }
                 }
+
+                if (listaCAT21[i].AircraftOperationalStatus.Length > 0)
+                {
+                    if (c == 35)
+                    {
+                        AircraftOperationalStatusCAT21 AOSCAT21 = new AircraftOperationalStatusCAT21(listaCAT21, i);
+                        AOSCAT21.ShowDialog();
+                    }
+                }
+
+                if (listaCAT21[i].SurfaceCapabilitiesandCharacteristicas.Length > 0)
+                {
+                    if (c == 36)
+                    {
+                        SurfaceCapabilitiesAndCharacteristicsCAT21 SCACCAT21 = new SurfaceCapabilitiesAndCharacteristicsCAT21(listaCAT21, i);
+                        SCACCAT21.ShowDialog();
+                    }
+                }
+
+                if (listaCAT21[i].ACASResolutionAdvisoryReport.Length > 0)
+                {
+                    if (c == 39)
+                    {
+                        ACASResolutionAdvisoryCAT21 ACASRACAT21 = new ACASResolutionAdvisoryCAT21(listaCAT21, i);
+                        ACASRACAT21.ShowDialog();
+                    }
+                }
+
+                if (listaCAT21[i].DataAges.Length > 0)
+                {
+                    if (c == 41)
+                    {
+                        DataAgesCAT21 DACAT21 = new DataAgesCAT21(listaCAT21, i);
+                        DACAT21.ShowDialog();
+                    }
+                }
+
 
 
 

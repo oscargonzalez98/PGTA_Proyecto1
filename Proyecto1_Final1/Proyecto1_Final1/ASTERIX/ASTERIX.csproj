@@ -52,11 +52,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ACASResolutionAdvisoryCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ACASResolutionAdvisoryCAT21.Designer.cs">
+      <DependentUpon>ACASResolutionAdvisoryCAT21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AircraftOperationalStatusCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AircraftOperationalStatusCAT21.Designer.cs">
+      <DependentUpon>AircraftOperationalStatusCAT21.cs</DependentUpon>
+    </Compile>
     <Compile Include="BrowseFile.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BrowseFile.Designer.cs">
       <DependentUpon>BrowseFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataAgesCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataAgesCAT21.Designer.cs">
+      <DependentUpon>DataAgesCAT21.cs</DependentUpon>
     </Compile>
     <Compile Include="FinalStateSelectedAltitudeCAT21.cs">
       <SubType>Form</SubType>
@@ -96,6 +114,12 @@
     <Compile Include="SelectedAltitudeCAT21.Designer.cs">
       <DependentUpon>SelectedAltitudeCAT21.cs</DependentUpon>
     </Compile>
+    <Compile Include="SurfaceCapabilitiesAndCharacteristicsCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SurfaceCapabilitiesAndCharacteristicsCAT21.Designer.cs">
+      <DependentUpon>SurfaceCapabilitiesAndCharacteristicsCAT21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tables.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,8 +144,17 @@
     <Compile Include="TrajectoryIntentCAT21.Designer.cs">
       <DependentUpon>TrajectoryIntentCAT21.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ACASResolutionAdvisoryCAT21.resx">
+      <DependentUpon>ACASResolutionAdvisoryCAT21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AircraftOperationalStatusCAT21.resx">
+      <DependentUpon>AircraftOperationalStatusCAT21.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BrowseFile.resx">
       <DependentUpon>BrowseFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataAgesCAT21.resx">
+      <DependentUpon>DataAgesCAT21.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FinalStateSelectedAltitudeCAT21.resx">
       <DependentUpon>FinalStateSelectedAltitudeCAT21.cs</DependentUpon>
@@ -149,6 +182,9 @@
     </Compile>
     <EmbeddedResource Include="SelectedAltitudeCAT21.resx">
       <DependentUpon>SelectedAltitudeCAT21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SurfaceCapabilitiesAndCharacteristicsCAT21.resx">
+      <DependentUpon>SurfaceCapabilitiesAndCharacteristicsCAT21.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tables.resx">
       <DependentUpon>Tables.cs</DependentUpon>

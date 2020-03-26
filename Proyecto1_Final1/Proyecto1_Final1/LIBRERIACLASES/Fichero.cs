@@ -98,13 +98,6 @@ namespace LIBRERIACLASES
                         newcat10.Calculate_FSPEC(newcat10.paquete);
                         listaCAT10.Add(newcat10);
 
-
-                        //no borrar
-                        //double a1 = newcat21.TimeofMessageReception_Position_seconds;
-                        //double b = newcat21.latWGS84;
-                        //double c = newcat21.lonWGS84;
-
-                        //tablaCAT21.Rows.Add(a1, b, c);
                     }
                     catch
                     {
@@ -120,16 +113,8 @@ namespace LIBRERIACLASES
                     try
                     {
                         CAT20 newcat20 = new CAT20(arraystring);
-                        //newcat20.Calculate_FSPEC(newcat20.paquete);
                         listaCAT20.Add(newcat20);
 
-
-                        //no borrar
-                        //double a1 = newcat21.TimeofMessageReception_Position_seconds;
-                        //double b = newcat21.latWGS84;
-                        //double c = newcat21.lonWGS84;
-
-                        //tablaCAT21.Rows.Add(a1, b, c);
                     }
                     catch
                     {

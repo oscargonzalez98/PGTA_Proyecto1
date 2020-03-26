@@ -87,6 +87,13 @@
             this.FinalStateSelectedaltitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrajectoryIntent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ServiceManagement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AircraftOperationalStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SurfaceCapabilitiesAndCharacteristics = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MessageAmplitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModeSMBData = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ACASResolutionAdvisoryReport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReceiverID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataAges = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpTables.SuspendLayout();
             this.panelCAT10.SuspendLayout();
             this.panelCAT20.SuspendLayout();
@@ -102,13 +109,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpTables.ColumnCount = 8;
-            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpTables.Controls.Add(this.btCAT10, 0, 0);
             this.tlpTables.Controls.Add(this.btCAT20, 1, 0);
@@ -119,13 +126,13 @@
             this.tlpTables.Controls.Add(this.bt_Forward, 5, 0);
             this.tlpTables.Controls.Add(this.bt_FastForward, 6, 0);
             this.tlpTables.Controls.Add(this.lb_Pages, 7, 0);
-            this.tlpTables.Location = new System.Drawing.Point(9, 10);
-            this.tlpTables.Margin = new System.Windows.Forms.Padding(2);
+            this.tlpTables.Location = new System.Drawing.Point(12, 12);
+            this.tlpTables.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tlpTables.Name = "tlpTables";
             this.tlpTables.RowCount = 2;
-            this.tlpTables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.tlpTables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tlpTables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpTables.Size = new System.Drawing.Size(906, 346);
+            this.tlpTables.Size = new System.Drawing.Size(1208, 426);
             this.tlpTables.TabIndex = 0;
             // 
             // btCAT10
@@ -133,10 +140,10 @@
             this.btCAT10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCAT10.Location = new System.Drawing.Point(2, 2);
-            this.btCAT10.Margin = new System.Windows.Forms.Padding(2);
+            this.btCAT10.Location = new System.Drawing.Point(3, 2);
+            this.btCAT10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btCAT10.Name = "btCAT10";
-            this.btCAT10.Size = new System.Drawing.Size(86, 37);
+            this.btCAT10.Size = new System.Drawing.Size(114, 46);
             this.btCAT10.TabIndex = 8;
             this.btCAT10.Text = "CAT10";
             this.btCAT10.UseVisualStyleBackColor = true;
@@ -148,10 +155,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btCAT20.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btCAT20.Location = new System.Drawing.Point(92, 2);
-            this.btCAT20.Margin = new System.Windows.Forms.Padding(2);
+            this.btCAT20.Location = new System.Drawing.Point(123, 2);
+            this.btCAT20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btCAT20.Name = "btCAT20";
-            this.btCAT20.Size = new System.Drawing.Size(86, 37);
+            this.btCAT20.Size = new System.Drawing.Size(114, 46);
             this.btCAT20.TabIndex = 9;
             this.btCAT20.Text = "CAT20";
             this.btCAT20.UseVisualStyleBackColor = true;
@@ -161,10 +168,10 @@
             this.btCAT21.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCAT21.Location = new System.Drawing.Point(182, 2);
-            this.btCAT21.Margin = new System.Windows.Forms.Padding(2);
+            this.btCAT21.Location = new System.Drawing.Point(243, 2);
+            this.btCAT21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btCAT21.Name = "btCAT21";
-            this.btCAT21.Size = new System.Drawing.Size(86, 37);
+            this.btCAT21.Size = new System.Drawing.Size(114, 46);
             this.btCAT21.TabIndex = 10;
             this.btCAT21.Text = "CAT21";
             this.btCAT21.UseVisualStyleBackColor = true;
@@ -178,10 +185,10 @@
             this.tlpTables.SetColumnSpan(this.panelCAT10, 8);
             this.panelCAT10.Controls.Add(this.panelCAT20);
             this.panelCAT10.Controls.Add(this.dgvCAT10);
-            this.panelCAT10.Location = new System.Drawing.Point(2, 43);
-            this.panelCAT10.Margin = new System.Windows.Forms.Padding(2);
+            this.panelCAT10.Location = new System.Drawing.Point(3, 52);
+            this.panelCAT10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelCAT10.Name = "panelCAT10";
-            this.panelCAT10.Size = new System.Drawing.Size(902, 301);
+            this.panelCAT10.Size = new System.Drawing.Size(1203, 372);
             this.panelCAT10.TabIndex = 11;
             this.panelCAT10.Visible = false;
             // 
@@ -191,9 +198,9 @@
             this.panelCAT20.Controls.Add(this.dgvCAT20);
             this.panelCAT20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCAT20.Location = new System.Drawing.Point(0, 0);
-            this.panelCAT20.Margin = new System.Windows.Forms.Padding(2);
+            this.panelCAT20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelCAT20.Name = "panelCAT20";
-            this.panelCAT20.Size = new System.Drawing.Size(902, 301);
+            this.panelCAT20.Size = new System.Drawing.Size(1203, 372);
             this.panelCAT20.TabIndex = 2;
             this.panelCAT20.Visible = false;
             // 
@@ -202,9 +209,9 @@
             this.panelCAT21.Controls.Add(this.dgvCAT21);
             this.panelCAT21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCAT21.Location = new System.Drawing.Point(0, 0);
-            this.panelCAT21.Margin = new System.Windows.Forms.Padding(2);
+            this.panelCAT21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelCAT21.Name = "panelCAT21";
-            this.panelCAT21.Size = new System.Drawing.Size(902, 301);
+            this.panelCAT21.Size = new System.Drawing.Size(1203, 372);
             this.panelCAT21.TabIndex = 1;
             this.panelCAT21.Visible = false;
             // 
@@ -247,15 +254,22 @@
             this.Selectedaltitude,
             this.FinalStateSelectedaltitude,
             this.TrajectoryIntent,
-            this.ServiceManagement});
+            this.ServiceManagement,
+            this.AircraftOperationalStatus,
+            this.SurfaceCapabilitiesAndCharacteristics,
+            this.MessageAmplitude,
+            this.ModeSMBData,
+            this.ACASResolutionAdvisoryReport,
+            this.ReceiverID,
+            this.DataAges});
             this.dgvCAT21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCAT21.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvCAT21.Location = new System.Drawing.Point(0, 0);
-            this.dgvCAT21.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvCAT21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCAT21.Name = "dgvCAT21";
             this.dgvCAT21.RowHeadersWidth = 51;
             this.dgvCAT21.RowTemplate.Height = 24;
-            this.dgvCAT21.Size = new System.Drawing.Size(902, 301);
+            this.dgvCAT21.Size = new System.Drawing.Size(1203, 372);
             this.dgvCAT21.TabIndex = 1;
             this.dgvCAT21.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCAT21_CellClick);
             // 
@@ -264,11 +278,11 @@
             this.dgvCAT20.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCAT20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCAT20.Location = new System.Drawing.Point(0, 0);
-            this.dgvCAT20.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvCAT20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCAT20.Name = "dgvCAT20";
             this.dgvCAT20.RowHeadersWidth = 51;
             this.dgvCAT20.RowTemplate.Height = 24;
-            this.dgvCAT20.Size = new System.Drawing.Size(902, 301);
+            this.dgvCAT20.Size = new System.Drawing.Size(1203, 372);
             this.dgvCAT20.TabIndex = 0;
             // 
             // dgvCAT10
@@ -286,11 +300,11 @@
             this.PositioninCartedianCoordinates});
             this.dgvCAT10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCAT10.Location = new System.Drawing.Point(0, 0);
-            this.dgvCAT10.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvCAT10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCAT10.Name = "dgvCAT10";
             this.dgvCAT10.RowHeadersWidth = 51;
             this.dgvCAT10.RowTemplate.Height = 24;
-            this.dgvCAT10.Size = new System.Drawing.Size(902, 301);
+            this.dgvCAT10.Size = new System.Drawing.Size(1203, 372);
             this.dgvCAT10.TabIndex = 1;
             // 
             // Number1
@@ -355,10 +369,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_FastBackward.Image = ((System.Drawing.Image)(resources.GetObject("bt_FastBackward.Image")));
-            this.bt_FastBackward.Location = new System.Drawing.Point(272, 2);
-            this.bt_FastBackward.Margin = new System.Windows.Forms.Padding(2);
+            this.bt_FastBackward.Location = new System.Drawing.Point(363, 2);
+            this.bt_FastBackward.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_FastBackward.Name = "bt_FastBackward";
-            this.bt_FastBackward.Size = new System.Drawing.Size(34, 37);
+            this.bt_FastBackward.Size = new System.Drawing.Size(45, 46);
             this.bt_FastBackward.TabIndex = 12;
             this.bt_FastBackward.UseVisualStyleBackColor = true;
             this.bt_FastBackward.Click += new System.EventHandler(this.bt_FastBackward_Click);
@@ -369,10 +383,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_Backward.Image = ((System.Drawing.Image)(resources.GetObject("bt_Backward.Image")));
-            this.bt_Backward.Location = new System.Drawing.Point(310, 2);
-            this.bt_Backward.Margin = new System.Windows.Forms.Padding(2);
+            this.bt_Backward.Location = new System.Drawing.Point(414, 2);
+            this.bt_Backward.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_Backward.Name = "bt_Backward";
-            this.bt_Backward.Size = new System.Drawing.Size(34, 37);
+            this.bt_Backward.Size = new System.Drawing.Size(45, 46);
             this.bt_Backward.TabIndex = 13;
             this.bt_Backward.UseVisualStyleBackColor = true;
             this.bt_Backward.Click += new System.EventHandler(this.bt_Backward_Click);
@@ -383,10 +397,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_Forward.Image = ((System.Drawing.Image)(resources.GetObject("bt_Forward.Image")));
-            this.bt_Forward.Location = new System.Drawing.Point(348, 2);
-            this.bt_Forward.Margin = new System.Windows.Forms.Padding(2);
+            this.bt_Forward.Location = new System.Drawing.Point(465, 2);
+            this.bt_Forward.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_Forward.Name = "bt_Forward";
-            this.bt_Forward.Size = new System.Drawing.Size(34, 37);
+            this.bt_Forward.Size = new System.Drawing.Size(45, 46);
             this.bt_Forward.TabIndex = 14;
             this.bt_Forward.UseVisualStyleBackColor = true;
             this.bt_Forward.Click += new System.EventHandler(this.bt_Forward_Click);
@@ -397,10 +411,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_FastForward.Image = ((System.Drawing.Image)(resources.GetObject("bt_FastForward.Image")));
-            this.bt_FastForward.Location = new System.Drawing.Point(386, 2);
-            this.bt_FastForward.Margin = new System.Windows.Forms.Padding(2);
+            this.bt_FastForward.Location = new System.Drawing.Point(516, 2);
+            this.bt_FastForward.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bt_FastForward.Name = "bt_FastForward";
-            this.bt_FastForward.Size = new System.Drawing.Size(34, 37);
+            this.bt_FastForward.Size = new System.Drawing.Size(45, 46);
             this.bt_FastForward.TabIndex = 15;
             this.bt_FastForward.UseVisualStyleBackColor = true;
             this.bt_FastForward.Click += new System.EventHandler(this.bt_FastForward_Click);
@@ -412,10 +426,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_Pages.AutoSize = true;
             this.lb_Pages.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.lb_Pages.Location = new System.Drawing.Point(424, 0);
-            this.lb_Pages.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lb_Pages.Location = new System.Drawing.Point(567, 0);
             this.lb_Pages.Name = "lb_Pages";
-            this.lb_Pages.Size = new System.Drawing.Size(480, 41);
+            this.lb_Pages.Size = new System.Drawing.Size(639, 50);
             this.lb_Pages.TabIndex = 16;
             this.lb_Pages.Text = "          label1";
             // 
@@ -618,46 +631,110 @@
             // TargetIdentification
             // 
             this.TargetIdentification.HeaderText = "Target Identification";
+            this.TargetIdentification.MinimumWidth = 6;
             this.TargetIdentification.Name = "TargetIdentification";
+            this.TargetIdentification.Width = 125;
             // 
             // EmitterCategory
             // 
             this.EmitterCategory.HeaderText = "Emitter Category";
+            this.EmitterCategory.MinimumWidth = 6;
             this.EmitterCategory.Name = "EmitterCategory";
+            this.EmitterCategory.Width = 125;
             // 
             // MetInfo
             // 
             this.MetInfo.HeaderText = "Meteorology Information";
+            this.MetInfo.MinimumWidth = 6;
             this.MetInfo.Name = "MetInfo";
+            this.MetInfo.Width = 125;
             // 
             // Selectedaltitude
             // 
             this.Selectedaltitude.HeaderText = "Selected Altitude (ft) (Click for more information)";
+            this.Selectedaltitude.MinimumWidth = 6;
             this.Selectedaltitude.Name = "Selectedaltitude";
+            this.Selectedaltitude.Width = 125;
             // 
             // FinalStateSelectedaltitude
             // 
             this.FinalStateSelectedaltitude.HeaderText = "Final State Selected Altitude (ft) (Click for more information)";
+            this.FinalStateSelectedaltitude.MinimumWidth = 6;
             this.FinalStateSelectedaltitude.Name = "FinalStateSelectedaltitude";
+            this.FinalStateSelectedaltitude.Width = 125;
             // 
             // TrajectoryIntent
             // 
             this.TrajectoryIntent.HeaderText = "Trajectory Intent";
+            this.TrajectoryIntent.MinimumWidth = 6;
             this.TrajectoryIntent.Name = "TrajectoryIntent";
+            this.TrajectoryIntent.Width = 125;
             // 
             // ServiceManagement
             // 
             this.ServiceManagement.HeaderText = "Service Management (Report Period) (s)";
+            this.ServiceManagement.MinimumWidth = 6;
             this.ServiceManagement.Name = "ServiceManagement";
+            this.ServiceManagement.Width = 125;
+            // 
+            // AircraftOperationalStatus
+            // 
+            this.AircraftOperationalStatus.HeaderText = "Aircraft Operational Status";
+            this.AircraftOperationalStatus.MinimumWidth = 6;
+            this.AircraftOperationalStatus.Name = "AircraftOperationalStatus";
+            this.AircraftOperationalStatus.Width = 125;
+            // 
+            // SurfaceCapabilitiesAndCharacteristics
+            // 
+            this.SurfaceCapabilitiesAndCharacteristics.HeaderText = "Surface Capabilities and Characteristics";
+            this.SurfaceCapabilitiesAndCharacteristics.MinimumWidth = 6;
+            this.SurfaceCapabilitiesAndCharacteristics.Name = "SurfaceCapabilitiesAndCharacteristics";
+            this.SurfaceCapabilitiesAndCharacteristics.Width = 125;
+            // 
+            // MessageAmplitude
+            // 
+            this.MessageAmplitude.HeaderText = "Message Amplitude (dBm)";
+            this.MessageAmplitude.MinimumWidth = 6;
+            this.MessageAmplitude.Name = "MessageAmplitude";
+            this.MessageAmplitude.Width = 125;
+            // 
+            // ModeSMBData
+            // 
+            this.ModeSMBData.HeaderText = "Mode S MB Data";
+            this.ModeSMBData.MinimumWidth = 6;
+            this.ModeSMBData.Name = "ModeSMBData";
+            this.ModeSMBData.Width = 125;
+            // 
+            // ACASResolutionAdvisoryReport
+            // 
+            this.ACASResolutionAdvisoryReport.HeaderText = "ACAS Resolution Advisory Report";
+            this.ACASResolutionAdvisoryReport.MinimumWidth = 6;
+            this.ACASResolutionAdvisoryReport.Name = "ACASResolutionAdvisoryReport";
+            this.ACASResolutionAdvisoryReport.Width = 125;
+            // 
+            // ReceiverID
+            // 
+            this.ReceiverID.HeaderText = "Receiver ID";
+            this.ReceiverID.MinimumWidth = 6;
+            this.ReceiverID.Name = "ReceiverID";
+            this.ReceiverID.Width = 125;
+            // 
+            // DataAges
+            // 
+            this.DataAges.HeaderText = "Data Ages";
+            this.DataAges.MinimumWidth = 6;
+            this.DataAges.Name = "DataAges";
+            this.DataAges.Width = 125;
             // 
             // Tables
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 366);
+            this.ClientSize = new System.Drawing.Size(1232, 450);
             this.Controls.Add(this.tlpTables);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Tables";
+            this.Text = " ";
             this.tlpTables.ResumeLayout(false);
             this.tlpTables.PerformLayout();
             this.panelCAT10.ResumeLayout(false);
@@ -730,5 +807,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FinalStateSelectedaltitude;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrajectoryIntent;
         private System.Windows.Forms.DataGridViewTextBoxColumn ServiceManagement;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AircraftOperationalStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SurfaceCapabilitiesAndCharacteristics;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MessageAmplitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ModeSMBData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ACASResolutionAdvisoryReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiverID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataAges;
     }
 }

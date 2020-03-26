@@ -173,7 +173,7 @@ namespace LIBRERIACLASES
         public int TOV;
         public double TTR;
 
-        public string ServiceManagement;
+        public string ServiceManagement= "";
         public double RP;
 
         public string AircraftOperationalStatus = "";
@@ -214,29 +214,29 @@ namespace LIBRERIACLASES
         public int ReceiverID_number;
 
         public string DataAges = "";
-        public double AOS;
-        public double TRD;
-        public double M3A;
-        public double QI;
-        public double TI;
-        public double MAM;
-        public double GH;
-        public double FL;
-        public double ISA;
-        public double FSA;
-        public double AS;
-        public double TAS;
-        public double MH;
-        public double BVR;
-        public double GVR;
-        public double GV;
-        public double TAR;
-        public double TI_DA;
-        public double TS_DA;
-        public double MET;
-        public double ROA;
-        public double ARA;
-        public double SCC;
+        public double AOS = -1;
+        public double TRD = -1;
+        public double M3A = -1;
+        public double QI = -1;
+        public double TI = -1;
+        public double MAM = -1;
+        public double GH = -1;
+        public double FL = -1;
+        public double ISA = -1;
+        public double FSA = -1;
+        public double AS = -1;
+        public double TAS = -1;
+        public double MH = -1;
+        public double BVR = -1;
+        public double GVR = -1;
+        public double GV = -1;
+        public double TAR = -1;
+        public double TI_DA = -1;
+        public double TS_DA = -1;
+        public double MET = -1;
+        public double ROA = -1;
+        public double ARA = -1;
+        public double SCC = -1;
 
         public CAT21(string[] packet)
         {
@@ -1589,7 +1589,7 @@ namespace LIBRERIACLASES
 
             if (paquete.Length > 8)
             {
-                int int2 = Convert.ToInt32(paquete.Substring(12, 4));
+                int int2 = Convert.ToInt32(paquete.Substring(12, 4),2);
 
                 if (VN == "DO-260A [Ref. 9].")
                 {

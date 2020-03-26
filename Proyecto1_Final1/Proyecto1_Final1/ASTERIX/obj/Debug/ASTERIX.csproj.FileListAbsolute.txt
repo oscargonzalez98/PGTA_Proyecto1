@@ -65,3 +65,7 @@ C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\
 C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TargetReportDescriptorCAT21.resources
 C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TargetStatusCAT21.resources
 C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TrajectoryIntentCAT21.resources
+C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.AircraftOperationalStatusCAT21.resources
+C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.SurfaceCapabilitiesAndCharacteristicsCAT21.resources
+C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.ACASResolutionAdvisoryCAT21.resources
+C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.DataAgesCAT21.resources
