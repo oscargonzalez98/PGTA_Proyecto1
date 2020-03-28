@@ -196,7 +196,7 @@ namespace ASTERIX
                 secs = (double2 - mins) * 60;
                 if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
                 {
-                    dgvCAT21.Rows[n].Cells[12].Value = horas + ":" + mins + ":" + secs;
+                    dgvCAT21.Rows[n].Cells[12].Value =String.Concat( horas + ":" + mins + ":" + secs,"/",listaCAT21[i].FSI1);
                 }
                 else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
 
@@ -212,7 +212,7 @@ namespace ASTERIX
                 secs = (double2 - mins) * 60;
                 if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
                 {
-                    dgvCAT21.Rows[n].Cells[13].Value = horas + ":" + mins + ":" + secs;
+                    dgvCAT21.Rows[n].Cells[13].Value = String.Concat(horas + ":" + mins + ":" + secs, "/", listaCAT21[i].FSI2);
                 }
                 else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
 
@@ -399,7 +399,7 @@ namespace ASTERIX
 
                 if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                 {
-                    dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                    dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
                 }
                 else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -802,7 +802,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                     {
-                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                        dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
                     }
                     else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -1205,7 +1205,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                     {
-                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                        dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
                     }
                     else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -1638,7 +1638,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                     {
-                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                        dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
                     }
                     else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -2018,7 +2018,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                     {
-                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
+                        dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
                     }
                     else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -2074,7 +2074,8 @@ namespace ASTERIX
                 {
                     if (c == 16)
                     {
-
+                        QualityIndicatorsCAT21 QICAT21 = new QualityIndicatorsCAT21(listaCAT21, i);
+                        QICAT21.ShowDialog();
                     }
                 }
 

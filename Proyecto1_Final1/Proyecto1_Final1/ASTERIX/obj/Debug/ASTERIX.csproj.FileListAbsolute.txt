@@ -69,3 +69,4 @@ C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.SurfaceCapabilitiesAndCharacteristicsCAT21.resources
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.ACASResolutionAdvisoryCAT21.resources
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.DataAgesCAT21.resources
+C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.QualityIndicatorsCAT21.resources

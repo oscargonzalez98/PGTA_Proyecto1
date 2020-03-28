@@ -71,10 +71,11 @@ namespace LIBRERIACLASES
 
         public string TimeofMessageReception_HRPosition = "";
         public double TimeofMessageReception_HRPosition_seconds;
-        public string FSI = "";
+        public string FSI1 = "";
 
         public string TimeofMessageReception_Velocity = "";
         public double TimeofMessageReception_Velocity_seconds;
+        public string FSI2 = "";
 
         public string TimeofMessageReception_HRVelocity = "";
         public double TimeofMessageReception_HRVelocity_seconds;
@@ -85,8 +86,9 @@ namespace LIBRERIACLASES
         public string QualityIndicators = "";
         public int NACv;
         public int NUCp;
-        public string NIC_Baro = "";
+        public int NIC_Baro;
         public string SIL= "";
+        public int NACp;
         public int SDA;
         public int GVA;
         public int PIC;
@@ -195,7 +197,10 @@ namespace LIBRERIACLASES
         public string Width = "";
 
         public string ModeSMBData = "";
-
+        public string[] REP_MS;
+        public string[] MBDATA;
+        public string[] BDS1;
+        public string[] BDS2;
 
         public string ACASResolutionAdvisoryReport = "";
         public int TYP;
@@ -605,25 +610,25 @@ namespace LIBRERIACLASES
 
             if (fsi2 == 11)
             {
-                FSI = "Reserved.";
+                FSI1 = "Reserved.";
             }
 
             if (fsi2 == 10)
             {
                 string seconds = Convert.ToString(TimeofMessageReception_Position_seconds);
-                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds -1.";
+                FSI1 = "TOMRp whole seconds = " + seconds + " Whole seconds -1.";
             }
 
             if (fsi2 == 01)
             {
                 string seconds = Convert.ToString(TimeofMessageReception_Position_seconds);
-                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds +1.";
+                FSI1 = "TOMRp whole seconds = " + seconds + " Whole seconds +1.";
             }
 
             if (fsi2 == 00)
             {
                 string seconds = Convert.ToString(TimeofMessageReception_Position_seconds);
-                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds.";
+                FSI1 = "TOMRp whole seconds = " + seconds + " Whole seconds.";
             }
 
             string str1 = paquete.Substring(2, 30);
@@ -638,25 +643,25 @@ namespace LIBRERIACLASES
 
             if (fsi2 == 11)
             {
-                FSI = "Reserved.";
+                FSI2 = "Reserved.";
             }
 
             if (fsi2 == 10)
             {
                 string seconds = Convert.ToString(TimeofMessageReception_Velocity_seconds);
-                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds -1.";
+                FSI2 = "TOMRp whole seconds = " + seconds + " Whole seconds -1.";
             }
 
             if (fsi2 == 01)
             {
                 string seconds = Convert.ToString(TimeofMessageReception_Velocity_seconds);
-                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds +1.";
+                FSI2 = "TOMRp whole seconds = " + seconds + " Whole seconds +1.";
             }
 
             if (fsi2 == 00)
             {
                 string seconds = Convert.ToString(TimeofMessageReception_Velocity_seconds);
-                FSI = "TOMRp whole seconds = " + seconds + " Whole seconds.";
+                FSI2 = "TOMRp whole seconds = " + seconds + " Whole seconds.";
             }
 
             string str1 = paquete.Substring(2, 30);
@@ -675,19 +680,23 @@ namespace LIBRERIACLASES
                 NACv = Convert.ToInt32(str1, 2);
                 NUCp = Convert.ToInt32(str2, 2);
 
-                if(paquete.Length>18)
+                if(paquete.Length>8)
                 {
                     string str3 = Convert.ToString(paquete[8]);
-                    NIC_Baro = str3;
+                    NIC_Baro = Convert.ToInt32(str3);
 
                     string str5 = paquete.Substring(11,4);
-                    NUCp = Convert.ToInt32(str5, 2);
+                    NACp = Convert.ToInt32(str5, 2);
+
+                    string sil1 = paquete.Substring(9, 2);
+                    SIL = Convert.ToInt32(sil1, 2).ToString();
+
 
                     if(paquete.Length>16)
                     {
                         string str6 = paquete.Substring(18,1);
-                        if (str6 == "0") { SIL = "Measured per flight-hour."; }
-                        else { SIL = "Measured per sample."; }
+                        if (str6 == "0") { SIL =String.Concat(SIL,"/","Measured per flight-hour."); }
+                        else { SIL = String.Concat(SIL,"/","Measured per sample."); }
 
                         string str7 = paquete.Substring(19,2);
                         SDA = Convert.ToInt32(str7, 2);
@@ -701,10 +710,7 @@ namespace LIBRERIACLASES
                             PIC = Convert.ToInt32(str9, 2);
                         }
                     }
-
                 }
-
-
             }
         }
 
@@ -1762,9 +1768,50 @@ namespace LIBRERIACLASES
             }
 
         }
-        public void Calculate_ModeSMBData(string paquete)
+        public int Calculate_ModeSMBData(string[] paquete, int pos)
         {
+            //contador dels octets q ocupa
+            int cont = 1;
 
+            //el primer octet és el número de missatges
+            int REP = int.Parse(paquete[pos], System.Globalization.NumberStyles.HexNumber);
+
+            //creamos los vectores:
+            this.MBDATA = new string[REP];
+            this.BDS1 = new string[REP];
+            this.BDS2 = new string[REP];
+
+            //agafem les dades
+            int i = 0;
+            while (i < REP)
+            {
+                //MB Data
+                string mbdata = "";
+
+                int j = 0;
+                while (j < 7) //7 octets
+                {
+                    mbdata = mbdata + paquete[pos + cont + j];
+
+                    j++;
+                }
+
+                this.MBDATA[i] = Convert.ToString(Convert.ToInt32(mbdata, 2), 16).PadLeft(8, '0');
+
+                //BDS1 & BDS2
+                string octet8 = Convert.ToString(Convert.ToInt32(paquete[pos + cont + 7], 16), 2).PadLeft(8, '0');
+
+                this.BDS1[i] = octet8.Substring(0, 4);
+                this.BDS2[i] = octet8.Substring(4, 4);
+
+                this.ModeSMBData = "\nMessage: " + this.MBDATA[i] + ", Address 1: " + this.BDS1[i] + ", Address 2: " + this.BDS2[i];
+
+                cont = cont + 8;
+
+                i++;
+            }
+
+            return cont;
         }
         public void Calculate_ACASResolutionAdvisoryReport(string paquete)
         {
@@ -2853,7 +2900,8 @@ namespace LIBRERIACLASES
 
             if (Char.ToString(FSPEC_fake[43]) == "1") // 39 I021/250 Mode S MB Data
             {
-                data_position = data_position + 9;
+
+                data_position = data_position + Calculate_ModeSMBData(paquete, data_position);
 
             }
 

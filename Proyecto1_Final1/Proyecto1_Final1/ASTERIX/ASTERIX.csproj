@@ -108,6 +108,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QualityIndicatorsCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QualityIndicatorsCAT21.Designer.cs">
+      <DependentUpon>QualityIndicatorsCAT21.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectedAltitudeCAT21.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="QualityIndicatorsCAT21.resx">
+      <DependentUpon>QualityIndicatorsCAT21.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectedAltitudeCAT21.resx">
       <DependentUpon>SelectedAltitudeCAT21.cs</DependentUpon>
     </EmbeddedResource>
