@@ -21,7 +21,7 @@ namespace LIBRERIACLASES
         public int SAC;
 
         public string MessageType = "";
-        public string MessageType_decodified;
+        public string MessageType_decodified = "";
 
         public string TargetReportDescriptor = "";
         public string TYP = "";
@@ -39,7 +39,7 @@ namespace LIBRERIACLASES
         public string TimeofDay = "";
         public int TimeofDay_seconds;
 
-        public string PositioninWGS84_coordinates;
+        public string PositioninWGS84_coordinates = "";
         public double latWGS84 = 0;
         public double lonWGS84 = 0;
 
@@ -88,6 +88,10 @@ namespace LIBRERIACLASES
         public string STI = "";
 
         public string ModeSMBData = "";
+        public string[] REP_MS;
+        public string[] MBDATA;
+        public string[] BDS1;
+        public string[] BDS2;
 
         public string VehicleFleetIdentification = "";
         public string VFI = "";
@@ -97,7 +101,7 @@ namespace LIBRERIACLASES
         public string G_fl = "";
         public double FlightLevel;
 
-        public string MeasuredHeight;
+        public string MeasuredHeight = "";
         public double MeasuredHeight_ft;
 
         public string TargetSizeOrientation = "";
@@ -105,7 +109,7 @@ namespace LIBRERIACLASES
         public double Orientation;
         public double Width;
 
-        public string SystemStatus ="";
+        public string SystemStatus = "";
         public string NOGO = "";
         public string OVL = "";
         public string TSV = "";
@@ -123,13 +127,13 @@ namespace LIBRERIACLASES
 
         public string Presence = "";
         public int REP;
-        public double DRHO;
-        public double DTHETA;
+        public double[] DRHO;
+        public double[] DTHETA;
 
         public string AmplitudeofPrimaryPlot = "";
         public double AmplitudeofPrimaryPlot_value;
 
-        public string CalculatedAcceleration;
+        public string CalculatedAcceleration = "";
         public double CalculatedAcceleration_X;
         public double CalculatedAcceleration_Y;
 
@@ -197,7 +201,7 @@ namespace LIBRERIACLASES
         }
         public void Calculate_MessageType(string paquete)
         {
-            int int1 = Convert.ToInt32(paquete);
+            int int1 = Convert.ToInt32(paquete,2);
             if (int1 == 1) { MessageType_decodified = "Target Report"; }
             if (int1 == 2) { MessageType_decodified = "Start of Update Cycle";}
             if (int1 == 3) { MessageType_decodified = "Periodic Status Message"; }
@@ -206,17 +210,15 @@ namespace LIBRERIACLASES
         public void Calculate_TargetReportDescriptor(string paquete) 
         {
             string typ = paquete.Substring(0, 3);
-            int typ1 = Convert.ToInt32(typ[0]);
-            int typ2 = Convert.ToInt32(typ[1]);
-            int typ3 = Convert.ToInt32(typ[2]);
-            if (typ1 == 0 && typ2==0 && typ3==0) { TYP="SSR multilateration."; }
-            if (typ1 == 0 && typ2 == 0 && typ3 == 1) { TYP = "Mode S multilateration."; }
-            if (typ1 == 0 && typ2 == 1 && typ3 == 0) { TYP = "ADS-B."; }
-            if (typ1 == 0 && typ2 == 1 && typ3 == 1) { TYP = "PSR."; }
-            if (typ1 == 1 && typ2 == 0 && typ3 == 0) { TYP = "Magnetic Loop System."; }
-            if (typ1 == 1 && typ2 == 0 && typ3 == 1) { TYP = "HF multilateration."; }
-            if (typ1 == 1 && typ2 == 1 && typ3 == 0) { TYP = "Not defined."; }
-            if (typ1 == 1 && typ2 == 1 && typ3 == 1) { TYP = "Other types."; }
+
+            if (typ=="000") { TYP="SSR multilateration."; }
+            if (typ=="001") { TYP = "Mode S multilateration."; }
+            if (typ=="010") { TYP = "ADS-B."; }
+            if (typ=="011") { TYP = "PSR."; }
+            if (typ=="100") { TYP = "Magnetic Loop System."; }
+            if (typ=="101") { TYP = "HF multilateration."; }
+            if (typ=="110") { TYP = "Not defined."; }
+            if (typ=="111") { TYP = "Other types."; }
 
             int dcr1 = Convert.ToInt32(paquete[3]);
             if (dcr1 == 0) { DCR = "No differential correction (ADS-B)."; }
@@ -224,7 +226,7 @@ namespace LIBRERIACLASES
 
             int chn1 = Convert.ToInt32(paquete[4]);
             if (chn1 == 0) { CHN = "Chain 1."; }
-            else { CHN = "Chain2."; }
+            else { CHN = "Chain 2."; }
 
             int gbs1 = Convert.ToInt32(paquete[5]);
             if (gbs1 == 0) { GBS = "Transponder Ground bit not set."; }
@@ -288,71 +290,62 @@ namespace LIBRERIACLASES
         }
         public void Calculate_TrackStatus(string paquete)
         {
-            int cnf = Convert.ToInt32(paquete[0]);
-            if (cnf == 0) { CNF = "Confirmed track."; }
+            string cnf = Convert.ToString(paquete[0]);
+            if (cnf == "0") { CNF = "Confirmed track."; }
             else { CNF = "Track initialisation phase."; }
 
-            int tre = Convert.ToInt32(paquete[1]);
-            if (tre == 0) { TRE = "Default."; }
+            string tre = Convert.ToString(paquete[1]);
+            if (tre == "0") { TRE = "Default."; }
             else { TRE = "Last report for a track."; }
 
             string cst = paquete.Substring(2, 2);
-            int cst1 = Convert.ToInt32(cst[0]);
-            int cst2 = Convert.ToInt32(cst[1]);
 
-            if(cst1==0 && cst2==0) { CST = "No extrapolation."; }
-            if(cst1==0 && cst2==1) { CST = "Predictable extrapolation due to sensor refresh period."; }
-            if(cst1==1 && cst2 == 0) { CST = " Predictable extrapolation in masked area."; }
-            if(cst1==1 && cst2 == 1) { CST = "Extrapolation due to unpredictable absence of detection."; }
+            if(cst== "00") { CST = "No extrapolation."; }
+            if(cst== "01") { CST = "Predictable extrapolation due to sensor refresh period."; }
+            if(cst== "10") { CST = " Predictable extrapolation in masked area."; }
+            if(cst== "11") { CST = "Extrapolation due to unpredictable absence of detection."; }
 
-            int mah = Convert.ToInt32(paquete[4]);
-            if (mah == 0) { MAH = "Default."; }
+            string mah = Convert.ToString(paquete[4]);
+            if (mah == "0") { MAH = "Default."; }
             else { MAH = "Horizontal manoeuvre."; }
 
-            int tcc = Convert.ToInt32(paquete[5]);
-            if (tcc == 0) { TCC = "Tracking performed in 'Sensor Plane', i.e. neither slant range correction nor projection was applied."; }
+            string tcc = Convert.ToString(paquete[5]);
+            if (tcc == "0") { TCC = "Tracking performed in 'Sensor Plane', i.e. neither slant range correction nor projection was applied."; }
             else { TCC = "Slant range correction and a suitable projection technique are used to track in a 2D.reference plane, tangential to the earth model at the Sensor Site co-ordinates."; }
 
-            int sth = Convert.ToInt32(paquete[6]);
-            if (sth == 0) { STH = "Measured position."; }
+            string sth = Convert.ToString(paquete[6]);
+            if (sth == "0") { STH = "Measured position."; }
             else { STH = "Smoothed position."; }
 
             if (paquete.Length>8)
             {
                 string tom = paquete.Substring(8, 2);
-                int tom1 = Convert.ToInt32(tom[0]);
-                int tom2 = Convert.ToInt32(tom[1]);
-                if(tom1==0 && tom2 == 0) { TOM = "Unknown type of movement."; }
-                if (tom1==0 && tom2 == 1) { TOM = "Taking-off."; }
-                if(tom1==1 && tom2 == 0) { TOM = "Landing."; }
-                if(tom1==1 && tom2 == 1) { TOM = "Other types of movement."; }
+                if(tom == "00") { TOM = "Unknown type of movement."; }
+                if(tom == "01") { TOM = "Taking-off."; }
+                if(tom == "10") { TOM = "Landing."; }
+                if(tom == "11") { TOM = "Other types of movement."; }
 
                 string dou = paquete.Substring(10, 3);
-                int dou1 = Convert.ToInt32(dou[0]);
-                int dou2 = Convert.ToInt32(dou[1]);
-                int dou3 = Convert.ToInt32(dou[2]);
 
-                if(dou1==0 && dou2==0 && dou3 == 0) { DOU = "No doubt."; }
-                if(dou1==0 && dou2==0 && dou3 == 1) { DOU = " Doubtful correlation (undetermined reason)."; }
-                if(dou1==0 && dou2==1 && dou3 == 0) { DOU = " Doubtful correlation in clutter."; }
-                if(dou1==0 && dou2==1 && dou3 == 1) { DOU = " Loss of accuracy."; }
-                if(dou1==1 && dou2==0 && dou3 == 0) { DOU = " Loss of accuracy in clutter."; }
-                if(dou1==1 && dou2==0 && dou3 == 1) { DOU = "Unstable track."; }
-                if(dou1==1 && dou2==1 && dou3 == 0) { DOU = "Previously coasted."; }
+                if(dou == "000") { DOU = "No doubt."; }
+                if(dou == "001") { DOU = " Doubtful correlation (undetermined reason)."; }
+                if(dou == "010") { DOU = " Doubtful correlation in clutter."; }
+                if(dou == "011") { DOU = " Loss of accuracy."; }
+                if(dou == "100") { DOU = " Loss of accuracy in clutter."; }
+                if(dou == "101") { DOU = "Unstable track."; }
+                if(dou == "110") { DOU = "Previously coasted."; }
 
                 string mrs = paquete.Substring(13, 2);
-                int mrs1 = Convert.ToInt32(mrs[0]);
-                int mrs2 = Convert.ToInt32(mrs[1]);
 
-                if(mrs1==0 && mrs2 == 0) { MRS = "Merge or split indication undetermined."; }
-                if(mrs1==0 && mrs2 == 1) { MRS = "Track merged by association to plot."; }
-                if(mrs1==1 && mrs2 == 0) { MRS = "Track merged by non-association to ."; }
-                if(mrs1==1 && mrs2 == 1) { MRS = "Split track."; }
+                if(mrs == "00") { MRS = "Merge or split indication undetermined."; }
+                if(mrs == "01") { MRS = "Track merged by association to plot."; }
+                if(mrs == "10") { MRS = "Track merged by non-association to ."; }
+                if(mrs == "11") { MRS = "Split track."; }
 
                 if (paquete.Length > 16)
                 {
-                    int gho = Convert.ToInt32(paquete[16]);
-                    if (gho == 0) { GHO = "default."; }
+                    string gho = Convert.ToString(paquete[16]);
+                    if (gho == "0") { GHO = "default."; }
                     else { GHO = "Ghost track."; }
                 }
 
@@ -549,7 +542,53 @@ namespace LIBRERIACLASES
             }
 
         }
-        public void Calculate_VehicleFleetIdentification(string paquete)
+
+    
+        public int Calculate_ModeSMBData(string[] paquete, int pos)
+        {
+            //contador dels octets q ocupa
+            int cont = 1;
+
+            //el primer octet és el número de missatges
+            int REP = int.Parse(paquete[pos], System.Globalization.NumberStyles.HexNumber);
+
+            //creamos los vectores:
+            this.MBDATA = new string[REP];
+            this.BDS1 = new string[REP];
+            this.BDS2 = new string[REP];
+
+            //agafem les dades
+            int i = 0;
+            while (i < REP)
+            {
+                //MB Data
+                string mbdata = "";
+
+                int j = 0;
+                while (j < 7) //7 octets
+                {
+                    mbdata = mbdata + paquete[pos + cont + j];
+
+                    j++;
+                }
+
+                this.MBDATA[i] = Convert.ToString(Convert.ToInt32(mbdata, 2), 16).PadLeft(8, '0');
+
+                //BDS1 & BDS2
+                string octet8 = Convert.ToString(Convert.ToInt32(paquete[pos + cont + 7], 16), 2).PadLeft(8, '0');
+
+                this.BDS1[i] = octet8.Substring(0, 4);
+                this.BDS2[i] = octet8.Substring(4, 4);
+
+                cont = cont + 8;
+
+                i++;
+            }
+
+            return cont;
+        }
+
+    public void Calculate_VehicleFleetIdentification(string paquete)
         {
             int vfi1 = Convert.ToInt32(paquete, 2);
             if (vfi1 == 0) { VFI = "Unknown."; }
@@ -609,6 +648,44 @@ namespace LIBRERIACLASES
             string ttf = paquete.Substring(5, 0);
             if (ttf == "0") { TTF = "Test Target Operative."; }
             else { TTF = "Test Target Failure."; }
+        }
+
+        public int ComputePresence(string[] paquete, int pos) // Data Item I010/280
+        {
+            //contador
+            int cont = 1;
+
+            //el primer octet és el número de diferències
+            int REP = int.Parse(paquete[pos], System.Globalization.NumberStyles.HexNumber);
+
+            //creamos los vectores
+            this.DRHO = new double[REP];
+            this.DTHETA = new double[REP];
+
+            //agafem les dades
+            int i = 0;
+            while (i < REP)
+            {
+                //agafem els octets en string de bits:
+                string octetRHO = Convert.ToString(Convert.ToInt32(paquete[pos + cont], 16), 2).PadLeft(8, '0');
+                string octetoDTHETA = Convert.ToString(Convert.ToInt32(paquete[pos + cont + 1], 16), 2).PadLeft(8, '0');
+
+                //agafem el num fent el complement a2:
+                double rho = this.Calculate_ComplementoA2(octetRHO);
+                double dtheta = this.Calculate_ComplementoA2(octetoDTHETA);
+
+                //multipliquem per la resolució
+                this.DRHO[i] = rho * 1;
+                this.DTHETA[i] = dtheta * 0.15;
+
+                this.Presence = this.DRHO[i] + " m, " + this.DTHETA[i] + "º \n";
+
+                cont = cont + 2;
+
+                i++;
+            }
+
+            return cont;
         }
 
 
@@ -1048,45 +1125,7 @@ namespace LIBRERIACLASES
 
             if (Char.ToString(FSPEC_fake[16]) == "1") // 15  I010/250  Mode S MB Data
             {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                string string4 = Convert.ToString(paquete[data_position + 3]);
-                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
-                string4 = AddZeros(string4);
-
-                string string5 = Convert.ToString(paquete[data_position + 4]);
-                string5 = Convert.ToString(Convert.ToInt32(string5, 16), 2);
-                string5 = AddZeros(string5);
-
-                string string6 = Convert.ToString(paquete[data_position + 5]);
-                string6 = Convert.ToString(Convert.ToInt32(string6, 16), 2);
-                string6 = AddZeros(string6);
-
-                string string7 = Convert.ToString(paquete[data_position + 6]);
-                string7 = Convert.ToString(Convert.ToInt32(string7, 16), 2);
-                string7 = AddZeros(string7);
-
-                string string8 = Convert.ToString(paquete[data_position + 6]);
-                string8 = Convert.ToString(Convert.ToInt32(string8, 16), 2);
-                string8 = AddZeros(string8);
-
-                string string9 = Convert.ToString(paquete[data_position + 6]);
-                string9 = Convert.ToString(Convert.ToInt32(string9, 16), 2);
-                string9 = AddZeros(string9);
-
-                ModeSMBData = String.Concat(string1, string2, string3, string4, string5, string6, string7,string8,string9);
-
-                data_position = data_position + 9;
+                data_position = data_position + Calculate_ModeSMBData(paquete, data_position);
 
             }// 15  I010/250  Mode S MB Data
 
@@ -1256,30 +1295,7 @@ namespace LIBRERIACLASES
 
             if (Char.ToString(FSPEC_fake[25]) == "1") // 23  I010/280  Presence 
             {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                Presence = String.Concat(string1, string2, string3);
-
-                data_position = data_position + 3;
-
-                string rep1 = Presence.Substring(0, 8);
-                REP = Convert.ToInt32(rep1, 2);
-
-                string drho = Presence.Substring(8, 8);
-                DRHO = Convert.ToInt32(drho, 2);
-
-                string dtheta = Presence.Substring(16, 8);
-                DRHO = Convert.ToInt32(dtheta, 2)*0.15;
+                data_position = data_position + ComputePresence(paquete, data_position);
             }// 23  I010/280  Presence 
 
             if (Char.ToString(FSPEC_fake[26]) == "1") // 24  I010/131  Amplitude of Primary Plot 
@@ -1301,7 +1317,7 @@ namespace LIBRERIACLASES
                 string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                 string1 = AddZeros(string1);
 
-                string string2 = Convert.ToString(paquete[data_position]);
+                string string2 = Convert.ToString(paquete[data_position+1]);
                 string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
                 string2 = AddZeros(string2);
 

@@ -82,6 +82,12 @@
     <Compile Include="FinalStateSelectedAltitudeCAT21.Designer.cs">
       <DependentUpon>FinalStateSelectedAltitudeCAT21.cs</DependentUpon>
     </Compile>
+    <Compile Include="FlightLevelinBinaryRepresentationCAT10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlightLevelinBinaryRepresentationCAT10.Designer.cs">
+      <DependentUpon>FlightLevelinBinaryRepresentationCAT10.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,24 @@
     </Compile>
     <Compile Include="MetInfoCAT21.Designer.cs">
       <DependentUpon>MetInfoCAT21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mode3ACodeCAT10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mode3ACodeCAT10.Designer.cs">
+      <DependentUpon>Mode3ACodeCAT10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModeSMBDataCAT10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModeSMBDataCAT10.Designer.cs">
+      <DependentUpon>ModeSMBDataCAT10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModeSMBDataCAT21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModeSMBDataCAT21.Designer.cs">
+      <DependentUpon>ModeSMBDataCAT21.cs</DependentUpon>
     </Compile>
     <Compile Include="MOPSVersionCAT21.cs">
       <SubType>Form</SubType>
@@ -126,11 +150,23 @@
     <Compile Include="SurfaceCapabilitiesAndCharacteristicsCAT21.Designer.cs">
       <DependentUpon>SurfaceCapabilitiesAndCharacteristicsCAT21.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemStatusCAT10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemStatusCAT10.Designer.cs">
+      <DependentUpon>SystemStatusCAT10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tables.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tables.Designer.cs">
       <DependentUpon>Tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TargetReportDescriptorCAT10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TargetReportDescriptorCAT10.Designer.cs">
+      <DependentUpon>TargetReportDescriptorCAT10.cs</DependentUpon>
     </Compile>
     <Compile Include="TargetReportDescriptorCAT21.cs">
       <SubType>Form</SubType>
@@ -138,11 +174,23 @@
     <Compile Include="TargetReportDescriptorCAT21.Designer.cs">
       <DependentUpon>TargetReportDescriptorCAT21.cs</DependentUpon>
     </Compile>
+    <Compile Include="TargetSizeOrientationCAT10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TargetSizeOrientationCAT10.Designer.cs">
+      <DependentUpon>TargetSizeOrientationCAT10.cs</DependentUpon>
+    </Compile>
     <Compile Include="TargetStatusCAT21.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TargetStatusCAT21.Designer.cs">
       <DependentUpon>TargetStatusCAT21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrackStatusCAT10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackStatusCAT10.Designer.cs">
+      <DependentUpon>TrackStatusCAT10.cs</DependentUpon>
     </Compile>
     <Compile Include="TrajectoryIntentCAT21.cs">
       <SubType>Form</SubType>
@@ -165,11 +213,23 @@
     <EmbeddedResource Include="FinalStateSelectedAltitudeCAT21.resx">
       <DependentUpon>FinalStateSelectedAltitudeCAT21.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FlightLevelinBinaryRepresentationCAT10.resx">
+      <DependentUpon>FlightLevelinBinaryRepresentationCAT10.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapView.resx">
       <DependentUpon>MapView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MetInfoCAT21.resx">
       <DependentUpon>MetInfoCAT21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mode3ACodeCAT10.resx">
+      <DependentUpon>Mode3ACodeCAT10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModeSMBDataCAT10.resx">
+      <DependentUpon>ModeSMBDataCAT10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModeSMBDataCAT21.resx">
+      <DependentUpon>ModeSMBDataCAT21.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MOPSVersionCAT21.resx">
       <DependentUpon>MOPSVersionCAT21.cs</DependentUpon>
@@ -195,14 +255,26 @@
     <EmbeddedResource Include="SurfaceCapabilitiesAndCharacteristicsCAT21.resx">
       <DependentUpon>SurfaceCapabilitiesAndCharacteristicsCAT21.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SystemStatusCAT10.resx">
+      <DependentUpon>SystemStatusCAT10.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tables.resx">
       <DependentUpon>Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TargetReportDescriptorCAT10.resx">
+      <DependentUpon>TargetReportDescriptorCAT10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TargetReportDescriptorCAT21.resx">
       <DependentUpon>TargetReportDescriptorCAT21.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TargetSizeOrientationCAT10.resx">
+      <DependentUpon>TargetSizeOrientationCAT10.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TargetStatusCAT21.resx">
       <DependentUpon>TargetStatusCAT21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackStatusCAT10.resx">
+      <DependentUpon>TrackStatusCAT10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrajectoryIntentCAT21.resx">
       <DependentUpon>TrajectoryIntentCAT21.cs</DependentUpon>

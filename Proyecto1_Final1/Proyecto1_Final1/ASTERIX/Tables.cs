@@ -58,14 +58,163 @@ namespace ASTERIX
             {
                 int n = dgvCAT10.Rows.Add();
 
-                dgvCAT10.Rows[n].Cells[0].Value = i + 1;
-                dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC);
-                dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified;
-                dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information.";
-                dgvCAT10.Rows[n].Cells[4].Value = listaCAT10[i].TimeofDay_seconds;
-                dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString());
-                dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
-                dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString());
+                dgvCAT10.Rows[n].Cells[0].Value = i + 1; // ----------------------------------------------------------------------------------------- 0
+                dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC); //---------------------------------------- 1
+
+                if (listaCAT10[i].MessageType.Length > 0) // ----------------------------------------------------------------------------------------- 2
+                {
+                    dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified;
+                }
+                else { dgvCAT10.Rows[n].Cells[2].Value = "No info."; }
+
+                if (listaCAT10[i].TargetReportDescriptor.Length > 0) //-------------------------------------------------------------------------------- 3
+                {
+                    dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information.";
+                }
+                else { dgvCAT10.Rows[n].Cells[3].Value = "No info."; }
+
+
+                double TimeofDay = listaCAT10[i].TimeofDay_seconds;
+
+                double double1 = (TimeofDay / 3600);
+                int horas = Convert.ToInt32(Math.Floor(double1));
+
+                double double2 = (double1 - horas) * 60;
+                int mins = Convert.ToInt32(Math.Floor(double2));
+
+                double secs = (double2 - mins) * 60;
+
+                if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
+                {
+                    dgvCAT10.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                }
+                else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
+
+                if (listaCAT10[i].PositioninWGS84_coordinates.Length > 0) //-------------------------------------------------------------------------------- 5
+                {
+                    dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString());
+                }
+                else { dgvCAT10.Rows[n].Cells[5].Value = "No info."; }
+
+                if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
+                {
+                    dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                }
+                else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
+
+                if (listaCAT10[i].PositioninCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 7
+                {
+                    dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString());
+                }
+                else { dgvCAT10.Rows[n].Cells[7].Value = "No info."; }
+
+                if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
+                {
+                    dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+                }
+                else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
+
+                if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
+                {
+                    dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
+                }
+                else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }
+
+                if (listaCAT10[i].TrackNumber.Length > 0) //-------------------------------------------------------------------------------- 10
+                {
+                    dgvCAT10.Rows[n].Cells[10].Value = listaCAT10[i].Tracknumber_value.ToString();
+                }
+                else { dgvCAT10.Rows[n].Cells[10].Value = "No info."; }
+
+                if (listaCAT10[i].TrackStatus.Length > 0) //-------------------------------------------------------------------------------- 11
+                {
+                    dgvCAT10.Rows[n].Cells[11].Value = "Click Here for more information.";
+                }
+                else { dgvCAT10.Rows[n].Cells[11].Value = "No info."; }
+
+                if (listaCAT10[i].Mode3ACodeinOctal.Length > 0) //-------------------------------------------------------------------------------- 12
+                {
+                    dgvCAT10.Rows[n].Cells[12].Value = listaCAT10[i].Mode3ACodeinOctal_decodified;
+                }
+                else { dgvCAT10.Rows[n].Cells[12].Value = "No info."; }
+
+                if (listaCAT10[i].TargetAdress.Length > 0) //-------------------------------------------------------------------------------- 13
+                {
+                    dgvCAT10.Rows[n].Cells[13].Value = listaCAT10[i].TargetAdress_decoded;
+                }
+                else { dgvCAT10.Rows[n].Cells[13].Value = "No info."; }
+
+                if (listaCAT10[i].TargetIdentification.Length > 0) //-------------------------------------------------------------------------------- 14
+                {
+                    dgvCAT10.Rows[n].Cells[14].Value = listaCAT10[i].TargetIdentification_decoded;
+                }
+                else { dgvCAT10.Rows[n].Cells[14].Value = "No info."; }
+
+                if (listaCAT10[i].ModeSMBData.Length > 0) //-------------------------------------------------------------------------------- 15
+                {
+                    dgvCAT10.Rows[n].Cells[15].Value = "Click Here for more information.";
+                }
+                else { dgvCAT10.Rows[n].Cells[15].Value = "No info."; }
+
+                if (listaCAT10[i].VehicleFleetIdentification.Length > 0) //-------------------------------------------------------------------------------- 16
+                {
+                    dgvCAT10.Rows[n].Cells[16].Value = listaCAT10[i].VFI;
+                }
+                else { dgvCAT10.Rows[n].Cells[16].Value = "No info."; }
+
+                if (listaCAT10[i].FlightLevelInBinaryRepresentation.Length > 0) //-------------------------------------------------------------------------------- 17
+                {
+                    dgvCAT10.Rows[n].Cells[17].Value = listaCAT10[i].FlightLevel;
+                }
+                else { dgvCAT10.Rows[n].Cells[17].Value = "No info."; }
+
+                if (listaCAT10[i].MeasuredHeight.Length > 0) //-------------------------------------------------------------------------------- 18
+                {
+                    dgvCAT10.Rows[n].Cells[18].Value = listaCAT10[i].MeasuredHeight_ft;
+                }
+                else { dgvCAT10.Rows[n].Cells[18].Value = "No info."; }
+
+                if (listaCAT10[i].TargetSizeOrientation.Length > 0) //-------------------------------------------------------------------------------- 19
+                {
+                    dgvCAT10.Rows[n].Cells[19].Value = "Click Here for more information.";
+                }
+                else { dgvCAT10.Rows[n].Cells[19].Value = "No info."; }
+
+                if (listaCAT10[i].SystemStatus.Length > 0) //-------------------------------------------------------------------------------- 20
+                {
+                    dgvCAT10.Rows[n].Cells[20].Value = "Click Here for more information.";
+                }
+                else { dgvCAT10.Rows[n].Cells[20].Value = "No info."; }
+
+                if (listaCAT10[i].PreProgrammedMessage.Length > 0) //-------------------------------------------------------------------------------- 21
+                {
+                    dgvCAT10.Rows[n].Cells[21].Value = String.Concat(listaCAT10[i].MSG,"(",listaCAT10[i].TRB,")");
+                }
+                else { dgvCAT10.Rows[n].Cells[21].Value = "No info."; }
+
+                if (listaCAT10[i].StandardDeviationofPosition.Length > 0) //-------------------------------------------------------------------------------- 22
+                {
+                    dgvCAT10.Rows[n].Cells[22].Value = String.Concat(listaCAT10[i].StdDeviation_x,"/",listaCAT10[i].StdDeviation_y,"/", listaCAT10[i].StdDeviation_xy);
+                }
+                else { dgvCAT10.Rows[n].Cells[22].Value = "No info."; }
+
+                if (listaCAT10[i].Presence.Length > 0) //-------------------------------------------------------------------------------- 23
+                {
+                    dgvCAT10.Rows[n].Cells[23].Value = String.Concat(listaCAT10[i].DRHO.ToString(),"/", listaCAT10[i].DTHETA.ToString());
+                }
+                else { dgvCAT10.Rows[n].Cells[23].Value = "No info."; }
+
+                if (listaCAT10[i].AmplitudeofPrimaryPlot.Length > 0) //-------------------------------------------------------------------------------- 24
+                {
+                    dgvCAT10.Rows[n].Cells[24].Value = listaCAT10[i].AmplitudeofPrimaryPlot_value;
+                }
+                else { dgvCAT10.Rows[n].Cells[24].Value = "No info."; }
+
+                if (listaCAT10[i].CalculatedAcceleration.Length > 0) //-------------------------------------------------------------------------------- 25
+                {
+                    dgvCAT10.Rows[n].Cells[25].Value = String.Concat(listaCAT10[i].CalculatedAcceleration_X,"/",listaCAT10[i].CalculatedAcceleration_Y);
+                }
+                else { dgvCAT10.Rows[n].Cells[25].Value = "No info."; }
 
                 i = i + 1;
             }
@@ -399,7 +548,7 @@ namespace ASTERIX
 
                 if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                 {
-                    dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
+                    dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
                 }
                 else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -457,14 +606,163 @@ namespace ASTERIX
                 {
                     int n = dgvCAT10.Rows.Add();
 
-                    dgvCAT10.Rows[n].Cells[0].Value = i + 1; //---------------------------------------------------------------------------------------------------------------
-                    dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC); //------------------------------------------------------------
-                    dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified; //--------------------------------------------------------------------------------
-                    dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information."; //----------------------------------------------------------------------------------
-                    dgvCAT10.Rows[n].Cells[4].Value = listaCAT10[i].TimeofDay_seconds; //-------------------------------------------------------------------------------------
-                    dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString()); //----------------------------
-                    dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString()); //------------------------------------
-                    dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString()); //----------------------
+                    dgvCAT10.Rows[n].Cells[0].Value = i + 1; // ----------------------------------------------------------------------------------------- 0
+                    dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC); //---------------------------------------- 1
+
+                    if (listaCAT10[i].MessageType.Length > 0) // ----------------------------------------------------------------------------------------- 2
+                    {
+                        dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[2].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetReportDescriptor.Length > 0) //-------------------------------------------------------------------------------- 3
+                    {
+                        dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[3].Value = "No info."; }
+
+
+                    double TimeofDay = listaCAT10[i].TimeofDay_seconds;
+
+                    double double1 = (TimeofDay / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
+                    {
+                        dgvCAT10.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT10[i].PositioninWGS84_coordinates.Length > 0) //-------------------------------------------------------------------------------- 5
+                    {
+                        dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
+                    {
+                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
+
+                    if (listaCAT10[i].PositioninCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 7
+                    {
+                        dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
+                    {
+                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
+                    {
+                        dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }
+
+                    if (listaCAT10[i].TrackNumber.Length > 0) //-------------------------------------------------------------------------------- 10
+                    {
+                        dgvCAT10.Rows[n].Cells[10].Value = listaCAT10[i].Tracknumber_value.ToString();
+                    }
+                    else { dgvCAT10.Rows[n].Cells[10].Value = "No info."; }
+
+                    if (listaCAT10[i].TrackStatus.Length > 0) //-------------------------------------------------------------------------------- 11
+                    {
+                        dgvCAT10.Rows[n].Cells[11].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[11].Value = "No info."; }
+
+                    if (listaCAT10[i].Mode3ACodeinOctal.Length > 0) //-------------------------------------------------------------------------------- 12
+                    {
+                        dgvCAT10.Rows[n].Cells[12].Value = listaCAT10[i].Mode3ACodeinOctal_decodified;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[12].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetAdress.Length > 0) //-------------------------------------------------------------------------------- 13
+                    {
+                        dgvCAT10.Rows[n].Cells[13].Value = listaCAT10[i].TargetAdress_decoded;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[13].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetIdentification.Length > 0) //-------------------------------------------------------------------------------- 14
+                    {
+                        dgvCAT10.Rows[n].Cells[14].Value = listaCAT10[i].TargetIdentification_decoded;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[14].Value = "No info."; }
+
+                    if (listaCAT10[i].ModeSMBData.Length > 0) //-------------------------------------------------------------------------------- 15
+                    {
+                        dgvCAT10.Rows[n].Cells[15].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[15].Value = "No info."; }
+
+                    if (listaCAT10[i].VehicleFleetIdentification.Length > 0) //-------------------------------------------------------------------------------- 16
+                    {
+                        dgvCAT10.Rows[n].Cells[16].Value = listaCAT10[i].VFI;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[16].Value = "No info."; }
+
+                    if (listaCAT10[i].FlightLevelInBinaryRepresentation.Length > 0) //-------------------------------------------------------------------------------- 17
+                    {
+                        dgvCAT10.Rows[n].Cells[17].Value = listaCAT10[i].FlightLevel;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[17].Value = "No info."; }
+
+                    if (listaCAT10[i].MeasuredHeight.Length > 0) //-------------------------------------------------------------------------------- 18
+                    {
+                        dgvCAT10.Rows[n].Cells[18].Value = listaCAT10[i].MeasuredHeight_ft;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[18].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetSizeOrientation.Length > 0) //-------------------------------------------------------------------------------- 19
+                    {
+                        dgvCAT10.Rows[n].Cells[19].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[19].Value = "No info."; }
+
+                    if (listaCAT10[i].SystemStatus.Length > 0) //-------------------------------------------------------------------------------- 20
+                    {
+                        dgvCAT10.Rows[n].Cells[20].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[20].Value = "No info."; }
+
+                    if (listaCAT10[i].PreProgrammedMessage.Length > 0) //-------------------------------------------------------------------------------- 21
+                    {
+                        dgvCAT10.Rows[n].Cells[21].Value = String.Concat(listaCAT10[i].MSG, "(", listaCAT10[i].TRB, ")");
+                    }
+                    else { dgvCAT10.Rows[n].Cells[21].Value = "No info."; }
+
+                    if (listaCAT10[i].StandardDeviationofPosition.Length > 0) //-------------------------------------------------------------------------------- 22
+                    {
+                        dgvCAT10.Rows[n].Cells[22].Value = String.Concat(listaCAT10[i].StdDeviation_x, "/", listaCAT10[i].StdDeviation_y, "/", listaCAT10[i].StdDeviation_xy);
+                    }
+                    else { dgvCAT10.Rows[n].Cells[22].Value = "No info."; }
+
+                    if (listaCAT10[i].Presence.Length > 0) //-------------------------------------------------------------------------------- 23
+                    {
+                        dgvCAT10.Rows[n].Cells[23].Value = String.Concat(listaCAT10[i].DRHO.ToString(), "/", listaCAT10[i].DTHETA.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[23].Value = "No info."; }
+
+                    if (listaCAT10[i].AmplitudeofPrimaryPlot.Length > 0) //-------------------------------------------------------------------------------- 24
+                    {
+                        dgvCAT10.Rows[n].Cells[24].Value = listaCAT10[i].AmplitudeofPrimaryPlot_value;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[24].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedAcceleration.Length > 0) //-------------------------------------------------------------------------------- 25
+                    {
+                        dgvCAT10.Rows[n].Cells[25].Value = String.Concat(listaCAT10[i].CalculatedAcceleration_X, "/", listaCAT10[i].CalculatedAcceleration_Y);
+                    }
+                    else { dgvCAT10.Rows[n].Cells[25].Value = "No info."; }
 
                     i = i + 1;
                 }
@@ -859,14 +1157,163 @@ namespace ASTERIX
                 {
                     int n = dgvCAT10.Rows.Add();
 
-                    dgvCAT10.Rows[n].Cells[0].Value = i + 1;
-                    dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC);
-                    dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified;
-                    dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information.";
-                    dgvCAT10.Rows[n].Cells[4].Value = listaCAT10[i].TimeofDay_seconds;
-                    dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString());
-                    dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
-                    dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString());
+                    dgvCAT10.Rows[n].Cells[0].Value = i + 1; // ----------------------------------------------------------------------------------------- 0
+                    dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC); //---------------------------------------- 1
+
+                    if (listaCAT10[i].MessageType.Length > 0) // ----------------------------------------------------------------------------------------- 2
+                    {
+                        dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[2].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetReportDescriptor.Length > 0) //-------------------------------------------------------------------------------- 3
+                    {
+                        dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[3].Value = "No info."; }
+
+
+                    double TimeofDay = listaCAT10[i].TimeofDay_seconds;
+
+                    double double1 = (TimeofDay / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
+                    {
+                        dgvCAT10.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT10[i].PositioninWGS84_coordinates.Length > 0) //-------------------------------------------------------------------------------- 5
+                    {
+                        dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
+                    {
+                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
+
+                    if (listaCAT10[i].PositioninCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 7
+                    {
+                        dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
+                    {
+                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
+                    {
+                        dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }
+
+                    if (listaCAT10[i].TrackNumber.Length > 0) //-------------------------------------------------------------------------------- 10
+                    {
+                        dgvCAT10.Rows[n].Cells[10].Value = listaCAT10[i].Tracknumber_value.ToString();
+                    }
+                    else { dgvCAT10.Rows[n].Cells[10].Value = "No info."; }
+
+                    if (listaCAT10[i].TrackStatus.Length > 0) //-------------------------------------------------------------------------------- 11
+                    {
+                        dgvCAT10.Rows[n].Cells[11].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[11].Value = "No info."; }
+
+                    if (listaCAT10[i].Mode3ACodeinOctal.Length > 0) //-------------------------------------------------------------------------------- 12
+                    {
+                        dgvCAT10.Rows[n].Cells[12].Value = listaCAT10[i].Mode3ACodeinOctal_decodified;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[12].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetAdress.Length > 0) //-------------------------------------------------------------------------------- 13
+                    {
+                        dgvCAT10.Rows[n].Cells[13].Value = listaCAT10[i].TargetAdress_decoded;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[13].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetIdentification.Length > 0) //-------------------------------------------------------------------------------- 14
+                    {
+                        dgvCAT10.Rows[n].Cells[14].Value = listaCAT10[i].TargetIdentification_decoded;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[14].Value = "No info."; }
+
+                    if (listaCAT10[i].ModeSMBData.Length > 0) //-------------------------------------------------------------------------------- 15
+                    {
+                        dgvCAT10.Rows[n].Cells[15].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[15].Value = "No info."; }
+
+                    if (listaCAT10[i].VehicleFleetIdentification.Length > 0) //-------------------------------------------------------------------------------- 16
+                    {
+                        dgvCAT10.Rows[n].Cells[16].Value = listaCAT10[i].VFI;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[16].Value = "No info."; }
+
+                    if (listaCAT10[i].FlightLevelInBinaryRepresentation.Length > 0) //-------------------------------------------------------------------------------- 17
+                    {
+                        dgvCAT10.Rows[n].Cells[17].Value = listaCAT10[i].FlightLevel;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[17].Value = "No info."; }
+
+                    if (listaCAT10[i].MeasuredHeight.Length > 0) //-------------------------------------------------------------------------------- 18
+                    {
+                        dgvCAT10.Rows[n].Cells[18].Value = listaCAT10[i].MeasuredHeight_ft;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[18].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetSizeOrientation.Length > 0) //-------------------------------------------------------------------------------- 19
+                    {
+                        dgvCAT10.Rows[n].Cells[19].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[19].Value = "No info."; }
+
+                    if (listaCAT10[i].SystemStatus.Length > 0) //-------------------------------------------------------------------------------- 20
+                    {
+                        dgvCAT10.Rows[n].Cells[20].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[20].Value = "No info."; }
+
+                    if (listaCAT10[i].PreProgrammedMessage.Length > 0) //-------------------------------------------------------------------------------- 21
+                    {
+                        dgvCAT10.Rows[n].Cells[21].Value = String.Concat(listaCAT10[i].MSG, "(", listaCAT10[i].TRB, ")");
+                    }
+                    else { dgvCAT10.Rows[n].Cells[21].Value = "No info."; }
+
+                    if (listaCAT10[i].StandardDeviationofPosition.Length > 0) //-------------------------------------------------------------------------------- 22
+                    {
+                        dgvCAT10.Rows[n].Cells[22].Value = String.Concat(listaCAT10[i].StdDeviation_x, "/", listaCAT10[i].StdDeviation_y, "/", listaCAT10[i].StdDeviation_xy);
+                    }
+                    else { dgvCAT10.Rows[n].Cells[22].Value = "No info."; }
+
+                    if (listaCAT10[i].Presence.Length > 0) //-------------------------------------------------------------------------------- 23
+                    {
+                        dgvCAT10.Rows[n].Cells[23].Value = String.Concat(listaCAT10[i].DRHO.ToString(), "/", listaCAT10[i].DTHETA.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[23].Value = "No info."; }
+
+                    if (listaCAT10[i].AmplitudeofPrimaryPlot.Length > 0) //-------------------------------------------------------------------------------- 24
+                    {
+                        dgvCAT10.Rows[n].Cells[24].Value = listaCAT10[i].AmplitudeofPrimaryPlot_value;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[24].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedAcceleration.Length > 0) //-------------------------------------------------------------------------------- 25
+                    {
+                        dgvCAT10.Rows[n].Cells[25].Value = String.Concat(listaCAT10[i].CalculatedAcceleration_X, "/", listaCAT10[i].CalculatedAcceleration_Y);
+                    }
+                    else { dgvCAT10.Rows[n].Cells[25].Value = "No info."; }
 
                     i = i + 1;
                 }
@@ -1276,14 +1723,163 @@ namespace ASTERIX
                 {
                     int n = dgvCAT10.Rows.Add();
 
-                    dgvCAT10.Rows[n].Cells[0].Value = i + 1;
-                    dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC);
-                    dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified;
-                    dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information.";
-                    dgvCAT10.Rows[n].Cells[4].Value = listaCAT10[i].TimeofDay_seconds;
-                    dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString());
-                    dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
-                    dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString());
+                    dgvCAT10.Rows[n].Cells[0].Value = i + 1; // ----------------------------------------------------------------------------------------- 0
+                    dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC); //---------------------------------------- 1
+
+                    if (listaCAT10[i].MessageType.Length > 0) // ----------------------------------------------------------------------------------------- 2
+                    {
+                        dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[2].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetReportDescriptor.Length > 0) //-------------------------------------------------------------------------------- 3
+                    {
+                        dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[3].Value = "No info."; }
+
+
+                    double TimeofDay = listaCAT10[i].TimeofDay_seconds;
+
+                    double double1 = (TimeofDay / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
+                    {
+                        dgvCAT10.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT10[i].PositioninWGS84_coordinates.Length > 0) //-------------------------------------------------------------------------------- 5
+                    {
+                        dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
+                    {
+                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
+
+                    if (listaCAT10[i].PositioninCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 7
+                    {
+                        dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
+                    {
+                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
+                    {
+                        dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }
+
+                    if (listaCAT10[i].TrackNumber.Length > 0) //-------------------------------------------------------------------------------- 10
+                    {
+                        dgvCAT10.Rows[n].Cells[10].Value = listaCAT10[i].Tracknumber_value.ToString();
+                    }
+                    else { dgvCAT10.Rows[n].Cells[10].Value = "No info."; }
+
+                    if (listaCAT10[i].TrackStatus.Length > 0) //-------------------------------------------------------------------------------- 11
+                    {
+                        dgvCAT10.Rows[n].Cells[11].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[11].Value = "No info."; }
+
+                    if (listaCAT10[i].Mode3ACodeinOctal.Length > 0) //-------------------------------------------------------------------------------- 12
+                    {
+                        dgvCAT10.Rows[n].Cells[12].Value = listaCAT10[i].Mode3ACodeinOctal_decodified;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[12].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetAdress.Length > 0) //-------------------------------------------------------------------------------- 13
+                    {
+                        dgvCAT10.Rows[n].Cells[13].Value = listaCAT10[i].TargetAdress_decoded;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[13].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetIdentification.Length > 0) //-------------------------------------------------------------------------------- 14
+                    {
+                        dgvCAT10.Rows[n].Cells[14].Value = listaCAT10[i].TargetIdentification_decoded;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[14].Value = "No info."; }
+
+                    if (listaCAT10[i].ModeSMBData.Length > 0) //-------------------------------------------------------------------------------- 15
+                    {
+                        dgvCAT10.Rows[n].Cells[15].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[15].Value = "No info."; }
+
+                    if (listaCAT10[i].VehicleFleetIdentification.Length > 0) //-------------------------------------------------------------------------------- 16
+                    {
+                        dgvCAT10.Rows[n].Cells[16].Value = listaCAT10[i].VFI;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[16].Value = "No info."; }
+
+                    if (listaCAT10[i].FlightLevelInBinaryRepresentation.Length > 0) //-------------------------------------------------------------------------------- 17
+                    {
+                        dgvCAT10.Rows[n].Cells[17].Value = listaCAT10[i].FlightLevel;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[17].Value = "No info."; }
+
+                    if (listaCAT10[i].MeasuredHeight.Length > 0) //-------------------------------------------------------------------------------- 18
+                    {
+                        dgvCAT10.Rows[n].Cells[18].Value = listaCAT10[i].MeasuredHeight_ft;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[18].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetSizeOrientation.Length > 0) //-------------------------------------------------------------------------------- 19
+                    {
+                        dgvCAT10.Rows[n].Cells[19].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[19].Value = "No info."; }
+
+                    if (listaCAT10[i].SystemStatus.Length > 0) //-------------------------------------------------------------------------------- 20
+                    {
+                        dgvCAT10.Rows[n].Cells[20].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[20].Value = "No info."; }
+
+                    if (listaCAT10[i].PreProgrammedMessage.Length > 0) //-------------------------------------------------------------------------------- 21
+                    {
+                        dgvCAT10.Rows[n].Cells[21].Value = String.Concat(listaCAT10[i].MSG, "(", listaCAT10[i].TRB, ")");
+                    }
+                    else { dgvCAT10.Rows[n].Cells[21].Value = "No info."; }
+
+                    if (listaCAT10[i].StandardDeviationofPosition.Length > 0) //-------------------------------------------------------------------------------- 22
+                    {
+                        dgvCAT10.Rows[n].Cells[22].Value = String.Concat(listaCAT10[i].StdDeviation_x, "/", listaCAT10[i].StdDeviation_y, "/", listaCAT10[i].StdDeviation_xy);
+                    }
+                    else { dgvCAT10.Rows[n].Cells[22].Value = "No info."; }
+
+                    if (listaCAT10[i].Presence.Length > 0) //-------------------------------------------------------------------------------- 23
+                    {
+                        dgvCAT10.Rows[n].Cells[23].Value = String.Concat(listaCAT10[i].DRHO.ToString(), "/", listaCAT10[i].DTHETA.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[23].Value = "No info."; }
+
+                    if (listaCAT10[i].AmplitudeofPrimaryPlot.Length > 0) //-------------------------------------------------------------------------------- 24
+                    {
+                        dgvCAT10.Rows[n].Cells[24].Value = listaCAT10[i].AmplitudeofPrimaryPlot_value;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[24].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedAcceleration.Length > 0) //-------------------------------------------------------------------------------- 25
+                    {
+                        dgvCAT10.Rows[n].Cells[25].Value = String.Concat(listaCAT10[i].CalculatedAcceleration_X, "/", listaCAT10[i].CalculatedAcceleration_Y);
+                    }
+                    else { dgvCAT10.Rows[n].Cells[25].Value = "No info."; }
 
                     i = i + 1;
                 }
@@ -1684,14 +2280,163 @@ namespace ASTERIX
                 {
                     int n = dgvCAT10.Rows.Add();
 
-                    dgvCAT10.Rows[n].Cells[0].Value = i + 1;
-                    dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC);
-                    dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified;
-                    dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information.";
-                    dgvCAT10.Rows[n].Cells[4].Value = listaCAT10[i].TimeofDay_seconds;
-                    dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString());
-                    dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
-                    dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString());
+                    dgvCAT10.Rows[n].Cells[0].Value = i + 1; // ----------------------------------------------------------------------------------------- 0
+                    dgvCAT10.Rows[n].Cells[1].Value = String.Concat(listaCAT10[i].SAC, "/", listaCAT10[i].SIC); //---------------------------------------- 1
+
+                    if (listaCAT10[i].MessageType.Length > 0) // ----------------------------------------------------------------------------------------- 2
+                    {
+                        dgvCAT10.Rows[n].Cells[2].Value = listaCAT10[i].MessageType_decodified;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[2].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetReportDescriptor.Length > 0) //-------------------------------------------------------------------------------- 3
+                    {
+                        dgvCAT10.Rows[n].Cells[3].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[3].Value = "No info."; }
+
+
+                    double TimeofDay = listaCAT10[i].TimeofDay_seconds;
+
+                    double double1 = (TimeofDay / 3600);
+                    int horas = Convert.ToInt32(Math.Floor(double1));
+
+                    double double2 = (double1 - horas) * 60;
+                    int mins = Convert.ToInt32(Math.Floor(double2));
+
+                    double secs = (double2 - mins) * 60;
+
+                    if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
+                    {
+                        dgvCAT10.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
+
+                    if (listaCAT10[i].PositioninWGS84_coordinates.Length > 0) //-------------------------------------------------------------------------------- 5
+                    {
+                        dgvCAT10.Rows[n].Cells[5].Value = String.Concat(listaCAT10[i].latWGS84.ToString(), "/", listaCAT10[i].lonWGS84.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[5].Value = "No info."; }
+
+                    if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
+                    {
+                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
+
+                    if (listaCAT10[i].PositioninCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 7
+                    {
+                        dgvCAT10.Rows[n].Cells[7].Value = String.Concat(listaCAT10[i].X_cartesian.ToString(), "/", listaCAT10[i].Y_cartesian.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[7].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
+                    {
+                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
+                    {
+                        dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }
+
+                    if (listaCAT10[i].TrackNumber.Length > 0) //-------------------------------------------------------------------------------- 10
+                    {
+                        dgvCAT10.Rows[n].Cells[10].Value = listaCAT10[i].Tracknumber_value.ToString();
+                    }
+                    else { dgvCAT10.Rows[n].Cells[10].Value = "No info."; }
+
+                    if (listaCAT10[i].TrackStatus.Length > 0) //-------------------------------------------------------------------------------- 11
+                    {
+                        dgvCAT10.Rows[n].Cells[11].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[11].Value = "No info."; }
+
+                    if (listaCAT10[i].Mode3ACodeinOctal.Length > 0) //-------------------------------------------------------------------------------- 12
+                    {
+                        dgvCAT10.Rows[n].Cells[12].Value = listaCAT10[i].Mode3ACodeinOctal_decodified;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[12].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetAdress.Length > 0) //-------------------------------------------------------------------------------- 13
+                    {
+                        dgvCAT10.Rows[n].Cells[13].Value = listaCAT10[i].TargetAdress_decoded;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[13].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetIdentification.Length > 0) //-------------------------------------------------------------------------------- 14
+                    {
+                        dgvCAT10.Rows[n].Cells[14].Value = listaCAT10[i].TargetIdentification_decoded;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[14].Value = "No info."; }
+
+                    if (listaCAT10[i].ModeSMBData.Length > 0) //-------------------------------------------------------------------------------- 15
+                    {
+                        dgvCAT10.Rows[n].Cells[15].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[15].Value = "No info."; }
+
+                    if (listaCAT10[i].VehicleFleetIdentification.Length > 0) //-------------------------------------------------------------------------------- 16
+                    {
+                        dgvCAT10.Rows[n].Cells[16].Value = listaCAT10[i].VFI;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[16].Value = "No info."; }
+
+                    if (listaCAT10[i].FlightLevelInBinaryRepresentation.Length > 0) //-------------------------------------------------------------------------------- 17
+                    {
+                        dgvCAT10.Rows[n].Cells[17].Value = listaCAT10[i].FlightLevel;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[17].Value = "No info."; }
+
+                    if (listaCAT10[i].MeasuredHeight.Length > 0) //-------------------------------------------------------------------------------- 18
+                    {
+                        dgvCAT10.Rows[n].Cells[18].Value = listaCAT10[i].MeasuredHeight_ft;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[18].Value = "No info."; }
+
+                    if (listaCAT10[i].TargetSizeOrientation.Length > 0) //-------------------------------------------------------------------------------- 19
+                    {
+                        dgvCAT10.Rows[n].Cells[19].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[19].Value = "No info."; }
+
+                    if (listaCAT10[i].SystemStatus.Length > 0) //-------------------------------------------------------------------------------- 20
+                    {
+                        dgvCAT10.Rows[n].Cells[20].Value = "Click Here for more information.";
+                    }
+                    else { dgvCAT10.Rows[n].Cells[20].Value = "No info."; }
+
+                    if (listaCAT10[i].PreProgrammedMessage.Length > 0) //-------------------------------------------------------------------------------- 21
+                    {
+                        dgvCAT10.Rows[n].Cells[21].Value = String.Concat(listaCAT10[i].MSG, "(", listaCAT10[i].TRB, ")");
+                    }
+                    else { dgvCAT10.Rows[n].Cells[21].Value = "No info."; }
+
+                    if (listaCAT10[i].StandardDeviationofPosition.Length > 0) //-------------------------------------------------------------------------------- 22
+                    {
+                        dgvCAT10.Rows[n].Cells[22].Value = String.Concat(listaCAT10[i].StdDeviation_x, "/", listaCAT10[i].StdDeviation_y, "/", listaCAT10[i].StdDeviation_xy);
+                    }
+                    else { dgvCAT10.Rows[n].Cells[22].Value = "No info."; }
+
+                    if (listaCAT10[i].Presence.Length > 0) //-------------------------------------------------------------------------------- 23
+                    {
+                        dgvCAT10.Rows[n].Cells[23].Value = String.Concat(listaCAT10[i].DRHO.ToString(), "/", listaCAT10[i].DTHETA.ToString());
+                    }
+                    else { dgvCAT10.Rows[n].Cells[23].Value = "No info."; }
+
+                    if (listaCAT10[i].AmplitudeofPrimaryPlot.Length > 0) //-------------------------------------------------------------------------------- 24
+                    {
+                        dgvCAT10.Rows[n].Cells[24].Value = listaCAT10[i].AmplitudeofPrimaryPlot_value;
+                    }
+                    else { dgvCAT10.Rows[n].Cells[24].Value = "No info."; }
+
+                    if (listaCAT10[i].CalculatedAcceleration.Length > 0) //-------------------------------------------------------------------------------- 25
+                    {
+                        dgvCAT10.Rows[n].Cells[25].Value = String.Concat(listaCAT10[i].CalculatedAcceleration_X, "/", listaCAT10[i].CalculatedAcceleration_Y);
+                    }
+                    else { dgvCAT10.Rows[n].Cells[25].Value = "No info."; }
 
                     i = i + 1;
                 }
@@ -2041,6 +2786,8 @@ namespace ASTERIX
                     else { dgvCAT21.Rows[n].Cells[41].Value = "No info."; }
 
 
+
+
                     i = i + 1;
                 }
 
@@ -2151,6 +2898,24 @@ namespace ASTERIX
                     }
                 }
 
+                if (listaCAT21[i].ModeSMBData.Length > 0)
+                {
+                    if (c == 38)
+                    {
+                        ModeSMBDataCAT21 MSMBdataCAT21 = new ModeSMBDataCAT21(listaCAT21, i);
+                        MSMBdataCAT21.ShowDialog();
+                    }
+                }
+
+                if (listaCAT21[i].ACASResolutionAdvisoryReport.Length > 0)
+                {
+                    if (c == 39)
+                    {
+                        ACASResolutionAdvisoryCAT21 ACASRACAT21 = new ACASResolutionAdvisoryCAT21(listaCAT21, i);
+                        ACASRACAT21.ShowDialog();
+                    }
+                }
+
                 if (listaCAT21[i].ACASResolutionAdvisoryReport.Length > 0)
                 {
                     if (c == 39)
@@ -2168,6 +2933,86 @@ namespace ASTERIX
                         DACAT21.ShowDialog();
                     }
                 }
+
+
+
+
+            }
+            catch { }
+        }
+
+        private void dgvCAT10_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int c = e.ColumnIndex;
+                int r = e.RowIndex;
+                int i = (int)dgvCAT10.Rows[r].Cells[0].Value - 1;
+
+                if (listaCAT10[i].TargetReportDescriptor.Length > 0)
+                {
+                    if (c == 3)
+                    {
+                        TargetReportDescriptorCAT10 TRP2 = new TargetReportDescriptorCAT10(listaCAT10, i);
+                        TRP2.ShowDialog();
+                    }
+                }
+
+                if (listaCAT10[i].TrackStatus.Length > 0)
+                {
+                    if (c == 11)
+                    {
+                        TrackStatusCAT10 TS2 = new TrackStatusCAT10(listaCAT10, i);
+                        TS2.ShowDialog();
+                    }
+                }
+
+                if (listaCAT10[i].Mode3ACodeinOctal.Length > 0)
+                {
+                    if (c == 12)
+                    {
+                        Mode3ACodeCAT10 M3ACodeCAT10 = new Mode3ACodeCAT10(listaCAT10, i);
+                        M3ACodeCAT10.ShowDialog();
+                    }
+                }
+
+                if (listaCAT10[i].ModeSMBData.Length > 0)
+                {
+                    if (c == 15)
+                    {
+                        ModeSMBDataCAT10 MSMBDataCAT10 = new ModeSMBDataCAT10(listaCAT10, i);
+                        MSMBDataCAT10.ShowDialog();
+                    }
+                }
+
+                if (listaCAT10[i].FlightLevelInBinaryRepresentation.Length > 0)
+                {
+                    if (c == 17)
+                    {
+                        FlightLevelinBinaryRepresentationCAT10 FLBRCAT10 = new FlightLevelinBinaryRepresentationCAT10(listaCAT10, i);
+                        FLBRCAT10.ShowDialog();
+                    }
+                }
+
+                if (listaCAT10[i].TargetSizeOrientation.Length > 0)
+                {
+                    if (c == 19)
+                    {
+                        TargetSizeOrientationCAT10 TSOCAT10 = new TargetSizeOrientationCAT10(listaCAT10, i);
+                        TSOCAT10.ShowDialog();
+                    }
+                }
+
+                if (listaCAT10[i].SystemStatus.Length > 0)
+                {
+                    if (c == 20)
+                    {
+                        SystemStatusCAT10 SSCAT10 = new SystemStatusCAT10(listaCAT10, i);
+                        SSCAT10.ShowDialog();
+                    }
+                }
+
+
 
 
 

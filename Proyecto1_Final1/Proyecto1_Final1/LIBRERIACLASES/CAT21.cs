@@ -1804,8 +1804,6 @@ namespace LIBRERIACLASES
                 this.BDS1[i] = octet8.Substring(0, 4);
                 this.BDS2[i] = octet8.Substring(4, 4);
 
-                this.ModeSMBData = "\nMessage: " + this.MBDATA[i] + ", Address 1: " + this.BDS1[i] + ", Address 2: " + this.BDS2[i];
-
                 cont = cont + 8;
 
                 i++;
