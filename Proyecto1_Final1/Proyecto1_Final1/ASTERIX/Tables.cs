@@ -74,19 +74,19 @@ namespace ASTERIX
                 else { dgvCAT10.Rows[n].Cells[3].Value = "No info."; }
 
 
-                double TimeofDay = listaCAT10[i].TimeofDay_seconds;
+                //double TimeofDay = listaCAT10[i].TimeofDay_seconds;
 
-                double double1 = (TimeofDay / 3600);
-                int horas = Convert.ToInt32(Math.Floor(double1));
+                //double double1 = (TimeofDay / 3600);
+                //int horas = Convert.ToInt32(Math.Floor(double1));
 
-                double double2 = (double1 - horas) * 60;
-                int mins = Convert.ToInt32(Math.Floor(double2));
+                //double double2 = (double1 - horas) * 60;
+                //int mins = Convert.ToInt32(Math.Floor(double2));
 
-                double secs = (double2 - mins) * 60;
+                //double secs = (double2 - mins) * 60;
 
                 if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
                 {
-                    dgvCAT10.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                    dgvCAT10.Rows[n].Cells[4].Value = listaCAT10[i].TimeofDay_seconds /*horas + ":" + mins + ":" + secs*/;
                 }
                 else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
 
@@ -3019,6 +3019,11 @@ namespace ASTERIX
 
             }
             catch { }
+        }
+
+        private void Tables_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

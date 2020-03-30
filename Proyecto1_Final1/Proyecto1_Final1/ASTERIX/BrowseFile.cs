@@ -78,10 +78,6 @@ namespace ASTERIX
                 try
                 {
                     string path = tbDirection.Text;
-                    string path1 = "C:/Users/oscar/Desktop/PGTA_Proyecto1/ConsoleApp1/adsb_v21_bcn.ast"; // CAT21
-                    string path2 = "C:/Users/oscar/Desktop/PGTA_Proyecto1/ConsoleApp1/smr_160510-lebl-220001.ast"; // SMR
-                    string path3 = "C:/Users/oscar/Desktop/PGTA_Proyecto1/ConsoleApp1/mlat_160510-lebl-220001.ast"; // MLAT
-                    string path4 = "C:/Users/oscar/Desktop/PGTA_Proyecto1/ConsoleApp1/smr_mlat_160510-lebl-220001.ast"; // SMR + MLAT;
 
                     Fichero newfichero = new Fichero(path);
                     newfichero.leer();
