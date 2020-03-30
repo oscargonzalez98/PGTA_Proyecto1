@@ -316,7 +316,7 @@ namespace ASTERIX
                 dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
 
 
-                double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+                double TOMR_Position_seconds = Math.Round( listaCAT21[i].TimeofMessageReception_Position_seconds);
 
                 // Convertimos en horas:mins:secs
                 double1 = (TOMR_Position_seconds / 3600);
@@ -349,7 +349,7 @@ namespace ASTERIX
                 }
                 else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
 
-                double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+                double TOMR_HPPVelocity_seconds =Math.Round( listaCAT21[i].TimeofMessageReception_Velocity_seconds);
 
                 // Convertimos en horas:mins:secs
                 double1 = (TOMR_HPPVelocity_seconds / 3600);
@@ -367,7 +367,7 @@ namespace ASTERIX
 
                 // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
 
-                double TOA_HRVelocity_seconds = listaCAT21[i].TimeofMessageReception_HRVelocity_seconds;
+                double TOA_HRVelocity_seconds =Math.Round( listaCAT21[i].TimeofMessageReception_HRVelocity_seconds);
 
                 // Convertimos en horas:mins:secs
                 double1 = (TOA_HRVelocity_seconds / 3600);
