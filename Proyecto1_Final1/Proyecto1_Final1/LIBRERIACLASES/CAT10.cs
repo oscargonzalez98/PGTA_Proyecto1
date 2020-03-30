@@ -729,605 +729,617 @@ namespace LIBRERIACLASES
             // Aqui porocesamos los parametros que hemos encontrado en el FSPEC
             //-------------------------------------------------------------------------------------------------------------
 
-            if (Char.ToString(FSPEC_fake[0]) == "1") // 1 I021/010 Data Source Identification
+            if(FSPEC.Length>0)
             {
-
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position+1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                DataSourceIdentifier = String.Concat(string1, string2);
-
-                data_position = data_position + 2;
-
-                Calculate_DataSourceIdentification(DataSourceIdentifier);
-
-            } // 1 I021/010 Data Source Identification
-
-            if (Char.ToString(FSPEC_fake[1]) == "1") // 2 I010/000 Message Type 
-            {
-
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                MessageType = string1;
-
-                data_position = data_position + 1;
-
-                Calculate_MessageType(MessageType);
-
-            }// 2 I010/000 Message Type 
-
-            if (Char.ToString(FSPEC_fake[2]) == "1") // 3 I010/020 Target Report Descriptor  
-            {
-                // primero leemos el primer paquete y lo pasamos a binario
-
-                string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
-                string_packet = AddZeros(string_packet);
-
-                if ((Convert.ToString(string_packet[7])) == "0") // si ultima posicion es un 0 guardamos el octeto y pasamos al siguiente
+                if (Char.ToString(FSPEC_fake[0]) == "1") // 1 I021/010 Data Source Identification
                 {
+
+                    string string1 = Convert.ToString(paquete[data_position]);
+                    string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string1 = AddZeros(string1);
+
+                    string string2 = Convert.ToString(paquete[data_position + 1]);
+                    string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                    string2 = AddZeros(string2);
+
+                    DataSourceIdentifier = String.Concat(string1, string2);
+
+                    data_position = data_position + 2;
+
+                    Calculate_DataSourceIdentification(DataSourceIdentifier);
+
+                } // 1 I021/010 Data Source Identification
+
+                if (Char.ToString(FSPEC_fake[1]) == "1") // 2 I010/000 Message Type 
+                {
+
+                    string string1 = Convert.ToString(paquete[data_position]);
+                    string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string1 = AddZeros(string1);
+
+                    MessageType = string1;
+
+                    data_position = data_position + 1;
+
+                    Calculate_MessageType(MessageType);
+
+                }// 2 I010/000 Message Type 
+
+                if (Char.ToString(FSPEC_fake[2]) == "1") // 3 I010/020 Target Report Descriptor  
+                {
+                    // primero leemos el primer paquete y lo pasamos a binario
+
+                    string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                    string_packet = AddZeros(string_packet);
+
+                    if ((Convert.ToString(string_packet[7])) == "0") // si ultima posicion es un 0 guardamos el octeto y pasamos al siguiente
+                    {
+                        TargetReportDescriptor = string_packet;
+                        data_position = data_position + 1;
+                    }
+                    if ((Convert.ToString(string_packet[7])) == "1" && string_packet.Length < 24) // si ultimo valor =1 hacemos un bucle que vaya concatenando todos los octetos acabados en 1
+                    {
+                        i = 0;
+                        data_position = data_position + 1;
+                        while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1")
+                        {
+                            string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                            string_packet2 = AddZeros(string_packet2);
+                            string_packet = string.Concat(string_packet, string_packet2);
+                            data_position = data_position + 1;
+                            i = i + 1;
+                        }
+                    }
+
                     TargetReportDescriptor = string_packet;
-                    data_position = data_position + 1;
-                }
-                if ((Convert.ToString(string_packet[7])) == "1" && string_packet.Length<24) // si ultimo valor =1 hacemos un bucle que vaya concatenando todos los octetos acabados en 1
+
+                    Calculate_TargetReportDescriptor(TargetReportDescriptor);
+
+                } // 3 I010/020 Target Report Descriptor  
+
+                if (Char.ToString(FSPEC_fake[3]) == "1") // 4 I010 / 140 Time of Day
                 {
-                    i = 0;
-                    data_position = data_position + 1;
-                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1")
+
+                    string string1 = Convert.ToString(paquete[data_position]);
+                    string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string1 = AddZeros(string1);
+
+                    string string2 = Convert.ToString(paquete[data_position + 1]);
+                    string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                    string2 = AddZeros(string2);
+
+                    string string3 = Convert.ToString(paquete[data_position + 2]);
+                    string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                    string3 = AddZeros(string2);
+
+                    data_position = data_position + 3;
+
+                    TimeofDay = String.Concat(string1, string2, string3);
+
+                    TimeofDay_seconds = Convert.ToInt32(TimeofDay, 2) / 128;
+
+                }// 4 I010 / 140 Time of Day
+
+                if (Char.ToString(FSPEC_fake[4]) == "1") // 5 I010 / 041  Position in WGS-84 Co-ordinates 
+                {
+                    string string1 = Convert.ToString(paquete[data_position]);
+                    string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string1 = AddZeros(string1);
+
+                    string string2 = Convert.ToString(paquete[data_position + 1]);
+                    string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                    string2 = AddZeros(string2);
+
+                    string string3 = Convert.ToString(paquete[data_position + 2]);
+                    string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                    string3 = AddZeros(string3);
+
+                    string string4 = Convert.ToString(paquete[data_position + 3]);
+                    string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
+                    string4 = AddZeros(string4);
+
+                    string string5 = Convert.ToString(paquete[data_position + 4]);
+                    string5 = Convert.ToString(Convert.ToInt32(string5, 16), 2);
+                    string5 = AddZeros(string5);
+
+                    string string6 = Convert.ToString(paquete[data_position + 5]);
+                    string6 = Convert.ToString(Convert.ToInt32(string6, 16), 2);
+                    string6 = AddZeros(string6);
+
+                    string string7 = Convert.ToString(paquete[data_position + 6]);
+                    string7 = Convert.ToString(Convert.ToInt32(string7, 16), 2);
+                    string7 = AddZeros(string7);
+
+                    string string8 = Convert.ToString(paquete[data_position + 7]);
+                    string8 = Convert.ToString(Convert.ToInt32(string8, 16), 2);
+                    string8 = AddZeros(string8);
+
+                    PositioninWGS84_coordinates = String.Concat(string1, string2, string3, string4, string5, string6, string7, string8);
+
+                    data_position = data_position + 8;
+
+                    Calculate_PositionWGS84_coordinates(PositioninWGS84_coordinates);
+
+                } // 5 I010 / 041  Position in WGS-84 Co-ordinates 
+
+                if (Char.ToString(FSPEC_fake[5]) == "1") // 6 I010/040  Measured Position in Polar Co-ordinates 
+                {
+
+                    string string1 = Convert.ToString(paquete[data_position]);
+                    string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string1 = AddZeros(string1);
+
+                    string string2 = Convert.ToString(paquete[data_position + 1]);
+                    string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                    string2 = AddZeros(string2);
+
+                    string string3 = Convert.ToString(paquete[data_position + 2]);
+                    string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                    string3 = AddZeros(string3);
+
+                    string string4 = Convert.ToString(paquete[data_position + 3]);
+                    string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
+                    string4 = AddZeros(string4);
+
+                    data_position = data_position + 4;
+
+                    MeasuredPositioninPolarCoordinates = String.Concat(string1, string2, string3, string4);
+
+                    string rho1 = (MeasuredPositioninPolarCoordinates.Substring(0, 16));
+                    string theta1 = (MeasuredPositioninPolarCoordinates.Substring(16, 16));
+
+                    Rho = Convert.ToInt32(rho1, 2);
+                    Theta = Convert.ToInt32(theta1, 2) * 360 / (Math.Pow(2, 16));
+
+                }// 6 I010/040  Measured Position in Polar Co-ordinates 
+
+                if (Char.ToString(FSPEC_fake[6]) == "1") // 7 I010/042  Position in Cartesian Co-ordinates
+                {
+                    string string1 = Convert.ToString(paquete[data_position]);
+                    string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string1 = AddZeros(string1);
+
+                    string string2 = Convert.ToString(paquete[data_position + 1]);
+                    string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                    string2 = AddZeros(string2);
+
+                    string string3 = Convert.ToString(paquete[data_position + 2]);
+                    string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                    string3 = AddZeros(string3);
+
+                    string string4 = Convert.ToString(paquete[data_position + 3]);
+                    string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
+                    string4 = AddZeros(string4);
+
+                    PositioninCartesianCoordinates = String.Concat(string1, string2, string3, string4);
+
+                    data_position = data_position + 4;
+
+                    string xcartesian = (PositioninCartesianCoordinates.Substring(0, 16));
+                    string ycartesian = (PositioninCartesianCoordinates.Substring(16, 16));
+
+                    X_cartesian = Calculate_ComplementoA2(xcartesian);
+                    Y_cartesian = Calculate_ComplementoA2(ycartesian);
+
+                }// 7 I010/042  Position in Cartesian Co-ordinates
+
+                if (Char.ToString(FSPEC_fake[7]) == "1") // 8 - _FX
+                {
+
+                } // FX
+
+                if(FSPEC.Length>8)
+                {
+                    if (Char.ToString(FSPEC_fake[8]) == "1") // 8 I010/200  Calculated Track Velocity in Polar Co-ordinates
                     {
-                        string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
-                        string_packet2 = AddZeros(string_packet2);
-                        string_packet = string.Concat(string_packet, string_packet2);
-                        data_position = data_position + 1;
-                        i = i + 1;
+                        string string1 = Convert.ToString(paquete[data_position]);
+                        string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                        string1 = AddZeros(string1);
+
+                        string string2 = Convert.ToString(paquete[data_position + 1]);
+                        string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                        string2 = AddZeros(string2);
+
+                        string string3 = Convert.ToString(paquete[data_position + 2]);
+                        string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                        string3 = AddZeros(string3);
+
+                        string string4 = Convert.ToString(paquete[data_position + 3]);
+                        string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
+                        string4 = AddZeros(string4);
+
+                        CalculatedTrackVelocityinPolarCoordinates = String.Concat(string1, string2, string3, string4);
+
+                        data_position = data_position + 4;
+
+                        string gs1 = CalculatedTrackVelocityinPolarCoordinates.Substring(0, 16);
+                        string ta1 = CalculatedTrackVelocityinPolarCoordinates.Substring(16, 16);
+
+                        GroundSpeed = Convert.ToInt32(gs1, 2) * (Math.Pow(2, -14));
+                        TrackAngle = Convert.ToInt32(ta1, 2) * 360 / (Math.Pow(2, 16));
+                    }// 8 I010/200  Calculated Track Velocity in Polar Co-ordinates
+
+                    if (Char.ToString(FSPEC_fake[9]) == "1") // 9 I010/202  Calculated Track Velocity in Cartesian Coord
+                    {
+                        string string1 = Convert.ToString(paquete[data_position]);
+                        string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                        string1 = AddZeros(string1);
+
+                        string string2 = Convert.ToString(paquete[data_position + 1]);
+                        string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                        string2 = AddZeros(string2);
+
+                        string string3 = Convert.ToString(paquete[data_position + 2]);
+                        string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                        string3 = AddZeros(string3);
+
+                        string string4 = Convert.ToString(paquete[data_position + 3]);
+                        string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
+                        string4 = AddZeros(string4);
+
+                        CalculatedTrackVelocityinCartesianCoordinates = String.Concat(string1, string2, string3, string4);
+                        data_position = data_position + 4;
+
+                        string vx = CalculatedTrackVelocityinCartesianCoordinates.Substring(0, 16);
+                        string vy = CalculatedTrackVelocityinCartesianCoordinates.Substring(16, 16);
+
+                        Vx_cartesian = Calculate_ComplementoA2(vx) * 0.25;
+                        Vy_cartesian = Calculate_ComplementoA2(vy) * 0.25;
+                    } // 9 I010/202  Calculated Track Velocity in Cartesian Coord
+
+                    if (Char.ToString(FSPEC_fake[10]) == "1") // 10 I010/161  Track Number 
+                    {
+                        string string1 = Convert.ToString(paquete[data_position]);
+                        string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                        string1 = AddZeros(string1);
+
+                        string string2 = Convert.ToString(paquete[data_position + 1]);
+                        string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                        string2 = AddZeros(string2);
+
+                        TrackNumber = String.Concat(string1, string2);
+
+                        data_position = data_position + 2;
+
+                        string tn = TrackNumber.Substring(4, 12);
+                        Tracknumber_value = Convert.ToInt32(tn, 2);
+
+                    } // 10 I010/161  Track Number 
+
+                    if (Char.ToString(FSPEC_fake[11]) == "1") // 11 I010/170  Track Status 
+                    {
+                        // primero leemos el primer paquete y lo pasamos a binario
+
+                        string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                        string_packet = AddZeros(string_packet);
+
+                        if ((Convert.ToString(string_packet[7])) == "0") // si ultima posicion es un 0 guardamos el octeto y pasamos al siguiente
+                        {
+                            TrackStatus = string_packet;
+                            data_position = data_position + 1;
+                        }
+                        if ((Convert.ToString(string_packet[7])) == "1") // si ultimo valor =1 hacemos un bucle que vaya concatenando todos los octetos acabados en 1
+                        {
+                            i = 0;
+                            data_position = data_position + 1;
+                            while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length < 24)
+                            {
+                                string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                                string_packet2 = AddZeros(string_packet2);
+                                string_packet = string.Concat(string_packet, string_packet2);
+                                data_position = data_position + 1;
+                                i = i + 1;
+                            }
+                        }
+
+                        TrackStatus = string_packet;
+
+                        Calculate_TrackStatus(TrackStatus);
+
+                    }// 11 I010/170  Track Status 
+
+                    if (Char.ToString(FSPEC_fake[12]) == "1") // 12  I010/060  Mode-3/A Code in Octal Representation 
+                    {
+                        string string1 = Convert.ToString(paquete[data_position]);
+                        string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                        string1 = AddZeros(string1);
+
+                        string string2 = Convert.ToString(paquete[data_position + 1]);
+                        string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                        string2 = AddZeros(string2);
+
+                        Mode3ACodeinOctal = String.Concat(string1, string2);
+
+                        data_position = data_position + 2;
+
+                        Calculate_Mode3ACode_octal(Mode3ACodeinOctal);
+
+                    }// 12  I010/060  Mode-3/A Code in Octal Representation 
+
+                    if (Char.ToString(FSPEC_fake[13]) == "1") // 13  I010 / 220 Target Adress 
+                    {
+                        string string1 = Convert.ToString(paquete[data_position]);
+                        string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                        string1 = AddZeros(string1);
+
+                        string string2 = Convert.ToString(paquete[data_position + 1]);
+                        string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                        string2 = AddZeros(string2);
+
+                        string string3 = Convert.ToString(paquete[data_position + 2]);
+                        string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                        string3 = AddZeros(string3);
+
+                        TargetAdress = String.Concat(string1, string2, string3);
+
+                        data_position = data_position + 3;
+
+                        TargetAdress_decoded = Convert.ToInt32(TargetAdress, 2);
+                    }// 13  I010 / 220 Target Adress 
+
+                    if (Char.ToString(FSPEC_fake[14]) == "1") // 14  I010/245 Target Identification   
+                    {
+                        string string1 = Convert.ToString(paquete[data_position]);
+                        string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                        string1 = AddZeros(string1);
+
+                        string string2 = Convert.ToString(paquete[data_position + 1]);
+                        string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                        string2 = AddZeros(string2);
+
+                        string string3 = Convert.ToString(paquete[data_position + 2]);
+                        string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                        string3 = AddZeros(string3);
+
+                        string string4 = Convert.ToString(paquete[data_position + 3]);
+                        string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
+                        string4 = AddZeros(string4);
+
+                        string string5 = Convert.ToString(paquete[data_position + 4]);
+                        string5 = Convert.ToString(Convert.ToInt32(string5, 16), 2);
+                        string5 = AddZeros(string5);
+
+                        string string6 = Convert.ToString(paquete[data_position + 5]);
+                        string6 = Convert.ToString(Convert.ToInt32(string6, 16), 2);
+                        string6 = AddZeros(string6);
+
+                        string string7 = Convert.ToString(paquete[data_position + 6]);
+                        string7 = Convert.ToString(Convert.ToInt32(string7, 16), 2);
+                        string7 = AddZeros(string7);
+
+                        TargetIdentification = String.Concat(string1, string2, string3, string4, string5, string6, string7);
+
+                        data_position = data_position + 7;
+
+                        string sti1 = TargetIdentification.Substring(0, 2);
+                        if (sti1 == "00") { STI = "Callsign or registration downlinked from transponder."; }
+                        if (sti1 == "01") { STI = "Callsign not downlinked from transponder."; }
+                        else { STI = "Registration not downlinked from transponder."; }
+
+                        string todecode = TargetIdentification.Substring(2, 48);
+
+                        Calculate_TargetIdentification(todecode);
+
+                    } // 14  I010/245 Target Identification 
+
+                    if (Char.ToString(FSPEC_fake[15]) == "1")  // FX - Field Extension Indicator
+                    {
+
+                    } // FX
+
+                    if(FSPEC.Length>16)
+                    {
+                        if (Char.ToString(FSPEC_fake[16]) == "1") // 15  I010/250  Mode S MB Data
+                        {
+                            data_position = data_position + Calculate_ModeSMBData(paquete, data_position);
+
+                        }// 15  I010/250  Mode S MB Data
+
+                        if (Char.ToString(FSPEC_fake[17]) == "1") // 16  I010/300 Vehicle Fleet Identification 
+                        {
+                            string string1 = Convert.ToString(paquete[data_position]);
+                            string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                            string1 = AddZeros(string1);
+
+                            data_position = data_position + 1;
+
+                            VehicleFleetIdentification = string1;
+                            Calculate_VehicleFleetIdentification(VehicleFleetIdentification);
+                        } // 16  I010/300 Vehicle Fleet Identification 
+
+                        if (Char.ToString(FSPEC_fake[18]) == "1") // 17  I010/090 Flight Level in Binary Representation 
+                        {
+                            string string1 = Convert.ToString(paquete[data_position]);
+                            string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                            string1 = AddZeros(string1);
+
+                            string string2 = Convert.ToString(paquete[data_position]);
+                            string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                            string2 = AddZeros(string2);
+
+
+                            data_position = data_position + 2;
+
+                            FlightLevelInBinaryRepresentation = String.Concat(string1, string2);
+
+                            string v1 = FlightLevelInBinaryRepresentation.Substring(0, 1);
+                            if (v1 == "0") { V_fl = "Code validated."; }
+                            else { V_fl = "Code not validated."; }
+
+                            string g1 = FlightLevelInBinaryRepresentation.Substring(1, 1);
+                            if (g1 == "0") { G_fl = "Default."; }
+                            else { G_fl = "Garbled code."; }
+
+                            string fl = FlightLevelInBinaryRepresentation.Substring(2, 14);
+                            FlightLevel = Calculate_ComplementoA2(fl) * 0.25;
+
+                        }// 17  I010/090 Flight Level in Binary Representation 
+
+                        if (Char.ToString(FSPEC_fake[19]) == "1") // 18  I010/091 Measured Height 
+                        {
+                            string string1 = Convert.ToString(paquete[data_position]);
+                            string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                            string1 = AddZeros(string1);
+
+                            string string2 = Convert.ToString(paquete[data_position]);
+                            string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                            string2 = AddZeros(string2);
+
+
+                            data_position = data_position + 2;
+
+                            MeasuredHeight = String.Concat(string1, string2);
+
+                            MeasuredHeight_ft = Calculate_ComplementoA2(MeasuredHeight) * 6.26;
+
+                        }// 18  I010/091 Measured Height 
+
+                        if (Char.ToString(FSPEC_fake[20]) == "1") // 19  I010/270 Target Size & Orientation
+                        {
+                            // primero leemos el primer paquete y lo pasamos a binario
+
+                            string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                            string_packet = AddZeros(string_packet);
+
+                            if ((Convert.ToString(string_packet[7])) == "0") // si ultima posicion es un 0 guardamos el octeto y pasamos al siguiente
+                            {
+                                TargetSizeOrientation = string_packet;
+                                data_position = data_position + 1;
+                            }
+                            if ((Convert.ToString(string_packet[7])) == "1") // si ultimo valor =1 hacemos un bucle que vaya concatenando todos los octetos acabados en 1
+                            {
+                                i = 0;
+                                data_position = data_position + 1;
+                                while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length < 24)
+                                {
+                                    string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
+                                    string_packet2 = AddZeros(string_packet2);
+                                    string_packet = string.Concat(string_packet, string_packet2);
+                                    data_position = data_position + 1;
+                                    i = i + 1;
+                                }
+                            }
+
+                            TargetSizeOrientation = string_packet;
+
+                            Calculate_TargetSizeOrientation(TargetSizeOrientation);
+                        }// 19  I010/270 Target Size & Orientation
+
+                        if (Char.ToString(FSPEC_fake[21]) == "1") // 20  I010/550 System Status
+                        {
+                            string string1 = Convert.ToString(paquete[data_position]);
+                            string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                            string1 = AddZeros(string1);
+
+
+                            data_position = data_position + 1;
+
+                            SystemStatus = string1;
+
+                            Calculate_SystemStatus(SystemStatus);
+                        } // 20  I010/550 System Status
+
+                        if (Char.ToString(FSPEC_fake[22]) == "1") // 21  I010/310 Pre-programmed Message
+                        {
+                            string string1 = Convert.ToString(paquete[data_position]);
+                            string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                            string1 = AddZeros(string1);
+
+                            data_position = data_position + 1;
+
+                            PreProgrammedMessage = string1;
+
+                            string trb = PreProgrammedMessage.Substring(0, 1);
+                            if (trb == "0") { TRB = "Default."; }
+                            else { TRB = "In Trouble."; }
+
+                            string msg = PreProgrammedMessage.Substring(1, 7);
+                            int msg1 = Convert.ToInt32(msg, 2);
+                            if (msg1 == 1) { MSG = "Towing aircraft."; }
+                            if (msg1 == 2) { MSG = "“Follow me” operation."; }
+                            if (msg1 == 3) { MSG = "Runway check."; }
+                            if (msg1 == 4) { MSG = "Emergency operation (fire, medical…)."; }
+                            if (msg1 == 5) { MSG = "Work in progress (maintenance, birds scarer, sweepers…)"; }
+
+                        }// 21  I010/310 Pre-programmed Message
+
+                        if (Char.ToString(FSPEC_fake[23]) == "1")  // FX - Field Extension Indicator
+                        {
+
+                        } // FX
+
+                        if(FSPEC.Length>24)
+                        {
+                            if (Char.ToString(FSPEC_fake[24]) == "1") // 22 I010/500   Standard Deviation of Position 
+                            {
+                                string string1 = Convert.ToString(paquete[data_position]);
+                                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                                string1 = AddZeros(string1);
+
+                                string string2 = Convert.ToString(paquete[data_position + 1]);
+                                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                                string2 = AddZeros(string2);
+
+                                string string3 = Convert.ToString(paquete[data_position + 2]);
+                                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
+                                string3 = AddZeros(string3);
+
+                                string string4 = Convert.ToString(paquete[data_position + 3]);
+                                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
+                                string4 = AddZeros(string4);
+
+                                StandardDeviationofPosition = String.Concat(string1, string2, string3, string4);
+
+                                data_position = data_position + 4;
+
+                                string sdx = StandardDeviationofPosition.Substring(0, 8);
+                                string sdy = StandardDeviationofPosition.Substring(8, 8);
+                                string sdxy = StandardDeviationofPosition.Substring(16, 16);
+
+                                StdDeviation_x = Convert.ToInt32(sdx, 2) * 0.25;
+                                StdDeviation_y = Convert.ToInt32(sdy, 2) * 0.25;
+                                StdDeviation_xy = Convert.ToInt32(sdxy, 2) * 0.25;
+                            } // 22 I010/500   Standard Deviation of Position 
+
+                            if (Char.ToString(FSPEC_fake[25]) == "1") // 23  I010/280  Presence 
+                            {
+                                data_position = data_position + ComputePresence(paquete, data_position);
+                            }// 23  I010/280  Presence 
+
+                            if (Char.ToString(FSPEC_fake[26]) == "1") // 24  I010/131  Amplitude of Primary Plot 
+                            {
+                                string string1 = Convert.ToString(paquete[data_position]);
+                                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                                string1 = AddZeros(string1);
+
+                                AmplitudeofPrimaryPlot = string1;
+
+                                data_position = data_position + 1;
+
+                                AmplitudeofPrimaryPlot_value = Convert.ToInt32(AmplitudeofPrimaryPlot, 2);
+                            }// 24  I010/131  Amplitude of Primary Plot 
+
+                            if (Char.ToString(FSPEC_fake[27]) == "1") // 25  I010/210  Calculated Acceleration 
+                            {
+                                string string1 = Convert.ToString(paquete[data_position]);
+                                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                                string1 = AddZeros(string1);
+
+                                string string2 = Convert.ToString(paquete[data_position + 1]);
+                                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                                string2 = AddZeros(string2);
+
+                                CalculatedAcceleration = String.Concat(string1, string2);
+
+                                data_position = data_position + 2;
+
+                                CalculatedAcceleration_X = Calculate_ComplementoA2(CalculatedAcceleration.Substring(0, 8));
+                                CalculatedAcceleration_Y = Calculate_ComplementoA2(CalculatedAcceleration.Substring(8, 8));
+                            } // 25  I010/210  Calculated Acceleration 
+                        }
                     }
                 }
-
-                TargetReportDescriptor = string_packet;
-
-                Calculate_TargetReportDescriptor(TargetReportDescriptor);
-
-            } // 3 I010/020 Target Report Descriptor  
-
-            if (Char.ToString(FSPEC_fake[3]) == "1") // 4 I010 / 140 Time of Day
-            {
-
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position +1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string2);
-
-                data_position = data_position + 3;
-
-                TimeofDay = String.Concat(string1, string2, string3);
-
-                TimeofDay_seconds = Convert.ToInt32(TimeofDay,2)/128;
-
-            }// 4 I010 / 140 Time of Day
-
-            if (Char.ToString(FSPEC_fake[4]) == "1") // 5 I010 / 041  Position in WGS-84 Co-ordinates 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                string string4 = Convert.ToString(paquete[data_position + 3]);
-                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
-                string4 = AddZeros(string4);
-
-                string string5 = Convert.ToString(paquete[data_position + 4]);
-                string5 = Convert.ToString(Convert.ToInt32(string5, 16), 2);
-                string5 = AddZeros(string5);
-
-                string string6 = Convert.ToString(paquete[data_position + 5]);
-                string6 = Convert.ToString(Convert.ToInt32(string6, 16), 2);
-                string6 = AddZeros(string6);
-
-                string string7 = Convert.ToString(paquete[data_position + 6]);
-                string7 = Convert.ToString(Convert.ToInt32(string7, 16), 2);
-                string7 = AddZeros(string7);
-
-                string string8 = Convert.ToString(paquete[data_position + 7]);
-                string8 = Convert.ToString(Convert.ToInt32(string8, 16), 2);
-                string8 = AddZeros(string8);
-
-                PositioninWGS84_coordinates = String.Concat(string1, string2, string3, string4, string5, string6, string7, string8);
-
-                data_position = data_position + 8;
-
-                Calculate_PositionWGS84_coordinates(PositioninWGS84_coordinates);
-
-            } // 5 I010 / 041  Position in WGS-84 Co-ordinates 
-
-            if (Char.ToString(FSPEC_fake[5]) == "1") // 6 I010/040  Measured Position in Polar Co-ordinates 
-            {
-
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                string string4 = Convert.ToString(paquete[data_position + 3]);
-                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
-                string4 = AddZeros(string4);
-
-                data_position = data_position + 4;
-
-                MeasuredPositioninPolarCoordinates = String.Concat(string1, string2, string3, string4);
-
-                string rho1 = (MeasuredPositioninPolarCoordinates.Substring(0, 16));
-                string theta1 = (MeasuredPositioninPolarCoordinates.Substring(16, 16));
-
-                Rho = Convert.ToInt32(rho1, 2);
-                Theta = Convert.ToInt32(theta1, 2) * 360 / (Math.Pow(2, 16));
-
-            }// 6 I010/040  Measured Position in Polar Co-ordinates 
-
-            if (Char.ToString(FSPEC_fake[6]) == "1") // 7 I010/042  Position in Cartesian Co-ordinates
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                string string4 = Convert.ToString(paquete[data_position + 3]);
-                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
-                string4 = AddZeros(string4);
-
-                PositioninCartesianCoordinates = String.Concat(string1, string2, string3, string4);
-
-                data_position = data_position + 4;
-
-                string xcartesian = (PositioninCartesianCoordinates.Substring(0, 16));
-                string ycartesian = (PositioninCartesianCoordinates.Substring(16, 16));
-
-                X_cartesian = Calculate_ComplementoA2(xcartesian);
-                Y_cartesian = Calculate_ComplementoA2(ycartesian);
-
-            }// 7 I010/042  Position in Cartesian Co-ordinates
-
-            if (Char.ToString(FSPEC_fake[7]) == "1") // 8 - _FX
-            {
-
-            } // FX
-
-            if (Char.ToString(FSPEC_fake[8]) == "1") // 8 I010/200  Calculated Track Velocity in Polar Co-ordinates
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                string string4 = Convert.ToString(paquete[data_position + 3]);
-                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
-                string4 = AddZeros(string4);
-
-                CalculatedTrackVelocityinPolarCoordinates = String.Concat(string1, string2, string3, string4);
-
-                data_position = data_position + 4;
-
-                string gs1 = CalculatedTrackVelocityinPolarCoordinates.Substring(0, 16);
-                string ta1 = CalculatedTrackVelocityinPolarCoordinates.Substring(16, 16);
-
-                GroundSpeed = Convert.ToInt32(gs1, 2) * (Math.Pow(2, -14));
-                TrackAngle = Convert.ToInt32(ta1, 2) * 360/(Math.Pow(2, 16));
-            }// 8 I010/200  Calculated Track Velocity in Polar Co-ordinates
-
-            if (Char.ToString(FSPEC_fake[9]) == "1") // 9 I010/202  Calculated Track Velocity in Cartesian Coord
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                string string4 = Convert.ToString(paquete[data_position + 3]);
-                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
-                string4 = AddZeros(string4);
-
-                CalculatedTrackVelocityinCartesianCoordinates = String.Concat(string1, string2, string3, string4);
-                data_position = data_position + 4;
-
-                string vx = CalculatedTrackVelocityinCartesianCoordinates.Substring(0, 16);
-                string vy = CalculatedTrackVelocityinCartesianCoordinates.Substring(16, 16);
-
-                Vx_cartesian = Calculate_ComplementoA2(vx) * 0.25;
-                Vy_cartesian = Calculate_ComplementoA2(vy) * 0.25;
-            } // 9 I010/202  Calculated Track Velocity in Cartesian Coord
-
-            if (Char.ToString(FSPEC_fake[10]) == "1") // 10 I010/161  Track Number 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                TrackNumber = String.Concat(string1, string2);
-
-                data_position = data_position + 2;
-
-                string tn = TrackNumber.Substring(4, 12);
-                Tracknumber_value = Convert.ToInt32(tn,2);
-
-            } // 10 I010/161  Track Number 
-
-            if (Char.ToString(FSPEC_fake[11]) == "1") // 11 I010/170  Track Status 
-            {
-                // primero leemos el primer paquete y lo pasamos a binario
-
-                string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
-                string_packet = AddZeros(string_packet);
-
-                if ((Convert.ToString(string_packet[7])) == "0") // si ultima posicion es un 0 guardamos el octeto y pasamos al siguiente
-                {
-                    TrackStatus = string_packet;
-                    data_position = data_position + 1;
-                }
-                if ((Convert.ToString(string_packet[7])) == "1") // si ultimo valor =1 hacemos un bucle que vaya concatenando todos los octetos acabados en 1
-                {
-                    i = 0;
-                    data_position = data_position + 1;
-                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length<24)
-                    {
-                        string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
-                        string_packet2 = AddZeros(string_packet2);
-                        string_packet = string.Concat(string_packet, string_packet2);
-                        data_position = data_position + 1;
-                        i = i + 1;
-                    }
-                }
-
-                TrackStatus = string_packet;
-
-                Calculate_TrackStatus(TrackStatus);
-
-            }// 11 I010/170  Track Status 
-
-            if (Char.ToString(FSPEC_fake[12]) == "1") // 12  I010/060  Mode-3/A Code in Octal Representation 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                Mode3ACodeinOctal = String.Concat(string1, string2);
-
-                data_position = data_position + 2;
-
-                Calculate_Mode3ACode_octal(Mode3ACodeinOctal);
-
-            }// 12  I010/060  Mode-3/A Code in Octal Representation 
-
-            if (Char.ToString(FSPEC_fake[13]) == "1") // 13  I010 / 220 Target Adress 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                TargetAdress = String.Concat(string1, string2,string3);
-
-                data_position = data_position + 3;
-
-                TargetAdress_decoded = Convert.ToInt32(TargetAdress, 2);
-            }// 13  I010 / 220 Target Adress 
-
-            if (Char.ToString(FSPEC_fake[14]) == "1") // 14  I010/245 Target Identification   
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                string string4 = Convert.ToString(paquete[data_position + 3]);
-                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
-                string4 = AddZeros(string4);
-
-                string string5 = Convert.ToString(paquete[data_position + 4]);
-                string5 = Convert.ToString(Convert.ToInt32(string5, 16), 2);
-                string5 = AddZeros(string5);
-
-                string string6 = Convert.ToString(paquete[data_position + 5]);
-                string6 = Convert.ToString(Convert.ToInt32(string6, 16), 2);
-                string6 = AddZeros(string6);
-
-                string string7 = Convert.ToString(paquete[data_position + 6]);
-                string7 = Convert.ToString(Convert.ToInt32(string7, 16), 2);
-                string7 = AddZeros(string7);
-
-                TargetIdentification = String.Concat(string1, string2, string3,string4,string5,string6,string7);
-
-                data_position = data_position + 7;
-
-                string sti1 = TargetIdentification.Substring(0, 2);
-                if (sti1 == "00") { STI = "Callsign or registration downlinked from transponder."; }
-                if (sti1 == "01") { STI = "Callsign not downlinked from transponder."; }
-                else { STI = "Registration not downlinked from transponder."; }
-
-                string todecode = TargetIdentification.Substring(2, 48);
-
-                Calculate_TargetIdentification(todecode);
-
-            } // 14  I010/245 Target Identification 
-
-            if (Char.ToString(FSPEC_fake[15]) == "1")  // FX - Field Extension Indicator
-            {
-
-            } // FX
-
-            if (Char.ToString(FSPEC_fake[16]) == "1") // 15  I010/250  Mode S MB Data
-            {
-                data_position = data_position + Calculate_ModeSMBData(paquete, data_position);
-
-            }// 15  I010/250  Mode S MB Data
-
-            if (Char.ToString(FSPEC_fake[17]) == "1") // 16  I010/300 Vehicle Fleet Identification 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                data_position = data_position + 1;
-
-                VehicleFleetIdentification = string1;
-                Calculate_VehicleFleetIdentification(VehicleFleetIdentification);
-            } // 16  I010/300 Vehicle Fleet Identification 
-
-            if (Char.ToString(FSPEC_fake[18]) == "1") // 17  I010/090 Flight Level in Binary Representation 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-
-                data_position = data_position + 2;
-
-                FlightLevelInBinaryRepresentation = String.Concat(string1, string2);
-
-                string v1 = FlightLevelInBinaryRepresentation.Substring(0, 1);
-                if (v1 == "0") { V_fl = "Code validated."; }
-                else { V_fl = "Code not validated."; }
-
-                string g1 = FlightLevelInBinaryRepresentation.Substring(1, 1);
-                if (g1 == "0") { G_fl = "Default."; }
-                else { G_fl = "Garbled code."; }
-
-                string fl = FlightLevelInBinaryRepresentation.Substring(2, 14);
-                FlightLevel = Calculate_ComplementoA2(fl) * 0.25;
-
-            }// 17  I010/090 Flight Level in Binary Representation 
-
-            if (Char.ToString(FSPEC_fake[19]) == "1") // 18  I010/091 Measured Height 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-
-                data_position = data_position + 2;
-
-                MeasuredHeight = String.Concat(string1, string2);
-
-                MeasuredHeight_ft =Calculate_ComplementoA2(MeasuredHeight) * 6.26;
-
-            }// 18  I010/091 Measured Height 
-
-            if (Char.ToString(FSPEC_fake[20]) == "1") // 19  I010/270 Target Size & Orientation
-            {
-                // primero leemos el primer paquete y lo pasamos a binario
-
-                string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
-                string_packet = AddZeros(string_packet);
-
-                if ((Convert.ToString(string_packet[7])) == "0") // si ultima posicion es un 0 guardamos el octeto y pasamos al siguiente
-                {
-                    TargetSizeOrientation = string_packet;
-                    data_position = data_position + 1;
-                }
-                if ((Convert.ToString(string_packet[7])) == "1") // si ultimo valor =1 hacemos un bucle que vaya concatenando todos los octetos acabados en 1
-                {
-                    i = 0;
-                    data_position = data_position + 1;
-                    while ((Convert.ToString(string_packet[string_packet.Length - 1])) == "1" && string_packet.Length<24)
-                    {
-                        string string_packet2 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
-                        string_packet2 = AddZeros(string_packet2);
-                        string_packet = string.Concat(string_packet, string_packet2);
-                        data_position = data_position + 1;
-                        i = i + 1;
-                    }
-                }
-
-                TargetSizeOrientation = string_packet;
-
-                Calculate_TargetSizeOrientation(TargetSizeOrientation);
-            }// 19  I010/270 Target Size & Orientation
-
-            if (Char.ToString(FSPEC_fake[21]) == "1") // 20  I010/550 System Status
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-
-                data_position = data_position + 1;
-
-                SystemStatus = string1;
-
-                Calculate_SystemStatus(SystemStatus);
-            } // 20  I010/550 System Status
-
-            if (Char.ToString(FSPEC_fake[22]) == "1") // 21  I010/310 Pre-programmed Message
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                data_position = data_position + 1;
-
-                PreProgrammedMessage = string1;
-
-                string trb = PreProgrammedMessage.Substring(0, 1);
-                if (trb == "0") { TRB = "Default."; }
-                else { TRB = "In Trouble."; }
-
-                string msg = PreProgrammedMessage.Substring(1, 7);
-                int msg1 = Convert.ToInt32(msg, 2);
-                if (msg1 == 1) { MSG = "Towing aircraft."; }
-                if (msg1 == 2) { MSG = "“Follow me” operation."; }
-                if (msg1 == 3) { MSG = "Runway check."; }
-                if (msg1 == 4) { MSG = "Emergency operation (fire, medical…)."; }
-                if (msg1 == 5) { MSG = "Work in progress (maintenance, birds scarer, sweepers…)"; }
-
-            }// 21  I010/310 Pre-programmed Message
-
-            if (Char.ToString(FSPEC_fake[23]) == "1")  // FX - Field Extension Indicator
-            {
-
-            } // FX
-
-            if (Char.ToString(FSPEC_fake[24]) == "1") // 22 I010/500   Standard Deviation of Position 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position + 1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                string string3 = Convert.ToString(paquete[data_position + 2]);
-                string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                string3 = AddZeros(string3);
-
-                string string4 = Convert.ToString(paquete[data_position + 3]);
-                string4 = Convert.ToString(Convert.ToInt32(string4, 16), 2);
-                string4 = AddZeros(string4);
-
-                StandardDeviationofPosition = String.Concat(string1, string2, string3, string4);
-
-                data_position = data_position + 4;
-
-                string sdx = StandardDeviationofPosition.Substring(0, 8);
-                string sdy = StandardDeviationofPosition.Substring(8, 8);
-                string sdxy = StandardDeviationofPosition.Substring(16, 16);
-
-                StdDeviation_x = Convert.ToInt32(sdx,2) * 0.25;
-                StdDeviation_y = Convert.ToInt32(sdy, 2) * 0.25;
-                StdDeviation_xy = Convert.ToInt32(sdxy, 2) * 0.25;
-            } // 22 I010/500   Standard Deviation of Position 
-
-            if (Char.ToString(FSPEC_fake[25]) == "1") // 23  I010/280  Presence 
-            {
-                data_position = data_position + ComputePresence(paquete, data_position);
-            }// 23  I010/280  Presence 
-
-            if (Char.ToString(FSPEC_fake[26]) == "1") // 24  I010/131  Amplitude of Primary Plot 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                AmplitudeofPrimaryPlot = string1;
-
-                data_position = data_position + 1;
-
-                AmplitudeofPrimaryPlot_value = Convert.ToInt32(AmplitudeofPrimaryPlot, 2);
-            }// 24  I010/131  Amplitude of Primary Plot 
-
-            if (Char.ToString(FSPEC_fake[27]) == "1") // 25  I010/210  Calculated Acceleration 
-            {
-                string string1 = Convert.ToString(paquete[data_position]);
-                string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                string1 = AddZeros(string1);
-
-                string string2 = Convert.ToString(paquete[data_position+1]);
-                string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                string2 = AddZeros(string2);
-
-                CalculatedAcceleration = String.Concat(string1, string2);
-
-                data_position = data_position + 2;
-
-                CalculatedAcceleration_X = Calculate_ComplementoA2(CalculatedAcceleration.Substring(0, 8));
-                CalculatedAcceleration_Y = Calculate_ComplementoA2(CalculatedAcceleration.Substring(8, 8));
-            } // 25  I010/210  Calculated Acceleration 
+            }
         }
     }
 }
