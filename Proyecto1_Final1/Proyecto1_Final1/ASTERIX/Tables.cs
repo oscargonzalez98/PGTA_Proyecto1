@@ -318,17 +318,17 @@ namespace ASTERIX
 
                 double TOMR_Position_seconds = Math.Round( listaCAT21[i].TimeofMessageReception_Position_seconds);
 
-                // Convertimos en horas:mins:secs
-                double1 = (TOMR_Position_seconds / 3600);
-                horas = Convert.ToInt32(Math.Floor(double1));
+                //// Convertimos en horas:mins:secs
+                //double1 = (TOMR_Position_seconds / 3600);
+                //horas = Convert.ToInt32(Math.Floor(double1));
 
-                double2 = (double1 - horas) * 60;
-                mins = Convert.ToInt32(Math.Floor(double2));
+                //double2 = (double1 - horas) * 60;
+                //mins = Convert.ToInt32(Math.Floor(double2));
 
-                secs = (double2 - mins) * 60;
+                //secs = (double2 - mins) * 60;
                 if (listaCAT21[i].TimeofMessageReception_Position.Length>0)
                 {
-                    dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                    dgvCAT21.Rows[n].Cells[11].Value = TOMR_Position_seconds /*horas + ":" + mins + ":" + secs*/;
                 }
                 else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
 
@@ -868,19 +868,19 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
 
 
-                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+                    double TOMR_Position_seconds = Math.Round(listaCAT21[i].TimeofMessageReception_Position_seconds);
 
-                    // Convertimos en horas:mins:secs
-                    double1 = (TOMR_Position_seconds / 3600);
-                    horas = Convert.ToInt32(Math.Floor(double1));
+                    //// Convertimos en horas:mins:secs
+                    //double1 = (TOMR_Position_seconds / 3600);
+                    //horas = Convert.ToInt32(Math.Floor(double1));
 
-                    double2 = (double1 - horas) * 60;
-                    mins = Convert.ToInt32(Math.Floor(double2));
+                    //double2 = (double1 - horas) * 60;
+                    //mins = Convert.ToInt32(Math.Floor(double2));
 
-                    secs = (double2 - mins) * 60;
+                    //secs = (double2 - mins) * 60;
                     if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                        dgvCAT21.Rows[n].Cells[11].Value = TOMR_Position_seconds/* horas + ":" + mins + ":" + secs*/;
                     }
                     else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
 
@@ -1420,19 +1420,19 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
 
 
-                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+                    double TOMR_Position_seconds = Math.Round(listaCAT21[i].TimeofMessageReception_Position_seconds);
 
-                    // Convertimos en horas:mins:secs
-                    double1 = (TOMR_Position_seconds / 3600);
-                    horas = Convert.ToInt32(Math.Floor(double1));
+                    //// Convertimos en horas:mins:secs
+                    //double1 = (TOMR_Position_seconds / 3600);
+                    //horas = Convert.ToInt32(Math.Floor(double1));
 
-                    double2 = (double1 - horas) * 60;
-                    mins = Convert.ToInt32(Math.Floor(double2));
+                    //double2 = (double1 - horas) * 60;
+                    //mins = Convert.ToInt32(Math.Floor(double2));
 
-                    secs = (double2 - mins) * 60;
+                    //secs = (double2 - mins) * 60;
                     if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                        dgvCAT21.Rows[n].Cells[11].Value = TOMR_Position_seconds/*horas + ":" + mins + ":" + secs*/;
                     }
                     else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
 
@@ -2002,19 +2002,19 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
 
 
-                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
+                    double TOMR_Position_seconds = Math.Round(listaCAT21[i].TimeofMessageReception_Position_seconds);
 
-                    // Convertimos en horas:mins:secs
-                    double1 = (TOMR_Position_seconds / 3600);
-                    horas = Convert.ToInt32(Math.Floor(double1));
+                    //// Convertimos en horas:mins:secs
+                    //double1 = (TOMR_Position_seconds / 3600);
+                    //horas = Convert.ToInt32(Math.Floor(double1));
 
-                    double2 = (double1 - horas) * 60;
-                    mins = Convert.ToInt32(Math.Floor(double2));
+                    //double2 = (double1 - horas) * 60;
+                    //mins = Convert.ToInt32(Math.Floor(double2));
 
-                    secs = (double2 - mins) * 60;
+                    //secs = (double2 - mins) * 60;
                     if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[11].Value = horas + ":" + mins + ":" + secs;
+                        dgvCAT21.Rows[n].Cells[11].Value = TOMR_Position_seconds /*horas + ":" + mins + ":" + secs*/;
                     }
                     else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
 
