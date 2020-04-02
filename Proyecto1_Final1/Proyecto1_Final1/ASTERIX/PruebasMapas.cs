@@ -165,6 +165,7 @@ namespace ASTERIX
             if (rb_2.Checked == true) { timer1.Interval = Convert.ToInt32(1000 / 2); }
             if (rb_4.Checked == true) { timer1.Interval = Convert.ToInt32(1000 / 4); }
             if (rb_10.Checked == true) { timer1.Interval = Convert.ToInt32(1000 / 10); }
+            if (rb_20.Checked == true) { timer1.Interval = Convert.ToInt32(1000 / 20); }
 
 
             if (rb_AllFlightsByTime.Checked==true)
@@ -245,12 +246,12 @@ namespace ASTERIX
                 }
 
                 int i = 0;
-                while (i<listaunvuelo.Count)
+                while (i<listaunvuelo.Count) // recorre toda la lista de paquetes de ese vuelo
                 {
                     int position1 = listaunvuelo[i];
                     //mapoverlay1vuelo.Clear();
 
-                    if (Math.Round(listaCAT21[position1].TimeofMessageReception_Position_seconds)==counter)
+                    if (Math.Round(listaCAT21[position1].TimeofMessageReception_Position_seconds)==counter)  // si el tiempo de algun paquetee es igual que el tiempo del reloj(counter) añadelo para plotear
                     {
                         // Coge las coordenadas de ese paquete y añadelas al overlay
                         if (listaCAT21[position1].PositioninWGS_HRcoordinates.Length > 0)
@@ -340,8 +341,6 @@ namespace ASTERIX
         {
             if (rb_SimulateSingleFlightbyTime.Checked == true)
             {
-                //mapoverlay1vuelo.Clear();
-
                 if (counter_1vuelo == 0) // si es el primer vuelo que buscamos:
                 {
                     map.Overlays.Clear();
@@ -356,9 +355,6 @@ namespace ASTERIX
                     map.Overlays.Remove(mapoverlay1vuelo);
                     mapoverlay1vuelo.Clear();
                 }
-
-                //mapoverlay1vuelo = new GMapOverlay("Marcador");
-
 
                 // cogemos el target identification del texto
                 TargetIdentification = tb_targetIdentification.Text;
@@ -375,49 +371,67 @@ namespace ASTERIX
                     i = i + 1;
                 }
 
-                //mapoverlay1vuelo = new GMapOverlay("Marcador");
-                //map.Overlays.Remove(mapoverlay1vuelo);
-
-
-                int j = 0;
-                while (j < listaunvuelo.Count)
+                // Una vez hemos buscado todos los paquetes con ese target identification buscamos errores
+                if(listaunvuelo.Count==0)
                 {
-
-                    if (listaCAT21[listaunvuelo[j]].PositioninWGS_HRcoordinates.Length > 0)
-                    {
-                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[listaunvuelo[j]].latWGS84_HR, listaCAT21[listaunvuelo[j]].lonWGS84_HR), GMarkerGoogleType.green_dot);
-                        mapoverlay1vuelo.Markers.Add(marker);
-                    }
-
-                    if (listaCAT21[listaunvuelo[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[listaunvuelo[j]].PositioninWGS_coordinates.Length > 0)
-                    {
-                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[listaunvuelo[j]].latWGS84, listaCAT21[listaunvuelo[j]].lonWGS84), GMarkerGoogleType.green_dot);
-                        mapoverlay1vuelo.Markers.Add(marker);
-                    }
-                    j = j + 1;
-                }
-
-
-                if (counter_1vuelo == 0)
-                {
-                    mapoverlay1vuelo_antiguo = mapoverlay1vuelo;
-                    map.Overlays.Add(mapoverlay1vuelo);
+                    lb_Errores.Visible = true;
+                    lb_Errores.Text = "Target Identification not found. Please Try a different one.";
                 }
 
                 else
                 {
-                    map.Overlays.Remove(mapoverlay1vuelo_antiguo);
-                    map.Overlays.Add(mapoverlay1vuelo);
-                    mapoverlay1vuelo_antiguo = mapoverlay1vuelo;
+                    lb_Errores.Visible = false;
+
+                    int j = 0;
+                    while (j < listaunvuelo.Count)
+                    {
+
+                        if (listaCAT21[listaunvuelo[j]].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[listaunvuelo[j]].latWGS84_HR, listaCAT21[listaunvuelo[j]].lonWGS84_HR), GMarkerGoogleType.green_dot);
+                            mapoverlay1vuelo.Markers.Add(marker);
+                        }
+
+                        if (listaCAT21[listaunvuelo[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[listaunvuelo[j]].PositioninWGS_coordinates.Length > 0)
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[listaunvuelo[j]].latWGS84, listaCAT21[listaunvuelo[j]].lonWGS84), GMarkerGoogleType.green_dot);
+                            mapoverlay1vuelo.Markers.Add(marker);
+                        }
+                        j = j + 1;
+                    }
+
+                    if (counter_1vuelo == 0)
+                    {
+                        mapoverlay1vuelo_antiguo = mapoverlay1vuelo;
+                        map.Overlays.Add(mapoverlay1vuelo);
+                    }
+
+                    else
+                    {
+                        map.Overlays.Remove(mapoverlay1vuelo_antiguo);
+                        map.Overlays.Add(mapoverlay1vuelo);
+                        mapoverlay1vuelo_antiguo = mapoverlay1vuelo;
+                    }
                 }
-
-
-
-
-
 
                 counter_1vuelo = counter_1vuelo + 1;
             }
+
+            else
+            {
+                lb_Errores.Visible = true;
+                lb_Errores.Text = "To plot a flight first you have to select the SIMULATE SINGLE FLIGHT option above."; 
+            }
+
+        }
+
+        private void lb_tiempo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rb_2_CheckedChanged(object sender, EventArgs e)
+        {
 
         }
     }
