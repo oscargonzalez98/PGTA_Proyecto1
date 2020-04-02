@@ -225,8 +225,6 @@ namespace ASTERIX
                         map.Overlays.Add(markerOverLay);
                         markerOverLay_antiguo = markerOverLay;
                     }
-
-
                 }
 
 
@@ -239,8 +237,6 @@ namespace ASTERIX
 
             if(rb_SimulateSingleFlightbyTime.Checked==true)
             {
-
-
                 if (counter==listaseconds[0])
                 {
                     mapoverlay1vuelo.Clear();
@@ -280,13 +276,11 @@ namespace ASTERIX
                 }
             }
 
+            TimeSpan t = TimeSpan.FromSeconds(counter);
+            string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", t.Hours, t.Minutes, t.Seconds, t.Milliseconds);
+            lb_tiempo.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
             counter = counter + 1;
 
-            TimeSpan t = TimeSpan.FromSeconds(counter);
-
-            string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", t.Hours, t.Minutes, t.Seconds, t.Milliseconds);
-
-            lb_tiempo.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
         }
     
 
@@ -309,6 +303,8 @@ namespace ASTERIX
         private void lbPlay_Pause_Click(object sender, EventArgs e)
         {
             counter_playpause_button = counter_playpause_button + 1;
+            counter = Convert.ToInt32(listaseconds[0]);
+
 
             // primer caso: es la primera vez que le damos
 
@@ -316,6 +312,7 @@ namespace ASTERIX
             {
                 timer1.Enabled = true;
                 map.Overlays.Clear();
+
             }
 
             // segundo caso: le damos para pausar
