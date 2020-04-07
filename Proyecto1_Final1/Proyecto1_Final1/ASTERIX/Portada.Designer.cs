@@ -35,6 +35,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btn_mapviewer = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.lbErrores = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_Title
@@ -65,7 +66,7 @@
             // lb_Instructions
             // 
             this.lb_Instructions.AutoSize = true;
-            this.lb_Instructions.Location = new System.Drawing.Point(343, 218);
+            this.lb_Instructions.Location = new System.Drawing.Point(414, 202);
             this.lb_Instructions.Name = "lb_Instructions";
             this.lb_Instructions.Size = new System.Drawing.Size(46, 17);
             this.lb_Instructions.TabIndex = 5;
@@ -85,7 +86,7 @@
             // btn_mapviewer
             // 
             this.btn_mapviewer.Location = new System.Drawing.Point(291, 289);
-            this.btn_mapviewer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_mapviewer.Margin = new System.Windows.Forms.Padding(4);
             this.btn_mapviewer.Name = "btn_mapviewer";
             this.btn_mapviewer.Size = new System.Drawing.Size(127, 39);
             this.btn_mapviewer.TabIndex = 0;
@@ -95,18 +96,31 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(425, 289);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(127, 39);
             this.button2.TabIndex = 7;
             this.button2.Text = "MapaPruebas";
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // lbErrores
+            // 
+            this.lbErrores.AutoSize = true;
+            this.lbErrores.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lbErrores.ForeColor = System.Drawing.Color.Red;
+            this.lbErrores.Location = new System.Drawing.Point(71, 384);
+            this.lbErrores.Name = "lbErrores";
+            this.lbErrores.Size = new System.Drawing.Size(60, 24);
+            this.lbErrores.TabIndex = 8;
+            this.lbErrores.Text = "label1";
+            this.lbErrores.Visible = false;
+            // 
             // Portada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(934, 499);
+            this.Controls.Add(this.lbErrores);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_mapviewer);
             this.Controls.Add(this.button1);
@@ -130,6 +144,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_mapviewer;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lbErrores;
     }
 }
 

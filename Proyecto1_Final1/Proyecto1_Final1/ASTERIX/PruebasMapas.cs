@@ -34,8 +34,8 @@ namespace ASTERIX
 
         // variables para mapas en general
         public int filaseleeccionada = 0;
-        public double LatInicial;
-        public double LonInicial;
+        public double LatInicial = 41.2969444;
+        public double LongInicial = 2.0783333333333336;
 
         // mas variables para mapas al plotear por tiempo
         GMapOverlay markerOverLay = new GMapOverlay("Marcador"); // declaramos uno nuevo para vuelos de ahora
@@ -64,7 +64,7 @@ namespace ASTERIX
             map.DragButton = MouseButtons.Left;
             map.CanDragMap = true;
             map.MapProvider = GMapProviders.GoogleMap;
-            map.Position = new PointLatLng(41.302505, 2.072210);
+            map.Position = new PointLatLng(LatInicial,LongInicial);
             map.MinZoom = 0;
             map.MaxZoom = 24;
             map.Zoom = 7;
@@ -175,6 +175,8 @@ namespace ASTERIX
                 //// buscamos si el counter de segundos es igual que un valor dentro de la lista de segundos
                 /// si esta con un break sacamos 
 
+                map.Overlays.Clear();
+
 
                 int i = 0;
                 bool booleano = false;
@@ -233,6 +235,7 @@ namespace ASTERIX
                 {
                     timer1.Enabled = false; // paramos el timer
                     counter = Convert.ToInt32(listaseconds[0]); // reiniciamos el contador por si queremos volver a empezar.
+                    counter_playpause_button = counter_playpause_button + 1;
                 }
             }
 
@@ -242,7 +245,17 @@ namespace ASTERIX
                 {
                     mapoverlay1vuelo.Clear();
                     map.Overlays.Clear();
-                    counter = Convert.ToInt32(listaCAT21[listaunvuelo[0]].TimeofMessageReception_Position_seconds);
+
+                    try
+                    {
+                        counter = Convert.ToInt32(listaCAT21[listaunvuelo[0]].TimeofMessageReception_Position_seconds);
+                    }
+                    catch
+                    {
+                        lb_Errores.Visible = true;
+                        lb_Errores.Text = "For the simulator to work you have to Plot Path before pressing Play/Pause button. To plot a path please close this window and open it again.";
+                    }
+
                 }
 
                 int i = 0;
@@ -270,10 +283,11 @@ namespace ASTERIX
                 }
                 map.Overlays.Add(mapoverlay1vuelo);
 
-                if (counter > listaseconds[listaseconds.Count - 1]) // si counter llega al segundo final (hemos pasado por todos los segundos)
+                if (counter >= listaseconds[listaseconds.Count - 1]) // si counter llega al segundo final (hemos pasado por todos los segundos)
                 {
                     timer1.Enabled = false; // paramos el timer
-                    counter = Convert.ToInt32(listaseconds[0]); // reiniciamos el contador por si queremos volver a empezar.
+                    counter = Convert.ToInt32(listaseconds[0])-1; // reiniciamos el contador por si queremos volver a empezar.
+                    counter_playpause_button = counter_playpause_button + 1;
                 }
             }
 
@@ -304,8 +318,6 @@ namespace ASTERIX
         private void lbPlay_Pause_Click(object sender, EventArgs e)
         {
             counter_playpause_button = counter_playpause_button + 1;
-            counter = Convert.ToInt32(listaseconds[0]);
-
 
             // primer caso: es la primera vez que le damos
 
@@ -313,6 +325,7 @@ namespace ASTERIX
             {
                 timer1.Enabled = true;
                 map.Overlays.Clear();
+                counter = Convert.ToInt32(listaseconds[0]);
 
             }
 
@@ -345,6 +358,11 @@ namespace ASTERIX
                 {
                     map.Overlays.Clear();
                     map.Overlays.Remove(markerOverLay);
+
+                    map.Overlays.Clear();
+                    map.Overlays.Remove(markerOverLay);
+                    map.Overlays.Remove(mapoverlay1vuelo);
+                    mapoverlay1vuelo.Clear();
 
                 }
 
