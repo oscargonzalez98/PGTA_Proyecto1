@@ -56,17 +56,9 @@ namespace ASTERIX
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(listaCAT21.Count>0)
-            {
-                PruebasMapas PM1 = new PruebasMapas(listaCAT10, listaCAT20, listaCAT21);
-                PM1.ShowDialog();
-                lbErrores.Visible = false;
-            }
-            else
-            {
-                lbErrores.Visible = true;
-                lbErrores.Text = "This option is only for CAT21 (ADS-B) information. Please decode a CAT21 file and try again.";
-            }
+            PruebasMapas PM1 = new PruebasMapas(listaCAT10, listaCAT20, listaCAT21);
+            PM1.ShowDialog();
+            lbErrores.Visible = false;
         }
 
         private void Portada_Load(object sender, EventArgs e)

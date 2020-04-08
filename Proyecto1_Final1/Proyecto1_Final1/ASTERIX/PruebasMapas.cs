@@ -59,19 +59,22 @@ namespace ASTERIX
             this.listaCAT10 = listaCAT10;
             this.listaCAT21 = listaCAT21;
 
+
+        }
+
+        private void PruebasMapas_Load(object sender, EventArgs e)
+        {
             // declaramos el mapa al ppio y centramos en coordenadas aeropuerto bcn
 
             map.DragButton = MouseButtons.Left;
             map.CanDragMap = true;
             map.MapProvider = GMapProviders.GoogleMap;
-            map.Position = new PointLatLng(LatInicial,LongInicial);
+            map.Position = new PointLatLng(LatInicial, LongInicial);
             map.MinZoom = 0;
             map.MaxZoom = 24;
             map.Zoom = 7;
-        }
 
-        private void PruebasMapas_Load(object sender, EventArgs e)
-        {
+            // establecemos timer
             timer1.Interval = Convert.ToInt32(timer_speed);
 
             // Pedimos un target identification:
@@ -329,25 +332,23 @@ namespace ASTERIX
 
             }
 
-            // segundo caso: le damos para pausar
+            if(counter==listaseconds[0])
+            {
+                map.Overlays.Clear();
+                mapoverlay1vuelo.Clear();
+            }
 
+            // segundo caso: le damos para pausar
+            if(timer1.Enabled==true)
+            {
+                timer1.Enabled = false;
+            }
             else
             {
-                double ab = counter_playpause_button % 2;
-                if ((counter_playpause_button % 2) == 0) // le hemos dado un num par de veces 1 vez para play, 2 para pausar, 3 para play 4 para pausar, impares para play, pares para pause
-                {
-                    timer1.Enabled = false;
-                }
-
-                else
-                {
-                    timer1.Enabled = true;
-                }
-
+                timer1.Enabled = true;
             }
 
             // tercer caso: le damos para que al acabarse, vuelva a empezar: esta solucionado ya en el timer_tick 
-
         }
 
         private void lbPlot_Click(object sender, EventArgs e)
@@ -363,7 +364,6 @@ namespace ASTERIX
                     map.Overlays.Remove(markerOverLay);
                     map.Overlays.Remove(mapoverlay1vuelo);
                     mapoverlay1vuelo.Clear();
-
                 }
 
                 else
@@ -433,6 +433,7 @@ namespace ASTERIX
                 }
 
                 counter_1vuelo = counter_1vuelo + 1;
+                counter = Convert.ToInt32(listaseconds[0]);
             }
 
             else
