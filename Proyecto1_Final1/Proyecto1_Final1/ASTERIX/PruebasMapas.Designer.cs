@@ -32,6 +32,7 @@
             this.gMapControl2 = new GMap.NET.WindowsForms.GMapControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.map = new GMap.NET.WindowsForms.GMapControl();
+            this.lbPlay_Pause = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lb_Errores = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -53,7 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lbPlay_Pause = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -113,7 +113,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
@@ -124,7 +124,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1506, 771);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(2045, 1086);
             this.tableLayoutPanel1.TabIndex = 2;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -151,22 +152,33 @@
             this.map.PolygonsEnabled = true;
             this.map.RetryLoadTile = 0;
             this.map.RoutesEnabled = true;
-            this.tableLayoutPanel1.SetRowSpan(this.map, 10);
+            this.tableLayoutPanel1.SetRowSpan(this.map, 11);
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(1003, 765);
+            this.map.Size = new System.Drawing.Size(1423, 1078);
             this.map.TabIndex = 1;
             this.map.Zoom = 0D;
+            // 
+            // lbPlay_Pause
+            // 
+            this.lbPlay_Pause.Location = new System.Drawing.Point(1639, 562);
+            this.lbPlay_Pause.Margin = new System.Windows.Forms.Padding(4);
+            this.lbPlay_Pause.Name = "lbPlay_Pause";
+            this.lbPlay_Pause.Size = new System.Drawing.Size(136, 92);
+            this.lbPlay_Pause.TabIndex = 10;
+            this.lbPlay_Pause.Text = "Play/Pause";
+            this.lbPlay_Pause.UseVisualStyleBackColor = true;
+            this.lbPlay_Pause.Click += new System.EventHandler(this.lbPlay_Pause_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.label2, 3);
-            this.label2.Location = new System.Drawing.Point(1087, 372);
+            this.label2.Location = new System.Drawing.Point(1537, 372);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(331, 34);
+            this.label2.Size = new System.Drawing.Size(489, 16);
             this.label2.TabIndex = 13;
             this.label2.Text = "IMPORTANT: Sometimes you have to Zoom in and Zoom out to update the map!!!";
             // 
@@ -176,10 +188,10 @@
             this.tableLayoutPanel1.SetColumnSpan(this.lb_Errores, 3);
             this.lb_Errores.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.lb_Errores.ForeColor = System.Drawing.Color.Red;
-            this.lb_Errores.Location = new System.Drawing.Point(1087, 434);
+            this.lb_Errores.Location = new System.Drawing.Point(1537, 434);
             this.lb_Errores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_Errores.Name = "lb_Errores";
-            this.lb_Errores.Size = new System.Drawing.Size(141, 20);
+            this.lb_Errores.Size = new System.Drawing.Size(88, 13);
             this.lb_Errores.TabIndex = 14;
             this.lb_Errores.Text = "label para errores";
             this.lb_Errores.Visible = false;
@@ -191,10 +203,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 4);
             this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Location = new System.Drawing.Point(1015, 500);
+            this.panel1.Location = new System.Drawing.Point(1435, 500);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(426, 54);
+            this.panel1.Size = new System.Drawing.Size(606, 54);
             this.panel1.TabIndex = 15;
             // 
             // groupBox2
@@ -214,7 +226,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(425, 50);
+            this.groupBox2.Size = new System.Drawing.Size(605, 50);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             // 
@@ -227,7 +239,7 @@
             this.rb_20.Location = new System.Drawing.Point(374, 18);
             this.rb_20.Margin = new System.Windows.Forms.Padding(4);
             this.rb_20.Name = "rb_20";
-            this.rb_20.Size = new System.Drawing.Size(56, 24);
+            this.rb_20.Size = new System.Drawing.Size(48, 21);
             this.rb_20.TabIndex = 15;
             this.rb_20.Text = "x20";
             this.rb_20.UseVisualStyleBackColor = true;
@@ -241,7 +253,7 @@
             this.rb_10.Location = new System.Drawing.Point(312, 18);
             this.rb_10.Margin = new System.Windows.Forms.Padding(4);
             this.rb_10.Name = "rb_10";
-            this.rb_10.Size = new System.Drawing.Size(56, 24);
+            this.rb_10.Size = new System.Drawing.Size(48, 21);
             this.rb_10.TabIndex = 14;
             this.rb_10.Text = "x10";
             this.rb_10.UseVisualStyleBackColor = true;
@@ -255,7 +267,7 @@
             this.rb_4.Location = new System.Drawing.Point(257, 18);
             this.rb_4.Margin = new System.Windows.Forms.Padding(4);
             this.rb_4.Name = "rb_4";
-            this.rb_4.Size = new System.Drawing.Size(47, 24);
+            this.rb_4.Size = new System.Drawing.Size(40, 21);
             this.rb_4.TabIndex = 13;
             this.rb_4.Text = "x4";
             this.rb_4.UseVisualStyleBackColor = true;
@@ -269,7 +281,7 @@
             this.rb_2.Location = new System.Drawing.Point(208, 18);
             this.rb_2.Margin = new System.Windows.Forms.Padding(4);
             this.rb_2.Name = "rb_2";
-            this.rb_2.Size = new System.Drawing.Size(47, 24);
+            this.rb_2.Size = new System.Drawing.Size(40, 21);
             this.rb_2.TabIndex = 12;
             this.rb_2.Text = "x2";
             this.rb_2.UseVisualStyleBackColor = true;
@@ -285,7 +297,7 @@
             this.rb_1.Location = new System.Drawing.Point(153, 18);
             this.rb_1.Margin = new System.Windows.Forms.Padding(4);
             this.rb_1.Name = "rb_1";
-            this.rb_1.Size = new System.Drawing.Size(47, 24);
+            this.rb_1.Size = new System.Drawing.Size(40, 21);
             this.rb_1.TabIndex = 11;
             this.rb_1.TabStop = true;
             this.rb_1.Text = "x1";
@@ -300,7 +312,7 @@
             this.rb_05.Location = new System.Drawing.Point(85, 18);
             this.rb_05.Margin = new System.Windows.Forms.Padding(4);
             this.rb_05.Name = "rb_05";
-            this.rb_05.Size = new System.Drawing.Size(60, 24);
+            this.rb_05.Size = new System.Drawing.Size(52, 21);
             this.rb_05.TabIndex = 10;
             this.rb_05.Text = "x0.5";
             this.rb_05.UseVisualStyleBackColor = true;
@@ -314,7 +326,7 @@
             this.rb_025.Location = new System.Drawing.Point(8, 18);
             this.rb_025.Margin = new System.Windows.Forms.Padding(4);
             this.rb_025.Name = "rb_025";
-            this.rb_025.Size = new System.Drawing.Size(69, 24);
+            this.rb_025.Size = new System.Drawing.Size(60, 21);
             this.rb_025.TabIndex = 9;
             this.rb_025.Text = "x0.25";
             this.rb_025.UseVisualStyleBackColor = true;
@@ -328,7 +340,7 @@
             this.radioButton1.Location = new System.Drawing.Point(8, 59);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(225, 24);
+            this.radioButton1.Size = new System.Drawing.Size(185, 21);
             this.radioButton1.TabIndex = 8;
             this.radioButton1.Text = "SIMULATE ALL FLIGHTS";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -341,12 +353,12 @@
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 3);
             this.groupBox1.Controls.Add(this.rb_AllFlightsByTime);
             this.groupBox1.Controls.Add(this.rb_SimulateSingleFlightbyTime);
-            this.groupBox1.Location = new System.Drawing.Point(1087, 4);
+            this.groupBox1.Location = new System.Drawing.Point(1537, 4);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.SetRowSpan(this.groupBox1, 2);
-            this.groupBox1.Size = new System.Drawing.Size(354, 116);
+            this.groupBox1.Size = new System.Drawing.Size(504, 116);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
@@ -360,7 +372,7 @@
             this.rb_AllFlightsByTime.Location = new System.Drawing.Point(8, 23);
             this.rb_AllFlightsByTime.Margin = new System.Windows.Forms.Padding(4);
             this.rb_AllFlightsByTime.Name = "rb_AllFlightsByTime";
-            this.rb_AllFlightsByTime.Size = new System.Drawing.Size(225, 24);
+            this.rb_AllFlightsByTime.Size = new System.Drawing.Size(185, 21);
             this.rb_AllFlightsByTime.TabIndex = 8;
             this.rb_AllFlightsByTime.TabStop = true;
             this.rb_AllFlightsByTime.Text = "SIMULATE ALL FLIGHTS";
@@ -375,7 +387,7 @@
             this.rb_SimulateSingleFlightbyTime.Location = new System.Drawing.Point(8, 70);
             this.rb_SimulateSingleFlightbyTime.Margin = new System.Windows.Forms.Padding(4);
             this.rb_SimulateSingleFlightbyTime.Name = "rb_SimulateSingleFlightbyTime";
-            this.rb_SimulateSingleFlightbyTime.Size = new System.Drawing.Size(244, 24);
+            this.rb_SimulateSingleFlightbyTime.Size = new System.Drawing.Size(201, 21);
             this.rb_SimulateSingleFlightbyTime.TabIndex = 9;
             this.rb_SimulateSingleFlightbyTime.Text = "SIMULATE SINGLE FLIGHT";
             this.rb_SimulateSingleFlightbyTime.UseVisualStyleBackColor = true;
@@ -384,10 +396,10 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.tb_targetIdentification, 2);
             this.tb_targetIdentification.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.tb_targetIdentification.Location = new System.Drawing.Point(1087, 128);
+            this.tb_targetIdentification.Location = new System.Drawing.Point(1537, 128);
             this.tb_targetIdentification.Margin = new System.Windows.Forms.Padding(4);
             this.tb_targetIdentification.Name = "tb_targetIdentification";
-            this.tb_targetIdentification.Size = new System.Drawing.Size(165, 24);
+            this.tb_targetIdentification.Size = new System.Drawing.Size(165, 21);
             this.tb_targetIdentification.TabIndex = 0;
             this.tb_targetIdentification.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -395,10 +407,10 @@
             // 
             this.lbPlot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbPlot.Location = new System.Drawing.Point(1303, 128);
+            this.lbPlot.Location = new System.Drawing.Point(1843, 128);
             this.lbPlot.Margin = new System.Windows.Forms.Padding(4);
             this.lbPlot.Name = "lbPlot";
-            this.lbPlot.Size = new System.Drawing.Size(138, 54);
+            this.lbPlot.Size = new System.Drawing.Size(198, 54);
             this.lbPlot.TabIndex = 8;
             this.lbPlot.Text = "Plot Path";
             this.lbPlot.UseVisualStyleBackColor = true;
@@ -412,10 +424,10 @@
             this.lb_tiempo.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.lb_tiempo, 3);
             this.lb_tiempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.lb_tiempo.Location = new System.Drawing.Point(1087, 186);
+            this.lb_tiempo.Location = new System.Drawing.Point(1537, 186);
             this.lb_tiempo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_tiempo.Name = "lb_tiempo";
-            this.lb_tiempo.Size = new System.Drawing.Size(354, 62);
+            this.lb_tiempo.Size = new System.Drawing.Size(504, 62);
             this.lb_tiempo.TabIndex = 12;
             this.lb_tiempo.Text = "para el tiempo";
             this.lb_tiempo.Click += new System.EventHandler(this.lb_tiempo_Click);
@@ -424,9 +436,9 @@
             // 
             this.label1.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.label1, 3);
-            this.label1.Location = new System.Drawing.Point(1086, 248);
+            this.label1.Location = new System.Drawing.Point(1536, 248);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(356, 51);
+            this.label1.Size = new System.Drawing.Size(506, 32);
             this.label1.TabIndex = 16;
             this.label1.Text = "To simulate a single flight select the option above, write the target identificat" +
     "ion of the plane and plot it\'s path. Then press play.";
@@ -435,9 +447,9 @@
             // 
             this.label4.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.label4, 3);
-            this.label4.Location = new System.Drawing.Point(1086, 310);
+            this.label4.Location = new System.Drawing.Point(1536, 310);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(355, 34);
+            this.label4.Size = new System.Drawing.Size(473, 16);
             this.label4.TabIndex = 17;
             this.label4.Text = "To restart the simulation once the time is over click the Play/Pause button twice" +
     ".";
@@ -447,22 +459,11 @@
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
-            // lbPlay_Pause
-            // 
-            this.lbPlay_Pause.Location = new System.Drawing.Point(1159, 562);
-            this.lbPlay_Pause.Margin = new System.Windows.Forms.Padding(4);
-            this.lbPlay_Pause.Name = "lbPlay_Pause";
-            this.lbPlay_Pause.Size = new System.Drawing.Size(136, 92);
-            this.lbPlay_Pause.TabIndex = 10;
-            this.lbPlay_Pause.Text = "Play/Pause";
-            this.lbPlay_Pause.UseVisualStyleBackColor = true;
-            this.lbPlay_Pause.Click += new System.EventHandler(this.lbPlay_Pause_Click);
-            // 
             // PruebasMapas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1518, 782);
+            this.ClientSize = new System.Drawing.Size(2057, 1097);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.gMapControl2);
             this.Margin = new System.Windows.Forms.Padding(4);
