@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clases;
 using LIBRERIACLASES;
 
 namespace ASTERIX
@@ -17,6 +18,7 @@ namespace ASTERIX
         public List<CAT10> listaCAT10 = new List<CAT10>();
         public List<CAT20> listaCAT20 = new List<CAT20>();
         public List<CAT21> listaCAT21 = new List<CAT21>();
+        public List<CAT21v23> listaCAT21v23 = new List<CAT21v23>();
 
         public Portada()
         {
@@ -38,13 +40,14 @@ namespace ASTERIX
             listaCAT10 = BrowseFile1.ListaCAT10;
             listaCAT20 = BrowseFile1.ListaCAT20;
             listaCAT21 = BrowseFile1.ListaCAT21;
+            listaCAT21v23= BrowseFile1.ListaCAT21v23;
 
             lb_Instructions.Text = "The file has been processed successfully.";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Tables Tables1 = new Tables(listaCAT10, listaCAT20, listaCAT21);
+            Tables Tables1 = new Tables(listaCAT10, listaCAT20, listaCAT21, listaCAT21v23);
             Tables1.ShowDialog();
         }
 

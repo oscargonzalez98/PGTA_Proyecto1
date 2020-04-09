@@ -76,6 +76,18 @@
     <Compile Include="DataAgesCAT21.Designer.cs">
       <DependentUpon>DataAgesCAT21.cs</DependentUpon>
     </Compile>
+    <Compile Include="FigureofMeritv23.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FigureofMeritv23.Designer.cs">
+      <DependentUpon>FigureofMeritv23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinalStateSelectedAltitudev23.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinalStateSelectedAltitudev23.Designer.cs">
+      <DependentUpon>FinalStateSelectedAltitudev23.cs</DependentUpon>
+    </Compile>
     <Compile Include="FinalStateSelectedAltitudeCAT21.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +100,18 @@
     <Compile Include="FlightLevelinBinaryRepresentationCAT10.Designer.cs">
       <DependentUpon>FlightLevelinBinaryRepresentationCAT10.cs</DependentUpon>
     </Compile>
+    <Compile Include="IntermediateStateSelectedAltitudev23.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IntermediateStateSelectedAltitudev23.Designer.cs">
+      <DependentUpon>IntermediateStateSelectedAltitudev23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinkTechnologyv23.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LinkTechnologyv23.Designer.cs">
+      <DependentUpon>LinkTechnologyv23.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +123,12 @@
     </Compile>
     <Compile Include="MetInfoCAT21.Designer.cs">
       <DependentUpon>MetInfoCAT21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MetInfov23.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MetInfov23.Designer.cs">
+      <DependentUpon>MetInfov23.cs</DependentUpon>
     </Compile>
     <Compile Include="Mode3ACodeCAT10.cs">
       <SubType>Form</SubType>
@@ -180,6 +210,12 @@
     <Compile Include="TargetReportDescriptorCAT21.Designer.cs">
       <DependentUpon>TargetReportDescriptorCAT21.cs</DependentUpon>
     </Compile>
+    <Compile Include="TargetReportDescriptorv23.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TargetReportDescriptorv23.Designer.cs">
+      <DependentUpon>TargetReportDescriptorv23.cs</DependentUpon>
+    </Compile>
     <Compile Include="TargetSizeOrientationCAT10.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,17 +252,32 @@
     <EmbeddedResource Include="DataAgesCAT21.resx">
       <DependentUpon>DataAgesCAT21.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FigureofMeritv23.resx">
+      <DependentUpon>FigureofMeritv23.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FinalStateSelectedAltitudeCAT21.resx">
       <DependentUpon>FinalStateSelectedAltitudeCAT21.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FinalStateSelectedAltitudev23.resx">
+      <DependentUpon>FinalStateSelectedAltitudev23.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FlightLevelinBinaryRepresentationCAT10.resx">
       <DependentUpon>FlightLevelinBinaryRepresentationCAT10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IntermediateStateSelectedAltitudev23.resx">
+      <DependentUpon>IntermediateStateSelectedAltitudev23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LinkTechnologyv23.resx">
+      <DependentUpon>LinkTechnologyv23.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MapView.resx">
       <DependentUpon>MapView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MetInfoCAT21.resx">
       <DependentUpon>MetInfoCAT21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MetInfov23.resx">
+      <DependentUpon>MetInfov23.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mode3ACodeCAT10.resx">
       <DependentUpon>Mode3ACodeCAT10.cs</DependentUpon>
@@ -275,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TargetReportDescriptorCAT21.resx">
       <DependentUpon>TargetReportDescriptorCAT21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TargetReportDescriptorv23.resx">
+      <DependentUpon>TargetReportDescriptorv23.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TargetSizeOrientationCAT10.resx">
       <DependentUpon>TargetSizeOrientationCAT10.cs</DependentUpon>

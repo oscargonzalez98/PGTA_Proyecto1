@@ -42,7 +42,7 @@ namespace ASTERIX
         GMapOverlay markerOverLay_antiguo = new GMapOverlay("Marcador"); // declaramos uno nuevo para guardar el overlay antiguo
 
         // icono1 de los pointers del mapa
-        Bitmap bmpMarker = (Bitmap)Image.FromFile("img/plane4.png");
+        //Bitmap bmpMarker = (Bitmap)Image.FromFile("img/plane4.png");
 
         // Variables para plotear un solo vuelo por tiempo
         string TargetIdentification;

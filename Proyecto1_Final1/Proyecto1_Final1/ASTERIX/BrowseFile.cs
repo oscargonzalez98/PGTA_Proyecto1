@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Clases;
 using LIBRERIACLASES;
 
 namespace ASTERIX
@@ -16,6 +17,8 @@ namespace ASTERIX
         public List<CAT10> listaCAT10 = new List<CAT10>();
         public List<CAT20> listaCAT20 = new List<CAT20>();
         public List<CAT21> listaCAT21 = new List<CAT21>();
+        public List<CAT21v23> listaCAT21v23 = new List<CAT21v23>();
+
 
         public BrowseFile()
         {
@@ -29,6 +32,11 @@ namespace ASTERIX
             lbTitle.Text = "BROWSE A FILE AND SELECT IT TO DECODE";
         }
 
+
+        public List<CAT21v23> ListaCAT21v23
+        {
+            get { return listaCAT21v23; }
+        }
         public List<CAT21> ListaCAT21
         {
             get { return listaCAT21; }
@@ -38,7 +46,6 @@ namespace ASTERIX
         {
             get { return listaCAT20; }
         }
-
         public List<CAT10> ListaCAT10
         {
             get { return listaCAT10; }
@@ -75,13 +82,14 @@ namespace ASTERIX
         {
             if (tbDirection.Text.Length > 0)
             {
-                try
-                {
+                //try
+                //{
                     string path = tbDirection.Text;
 
                     Fichero newfichero = new Fichero(path);
                     newfichero.leer();
 
+                    listaCAT21v23 = newfichero.GetListCAT21v23();
                     listaCAT21 = newfichero.GetListCAT21(); // devuelve lista de clases CAT21, cada una con un paquete
                     listaCAT20 = newfichero.GetListCAT20();
                     listaCAT10 = newfichero.getListCAT10();
@@ -91,11 +99,11 @@ namespace ASTERIX
 
                     this.Close();
 
-                }
-                catch
-                {
-                    lblError.Text = "Error. Please select a valid file.";
-                }
+                //}
+                //catch
+                //{
+                //    lblError.Text = "Error. Please select a valid file.";
+                //}
             }
 
             else
