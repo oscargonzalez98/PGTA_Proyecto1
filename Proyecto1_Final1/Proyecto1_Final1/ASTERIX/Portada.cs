@@ -68,5 +68,11 @@ namespace ASTERIX
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MapView1 MapView = new MapView1(listaCAT10, listaCAT21, listaCAT21v23);
+            MapView.ShowDialog();
+        }
     }
 }

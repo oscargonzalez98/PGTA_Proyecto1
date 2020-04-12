@@ -118,6 +118,12 @@
     <Compile Include="MapView.Designer.cs">
       <DependentUpon>MapView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapView1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapView1.Designer.cs">
+      <DependentUpon>MapView1.cs</DependentUpon>
+    </Compile>
     <Compile Include="MetInfoCAT21.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MapView.resx">
       <DependentUpon>MapView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapView1.resx">
+      <DependentUpon>MapView1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MetInfoCAT21.resx">
       <DependentUpon>MetInfoCAT21.cs</DependentUpon>
