@@ -71,6 +71,7 @@ namespace ASTERIX
         private void MapView1_Load(object sender, EventArgs e)
         {
             // Establecemos timer parado
+
             timer.Enabled = false;
 
             //Cargamos mapa
@@ -117,12 +118,26 @@ namespace ASTERIX
 
             secondCounterFinal = new[] { db1, db2, db3 }.Max();
 
+            // Definimos valor inicial del contador contador
+
             secondCounter = secondCounterInicial;
+
+            // Labels del tiempo
+
+            TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
+            lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+            t = TimeSpan.FromSeconds(secondCounterFinal);
+            lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if(secondCounter>secondCounterFinal)
+            TimeSpan t = TimeSpan.FromSeconds(secondCounter);
+            lb_Hora.Visible = true;
+            lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+            if (secondCounter>secondCounterFinal)
             {
                 timer.Enabled = false;
                 overlay.Clear();
@@ -149,6 +164,22 @@ namespace ASTERIX
             else { timer.Enabled = false; }
         }
 
+        private void lb_FIR_Click(object sender, EventArgs e)
+        {
+            Mapa.Zoom = 8;
+        }
+
+        private void lb_TMA_Click(object sender, EventArgs e)
+        {
+            Mapa.Zoom = 11;
+        }
+
+        private void bt_TWR_Click(object sender, EventArgs e)
+        {
+            Mapa.Zoom = 13;
+        }
+
+
         //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         // Funciones para que todo esto rule
 
@@ -160,6 +191,7 @@ namespace ASTERIX
         {
             return radians * 180 / (Math.PI);
         }
+
         public double[] NewCoordinatesSMR(double distance, double bearing)
         {
             double[] listaCoordenadas = new double[2];
@@ -383,6 +415,7 @@ namespace ASTERIX
             return listaCoordenadas;
 
         }
+
         public List<int> VuelosCAT10Ahora(double second)
         {
             List<int> lista = new List<int>();
@@ -577,7 +610,6 @@ namespace ASTERIX
         {
 
         }
-
 
 
 
