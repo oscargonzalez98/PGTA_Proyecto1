@@ -49,15 +49,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.rb_05 = new System.Windows.Forms.RadioButton();
-            this.rb_1 = new System.Windows.Forms.RadioButton();
-            this.rb_2 = new System.Windows.Forms.RadioButton();
-            this.rb_4 = new System.Windows.Forms.RadioButton();
-            this.rb_10 = new System.Windows.Forms.RadioButton();
             this.rb_20 = new System.Windows.Forms.RadioButton();
+            this.rb_10 = new System.Windows.Forms.RadioButton();
+            this.rb_4 = new System.Windows.Forms.RadioButton();
+            this.rb_2 = new System.Windows.Forms.RadioButton();
+            this.rb_1 = new System.Windows.Forms.RadioButton();
+            this.rb_05 = new System.Windows.Forms.RadioButton();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -76,7 +76,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.6842F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.3158F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel1.Controls.Add(this.Mapa, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.bt_PlayPause, 2, 8);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 1);
@@ -126,13 +126,13 @@
             this.Mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.Mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.Mapa.ShowTileGridLines = false;
-            this.Mapa.Size = new System.Drawing.Size(987, 801);
+            this.Mapa.Size = new System.Drawing.Size(986, 801);
             this.Mapa.TabIndex = 1;
             this.Mapa.Zoom = 0D;
             // 
             // bt_PlayPause
             // 
-            this.bt_PlayPause.Location = new System.Drawing.Point(1046, 531);
+            this.bt_PlayPause.Location = new System.Drawing.Point(1045, 531);
             this.bt_PlayPause.Name = "bt_PlayPause";
             this.bt_PlayPause.Size = new System.Drawing.Size(75, 23);
             this.bt_PlayPause.TabIndex = 2;
@@ -144,7 +144,7 @@
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(1046, 53);
+            this.panel1.Location = new System.Drawing.Point(1045, 53);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(348, 44);
             this.panel1.TabIndex = 3;
@@ -214,7 +214,7 @@
             // 
             this.panel2.Controls.Add(this.tableLayoutPanel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(1046, 123);
+            this.panel2.Location = new System.Drawing.Point(1045, 123);
             this.panel2.Name = "panel2";
             this.tableLayoutPanel1.SetRowSpan(this.panel2, 2);
             this.panel2.Size = new System.Drawing.Size(348, 74);
@@ -364,7 +364,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1046, 100);
+            this.label1.Location = new System.Drawing.Point(1045, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(348, 20);
             this.label1.TabIndex = 5;
@@ -378,17 +378,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1046, 200);
+            this.label4.Location = new System.Drawing.Point(1045, 200);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(348, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "----------------------------------------------------------";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // timer
-            // 
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // groupBox1
             // 
@@ -396,7 +391,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox1.Location = new System.Drawing.Point(1046, 223);
+            this.groupBox1.Location = new System.Drawing.Point(1045, 223);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(348, 24);
             this.groupBox1.TabIndex = 7;
@@ -428,20 +423,65 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(348, 24);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // rb_05
+            // rb_20
             // 
-            this.rb_05.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.rb_20.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_05.AutoSize = true;
-            this.rb_05.Location = new System.Drawing.Point(3, 3);
-            this.rb_05.Name = "rb_05";
-            this.rb_05.Size = new System.Drawing.Size(52, 18);
-            this.rb_05.TabIndex = 0;
-            this.rb_05.TabStop = true;
-            this.rb_05.Text = "x0.5";
-            this.rb_05.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rb_05.UseVisualStyleBackColor = true;
+            this.rb_20.AutoSize = true;
+            this.rb_20.Location = new System.Drawing.Point(288, 3);
+            this.rb_20.Name = "rb_20";
+            this.rb_20.Size = new System.Drawing.Size(57, 18);
+            this.rb_20.TabIndex = 5;
+            this.rb_20.TabStop = true;
+            this.rb_20.Text = "x20";
+            this.rb_20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rb_20.UseVisualStyleBackColor = true;
+            // 
+            // rb_10
+            // 
+            this.rb_10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_10.AutoSize = true;
+            this.rb_10.Location = new System.Drawing.Point(231, 3);
+            this.rb_10.Name = "rb_10";
+            this.rb_10.Size = new System.Drawing.Size(51, 18);
+            this.rb_10.TabIndex = 4;
+            this.rb_10.TabStop = true;
+            this.rb_10.Text = "x10";
+            this.rb_10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rb_10.UseVisualStyleBackColor = true;
+            // 
+            // rb_4
+            // 
+            this.rb_4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_4.AutoSize = true;
+            this.rb_4.Location = new System.Drawing.Point(174, 3);
+            this.rb_4.Name = "rb_4";
+            this.rb_4.Size = new System.Drawing.Size(51, 18);
+            this.rb_4.TabIndex = 3;
+            this.rb_4.TabStop = true;
+            this.rb_4.Text = "x4";
+            this.rb_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rb_4.UseVisualStyleBackColor = true;
+            // 
+            // rb_2
+            // 
+            this.rb_2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_2.AutoSize = true;
+            this.rb_2.Location = new System.Drawing.Point(117, 3);
+            this.rb_2.Name = "rb_2";
+            this.rb_2.Size = new System.Drawing.Size(51, 18);
+            this.rb_2.TabIndex = 2;
+            this.rb_2.TabStop = true;
+            this.rb_2.Text = "x2";
+            this.rb_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rb_2.UseVisualStyleBackColor = true;
             // 
             // rb_1
             // 
@@ -450,74 +490,34 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rb_1.AutoSize = true;
             this.rb_1.Checked = true;
-            this.rb_1.Location = new System.Drawing.Point(61, 3);
+            this.rb_1.Location = new System.Drawing.Point(60, 3);
             this.rb_1.Name = "rb_1";
-            this.rb_1.Size = new System.Drawing.Size(52, 18);
+            this.rb_1.Size = new System.Drawing.Size(51, 18);
             this.rb_1.TabIndex = 1;
             this.rb_1.TabStop = true;
             this.rb_1.Text = "x1";
             this.rb_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rb_1.UseVisualStyleBackColor = true;
             // 
-            // rb_2
+            // rb_05
             // 
-            this.rb_2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.rb_05.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_2.AutoSize = true;
-            this.rb_2.Location = new System.Drawing.Point(119, 3);
-            this.rb_2.Name = "rb_2";
-            this.rb_2.Size = new System.Drawing.Size(52, 18);
-            this.rb_2.TabIndex = 2;
-            this.rb_2.TabStop = true;
-            this.rb_2.Text = "x2";
-            this.rb_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rb_2.UseVisualStyleBackColor = true;
+            this.rb_05.AutoSize = true;
+            this.rb_05.Location = new System.Drawing.Point(3, 3);
+            this.rb_05.Name = "rb_05";
+            this.rb_05.Size = new System.Drawing.Size(51, 18);
+            this.rb_05.TabIndex = 0;
+            this.rb_05.TabStop = true;
+            this.rb_05.Text = "x0.5";
+            this.rb_05.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rb_05.UseVisualStyleBackColor = true;
             // 
-            // rb_4
+            // timer
             // 
-            this.rb_4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_4.AutoSize = true;
-            this.rb_4.Location = new System.Drawing.Point(177, 3);
-            this.rb_4.Name = "rb_4";
-            this.rb_4.Size = new System.Drawing.Size(52, 18);
-            this.rb_4.TabIndex = 3;
-            this.rb_4.TabStop = true;
-            this.rb_4.Text = "x4";
-            this.rb_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rb_4.UseVisualStyleBackColor = true;
-            // 
-            // rb_10
-            // 
-            this.rb_10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_10.AutoSize = true;
-            this.rb_10.Location = new System.Drawing.Point(235, 3);
-            this.rb_10.Name = "rb_10";
-            this.rb_10.Size = new System.Drawing.Size(52, 18);
-            this.rb_10.TabIndex = 4;
-            this.rb_10.TabStop = true;
-            this.rb_10.Text = "x10";
-            this.rb_10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rb_10.UseVisualStyleBackColor = true;
-            // 
-            // rb_20
-            // 
-            this.rb_20.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_20.AutoSize = true;
-            this.rb_20.Location = new System.Drawing.Point(293, 3);
-            this.rb_20.Name = "rb_20";
-            this.rb_20.Size = new System.Drawing.Size(52, 18);
-            this.rb_20.TabIndex = 5;
-            this.rb_20.TabStop = true;
-            this.rb_20.Text = "x20";
-            this.rb_20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rb_20.UseVisualStyleBackColor = true;
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // MapView1
             // 
