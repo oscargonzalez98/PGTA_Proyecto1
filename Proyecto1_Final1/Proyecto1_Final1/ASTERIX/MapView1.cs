@@ -383,11 +383,7 @@ namespace ASTERIX
 
         private void bt_Backward_Click(object sender, EventArgs e)
         {
-            overlay.Clear();
-            Mapa.Overlays.Clear();
 
-            GMapOverlay overlay1 = StackdeOverlays.Pop();
-            Mapa.Overlays.Add(overlay1);
         }
 
 

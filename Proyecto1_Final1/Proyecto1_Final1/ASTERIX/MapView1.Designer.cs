@@ -84,7 +84,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.6842F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.3158F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel1.Controls.Add(this.Mapa, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 2, 3);
@@ -145,7 +145,7 @@
             this.Mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.Mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.Mapa.ShowTileGridLines = false;
-            this.Mapa.Size = new System.Drawing.Size(946, 801);
+            this.Mapa.Size = new System.Drawing.Size(945, 801);
             this.Mapa.TabIndex = 1;
             this.Mapa.Zoom = 0D;
             // 
@@ -153,7 +153,7 @@
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(1005, 53);
+            this.panel1.Location = new System.Drawing.Point(1004, 53);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(334, 44);
             this.panel1.TabIndex = 3;
@@ -223,7 +223,7 @@
             // 
             this.panel2.Controls.Add(this.tableLayoutPanel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(1005, 123);
+            this.panel2.Location = new System.Drawing.Point(1004, 123);
             this.panel2.Name = "panel2";
             this.tableLayoutPanel1.SetRowSpan(this.panel2, 2);
             this.panel2.Size = new System.Drawing.Size(334, 74);
@@ -375,7 +375,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1005, 100);
+            this.label1.Location = new System.Drawing.Point(1004, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(334, 20);
             this.label1.TabIndex = 5;
@@ -389,7 +389,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1005, 200);
+            this.label4.Location = new System.Drawing.Point(1004, 200);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(334, 20);
             this.label4.TabIndex = 6;
@@ -402,7 +402,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox1.Location = new System.Drawing.Point(1005, 223);
+            this.groupBox1.Location = new System.Drawing.Point(1004, 223);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(334, 24);
             this.groupBox1.TabIndex = 7;
@@ -530,7 +530,7 @@
             this.bt_AllFlights.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_AllFlights.Location = new System.Drawing.Point(1005, 293);
+            this.bt_AllFlights.Location = new System.Drawing.Point(1004, 293);
             this.bt_AllFlights.Name = "bt_AllFlights";
             this.bt_AllFlights.Size = new System.Drawing.Size(334, 34);
             this.bt_AllFlights.TabIndex = 8;
@@ -544,7 +544,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1005, 330);
+            this.label8.Location = new System.Drawing.Point(1004, 330);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(334, 20);
             this.label8.TabIndex = 9;
@@ -556,7 +556,7 @@
             this.tb_TargetIdentification.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_TargetIdentification.Location = new System.Drawing.Point(1005, 353);
+            this.tb_TargetIdentification.Location = new System.Drawing.Point(1004, 353);
             this.tb_TargetIdentification.Name = "tb_TargetIdentification";
             this.tb_TargetIdentification.Size = new System.Drawing.Size(334, 20);
             this.tb_TargetIdentification.TabIndex = 10;
@@ -566,7 +566,7 @@
             this.bt_SingleFlight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_SingleFlight.Location = new System.Drawing.Point(1005, 383);
+            this.bt_SingleFlight.Location = new System.Drawing.Point(1004, 383);
             this.bt_SingleFlight.Name = "bt_SingleFlight";
             this.bt_SingleFlight.Size = new System.Drawing.Size(334, 34);
             this.bt_SingleFlight.TabIndex = 11;
@@ -588,7 +588,7 @@
             this.tableLayoutPanel5.Controls.Add(this.bt_Backward, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.bt_PlayPause, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.bt_Forward, 4, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(1005, 566);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(1004, 566);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
