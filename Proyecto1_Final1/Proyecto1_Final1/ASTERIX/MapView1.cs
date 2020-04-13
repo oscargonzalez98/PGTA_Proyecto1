@@ -54,7 +54,13 @@ namespace ASTERIX
         public double secondCounterInicial;
         public double secondCounterFinal;
 
+        bool boolAllFlights = false;
+        bool boolSingleFlight = false;
+
         GMapOverlay overlay = new GMapOverlay();
+        Stack<GMapOverlay> StackdeOverlays = new Stack<GMapOverlay>();
+
+        int markerlimit = 1000;
 
 
 
@@ -83,11 +89,115 @@ namespace ASTERIX
             Mapa.Zoom = zoom;
             Mapa.AutoScroll = true;
 
+        }
+
+        public void timer_Tick(object sender, EventArgs e)
+        {
+            // establecemos timer speed
+            if (rb_05.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 0.5); }
+            if (rb_1.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 1); }
+            if (rb_2.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 2); }
+            if (rb_4.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 4); }
+            if (rb_10.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 10); }
+            if (rb_20.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 20); }
+
+            if (boolAllFlights == true && boolSingleFlight == false)
+            {
+                TimeSpan t = TimeSpan.FromSeconds(secondCounter);
+                lb_Hora.Visible = true;
+                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+                overlay = CalcularNuevosPuntos(secondCounter, overlay);
+                Mapa.Overlays.Clear();
+                Mapa.Overlays.Add(overlay);
+                StackdeOverlays.Push(overlay);
+
+                if (overlay.Markers.Count > markerlimit)
+                {
+                    overlay.Clear();
+                    overlay = CalcularNuevosPuntos(secondCounter, overlay);
+                    Mapa.Overlays.Add(overlay);
+                    StackdeOverlays.Push(overlay);
+                }
+
+                secondCounter = secondCounter + 1;
+
+                if (secondCounter > secondCounterFinal)
+                {
+                    timer.Enabled = false;
+                    overlay.Clear();
+                    Mapa.Overlays.Clear();
+                    secondCounter = secondCounterInicial;
+                }
+            }
+
+            if (boolAllFlights == false && boolSingleFlight == true)
+            {
+                TimeSpan t = TimeSpan.FromSeconds(secondCounter);
+                lb_Hora.Visible = true;
+                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+                overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
+                Mapa.Overlays.Clear();
+                Mapa.Overlays.Add(overlay);
+                StackdeOverlays.Push(overlay);
+
+                secondCounter = secondCounter + 1;
+
+                if (secondCounter > secondCounterFinal)
+                {
+                    timer.Enabled = false;
+                    overlay.Clear();
+                    Mapa.Overlays.Clear();
+                    secondCounter = secondCounterInicial;
+                }
+            }
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (boolAllFlights == true || boolSingleFlight==true)
+            {
+                if (timer.Enabled == false) { timer.Enabled = true; }
+                else { timer.Enabled = false; }
+            }
+        }
+
+        private void lb_FIR_Click(object sender, EventArgs e)
+        {
+            Mapa.Zoom = 8;
+        }
+
+        private void lb_TMA_Click(object sender, EventArgs e)
+        {
+            Mapa.Zoom = 11;
+        }
+
+        private void bt_TWR_Click(object sender, EventArgs e)
+        {
+            Mapa.Zoom = 13;
+        }
+
+        private void bt_AllFlights_Click(object sender, EventArgs e)
+        {
+            // Limpiamos los mapas
+            Mapa.Overlays.Clear();
+            overlay.Clear();
+            
+            // Limpiamos el stack
+
+            StackdeOverlays.Clear();
+
+            // Establecemos timer
+            timer.Enabled = false;
+
             //Cargamos vectores tiempo
 
             if (listaCAT10.Count > 0) { CalculateListaSecondsCAT10(); }
             if (listaCAT21.Count > 0) { CalculateListaSecondsCAT21(); }
-            if (listaCAT21v23.Count>0) { CalculateListaSecondsCAT21v23(); }
+            if (listaCAT21v23.Count > 0) { CalculateListaSecondsCAT21v23(); }
 
             // Establecemos el primer segundo como el minimo de los 3.
             double db1;
@@ -123,65 +233,83 @@ namespace ASTERIX
             // Labels del tiempo
 
             TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
+            lb_HoraInicial.Visible = true;
             lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
 
             t = TimeSpan.FromSeconds(secondCounterFinal);
+            lb_HoraFinal.Visible = true;
             lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+            //  Establecemos que boton esta encendido y cual no
+            boolAllFlights = true;
+            boolSingleFlight = false;
         }
 
-        public void timer_Tick(object sender, EventArgs e)
+        private void bt_SingleFlight_Click(object sender, EventArgs e)
         {
-            // establecemos timer speed
-            if (rb_05.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 0.5); }
-            if (rb_1.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 1); }
-            if (rb_2.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 2); }
-            if (rb_4.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 4); }
-            if (rb_10.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 10); }
-
-            TimeSpan t = TimeSpan.FromSeconds(secondCounter);
-            lb_Hora.Visible = true;
-            lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
-
-            if (secondCounter>secondCounterFinal)
-            {
-                timer.Enabled = false;
-                overlay.Clear();
-                Mapa.Overlays.Clear();
-                secondCounter = secondCounterInicial;
-            }
-
-            overlay = CalcularNuevosPuntos(secondCounter, overlay);
+            // Limpiamos los mapas
             Mapa.Overlays.Clear();
-            Mapa.Overlays.Add(overlay);
+            overlay.Clear();
 
-            if(overlay.Markers.Count>1000)
-            {
-                overlay.Clear();
-                overlay = CalcularNuevosPuntos(secondCounter, overlay);
-                Mapa.Overlays.Add(overlay);
-            }
-            secondCounter = secondCounter + 1;
-        }
+            // Limpiamos el stack
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (timer.Enabled == false) { timer.Enabled = true; }
-            else { timer.Enabled = false; }
-        }
+            StackdeOverlays.Clear();
 
-        private void lb_FIR_Click(object sender, EventArgs e)
-        {
-            Mapa.Zoom = 8;
-        }
+            // Establecemos timer
+            timer.Enabled = false;
 
-        private void lb_TMA_Click(object sender, EventArgs e)
-        {
-            Mapa.Zoom = 11;
-        }
+            //Cargamos vectores tiempo
 
-        private void bt_TWR_Click(object sender, EventArgs e)
-        {
-            Mapa.Zoom = 13;
+            if (listaCAT10.Count > 0) { CalculateListaSeconds1vueloCAT10(tb_TargetIdentification.Text); }
+            if (listaCAT21.Count > 0) { CalculateListaSeconds1vueloCAT21(tb_TargetIdentification.Text); }
+            if (listaCAT21v23.Count > 0) { CalculateListaSeconds1vueloCAT21v23(tb_TargetIdentification.Text); }
+
+            // Establecemos el primer segundo como el minimo de los 3.
+            double db1;
+            double db2;
+            double db3;
+
+            if (listasecondsCAT10.Count == 0) { db1 = 10e6; }
+            else { db1 = listasecondsCAT10.First(); }
+
+            if (listasecondsCAT21.Count == 0) { db2 = 10e6; }
+            else { db2 = listasecondsCAT21.First(); }
+
+            if (listasecondsCAT21v23.Count == 0) { db3 = 10e6; }
+            else { db3 = listasecondsCAT21v23.First(); }
+
+            secondCounterInicial = new[] { db1, db2, db3 }.Min();
+
+            if (listasecondsCAT10.Count == 0) { db1 = 0; }
+            else { db1 = listasecondsCAT10.Last(); }
+
+            if (listasecondsCAT21.Count == 0) { db2 = 0; }
+            else { db2 = listasecondsCAT21.Last(); }
+
+            if (listasecondsCAT21v23.Count == 0) { db3 = 0; }
+            else { db3 = listasecondsCAT21v23.Last(); }
+
+            secondCounterFinal = new[] { db1, db2, db3 }.Max();
+
+            // Definimos valor inicial del contador contador
+
+            secondCounter = secondCounterInicial;
+
+            // Labels del tiempo
+
+            TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
+            lb_HoraInicial.Visible = true;
+            lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+            t = TimeSpan.FromSeconds(secondCounterFinal);
+            lb_HoraFinal.Visible = true;
+            lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+
+            //  Establecemos que boton esta encendido y cual no
+
+            boolAllFlights = false;
+            boolSingleFlight = true;
         }
 
 
@@ -475,12 +603,39 @@ namespace ASTERIX
             while (j < listaCAT10.Count)
             {
                 string TargetIdentificationActual = listaCAT10[j].TargetIdentification_decoded;
-                if (TargetIdentificationActual[0] == Convert.ToChar(" "))
-                {
-                    TargetIdentificationActual = TargetIdentificationActual.Substring(0, TargetIdentificationActual.Length - 2);
-                }
-
                 if (listaCAT10[j].TimeofDay_seconds == second && TargetIdentificationActual == targetidentification) 
+                {
+                    lista.Add(j);
+                }
+                j = j + 1;
+            }
+            return lista;
+        }
+        public List<int> VuelosCAT21AhoraPorNombre(double second, string targetidentification)
+        {
+            List<int> lista = new List<int>();
+
+            int j = 0;
+            while (j < listaCAT21.Count)
+            {
+                string TargetIdentificationActual = listaCAT21[j].TargetIdentification_decoded;
+                if (listaCAT21[j].TimeofASTERIXReportTransmission_seconds == second && TargetIdentificationActual == targetidentification)
+                {
+                    lista.Add(j);
+                }
+                j = j + 1;
+            }
+            return lista;
+        }
+        public List<int> VuelosCAT21v23AhoraPorNombre(double second, string targetidentification)
+        {
+            List<int> lista = new List<int>();
+
+            int j = 0;
+            while (j < listaCAT21v23.Count)
+            {
+                string TargetIdentificationActual = listaCAT21v23[j].TargetIdentification_decoded;
+                if (listaCAT21v23[j].TimeofDay_seconds == second && TargetIdentificationActual == targetidentification)
                 {
                     lista.Add(j);
                 }
@@ -491,6 +646,8 @@ namespace ASTERIX
 
         public void CalculateListaSecondsCAT10()
         {
+            listasecondsCAT10.Clear();
+
             double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[0].TimeofDay_seconds)));
             listasecondsCAT10.Add(sec);
 
@@ -507,6 +664,8 @@ namespace ASTERIX
         }
         public void CalculateListaSecondsCAT21()
         {
+            listasecondsCAT21.Clear();
+
             double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21[0].TimeofASTERIXReportTransmission_seconds)));
             listasecondsCAT21.Add(sec);
 
@@ -523,6 +682,8 @@ namespace ASTERIX
         }
         public void CalculateListaSecondsCAT21v23()
         {
+            listasecondsCAT21v23.Clear();
+
             double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21v23[0].TimeofDay_seconds)));
             listasecondsCAT21v23.Add(sec);
 
@@ -538,6 +699,63 @@ namespace ASTERIX
             }
         }
 
+        public void CalculateListaSeconds1vueloCAT10(string TargetIdentification)
+        {
+            listasecondsCAT10.Clear();
+
+            double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[0].TimeofDay_seconds)));
+            listasecondsCAT10.Add(sec);
+
+            int i = 1;
+            while (i < listaCAT10.Count)
+            {
+                string TargetIdentificationActual = listaCAT10[i].TargetIdentification_decoded;
+                int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
+                if (second > listasecondsCAT10.Last() && TargetIdentificationActual == TargetIdentification)
+                {
+                    listasecondsCAT10.Add(second);
+                }
+                i = i + 1;
+            }
+        }
+        public void CalculateListaSeconds1vueloCAT21(string TargetIdentification)
+        {
+            listasecondsCAT21.Clear();
+
+            double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21[0].TimeofASTERIXReportTransmission_seconds)));
+            listasecondsCAT21.Add(sec);
+
+            int i = 1;
+            while (i < listaCAT21.Count)
+            {
+                string TargetIdentificationActual = listaCAT21[i].TargetIdentification_decoded;
+                int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21[i].TimeofASTERIXReportTransmission_seconds)));
+                if (second > listasecondsCAT21.Last() && TargetIdentification == TargetIdentification)
+                {
+                    listasecondsCAT21.Add(second);
+                }
+                i = i + 1;
+            }
+        }
+        public void CalculateListaSeconds1vueloCAT21v23(string TargetIdentification)
+        {
+            listasecondsCAT21v23.Clear();
+
+            double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21v23[0].TimeofDay_seconds)));
+            listasecondsCAT21v23.Add(sec);
+
+            int i = 1;
+            while (i < listaCAT21v23.Count)
+            {
+                string TargetIdentificationActual = listaCAT21v23[i].TargetIdentification_decoded;
+                int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21v23[i].TimeofDay_seconds)));
+                if (second > listasecondsCAT21v23.Last() && TargetIdentificationActual == TargetIdentification)
+                {
+                    listasecondsCAT21v23.Add(second);
+                }
+                i = i + 1;
+            }
+        }
 
 
         public GMapOverlay CalcularNuevosPuntos(double secondCounter, GMapOverlay overlay)
@@ -637,10 +855,111 @@ namespace ASTERIX
 
             return overlay;
         }
+        public GMapOverlay CalcularNuevosPuntosPorNombre(double secondCounter, GMapOverlay overlay, string TargetIdentification)
+        {
+            List<int> vuelosCAT10 = VuelosCAT10AhoraPorNombre(secondCounter, TargetIdentification);
+            List<int> vuelosCAT21 = VuelosCAT21AhoraPorNombre(secondCounter, TargetIdentification);
+            List<int> vuelosCAT21v23 = VuelosCAT21v23AhoraPorNombre(secondCounter, TargetIdentification);
+
+            if (vuelosCAT10.Count > 0) // Plot lista CAT10
+            {
+                int i = 0;
+
+                while (i < vuelosCAT10.Count)
+                {
+                    int j = vuelosCAT10[i];
+
+                    int SAC = listaCAT10[j].SAC;
+                    int SIC = listaCAT10[j].SIC;
+
+                    if (SAC == 0 && SIC == 7) //SMR
+                    {
+                        if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                        {
+                            double[] coordenadas = NewCoordinatesSMR(listaCAT10[j].Rho, listaCAT10[j].Theta);
+                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), GMarkerGoogleType.blue_dot);
+                            overlay.Markers.Add(marker);
+                        }
+
+                        if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                        {
+                            double rho = Math.Sqrt((listaCAT10[j].X_cartesian) * (listaCAT10[j].X_cartesian) + (listaCAT10[j].Y_cartesian) * (listaCAT10[j].Y_cartesian));
+                            double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian);
+
+                            double[] coordenadas = NewCoordinatesSMR(rho, theta);
+                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), GMarkerGoogleType.blue_dot);
+                            overlay.Markers.Add(marker);
+                        }
+                    }
+
+                    if (SAC == 0 && SIC == 107) //MLAT
+                    {
+                        if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                        {
+                            double[] coordenadas = NewCoordinates(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian, LatMLAT, LonMLAT);
+                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), GMarkerGoogleType.blue_dot);
+                            overlay.Markers.Add(marker);
+                        }
+
+                        if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                        {
+                            double rho = Math.Sqrt((listaCAT10[j].X_cartesian) * (listaCAT10[j].X_cartesian) + (listaCAT10[j].Y_cartesian) * (listaCAT10[j].Y_cartesian));
+                            double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian);
+
+                            double[] coordenadas = NewCoordinatesMLAT(rho, theta);
+                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), GMarkerGoogleType.blue_dot);
+                            overlay.Markers.Add(marker);
+                        }
+                    }
+                    i = i + 1;
+                }
+            }
+
+            if (vuelosCAT21.Count > 0) // plot lista CAT21
+            {
+                int j = 0;
+                while (j < vuelosCAT21.Count)
+                {
+                    if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
+                    {
+                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), GMarkerGoogleType.green_dot);
+                        overlay.Markers.Add(marker);
+                    }
+
+                    if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
+                    {
+                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), GMarkerGoogleType.green_dot);
+                        overlay.Markers.Add(marker);
+                    }
+                    j = j + 1;
+                }
+            }
+
+            if (vuelosCAT21v23.Count > 0) // Plot lista CAT21v23
+            {
+                int j = 0;
+                while (j < vuelosCAT21v23.Count)
+                {
+                    if (listaCAT21v23[vuelosCAT21v23[j]].PositioninWGS_coordinates.Length > 0)
+                    {
+                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), GMarkerGoogleType.red_dot);
+                        overlay.Markers.Add(marker);
+                    }
+                    j = j + 1;
+                }
+            }
+
+            return overlay;
+        }
+
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
+
+
+
 
 
 
