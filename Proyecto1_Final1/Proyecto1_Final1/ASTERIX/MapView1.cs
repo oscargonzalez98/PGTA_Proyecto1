@@ -60,7 +60,7 @@ namespace ASTERIX
         GMapOverlay overlay = new GMapOverlay();
         Stack<GMapOverlay> StackdeOverlays = new Stack<GMapOverlay>();
 
-        int markerlimit = 1000;
+        public int markerlimit = 1000;
 
 
 
@@ -88,7 +88,6 @@ namespace ASTERIX
             Mapa.MaxZoom = 24;
             Mapa.Zoom = zoom;
             Mapa.AutoScroll = true;
-
         }
 
         public void timer_Tick(object sender, EventArgs e)
@@ -142,6 +141,14 @@ namespace ASTERIX
                 Mapa.Overlays.Add(overlay);
                 StackdeOverlays.Push(overlay);
 
+                if (overlay.Markers.Count > markerlimit)
+                {
+                    overlay.Clear();
+                    overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
+                    Mapa.Overlays.Add(overlay);
+                    StackdeOverlays.Push(overlay);
+                }
+
                 secondCounter = secondCounter + 1;
 
                 if (secondCounter > secondCounterFinal)
@@ -152,8 +159,6 @@ namespace ASTERIX
                     secondCounter = secondCounterInicial;
                 }
             }
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -310,6 +315,79 @@ namespace ASTERIX
 
             boolAllFlights = false;
             boolSingleFlight = true;
+        }
+
+        private void bt_Forward_Click(object sender, EventArgs e)
+        {
+            if (boolAllFlights == true && boolSingleFlight == false)
+            {
+                TimeSpan t = TimeSpan.FromSeconds(secondCounter);
+                lb_Hora.Visible = true;
+                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+                
+                overlay = CalcularNuevosPuntos(secondCounter, overlay);
+                Mapa.Overlays.Clear();
+                Mapa.Overlays.Add(overlay);
+                StackdeOverlays.Push(overlay);
+
+                if (overlay.Markers.Count > markerlimit)
+                {
+                    overlay.Clear();
+                    overlay = CalcularNuevosPuntos(secondCounter, overlay);
+                    Mapa.Overlays.Add(overlay);
+                    StackdeOverlays.Push(overlay);
+                }
+
+                secondCounter = secondCounter + 1;
+
+                if (secondCounter > secondCounterFinal)
+                {
+                    timer.Enabled = false;
+                    overlay.Clear();
+                    Mapa.Overlays.Clear();
+                    secondCounter = secondCounterInicial;
+                }
+            }
+
+            if (boolAllFlights == false && boolSingleFlight == true)
+            {
+                TimeSpan t = TimeSpan.FromSeconds(secondCounter);
+                lb_Hora.Visible = true;
+                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+                overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
+                Mapa.Overlays.Clear();
+                Mapa.Overlays.Add(overlay);
+                StackdeOverlays.Push(overlay);
+
+                if (overlay.Markers.Count > markerlimit)
+                {
+                    overlay.Clear();
+                    overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
+                    Mapa.Overlays.Add(overlay);
+                    StackdeOverlays.Push(overlay);
+                }
+
+                secondCounter = secondCounter + 1;
+
+                if (secondCounter > secondCounterFinal)
+                {
+                    timer.Enabled = false;
+                    overlay.Clear();
+                    Mapa.Overlays.Clear();
+                    secondCounter = secondCounterInicial;
+                }
+            }
+        }
+
+        private void bt_Backward_Click(object sender, EventArgs e)
+        {
+            overlay.Clear();
+            Mapa.Overlays.Clear();
+
+            GMapOverlay overlay1 = StackdeOverlays.Pop();
+            Mapa.Overlays.Add(overlay1);
         }
 
 
@@ -952,10 +1030,32 @@ namespace ASTERIX
             return overlay;
         }
 
+        public string RandomWord()
+        {
+            int length = 7;
+
+            // creating a StringBuilder object()
+            StringBuilder str_build = new StringBuilder();
+            Random random = new Random();
+
+            char letter;
+
+            for (int i = 0; i < length; i++)
+            {
+                double flt = random.NextDouble();
+                int shift = Convert.ToInt32(Math.Floor(25 * flt));
+                letter = Convert.ToChar(shift + 65);
+                str_build.Append(letter);
+            }
+            return(str_build.ToString());
+        }
+
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
+
 
 
 
