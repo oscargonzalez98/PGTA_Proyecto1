@@ -50,13 +50,11 @@ namespace ASTERIX
         List<double> listasecondsCAT21v23 = new List<double>(); // lista de segundos en los que se envia un paquete de la categoria CAT21v23
         List<List<int>> lista_listavionesCAT21v23 = new List<List<int>>(); // lista de paquetes CAT21v23 que hay en cada segundo de la lista de segundos CAT21v23
 
-        double secondCounter;
-        double secondCounterInicial;
-        double secondCounterFinal;
+        public double secondCounter;
+        public double secondCounterInicial;
+        public double secondCounterFinal;
 
         GMapOverlay overlay = new GMapOverlay();
-
-
 
 
 
@@ -131,8 +129,15 @@ namespace ASTERIX
             lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        public void timer_Tick(object sender, EventArgs e)
         {
+            // establecemos timer speed
+            if (rb_05.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 0.5); }
+            if (rb_1.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 1); }
+            if (rb_2.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 2); }
+            if (rb_4.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 4); }
+            if (rb_10.Checked == true) { timer.Interval = Convert.ToInt32(1000 / 10); }
+
             TimeSpan t = TimeSpan.FromSeconds(secondCounter);
             lb_Hora.Visible = true;
             lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
@@ -461,6 +466,29 @@ namespace ASTERIX
             }
             return lista;
         }
+
+        public List<int> VuelosCAT10AhoraPorNombre(double second, string targetidentification)
+        {
+            List<int> lista = new List<int>();
+
+            int j = 0;
+            while (j < listaCAT10.Count)
+            {
+                string TargetIdentificationActual = listaCAT10[j].TargetIdentification_decoded;
+                if (TargetIdentificationActual[0] == Convert.ToChar(" "))
+                {
+                    TargetIdentificationActual = TargetIdentificationActual.Substring(0, TargetIdentificationActual.Length - 2);
+                }
+
+                if (listaCAT10[j].TimeofDay_seconds == second && TargetIdentificationActual == targetidentification) 
+                {
+                    lista.Add(j);
+                }
+                j = j + 1;
+            }
+            return lista;
+        }
+
         public void CalculateListaSecondsCAT10()
         {
             double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[0].TimeofDay_seconds)));
@@ -509,6 +537,9 @@ namespace ASTERIX
                 i = i + 1;
             }
         }
+
+
+
         public GMapOverlay CalcularNuevosPuntos(double secondCounter, GMapOverlay overlay)
         {
 

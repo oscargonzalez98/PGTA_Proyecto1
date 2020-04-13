@@ -58,8 +58,6 @@ namespace ASTERIX
             InitializeComponent();
             this.listaCAT10 = listaCAT10;
             this.listaCAT21 = listaCAT21;
-
-
         }
 
         private void PruebasMapas_Load(object sender, EventArgs e)
