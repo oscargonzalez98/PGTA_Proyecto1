@@ -106,7 +106,7 @@ namespace ASTERIX
                 lb_Hora.Visible = true;
                 lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
 
-                overlay = CalcularNuevosPuntos(secondCounter, overlay);
+                overlay = CalcularNuevosPuntos(secondCounter, overlay); // 
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
                 StackdeOverlays.Push(overlay);
@@ -200,9 +200,9 @@ namespace ASTERIX
 
             //Cargamos vectores tiempo
 
-            if (listaCAT10.Count > 0) { CalculateListaSecondsCAT10(); }
-            if (listaCAT21.Count > 0) { CalculateListaSecondsCAT21(); }
-            if (listaCAT21v23.Count > 0) { CalculateListaSecondsCAT21v23(); }
+            if (listaCAT10.Count > 0) { CalculateListaSecondsCAT10(); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT10
+            if (listaCAT21.Count > 0) { CalculateListaSecondsCAT21(); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21
+            if (listaCAT21v23.Count > 0) { CalculateListaSecondsCAT21v23(); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21v23
 
             // Establecemos el primer segundo como el minimo de los 3.
             double db1;
@@ -265,9 +265,9 @@ namespace ASTERIX
 
             //Cargamos vectores tiempo
 
-            if (listaCAT10.Count > 0) { CalculateListaSeconds1vueloCAT10(tb_TargetIdentification.Text); }
-            if (listaCAT21.Count > 0) { CalculateListaSeconds1vueloCAT21(tb_TargetIdentification.Text); }
-            if (listaCAT21v23.Count > 0) { CalculateListaSeconds1vueloCAT21v23(tb_TargetIdentification.Text); }
+            if (listaCAT10.Count > 0) { CalculateListaSeconds1vueloCAT10(tb_TargetIdentification.Text); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT10 con ese TargetAddress, TargetIdentification o Track Number
+            if (listaCAT21.Count > 0) { CalculateListaSeconds1vueloCAT21(tb_TargetIdentification.Text); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21 con ese TargetAddress, TargetIdentification o Track Number
+            if (listaCAT21v23.Count > 0) { CalculateListaSeconds1vueloCAT21v23(tb_TargetIdentification.Text); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21v23 con ese TargetAddress, TargetIdentification o Track Number
 
             // Establecemos el primer segundo como el minimo de los 3.
             double db1;
@@ -326,7 +326,7 @@ namespace ASTERIX
                 lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
 
                 
-                overlay = CalcularNuevosPuntos(secondCounter, overlay);
+                overlay = CalcularNuevosPuntos(secondCounter, overlay); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo. Luego calculo las coordenadas y las añado al overlay
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
                 StackdeOverlays.Push(overlay);
@@ -356,7 +356,7 @@ namespace ASTERIX
                 lb_Hora.Visible = true;
                 lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
 
-                overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
+                overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo y con esa identificacion. Luego calculo las coordenadas y las añado al overlay
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
                 StackdeOverlays.Push(overlay);
@@ -934,10 +934,9 @@ namespace ASTERIX
 
         public GMapOverlay CalcularNuevosPuntos(double secondCounter, GMapOverlay overlay)
         {
-
-            List<int> vuelosCAT10 = VuelosCAT10Ahora(secondCounter);
-            List<int> vuelosCAT21 = VuelosCAT21Ahora(secondCounter);
-            List<int> vuelosCAT21v23 = VuelosCAT21v23Ahora(secondCounter);
+            List<int> vuelosCAT10 = VuelosCAT10Ahora(secondCounter); // Lista de vuelos en CAT10 con ese tiempo
+            List<int> vuelosCAT21 = VuelosCAT21Ahora(secondCounter); // Lista de vuelos en CAT21 con ese tiempo
+            List<int> vuelosCAT21v23 = VuelosCAT21v23Ahora(secondCounter); // Lista de vuelos en CAT21v23 con ese tiempo
 
             if (vuelosCAT10.Count > 0) // Plot lista CAT10
             {
@@ -974,7 +973,7 @@ namespace ASTERIX
                     {
                         if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
                         {
-                            double[] coordenadas = NewCoordinates(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian, LatMLAT, LonMLAT);
+                            double[] coordenadas = NewCoordinatesMLAT(listaCAT10[j].Rho, listaCAT10[j].Theta);
                             var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), GMarkerGoogleType.blue_dot);
                             overlay.Markers.Add(marker);
                         }
@@ -1124,26 +1123,6 @@ namespace ASTERIX
             }
 
             return overlay;
-        }
-        
-        public string RandomWord()
-        {
-            int length = 7;
-
-            // creating a StringBuilder object()
-            StringBuilder str_build = new StringBuilder();
-            Random random = new Random();
-
-            char letter;
-
-            for (int i = 0; i < length; i++)
-            {
-                double flt = random.NextDouble();
-                int shift = Convert.ToInt32(Math.Floor(25 * flt));
-                letter = Convert.ToChar(shift + 65);
-                str_build.Append(letter);
-            }
-            return(str_build.ToString());
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
