@@ -60,7 +60,7 @@ namespace ASTERIX
         GMapOverlay overlay = new GMapOverlay();
         Stack<GMapOverlay> StackdeOverlays = new Stack<GMapOverlay>();
 
-        public int markerlimit = 1000;
+        public int markerlimit = 500;
 
 
 
@@ -676,11 +676,38 @@ namespace ASTERIX
             int j = 0;
             while (j < listaCAT10.Count)
             {
-                string TargetIdentificationActual = listaCAT10[j].TargetIdentification_decoded;
-                if (listaCAT10[j].TimeofDay_seconds == second && TargetIdentificationActual == targetidentification) 
+                if (listaCAT10[j].SAC == 0 && listaCAT10[j].SIC == 107)
                 {
-                    lista.Add(j);
+                    string TargetIdentificationActual = listaCAT10[j].TargetIdentification_decoded;
+                    string TargetAddressActual = listaCAT10[j].TargetAdress_decoded.ToString();
+                    string TrackAngleActual = listaCAT10[j].Tracknumber_value.ToString();
+
+                    if (listaCAT10[j].TimeofDay_seconds == second && TargetIdentificationActual == targetidentification)
+                    {
+                        lista.Add(j);
+                    }
+
+                    else if (listaCAT10[j].TimeofDay_seconds == second && TargetAddressActual == targetidentification)
+                    {
+                        lista.Add(j);
+                    }
+
+                    else if (listaCAT10[j].TimeofDay_seconds == second && TrackAngleActual == targetidentification)
+                    {
+                        lista.Add(j);
+                    }
                 }
+
+                if (listaCAT10[j].SAC == 0 && listaCAT10[j].SIC == 7)
+                {
+                    string TrackAngleActual = listaCAT10[j].Tracknumber_value.ToString();
+
+                    if (listaCAT10[j].TimeofDay_seconds == second && TrackAngleActual == targetidentification)
+                    {
+                        lista.Add(j);
+                    }
+                }
+
                 j = j + 1;
             }
             return lista;
@@ -693,10 +720,24 @@ namespace ASTERIX
             while (j < listaCAT21.Count)
             {
                 string TargetIdentificationActual = listaCAT21[j].TargetIdentification_decoded;
+                string TargetAddressActual = listaCAT21[j].TargetAdress_real;
+                string TrackNumberActual = listaCAT21[j].TrackNumber_number.ToString();
+
                 if (listaCAT21[j].TimeofASTERIXReportTransmission_seconds == second && TargetIdentificationActual == targetidentification)
                 {
                     lista.Add(j);
                 }
+
+                else if (listaCAT21[j].TimeofASTERIXReportTransmission_seconds == second && TargetAddressActual == targetidentification)
+                {
+                    lista.Add(j);
+                }
+
+                else if (listaCAT21[j].TimeofASTERIXReportTransmission_seconds == second && TrackNumberActual == targetidentification)
+                {
+                    lista.Add(j);
+                }
+
                 j = j + 1;
             }
             return lista;
@@ -709,10 +750,18 @@ namespace ASTERIX
             while (j < listaCAT21v23.Count)
             {
                 string TargetIdentificationActual = listaCAT21v23[j].TargetIdentification_decoded;
+                string TargetAddressActual = listaCAT21v23[j].TargetAdress_real;
+
                 if (listaCAT21v23[j].TimeofDay_seconds == second && TargetIdentificationActual == targetidentification)
                 {
                     lista.Add(j);
                 }
+
+                else if(listaCAT21v23[j].TimeofDay_seconds == second && TargetAddressActual == targetidentification)
+                {
+                    lista.Add(j);
+                }
+
                 j = j + 1;
             }
             return lista;
@@ -783,12 +832,41 @@ namespace ASTERIX
             int i = 1;
             while (i < listaCAT10.Count)
             {
-                string TargetIdentificationActual = listaCAT10[i].TargetIdentification_decoded;
-                int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
-                if (second > listasecondsCAT10.Last() && TargetIdentificationActual == TargetIdentification)
+
+                if(listaCAT10[i].SAC == 0 && listaCAT10[i].SIC == 107)
                 {
-                    listasecondsCAT10.Add(second);
+                    string TargetIdentificationActual = listaCAT10[i].TargetIdentification_decoded;
+                    string TargetAddressActual = listaCAT10[i].TargetAdress_decoded.ToString();
+                    string TrackNumberActual = listaCAT10[i].Tracknumber_value.ToString();
+
+                    int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
+                    if (second > listasecondsCAT10.Last() && TargetIdentificationActual == TargetIdentification)
+                    {
+                        listasecondsCAT10.Add(second);
+                    }
+
+                    if (second > listasecondsCAT10.Last() && TargetAddressActual == TargetIdentification)
+                    {
+                        listasecondsCAT10.Add(second);
+                    }
+
+                    if (second > listasecondsCAT10.Last() && TrackNumberActual == TargetIdentification)
+                    {
+                        listasecondsCAT10.Add(second);
+                    }
                 }
+
+                if (listaCAT10[i].SAC == 0 && listaCAT10[i].SIC == 7)
+                {
+                    string TrackNumberActual = listaCAT10[i].Tracknumber_value.ToString();
+
+                    int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
+                    if (second > listasecondsCAT10.Last() && TrackNumberActual == TargetIdentification)
+                    {
+                        listasecondsCAT10.Add(second);
+                    }
+                }
+
                 i = i + 1;
             }
         }
@@ -803,11 +881,25 @@ namespace ASTERIX
             while (i < listaCAT21.Count)
             {
                 string TargetIdentificationActual = listaCAT21[i].TargetIdentification_decoded;
+                string TargetAddressActual = listaCAT21[i].TargetAdress_real;
+                string TrackNumberActual = listaCAT21[i].TrackNumber_number.ToString();
+
                 int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21[i].TimeofASTERIXReportTransmission_seconds)));
-                if (second > listasecondsCAT21.Last() && TargetIdentification == TargetIdentification)
+                if (second > listasecondsCAT21.Last() && TargetIdentification == TargetIdentificationActual)
                 {
                     listasecondsCAT21.Add(second);
                 }
+
+                else if (second > listasecondsCAT21.Last() && TargetIdentification == TargetAddressActual)
+                {
+                    listasecondsCAT21.Add(second);
+                }
+
+                else if (second > listasecondsCAT21.Last() && TargetIdentification == TrackNumberActual)
+                {
+                    listasecondsCAT21.Add(second);
+                }
+
                 i = i + 1;
             }
         }
@@ -822,11 +914,19 @@ namespace ASTERIX
             while (i < listaCAT21v23.Count)
             {
                 string TargetIdentificationActual = listaCAT21v23[i].TargetIdentification_decoded;
+                string TargetAddressActual = listaCAT21v23[i].TargetAdress_real;
+
                 int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21v23[i].TimeofDay_seconds)));
                 if (second > listasecondsCAT21v23.Last() && TargetIdentificationActual == TargetIdentification)
                 {
                     listasecondsCAT21v23.Add(second);
                 }
+
+                if (second > listasecondsCAT21v23.Last() && TargetAddressActual == TargetIdentification)
+                {
+                    listasecondsCAT21v23.Add(second);
+                }
+
                 i = i + 1;
             }
         }
@@ -1025,7 +1125,7 @@ namespace ASTERIX
 
             return overlay;
         }
-
+        
         public string RandomWord()
         {
             int length = 7;
