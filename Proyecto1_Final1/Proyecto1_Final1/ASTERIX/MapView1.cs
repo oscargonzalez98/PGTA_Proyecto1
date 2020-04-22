@@ -1069,9 +1069,10 @@ namespace ASTERIX
                     {
                         if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
                         {
-                            double[] coordenadas = NewCoordinates(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian, LatMLAT, LonMLAT);
+                            double[] coordenadas = NewCoordinatesMLAT(listaCAT10[j].Rho, listaCAT10[j].Theta);
                             var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), GMarkerGoogleType.blue_dot);
                             overlay.Markers.Add(marker);
+
                         }
 
                         if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
