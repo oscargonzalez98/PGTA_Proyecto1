@@ -51,19 +51,6 @@ namespace ASTERIX
             Tables1.ShowDialog();
         }
 
-        private void btn_mapviewer_Click(object sender, EventArgs e)
-        {
-            MapView mapView = new MapView(listaCAT10, listaCAT20, listaCAT21);
-            mapView.ShowDialog();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            PruebasMapas PM1 = new PruebasMapas(listaCAT10, listaCAT20, listaCAT21);
-            PM1.ShowDialog();
-            lbErrores.Visible = false;
-        }
-
         private void Portada_Load(object sender, EventArgs e)
         {
 

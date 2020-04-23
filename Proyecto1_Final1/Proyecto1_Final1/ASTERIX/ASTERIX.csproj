@@ -112,12 +112,6 @@
     <Compile Include="LinkTechnologyv23.Designer.cs">
       <DependentUpon>LinkTechnologyv23.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MapView.Designer.cs">
-      <DependentUpon>MapView.cs</DependentUpon>
-    </Compile>
     <Compile Include="MapView1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,12 +162,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PruebasMapas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PruebasMapas.Designer.cs">
-      <DependentUpon>PruebasMapas.cs</DependentUpon>
-    </Compile>
     <Compile Include="QualityIndicatorsCAT21.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,9 +264,6 @@
     <EmbeddedResource Include="LinkTechnologyv23.resx">
       <DependentUpon>LinkTechnologyv23.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MapView.resx">
-      <DependentUpon>MapView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MapView1.resx">
       <DependentUpon>MapView1.cs</DependentUpon>
     </EmbeddedResource>
@@ -312,9 +297,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PruebasMapas.resx">
-      <DependentUpon>PruebasMapas.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="QualityIndicatorsCAT21.resx">
       <DependentUpon>QualityIndicatorsCAT21.cs</DependentUpon>
     </EmbeddedResource>

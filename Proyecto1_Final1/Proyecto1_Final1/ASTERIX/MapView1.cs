@@ -24,10 +24,6 @@ namespace ASTERIX
         List<CAT21> listaCAT21 = new List<CAT21>();
         List<CAT21v23> listaCAT21v23 = new List<CAT21v23>();
 
-        GMarkerGoogle marker;
-        GMapOverlay markerOverlay;
-        DataTable dt;
-
         double LatInicial = 41.2969444;
         double LongInicial = 2.0783333333333336;
         double zoom = 14;
@@ -59,6 +55,7 @@ namespace ASTERIX
 
         GMapOverlay overlay = new GMapOverlay();
         Stack<GMapOverlay> StackdeOverlays = new Stack<GMapOverlay>();
+        List<GMapOverlay> ListaOverlays = new List<GMapOverlay>();
 
         public int markerlimit = 500;
 
@@ -110,6 +107,7 @@ namespace ASTERIX
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
                 StackdeOverlays.Push(overlay);
+                ListaOverlays.Add(overlay);
 
                 if (overlay.Markers.Count > markerlimit)
                 {
@@ -117,6 +115,7 @@ namespace ASTERIX
                     overlay = CalcularNuevosPuntos(secondCounter, overlay);
                     Mapa.Overlays.Add(overlay);
                     StackdeOverlays.Push(overlay);
+                    ListaOverlays.Add(overlay);
                 }
 
                 secondCounter = secondCounter + 1;
@@ -139,6 +138,7 @@ namespace ASTERIX
                 overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
+                ListaOverlays.Add(overlay);
                 StackdeOverlays.Push(overlay);
 
                 if (overlay.Markers.Count > markerlimit)
@@ -147,6 +147,7 @@ namespace ASTERIX
                     overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
                     Mapa.Overlays.Add(overlay);
                     StackdeOverlays.Push(overlay);
+                    ListaOverlays.Add(overlay);
                 }
 
                 secondCounter = secondCounter + 1;
@@ -194,6 +195,7 @@ namespace ASTERIX
             // Limpiamos el stack
 
             StackdeOverlays.Clear();
+            ListaOverlays.Clear();
 
             // Establecemos timer
             timer.Enabled = false;
@@ -259,6 +261,7 @@ namespace ASTERIX
             // Limpiamos el stack
 
             StackdeOverlays.Clear();
+            ListaOverlays.Clear();
 
             // Establecemos timer
             timer.Enabled = false;
@@ -330,6 +333,7 @@ namespace ASTERIX
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
                 StackdeOverlays.Push(overlay);
+                ListaOverlays.Add(overlay);
 
                 if (overlay.Markers.Count > markerlimit)
                 {
@@ -337,6 +341,7 @@ namespace ASTERIX
                     overlay = CalcularNuevosPuntos(secondCounter, overlay);
                     Mapa.Overlays.Add(overlay);
                     StackdeOverlays.Push(overlay);
+                    ListaOverlays.Add(overlay);
                 }
 
                 secondCounter = secondCounter + 1;
@@ -360,6 +365,7 @@ namespace ASTERIX
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
                 StackdeOverlays.Push(overlay);
+                ListaOverlays.Add(overlay);
 
                 if (overlay.Markers.Count > markerlimit)
                 {
@@ -367,6 +373,7 @@ namespace ASTERIX
                     overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
                     Mapa.Overlays.Add(overlay);
                     StackdeOverlays.Push(overlay);
+                    ListaOverlays.Add(overlay);
                 }
 
                 secondCounter = secondCounter + 1;
@@ -547,82 +554,7 @@ namespace ASTERIX
 
             return listaCoordenadas;
         }
-        public double[] NewCoordinates(double distance, double initialBearing, double Lat, double Lon)
-        {
-            double[] listaCoordenadas = new double[2];
-
-
-            double φ1 = toRadians(Lat);
-            double λ1 = toRadians(Lon);
-            double α1 = toRadians(initialBearing);
-            double s = distance;
-
-            // allow alternative ellipsoid to be specified
-            double a = 6378137.0;
-            double b = 6356752.314245;
-            double f = 1 / 298.257223563;
-
-            double sinα1 = Math.Sin(α1);
-            double cosα1 = Math.Cos(α1);
-
-            double tanU1 = (1 - f) * Math.Tan(φ1), cosU1 = 1 / Math.Sqrt((1 + tanU1 * tanU1)), sinU1 = tanU1 * cosU1;
-            double σ1 = Math.Atan2(tanU1, cosα1); // σ1 = angular distance on the sphere from the equator to P1
-            double sinα = cosU1 * sinα1;          // α = azimuth of the geodesic at the equator
-            double cosSqα = 1 - sinα * sinα;
-            double uSq = cosSqα * (a * a - b * b) / (b * b);
-            double A = 1 + uSq / 16384 * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq)));
-            double B = uSq / 1024 * (256 + uSq * (-128 + uSq * (74 - 47 * uSq)));
-
-            double σ = s / (b * A);
-            double sinσ;
-            double cosσ;
-            double Δσ; // σ = angular distance P₁ P₂ on the sphere
-            double cos2σₘ; // σₘ = angular distance on the sphere from the equator to the midpoint of the line
-
-            double σ_prima; int iterations = 0;
-            do
-            {
-                cos2σₘ = Math.Cos(2 * σ1 + σ);
-                sinσ = Math.Sin(σ);
-                cosσ = Math.Cos(σ);
-                Δσ = B * sinσ * (cos2σₘ + B / 4 * (cosσ * (-1 + 2 * cos2σₘ * cos2σₘ) -
-                    B / 6 * cos2σₘ * (-3 + 4 * sinσ * sinσ) * (-3 + 4 * cos2σₘ * cos2σₘ)));
-                σ_prima = σ;
-                σ = s / (b * A) + Δσ;
-            } while (Math.Abs(σ - σ_prima) > 1e-12 && ++iterations < 100);
-            //if (iterations >= 100) throw new EvalError('Vincenty formula failed to converge'); // not possible?
-
-            double x = sinU1 * sinσ - cosU1 * cosσ * cosα1;
-            double φ2 = Math.Atan2(sinU1 * cosσ + cosU1 * sinσ * cosα1, (1 - f) * Math.Sqrt(sinα * sinα + x * x));
-            double λ = Math.Atan2(sinσ * sinα1, cosU1 * cosσ - sinU1 * sinσ * cosα1);
-            double C = f / 16 * cosSqα * (4 + f * (4 - 3 * cosSqα));
-            double L = λ - (1 - C) * f * sinα * (σ + C * sinσ * (cos2σₘ + C * cosσ * (-1 + 2 * cos2σₘ * cos2σₘ)));
-            double λ2 = λ1 + L;
-
-            double α2 = Math.Atan2(sinα, -x);
-
-            listaCoordenadas[0] = toDegrees(φ2);
-            listaCoordenadas[1] = toDegrees(λ2);
-
-            double coord1 = φ2;
-            int sec1 = (int)Math.Round(coord1 * 3600);
-            int deg1 = sec1 / 3600;
-            sec1 = Math.Abs(sec1 % 3600);
-            int min1 = sec1 / 60;
-            sec1 %= 60;
-
-            double coord2 = λ2;
-            int sec2 = (int)Math.Round(coord2 * 3600);
-            int deg2 = sec2 / 3600;
-            sec2 = Math.Abs(sec2 % 3600);
-            int min2 = sec2 / 60;
-            sec2 %= 60;
-
-
-            return listaCoordenadas;
-
-        }
-
+       
         public List<int> VuelosCAT10Ahora(double second)
         {
             List<int> lista = new List<int>();

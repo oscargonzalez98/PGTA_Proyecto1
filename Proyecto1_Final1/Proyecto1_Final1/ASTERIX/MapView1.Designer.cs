@@ -84,7 +84,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.6842F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.3158F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.tableLayoutPanel1.Controls.Add(this.Mapa, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 2, 3);
@@ -147,7 +147,7 @@
             this.Mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.Mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.Mapa.ShowTileGridLines = false;
-            this.Mapa.Size = new System.Drawing.Size(1256, 985);
+            this.Mapa.Size = new System.Drawing.Size(1254, 985);
             this.Mapa.TabIndex = 1;
             this.Mapa.Zoom = 0D;
             // 
@@ -155,7 +155,7 @@
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(1335, 66);
+            this.panel1.Location = new System.Drawing.Point(1333, 66);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(443, 54);
@@ -230,7 +230,7 @@
             // 
             this.panel2.Controls.Add(this.tableLayoutPanel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(1335, 153);
+            this.panel2.Location = new System.Drawing.Point(1333, 153);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.tableLayoutPanel1.SetRowSpan(this.panel2, 2);
@@ -392,7 +392,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1335, 124);
+            this.label1.Location = new System.Drawing.Point(1333, 124);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(443, 25);
@@ -407,7 +407,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1335, 248);
+            this.label4.Location = new System.Drawing.Point(1333, 248);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(443, 25);
@@ -421,7 +421,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox1.Location = new System.Drawing.Point(1335, 277);
+            this.groupBox1.Location = new System.Drawing.Point(1333, 277);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -558,7 +558,7 @@
             this.bt_AllFlights.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_AllFlights.Location = new System.Drawing.Point(1335, 363);
+            this.bt_AllFlights.Location = new System.Drawing.Point(1333, 363);
             this.bt_AllFlights.Margin = new System.Windows.Forms.Padding(4);
             this.bt_AllFlights.Name = "bt_AllFlights";
             this.bt_AllFlights.Size = new System.Drawing.Size(443, 41);
@@ -573,7 +573,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1335, 408);
+            this.label8.Location = new System.Drawing.Point(1333, 408);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(443, 25);
@@ -586,7 +586,7 @@
             this.tb_TargetIdentification.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_TargetIdentification.Location = new System.Drawing.Point(1335, 437);
+            this.tb_TargetIdentification.Location = new System.Drawing.Point(1333, 437);
             this.tb_TargetIdentification.Margin = new System.Windows.Forms.Padding(4);
             this.tb_TargetIdentification.Name = "tb_TargetIdentification";
             this.tb_TargetIdentification.Size = new System.Drawing.Size(443, 22);
@@ -597,7 +597,7 @@
             this.bt_SingleFlight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_SingleFlight.Location = new System.Drawing.Point(1335, 474);
+            this.bt_SingleFlight.Location = new System.Drawing.Point(1333, 474);
             this.bt_SingleFlight.Margin = new System.Windows.Forms.Padding(4);
             this.bt_SingleFlight.Name = "bt_SingleFlight";
             this.bt_SingleFlight.Size = new System.Drawing.Size(443, 41);
@@ -620,7 +620,7 @@
             this.tableLayoutPanel5.Controls.Add(this.bt_Backward, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.bt_PlayPause, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.bt_Forward, 4, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(1335, 698);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(1333, 698);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;

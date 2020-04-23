@@ -48,7 +48,6 @@ C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\
 C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\bin\Debug\LIBRERIACLASES.dll
 C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\bin\Debug\LIBRERIACLASES.pdb
 C:\Users\carlo\Desktop\4A\PGTA\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.csproj.CopyComplete
-C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.MapView.resources
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\bin\Debug\GMap.NET.Core.dll
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\bin\Debug\GMap.NET.WindowsForms.dll
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TargetReportDescriptorCAT21.resources
@@ -116,7 +115,6 @@ C:\Users\oscar\Dropbox\Oscar\Sistemes Aeroespacials\4A\PGTA\Proyecto1\Code\Proye
 C:\Users\oscar\Dropbox\Oscar\Sistemes Aeroespacials\4A\PGTA\Proyecto1\Code\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.csproj.CopyComplete
 C:\Users\oscar\Dropbox\Oscar\Sistemes Aeroespacials\4A\PGTA\Proyecto1\Code\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.exe
 C:\Users\oscar\Dropbox\Oscar\Sistemes Aeroespacials\4A\PGTA\Proyecto1\Code\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.pdb
-C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.PruebasMapas.resources
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.csproj.CoreCompileInputs.cache
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.TargetReportDescriptorv23.resources
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.FigureofMeritv23.resources
