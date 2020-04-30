@@ -70,13 +70,10 @@ namespace LIBRERIACLASES
         public void leer()
         {
 
-            //StreamReader fichero = new StreamReader(path);
-            //string linea_1 = fichero.ReadLine();
             byte[] fileBytes = File.ReadAllBytes(path);
             List<byte[]> listabyte = new List<byte[]>();
             int i = 0;
             int contador = fileBytes[2];
-            //int length = 0;
 
             while (i < fileBytes.Length)
             {
@@ -87,13 +84,10 @@ namespace LIBRERIACLASES
                     i++;
                 }
                 listabyte.Add(array);
-                //length += array.Length;
                 if (i + 2 < fileBytes.Length)
                 {
                     contador = fileBytes[i + 2];
                 }
-
-
             }
 
 
@@ -126,12 +120,6 @@ namespace LIBRERIACLASES
                         newcat10.Calculate_FSPEC(newcat10.paquete);
                         listaCAT10.Add(newcat10);
 
-                        //no borrar
-                        //double a1 = newcat21.TimeofMessageReception_Position_seconds;
-                        //double b = newcat21.latWGS84;
-                        //double c = newcat21.lonWGS84;
-
-                        //tablaCAT21.Rows.Add(a1, b, c);
                     }
                     catch
                     {
@@ -143,77 +131,67 @@ namespace LIBRERIACLASES
 
                 if (CAT == 21)
                 {
-                    //try
-                    //{
-                        // primero calculamos sic y sac y a partir de ahi decidimos en que lista meter cada cosa.
 
-                        string FSPEC = "";
+                    string FSPEC = "";
 
-                        int j = 3;
-                        bool found = false;
+                    int j = 3;
+                    bool found = false;
 
-                        while (found == false)
+                    while (found == false)
+                    {
+                        FSPEC = Convert.ToString(Convert.ToInt32(arraystring[j], 16), 2);// Convertir de hex a binario paquete [3]
+                        FSPEC = AddZeros(FSPEC);
+
+                        if (Char.ToString(FSPEC[FSPEC.Length - 1]) == "1")
                         {
-                            FSPEC = Convert.ToString(Convert.ToInt32(arraystring[j], 16), 2);// Convertir de hex a binario paquete [3]
-                            FSPEC = AddZeros(FSPEC);
-
-                            if (Char.ToString(FSPEC[FSPEC.Length - 1]) == "1")
+                            while (Char.ToString(FSPEC[FSPEC.Length - 1]) != "0")
                             {
-                                while (Char.ToString(FSPEC[FSPEC.Length - 1]) != "0")
-                                {
-                                    j = j + 1;
-                                    string parte2 = Convert.ToString(Convert.ToInt32(arraystring[j], 16), 2);
-                                    parte2 = AddZeros(parte2);
+                                j = j + 1;
+                                string parte2 = Convert.ToString(Convert.ToInt32(arraystring[j], 16), 2);
+                                parte2 = AddZeros(parte2);
 
-                                    FSPEC = String.Concat(FSPEC, parte2);
-                                }
-
-                                found = true;
+                                FSPEC = String.Concat(FSPEC, parte2);
                             }
 
                             found = true;
                         }
 
-                        int data_position = 1 + 2 + ((FSPEC.Length) / 8);
+                        found = true;
+                    }
 
-                        string string1 = Convert.ToString(arraystring[data_position]);
-                        string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
-                        string1 = AddZeros(string1);
+                    int data_position = 1 + 2 + ((FSPEC.Length) / 8);
 
-                        string string2 = Convert.ToString(arraystring[data_position + 1]);
-                        string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
-                        string2 = AddZeros(string2);
+                    string string1 = Convert.ToString(arraystring[data_position]);
+                    string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
+                    string1 = AddZeros(string1);
 
-                        data_position = data_position + 2;
+                    string string2 = Convert.ToString(arraystring[data_position + 1]);
+                    string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
+                    string2 = AddZeros(string2);
 
-                        string DataSourseIdentification = String.Concat(string1, string2);
+                    data_position = data_position + 2;
 
-                        Calculate_DataSourceIdentification(DataSourseIdentification);
+                    string DataSourceIdentification = String.Concat(string1, string2);
 
-                        // ahora que sabemos que version es cada paquete los metemos en su lista correspondiente.
+                    Calculate_DataSourceIdentification(DataSourceIdentification);
 
-                        if (SAC == 20 && SIC == 219)
-                        {
-                            CAT21 newcat21 = new CAT21(arraystring);
-                            newcat21.Calculate_FSPEC(newcat21.paquete);
-                            listaCAT21.Add(newcat21);
-                        }
+                    // ahora que sabemos que version es cada paquete los metemos en su lista correspondiente.
 
-                        if (SAC == 0 && SIC == 107)
-                        {
-                            CAT21v23 newcat21v23 = new CAT21v23(arraystring);
-                            newcat21v23.Calculate_FSPEC(newcat21v23.paquete);
-                            listaCAT21v23.Add(newcat21v23);
-                        }
-                //    }
-                //catch
-                //    {
-                //        Console.WriteLine(q);
-                //        string ab = Console.ReadLine();
-                //    }
+                    if (SAC == 20 && SIC == 219)
+                    {
+                        CAT21 newcat21 = new CAT21(arraystring);
+                        newcat21.Calculate_FSPEC(newcat21.paquete);
+                        listaCAT21.Add(newcat21);
+                    }
+
+                    if (SAC == 0 && SIC == 107)
+                    {
+                        CAT21v23 newcat21v23 = new CAT21v23(arraystring);
+                        newcat21v23.Calculate_FSPEC(newcat21v23.paquete);
+                        listaCAT21v23.Add(newcat21v23);
+                    }
                 }
             }
-
         }
 
         public DataTable getTablaCAT10()
