@@ -123,3 +123,4 @@ C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.IntermediateStateSelectedAltitudev23.resources
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.FinalStateSelectedAltitudev23.resources
 C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.MapView1.resources
+C:\Users\oscar\Desktop\PGTA_Proyecto1\Proyecto1_Final1\Proyecto1_Final1\ASTERIX\obj\Debug\ASTERIX.Export.resources

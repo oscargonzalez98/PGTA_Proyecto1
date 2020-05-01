@@ -61,5 +61,11 @@ namespace ASTERIX
             MapView1 MapView = new MapView1(listaCAT10, listaCAT21, listaCAT21v23);
             MapView.ShowDialog();
         }
+
+        private void bt_Export_Click(object sender, EventArgs e)
+        {
+            Export Export1 = new Export(listaCAT10, listaCAT21, listaCAT21v23);
+            Export1.ShowDialog();
+        }
     }
 }
