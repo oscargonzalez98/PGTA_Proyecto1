@@ -11,6 +11,7 @@ using Clases;
 using LIBRERIACLASES;
 using System.IO;
 
+
 namespace ASTERIX
 {
     public partial class Export : Form
@@ -99,7 +100,7 @@ namespace ASTERIX
             if (listaCAT21v23.Count > 0) // Plot lista CAT21v23
             {
                 int j = 0;
-                while (j < listaCAT21v23.Count)
+                while (j < 100)
                 {
                     if(listaCAT21v23[j].PositioninWGS_coordinates.Length>0)
                     {
@@ -122,9 +123,10 @@ namespace ASTERIX
 
                         string lat = listaCAT21v23[j].lonWGS84.ToString().Replace(",", ".");
                         string lon = listaCAT21v23[j].latWGS84.ToString().Replace(",", ".");
+                        string alt = (listaCAT21v23[j].GeometricAltitude_ft / 3.28).ToString().Replace(",", ".");
 
 
-                        string coordinates = "\t\t\t<coordinates>" + lat + "," + lon + "," + "0" + "</coordinates>";
+                        string coordinates = "\t\t\t<coordinates>" + lat + "," + lon + "," + alt + "</coordinates>";
                         f.WriteLine(coordinates);
 
                         f.WriteLine(PlaceMarks[5]);
