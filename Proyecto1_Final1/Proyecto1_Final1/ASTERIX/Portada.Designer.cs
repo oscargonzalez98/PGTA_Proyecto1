@@ -57,7 +57,7 @@
             // bt_BrowseFile
             // 
             this.bt_BrowseFile.Location = new System.Drawing.Point(57, 235);
-            this.bt_BrowseFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bt_BrowseFile.Margin = new System.Windows.Forms.Padding(2);
             this.bt_BrowseFile.Name = "bt_BrowseFile";
             this.bt_BrowseFile.Size = new System.Drawing.Size(76, 32);
             this.bt_BrowseFile.TabIndex = 4;
@@ -78,7 +78,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(137, 235);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(76, 32);
             this.button1.TabIndex = 6;
@@ -129,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 405);
+            this.ClientSize = new System.Drawing.Size(606, 405);
             this.Controls.Add(this.bt_Export);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
@@ -138,7 +138,7 @@
             this.Controls.Add(this.lb_Instructions);
             this.Controls.Add(this.bt_BrowseFile);
             this.Controls.Add(this.lb_Title);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Portada";
             this.Load += new System.EventHandler(this.Portada_Load);
             this.ResumeLayout(false);

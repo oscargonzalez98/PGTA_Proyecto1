@@ -31,6 +31,7 @@ namespace ASTERIX
         private void button1_Click(object sender, EventArgs e)
         {
             // Generamos el nuevo documento
+            // Generamos el nuevo documento
             StreamWriter f = File.CreateText(tb_direction.Text);
 
             // Leemos las partes del documento 
@@ -100,17 +101,18 @@ namespace ASTERIX
             if (listaCAT21v23.Count > 0) // Plot lista CAT21v23
             {
                 int j = 0;
-                while (j < 100)
+                while (j < listaCAT21v23.Count)
                 {
-                    if(listaCAT21v23[j].PositioninWGS_coordinates.Length>0)
+                    if (listaCAT21v23[j].PositioninWGS_coordinates.Length > 0)
                     {
                         f.WriteLine(PlaceMarks[0]);
 
-                        string Name = "";
-                        if (listaCAT21v23[j].TargetIdentification.Length > 0) { Name = "Target Identification: " + listaCAT21v23[j].TargetIdentification_decoded; }
-                        if (listaCAT21v23[j].TargetIdentification.Length == 0 && listaCAT21v23[j].TargetAddress_bin.Length > 0) { Name = "Target Address: " + listaCAT21v23[j].TargetAdress_real; }
+                        //string Name = "";
+                        //if (listaCAT21v23[j].TargetIdentification.Length > 0) { Name = "Target Identification: " + listaCAT21v23[j].TargetIdentification_decoded; }
+                        //if (listaCAT21v23[j].TargetIdentification.Length == 0 && listaCAT21v23[j].TargetAddress_bin.Length > 0) { Name = "Target Address: " + listaCAT21v23[j].TargetAdress_real; }
 
-                        string NameFinal = "\t\t<name>" + Name + "</name>";
+                        //string NameFinal = "\t\t<name>" + Name + "</name>";
+                        string NameFinal = "\t\t<name>" + "</name>";
 
                         f.WriteLine(NameFinal);
 
@@ -123,17 +125,16 @@ namespace ASTERIX
 
                         string lat = listaCAT21v23[j].lonWGS84.ToString().Replace(",", ".");
                         string lon = listaCAT21v23[j].latWGS84.ToString().Replace(",", ".");
-                        string alt = (listaCAT21v23[j].GeometricAltitude_ft / 3.28).ToString().Replace(",", ".");
 
 
-                        string coordinates = "\t\t\t<coordinates>" + lat + "," + lon + "," + alt + "</coordinates>";
+                        string coordinates = "\t\t\t<coordinates>" + lat + "," + lon + "," + "0" + "</coordinates>";
                         f.WriteLine(coordinates);
 
                         f.WriteLine(PlaceMarks[5]);
                         f.WriteLine(PlaceMarks[6]);
                     }
 
-                    j = j + 1;
+                    j = j + 7 ;
                 }
             }
 

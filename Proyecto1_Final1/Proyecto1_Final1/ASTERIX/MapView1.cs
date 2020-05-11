@@ -164,14 +164,7 @@ namespace ASTERIX
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (boolAllFlights == true || boolSingleFlight==true)
-            {
-                if (timer.Enabled == false) { timer.Enabled = true; }
-                else { timer.Enabled = false; }
-            }
-        }
+
 
         private void lb_FIR_Click(object sender, EventArgs e)
         {
@@ -322,208 +315,6 @@ namespace ASTERIX
             boolSingleFlight = true;
         }
 
-        private void bt_Forward_Click(object sender, EventArgs e)
-        {
-            if (boolAllFlights == true && boolSingleFlight == false)
-            {
-                TimeSpan t = TimeSpan.FromSeconds(secondCounter);
-                lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
-
-                
-                overlay = CalcularNuevosPuntos(secondCounter, overlay); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo. Luego calculo las coordenadas y las añado al overlay
-                Mapa.Overlays.Clear();
-                Mapa.Overlays.Add(overlay);
-                StackdeOverlays.Push(overlay);
-                ListaOverlays.Add(overlay);
-
-                if (overlay.Markers.Count > markerlimit)
-                {
-                    overlay.Clear();
-                    overlay = CalcularNuevosPuntos(secondCounter, overlay);
-                    Mapa.Overlays.Add(overlay);
-                    StackdeOverlays.Push(overlay);
-                    ListaOverlays.Add(overlay);
-                }
-
-                secondCounter = secondCounter + 1;
-
-                if (secondCounter > secondCounterFinal)
-                {
-                    timer.Enabled = false;
-                    overlay.Clear();
-                    Mapa.Overlays.Clear();
-                    secondCounter = secondCounterInicial;
-                }
-            }
-
-            if (boolAllFlights == false && boolSingleFlight == true)
-            {
-                TimeSpan t = TimeSpan.FromSeconds(secondCounter);
-                lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
-
-                overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo y con esa identificacion. Luego calculo las coordenadas y las añado al overlay
-                Mapa.Overlays.Clear();
-                Mapa.Overlays.Add(overlay);
-                StackdeOverlays.Push(overlay);
-                ListaOverlays.Add(overlay);
-
-                if (overlay.Markers.Count > markerlimit)
-                {
-                    overlay.Clear();
-                    overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
-                    Mapa.Overlays.Add(overlay);
-                    StackdeOverlays.Push(overlay);
-                    ListaOverlays.Add(overlay);
-                }
-
-                secondCounter = secondCounter + 1;
-
-                if (secondCounter > secondCounterFinal)
-                {
-                    timer.Enabled = false;
-                    overlay.Clear();
-                    Mapa.Overlays.Clear();
-                    secondCounter = secondCounterInicial;
-                }
-            }
-        }
-
-        private void bt_Backward_Click(object sender, EventArgs e)
-        {
-            if (boolAllFlights == true && boolSingleFlight == false)
-            {
-                // Limpiamos los mapas
-                Mapa.Overlays.Clear();
-                overlay.Clear();
-
-                // Limpiamos el stack
-
-                StackdeOverlays.Clear();
-                ListaOverlays.Clear();
-
-                // Establecemos timer
-                timer.Enabled = false;
-
-                //Cargamos vectores tiempo
-
-                if (listaCAT10.Count > 0) { CalculateListaSecondsCAT10(); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT10
-                if (listaCAT21.Count > 0) { CalculateListaSecondsCAT21(); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21
-                if (listaCAT21v23.Count > 0) { CalculateListaSecondsCAT21v23(); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21v23
-
-                // Establecemos el primer segundo como el minimo de los 3.
-                double db1;
-                double db2;
-                double db3;
-
-                if (listasecondsCAT10.Count == 0) { db1 = 10e6; }
-                else { db1 = listasecondsCAT10.First(); }
-
-                if (listasecondsCAT21.Count == 0) { db2 = 10e6; }
-                else { db2 = listasecondsCAT21.First(); }
-
-                if (listasecondsCAT21v23.Count == 0) { db3 = 10e6; }
-                else { db3 = listasecondsCAT21v23.First(); }
-
-                secondCounterInicial = new[] { db1, db2, db3 }.Min();
-
-                if (listasecondsCAT10.Count == 0) { db1 = 0; }
-                else { db1 = listasecondsCAT10.Last(); }
-
-                if (listasecondsCAT21.Count == 0) { db2 = 0; }
-                else { db2 = listasecondsCAT21.Last(); }
-
-                if (listasecondsCAT21v23.Count == 0) { db3 = 0; }
-                else { db3 = listasecondsCAT21v23.Last(); }
-
-                secondCounterFinal = new[] { db1, db2, db3 }.Max();
-
-                // Definimos valor inicial del contador contador
-
-                secondCounter = secondCounterInicial;
-
-                // Labels del tiempo
-
-                TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
-                lb_HoraInicial.Visible = true;
-                lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
-
-                t = TimeSpan.FromSeconds(secondCounterFinal);
-                lb_HoraFinal.Visible = true;
-                lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
-
-                t = TimeSpan.FromSeconds(secondCounterInicial);
-                lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
-            }
-
-            if (boolAllFlights == false && boolSingleFlight == true)
-            {
-                // Limpiamos los mapas
-                Mapa.Overlays.Clear();
-                overlay.Clear();
-
-                // Limpiamos el stack
-
-                StackdeOverlays.Clear();
-                ListaOverlays.Clear();
-
-                // Establecemos timer
-                timer.Enabled = false;
-
-                //Cargamos vectores tiempo
-
-                if (listaCAT10.Count > 0) { CalculateListaSeconds1vueloCAT10(tb_TargetIdentification.Text); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT10 con ese TargetAddress, TargetIdentification o Track Number
-                if (listaCAT21.Count > 0) { CalculateListaSeconds1vueloCAT21(tb_TargetIdentification.Text); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21 con ese TargetAddress, TargetIdentification o Track Number
-                if (listaCAT21v23.Count > 0) { CalculateListaSeconds1vueloCAT21v23(tb_TargetIdentification.Text); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21v23 con ese TargetAddress, TargetIdentification o Track Number
-
-                // Establecemos el primer segundo como el minimo de los 3.
-                double db1;
-                double db2;
-                double db3;
-
-                if (listasecondsCAT10.Count == 0) { db1 = 10e6; }
-                else { db1 = listasecondsCAT10.First(); }
-
-                if (listasecondsCAT21.Count == 0) { db2 = 10e6; }
-                else { db2 = listasecondsCAT21.First(); }
-
-                if (listasecondsCAT21v23.Count == 0) { db3 = 10e6; }
-                else { db3 = listasecondsCAT21v23.First(); }
-
-                secondCounterInicial = new[] { db1, db2, db3 }.Min();
-
-                if (listasecondsCAT10.Count == 0) { db1 = 0; }
-                else { db1 = listasecondsCAT10.Last(); }
-
-                if (listasecondsCAT21.Count == 0) { db2 = 0; }
-                else { db2 = listasecondsCAT21.Last(); }
-
-                if (listasecondsCAT21v23.Count == 0) { db3 = 0; }
-                else { db3 = listasecondsCAT21v23.Last(); }
-
-                secondCounterFinal = new[] { db1, db2, db3 }.Max();
-
-                // Definimos valor inicial del contador contador
-
-                secondCounter = secondCounterInicial;
-
-                // Labels del tiempo
-
-                TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
-                lb_HoraInicial.Visible = true;
-                lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
-
-                t = TimeSpan.FromSeconds(secondCounterFinal);
-                lb_HoraFinal.Visible = true;
-                lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
-
-                t = TimeSpan.FromSeconds(secondCounterInicial);
-                lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
-            }
-        }
 
         private void bt_PlotAllFlights_Click(object sender, EventArgs e)
         {
@@ -656,6 +447,218 @@ namespace ASTERIX
             }
 
             Mapa.Overlays.Add(overlayLoad);
+        }
+
+        private void bt_PlayPause_Click(object sender, EventArgs e)
+        {
+            if (boolAllFlights == true || boolSingleFlight == true)
+            {
+                if (timer.Enabled == false) { timer.Enabled = true; }
+                else { timer.Enabled = false; }
+            }
+        }
+
+        private void bt_Forward_Click_1(object sender, EventArgs e)
+        {
+            if (boolAllFlights == true && boolSingleFlight == false)
+            {
+                TimeSpan t = TimeSpan.FromSeconds(secondCounter);
+                lb_Hora.Visible = true;
+                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+
+                overlay = CalcularNuevosPuntos(secondCounter, overlay); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo. Luego calculo las coordenadas y las añado al overlay
+                Mapa.Overlays.Clear();
+                Mapa.Overlays.Add(overlay);
+                StackdeOverlays.Push(overlay);
+                ListaOverlays.Add(overlay);
+
+                if (overlay.Markers.Count > markerlimit)
+                {
+                    overlay.Clear();
+                    overlay = CalcularNuevosPuntos(secondCounter, overlay);
+                    Mapa.Overlays.Add(overlay);
+                    StackdeOverlays.Push(overlay);
+                    ListaOverlays.Add(overlay);
+                }
+
+                secondCounter = secondCounter + 1;
+
+                if (secondCounter > secondCounterFinal)
+                {
+                    timer.Enabled = false;
+                    overlay.Clear();
+                    Mapa.Overlays.Clear();
+                    secondCounter = secondCounterInicial;
+                }
+            }
+
+            if (boolAllFlights == false && boolSingleFlight == true)
+            {
+                TimeSpan t = TimeSpan.FromSeconds(secondCounter);
+                lb_Hora.Visible = true;
+                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+                overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo y con esa identificacion. Luego calculo las coordenadas y las añado al overlay
+                Mapa.Overlays.Clear();
+                Mapa.Overlays.Add(overlay);
+                StackdeOverlays.Push(overlay);
+                ListaOverlays.Add(overlay);
+
+                if (overlay.Markers.Count > markerlimit)
+                {
+                    overlay.Clear();
+                    overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
+                    Mapa.Overlays.Add(overlay);
+                    StackdeOverlays.Push(overlay);
+                    ListaOverlays.Add(overlay);
+                }
+
+                secondCounter = secondCounter + 1;
+
+                if (secondCounter > secondCounterFinal)
+                {
+                    timer.Enabled = false;
+                    overlay.Clear();
+                    Mapa.Overlays.Clear();
+                    secondCounter = secondCounterInicial;
+                }
+            }
+        }
+
+        private void bt_Restart_Click(object sender, EventArgs e)
+        {
+            if (boolAllFlights == true && boolSingleFlight == false)
+            {
+                // Limpiamos los mapas
+                Mapa.Overlays.Clear();
+                overlay.Clear();
+
+                // Limpiamos el stack
+
+                StackdeOverlays.Clear();
+                ListaOverlays.Clear();
+
+                // Establecemos timer
+                timer.Enabled = false;
+
+                //Cargamos vectores tiempo
+
+                if (listaCAT10.Count > 0) { CalculateListaSecondsCAT10(); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT10
+                if (listaCAT21.Count > 0) { CalculateListaSecondsCAT21(); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21
+                if (listaCAT21v23.Count > 0) { CalculateListaSecondsCAT21v23(); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21v23
+
+                // Establecemos el primer segundo como el minimo de los 3.
+                double db1;
+                double db2;
+                double db3;
+
+                if (listasecondsCAT10.Count == 0) { db1 = 10e6; }
+                else { db1 = listasecondsCAT10.First(); }
+
+                if (listasecondsCAT21.Count == 0) { db2 = 10e6; }
+                else { db2 = listasecondsCAT21.First(); }
+
+                if (listasecondsCAT21v23.Count == 0) { db3 = 10e6; }
+                else { db3 = listasecondsCAT21v23.First(); }
+
+                secondCounterInicial = new[] { db1, db2, db3 }.Min();
+
+                if (listasecondsCAT10.Count == 0) { db1 = 0; }
+                else { db1 = listasecondsCAT10.Last(); }
+
+                if (listasecondsCAT21.Count == 0) { db2 = 0; }
+                else { db2 = listasecondsCAT21.Last(); }
+
+                if (listasecondsCAT21v23.Count == 0) { db3 = 0; }
+                else { db3 = listasecondsCAT21v23.Last(); }
+
+                secondCounterFinal = new[] { db1, db2, db3 }.Max();
+
+                // Definimos valor inicial del contador contador
+
+                secondCounter = secondCounterInicial;
+
+                // Labels del tiempo
+
+                TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
+                lb_HoraInicial.Visible = true;
+                lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+                t = TimeSpan.FromSeconds(secondCounterFinal);
+                lb_HoraFinal.Visible = true;
+                lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+                t = TimeSpan.FromSeconds(secondCounterInicial);
+                lb_Hora.Visible = true;
+                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+            }
+
+            if (boolAllFlights == false && boolSingleFlight == true)
+            {
+                // Limpiamos los mapas
+                Mapa.Overlays.Clear();
+                overlay.Clear();
+
+                // Limpiamos el stack
+
+                StackdeOverlays.Clear();
+                ListaOverlays.Clear();
+
+                // Establecemos timer
+                timer.Enabled = false;
+
+                //Cargamos vectores tiempo
+
+                if (listaCAT10.Count > 0) { CalculateListaSeconds1vueloCAT10(tb_TargetIdentification.Text); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT10 con ese TargetAddress, TargetIdentification o Track Number
+                if (listaCAT21.Count > 0) { CalculateListaSeconds1vueloCAT21(tb_TargetIdentification.Text); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21 con ese TargetAddress, TargetIdentification o Track Number
+                if (listaCAT21v23.Count > 0) { CalculateListaSeconds1vueloCAT21v23(tb_TargetIdentification.Text); } // Calcula una lista con todos los segundos en los que se envia un paquete CAT21v23 con ese TargetAddress, TargetIdentification o Track Number
+
+                // Establecemos el primer segundo como el minimo de los 3.
+                double db1;
+                double db2;
+                double db3;
+
+                if (listasecondsCAT10.Count == 0) { db1 = 10e6; }
+                else { db1 = listasecondsCAT10.First(); }
+
+                if (listasecondsCAT21.Count == 0) { db2 = 10e6; }
+                else { db2 = listasecondsCAT21.First(); }
+
+                if (listasecondsCAT21v23.Count == 0) { db3 = 10e6; }
+                else { db3 = listasecondsCAT21v23.First(); }
+
+                secondCounterInicial = new[] { db1, db2, db3 }.Min();
+
+                if (listasecondsCAT10.Count == 0) { db1 = 0; }
+                else { db1 = listasecondsCAT10.Last(); }
+
+                if (listasecondsCAT21.Count == 0) { db2 = 0; }
+                else { db2 = listasecondsCAT21.Last(); }
+
+                if (listasecondsCAT21v23.Count == 0) { db3 = 0; }
+                else { db3 = listasecondsCAT21v23.Last(); }
+
+                secondCounterFinal = new[] { db1, db2, db3 }.Max();
+
+                // Definimos valor inicial del contador contador
+
+                secondCounter = secondCounterInicial;
+
+                // Labels del tiempo
+
+                TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
+                lb_HoraInicial.Visible = true;
+                lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+                t = TimeSpan.FromSeconds(secondCounterFinal);
+                lb_HoraFinal.Visible = true;
+                lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+
+                t = TimeSpan.FromSeconds(secondCounterInicial);
+                lb_Hora.Visible = true;
+                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+            }
         }
 
 
@@ -1362,7 +1365,13 @@ namespace ASTERIX
 
         }
 
-        
+
+
+
+
+
+
+
 
 
 
