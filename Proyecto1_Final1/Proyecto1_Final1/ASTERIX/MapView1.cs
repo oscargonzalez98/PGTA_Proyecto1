@@ -62,6 +62,7 @@ namespace ASTERIX
         Bitmap blue_plane = (Bitmap)Image.FromFile("img/Planes/plane_blue_small.png");
         Bitmap red_plane = (Bitmap)Image.FromFile("img/Planes/plane_red_small.png");
         Bitmap green_plane = (Bitmap)Image.FromFile("img/Planes/plane_green_small.png");
+        Bitmap white_plane = (Bitmap)Image.FromFile("img/Planes/plane_white_small.png");
 
         public MapView1(List<CAT10> listaCAT10, List<CAT21> listaCAT21, List<CAT21v23> listaCAT21v23)
         {
@@ -108,16 +109,14 @@ namespace ASTERIX
                 overlay = CalcularNuevosPuntos(secondCounter, overlay); // 
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
-                StackdeOverlays.Push(overlay);
-                ListaOverlays.Add(overlay);
 
                 if (overlay.Markers.Count > markerlimit)
                 {
                     overlay.Clear();
+                    overlay = CalcularNuevosPuntos(secondCounter-1, overlay);
+                    Mapa.Overlays.Add(overlay);
                     overlay = CalcularNuevosPuntos(secondCounter, overlay);
                     Mapa.Overlays.Add(overlay);
-                    StackdeOverlays.Push(overlay);
-                    ListaOverlays.Add(overlay);
                 }
 
                 secondCounter = secondCounter + 1;
@@ -140,16 +139,14 @@ namespace ASTERIX
                 overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
-                ListaOverlays.Add(overlay);
-                StackdeOverlays.Push(overlay);
 
                 if (overlay.Markers.Count > markerlimit)
                 {
                     overlay.Clear();
+                    overlay = CalcularNuevosPuntos(secondCounter - 1, overlay);
+                    Mapa.Overlays.Add(overlay);
                     overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
                     Mapa.Overlays.Add(overlay);
-                    StackdeOverlays.Push(overlay);
-                    ListaOverlays.Add(overlay);
                 }
 
                 secondCounter = secondCounter + 1;
@@ -187,10 +184,6 @@ namespace ASTERIX
             Mapa.Overlays.Clear();
             overlay.Clear();
             
-            // Limpiamos el stack
-
-            StackdeOverlays.Clear();
-            ListaOverlays.Clear();
 
             // Establecemos timer
             timer.Enabled = false;
@@ -253,10 +246,6 @@ namespace ASTERIX
             Mapa.Overlays.Clear();
             overlay.Clear();
 
-            // Limpiamos el stack
-
-            StackdeOverlays.Clear();
-            ListaOverlays.Clear();
 
             // Establecemos timer
             timer.Enabled = false;
@@ -470,16 +459,12 @@ namespace ASTERIX
                 overlay = CalcularNuevosPuntos(secondCounter, overlay); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo. Luego calculo las coordenadas y las añado al overlay
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
-                StackdeOverlays.Push(overlay);
-                ListaOverlays.Add(overlay);
 
                 if (overlay.Markers.Count > markerlimit)
                 {
                     overlay.Clear();
                     overlay = CalcularNuevosPuntos(secondCounter, overlay);
                     Mapa.Overlays.Add(overlay);
-                    StackdeOverlays.Push(overlay);
-                    ListaOverlays.Add(overlay);
                 }
 
                 secondCounter = secondCounter + 1;
@@ -502,16 +487,12 @@ namespace ASTERIX
                 overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo y con esa identificacion. Luego calculo las coordenadas y las añado al overlay
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
-                StackdeOverlays.Push(overlay);
-                ListaOverlays.Add(overlay);
 
                 if (overlay.Markers.Count > markerlimit)
                 {
                     overlay.Clear();
                     overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
                     Mapa.Overlays.Add(overlay);
-                    StackdeOverlays.Push(overlay);
-                    ListaOverlays.Add(overlay);
                 }
 
                 secondCounter = secondCounter + 1;
@@ -534,10 +515,6 @@ namespace ASTERIX
                 Mapa.Overlays.Clear();
                 overlay.Clear();
 
-                // Limpiamos el stack
-
-                StackdeOverlays.Clear();
-                ListaOverlays.Clear();
 
                 // Establecemos timer
                 timer.Enabled = false;
@@ -600,10 +577,6 @@ namespace ASTERIX
                 Mapa.Overlays.Clear();
                 overlay.Clear();
 
-                // Limpiamos el stack
-
-                StackdeOverlays.Clear();
-                ListaOverlays.Clear();
 
                 // Establecemos timer
                 timer.Enabled = false;
@@ -1154,10 +1127,10 @@ namespace ASTERIX
                         if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
                         {
                             double[] coordenadas = NewCoordinatesSMR(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
                             overlay.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.Always;
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                             if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
                         }
 
@@ -1167,10 +1140,10 @@ namespace ASTERIX
                             double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[vuelosCAT10[i]].X_cartesian, listaCAT10[vuelosCAT10[i]].Y_cartesian);
 
                             double[] coordenadas = NewCoordinatesSMR(rho, theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
                             overlay.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.Always;
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                             if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
                         }
                     }
@@ -1183,7 +1156,7 @@ namespace ASTERIX
                             var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
                             overlay.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.Always;
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
 
                             if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
                             else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
@@ -1199,7 +1172,7 @@ namespace ASTERIX
                             var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
                             overlay.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.Always;
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                             if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
                             else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
                             else if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
@@ -1220,7 +1193,7 @@ namespace ASTERIX
                         var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
                         overlay.Markers.Add(marker);
 
-                        marker.ToolTipMode = MarkerTooltipMode.Always;
+                        marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                         if (listaCAT21[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
                         else if (listaCAT21[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
                         else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
@@ -1231,7 +1204,7 @@ namespace ASTERIX
                         var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
                         overlay.Markers.Add(marker);
 
-                        marker.ToolTipMode = MarkerTooltipMode.Always;
+                        marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                         if (listaCAT21v23[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
                         else if (listaCAT21v23[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
                         else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
@@ -1250,7 +1223,7 @@ namespace ASTERIX
                         var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane);
                         overlay.Markers.Add(marker);
 
-                        marker.ToolTipMode = MarkerTooltipMode.Always;
+                        marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                         if (listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification.Length>0 && Convert.ToInt64(listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification, 2)>1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification_decoded); }
                         else if (listaCAT21v23[vuelosCAT21v23[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21v23[vuelosCAT21v23[j]].TargetAdress_real); }
 
@@ -1284,7 +1257,7 @@ namespace ASTERIX
                         if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
                         {
                             double[] coordenadas = NewCoordinatesSMR(listaCAT10[j].Rho, listaCAT10[j].Theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
                             overlay.Markers.Add(marker);
                         }
 
@@ -1294,7 +1267,7 @@ namespace ASTERIX
                             double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian);
 
                             double[] coordenadas = NewCoordinatesSMR(rho, theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
                             overlay.Markers.Add(marker);
                         }
                     }
@@ -1302,7 +1275,7 @@ namespace ASTERIX
                     if (SAC == 0 && SIC == 107) //MLAT
                     {
                         if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
-                        {
+                        { 
                             double[] coordenadas = NewCoordinatesMLAT(listaCAT10[j].Rho, listaCAT10[j].Theta);
                             var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
                             overlay.Markers.Add(marker);

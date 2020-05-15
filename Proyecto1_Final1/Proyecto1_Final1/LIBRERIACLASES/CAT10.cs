@@ -37,7 +37,7 @@ namespace LIBRERIACLASES
         public string SPI = "";
 
         public string TimeofDay = "";
-        public int TimeofDay_seconds;
+        public double TimeofDay_seconds;
 
         public string PositioninWGS84_coordinates = "";
         public double latWGS84 = 0;
@@ -816,7 +816,10 @@ namespace LIBRERIACLASES
 
                     TimeofDay = String.Concat(string1, string2, string3);
 
-                    TimeofDay_seconds = Convert.ToInt32(TimeofDay, 2) / 128;
+                    TimeofDay_seconds = Convert.ToInt32(TimeofDay, 2);
+                    TimeofDay_seconds = TimeofDay_seconds/128;
+
+                    int a = 0;
 
                 }// 4 I010 / 140 Time of Day
 

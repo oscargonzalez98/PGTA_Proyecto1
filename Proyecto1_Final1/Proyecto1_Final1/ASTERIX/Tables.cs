@@ -82,7 +82,7 @@ namespace ASTERIX
 
                 if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
                 {
-                    dgvCAT10.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                    dgvCAT10.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                 }
                 else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
 
@@ -757,7 +757,7 @@ namespace ASTERIX
 
                     if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
                     {
-                        dgvCAT10.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT10.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
 
@@ -1439,18 +1439,11 @@ namespace ASTERIX
 
 
                     double TimeofDay = listaCAT10[i].TimeofDay_seconds;
-
-                    double double1 = (TimeofDay / 3600);
-                    int horas = Convert.ToInt32(Math.Floor(double1));
-
-                    double double2 = (double1 - horas) * 60;
-                    int mins = Convert.ToInt32(Math.Floor(double2));
-
-                    double secs = (double2 - mins) * 60;
+                    TimeSpan t = TimeSpan.FromSeconds(TimeofDay);
 
                     if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
                     {
-                        dgvCAT10.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                        dgvCAT10.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
 
@@ -2148,18 +2141,11 @@ namespace ASTERIX
 
 
                     double TimeofDay = listaCAT10[i].TimeofDay_seconds;
-
-                    double double1 = (TimeofDay / 3600);
-                    int horas = Convert.ToInt32(Math.Floor(double1));
-
-                    double double2 = (double1 - horas) * 60;
-                    int mins = Convert.ToInt32(Math.Floor(double2));
-
-                    double secs = (double2 - mins) * 60;
+                    TimeSpan t = TimeSpan.FromSeconds(TimeofDay);
 
                     if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
                     {
-                        dgvCAT10.Rows[n].Cells[4].Value = horas + ":" + mins + ":" + secs;
+                        dgvCAT10.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
 
@@ -2869,7 +2855,7 @@ namespace ASTERIX
 
                     if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
                     {
-                        dgvCAT10.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT10.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT10.Rows[n].Cells[4].Value = "No info."; }
 
