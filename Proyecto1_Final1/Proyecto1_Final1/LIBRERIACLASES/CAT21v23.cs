@@ -117,13 +117,24 @@ namespace Clases
         public string AM = "";
         public double FSS_Altitude;
 
-
-
-
-
-
-
-
+        public string TrajectroyIntent = "";
+        public int TIS;
+        public int TID;
+        public int NAV;
+        public int NVB;
+        public int REP;
+        public List<int> TCA;
+        public List<int> NC;
+        public List<int> TCPNumber;
+        public List<double> TI_Altitude;
+        public List<double> TI_LatWGS84;
+        public List<double> TI_LonWGS84;
+        public List<String> PointType;
+        public List<String> TD;
+        public List<String> TRA;
+        public List<String> TOA;
+        public List<int> TOV;
+        public List<double> TTR;
 
 
 
@@ -1018,7 +1029,7 @@ namespace Clases
 
             if (Char.ToString(FSPEC_fake[20]) == "1") // 19 I021/095 Velocity Accuracy
             {
-
+                int a = 1;
 
             }// 19 I021/095 Velocity Accuracy
 
@@ -1141,7 +1152,7 @@ namespace Clases
                 string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                 string1 = AddZeros(string1);
 
-                string string2 = Convert.ToString(paquete[data_position]);
+                string string2 = Convert.ToString(paquete[data_position + 1]);
                 string1 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
                 string1 = AddZeros(string2);
 
@@ -1158,7 +1169,7 @@ namespace Clases
                 string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                 string1 = AddZeros(string1);
 
-                string string2 = Convert.ToString(paquete[data_position]);
+                string string2 = Convert.ToString(paquete[data_position + 1]);
                 string1 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
                 string1 = AddZeros(string2);
 
@@ -1168,36 +1179,6 @@ namespace Clases
                 Calculate_FinalStateSelectedAltitude(FinalStateSelectedAltitude);
 
             }// 25 I021/148 Final State Selected Altitude
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
     }
 }

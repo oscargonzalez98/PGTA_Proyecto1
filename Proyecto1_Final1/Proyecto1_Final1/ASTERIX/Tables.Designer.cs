@@ -131,14 +131,12 @@
             this.GroundVectorv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RateofTurnv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Targetidentificationv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VelocityAccuracyv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeofDayAccuracy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TargetStatusv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmitterCategoryv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MetReportv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IntermediateStateSelectedAltitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FinalStateSelectedAltitudev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrajectoryIntentv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpTables.SuspendLayout();
             this.panelCAT10.SuspendLayout();
             this.panelCAT20.SuspendLayout();
@@ -636,14 +634,12 @@
             this.GroundVectorv23,
             this.RateofTurnv23,
             this.Targetidentificationv23,
-            this.VelocityAccuracyv23,
             this.TimeofDayAccuracy,
             this.TargetStatusv23,
             this.EmitterCategoryv23,
             this.MetReportv23,
             this.IntermediateStateSelectedAltitude,
-            this.FinalStateSelectedAltitudev23,
-            this.TrajectoryIntentv23});
+            this.FinalStateSelectedAltitudev23});
             this.dgvCAT20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCAT20.Location = new System.Drawing.Point(0, 0);
             this.dgvCAT20.Margin = new System.Windows.Forms.Padding(2);
@@ -1081,13 +1077,6 @@
             this.Targetidentificationv23.Name = "Targetidentificationv23";
             this.Targetidentificationv23.Width = 125;
             // 
-            // VelocityAccuracyv23
-            // 
-            this.VelocityAccuracyv23.HeaderText = "Velocity Accuracy";
-            this.VelocityAccuracyv23.MinimumWidth = 6;
-            this.VelocityAccuracyv23.Name = "VelocityAccuracyv23";
-            this.VelocityAccuracyv23.Width = 125;
-            // 
             // TimeofDayAccuracy
             // 
             this.TimeofDayAccuracy.HeaderText = "Time of Day Accuracy";
@@ -1129,13 +1118,6 @@
             this.FinalStateSelectedAltitudev23.MinimumWidth = 6;
             this.FinalStateSelectedAltitudev23.Name = "FinalStateSelectedAltitudev23";
             this.FinalStateSelectedAltitudev23.Width = 125;
-            // 
-            // TrajectoryIntentv23
-            // 
-            this.TrajectoryIntentv23.HeaderText = "Trajectory Intent";
-            this.TrajectoryIntentv23.MinimumWidth = 6;
-            this.TrajectoryIntentv23.Name = "TrajectoryIntentv23";
-            this.TrajectoryIntentv23.Width = 125;
             // 
             // Tables
             // 
@@ -1263,13 +1245,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GroundVectorv23;
         private System.Windows.Forms.DataGridViewTextBoxColumn RateofTurnv23;
         private System.Windows.Forms.DataGridViewTextBoxColumn Targetidentificationv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VelocityAccuracyv23;
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeofDayAccuracy;
         private System.Windows.Forms.DataGridViewTextBoxColumn TargetStatusv23;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmitterCategoryv23;
         private System.Windows.Forms.DataGridViewTextBoxColumn MetReportv23;
         private System.Windows.Forms.DataGridViewTextBoxColumn IntermediateStateSelectedAltitude;
         private System.Windows.Forms.DataGridViewTextBoxColumn FinalStateSelectedAltitudev23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TrajectoryIntentv23;
     }
 }
