@@ -23,6 +23,8 @@ namespace ASTERIX
         int contador_forward = 1;
         int contador_backward = 0;
 
+        int numero_de_decimales = 5;
+
         public Tables(List<CAT10> listaCAT10, List<CAT20> listaCAT20, List<CAT21> listaCAT21, List<CAT21v23> listaCAT21v23)
         {
             InitializeComponent();
@@ -94,7 +96,12 @@ namespace ASTERIX
 
                 if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
                 {
-                    dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                    double Rho = listaCAT10[i].Rho;
+                    Rho = Math.Round(Rho, numero_de_decimales);
+                    double Theta = listaCAT10[i].Theta;
+                    Theta = Math.Round(Theta, numero_de_decimales);
+
+                    dgvCAT10.Rows[n].Cells[6].Value = String.Concat(Rho.ToString(), "/", Theta.ToString());
                 }
                 else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
 
@@ -106,12 +113,19 @@ namespace ASTERIX
 
                 if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
                 {
-                    dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+
+                    double GroundSpeed = Math.Round(listaCAT10[i].GroundSpeed, numero_de_decimales);
+                    double TrackAngle = Math.Round(listaCAT10[i].TrackAngle, numero_de_decimales);
+
+                    dgvCAT10.Rows[n].Cells[8].Value = String.Concat(GroundSpeed.ToString(), "/", TrackAngle.ToString());
                 }
                 else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
 
                 if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                 {
+                    double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
+                    double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+
                     dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                 }
                 else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }
@@ -752,7 +766,6 @@ namespace ASTERIX
 
 
                     double TimeofDay = listaCAT10[i].TimeofDay_seconds;
-
                     TimeSpan t = TimeSpan.FromSeconds(TimeofDay);
 
                     if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
@@ -769,7 +782,12 @@ namespace ASTERIX
 
                     if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
                     {
-                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                        double Rho = listaCAT10[i].Rho;
+                        Rho = Math.Round(Rho, numero_de_decimales);
+                        double Theta = listaCAT10[i].Theta;
+                        Theta = Math.Round(Theta, numero_de_decimales);
+
+                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(Rho.ToString(), "/", Theta.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
 
@@ -781,12 +799,19 @@ namespace ASTERIX
 
                     if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
                     {
-                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+
+                        double GroundSpeed = Math.Round(listaCAT10[i].GroundSpeed, numero_de_decimales);
+                        double TrackAngle = Math.Round(listaCAT10[i].TrackAngle, numero_de_decimales);
+
+                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(GroundSpeed.ToString(), "/", TrackAngle.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
 
                     if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                     {
+                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
+                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+
                         dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }
@@ -1455,7 +1480,12 @@ namespace ASTERIX
 
                     if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
                     {
-                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                        double Rho = listaCAT10[i].Rho;
+                        Rho = Math.Round(Rho, numero_de_decimales);
+                        double Theta = listaCAT10[i].Theta;
+                        Theta = Math.Round(Theta, numero_de_decimales);
+
+                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(Rho.ToString(), "/", Theta.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
 
@@ -1467,12 +1497,19 @@ namespace ASTERIX
 
                     if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
                     {
-                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+
+                        double GroundSpeed = Math.Round(listaCAT10[i].GroundSpeed, numero_de_decimales);
+                        double TrackAngle = Math.Round(listaCAT10[i].TrackAngle, numero_de_decimales);
+
+                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(GroundSpeed.ToString(), "/", TrackAngle.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
 
                     if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                     {
+                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
+                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+
                         dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }
@@ -2157,7 +2194,12 @@ namespace ASTERIX
 
                     if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
                     {
-                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                        double Rho = listaCAT10[i].Rho;
+                        Rho = Math.Round(Rho, numero_de_decimales);
+                        double Theta = listaCAT10[i].Theta;
+                        Theta = Math.Round(Theta, numero_de_decimales);
+
+                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(Rho.ToString(), "/", Theta.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
 
@@ -2169,12 +2211,19 @@ namespace ASTERIX
 
                     if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
                     {
-                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+
+                        double GroundSpeed = Math.Round(listaCAT10[i].GroundSpeed, numero_de_decimales);
+                        double TrackAngle = Math.Round(listaCAT10[i].TrackAngle, numero_de_decimales);
+
+                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(GroundSpeed.ToString(), "/", TrackAngle.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
 
                     if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                     {
+                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
+                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+
                         dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }
@@ -2850,7 +2899,6 @@ namespace ASTERIX
 
 
                     double TimeofDay = listaCAT10[i].TimeofDay_seconds;
-
                     TimeSpan t = TimeSpan.FromSeconds(TimeofDay);
 
                     if (listaCAT10[i].TimeofDay.Length > 0) //-------------------------------------------------------------------------------- 4
@@ -2867,7 +2915,12 @@ namespace ASTERIX
 
                     if (listaCAT10[i].MeasuredPositioninPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 6
                     {
-                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(listaCAT10[i].Rho.ToString(), "/", listaCAT10[i].Theta.ToString());
+                        double Rho = listaCAT10[i].Rho;
+                        Rho = Math.Round(Rho, numero_de_decimales);
+                        double Theta = listaCAT10[i].Theta;
+                        Theta = Math.Round(Theta, numero_de_decimales);
+
+                        dgvCAT10.Rows[n].Cells[6].Value = String.Concat(Rho.ToString(), "/", Theta.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[6].Value = "No info."; }
 
@@ -2879,12 +2932,19 @@ namespace ASTERIX
 
                     if (listaCAT10[i].CalculatedTrackVelocityinPolarCoordinates.Length > 0) //-------------------------------------------------------------------------------- 8
                     {
-                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(listaCAT10[i].GroundSpeed.ToString(), "/", listaCAT10[i].TrackAngle.ToString());
+
+                        double GroundSpeed = Math.Round(listaCAT10[i].GroundSpeed, numero_de_decimales);
+                        double TrackAngle = Math.Round(listaCAT10[i].TrackAngle, numero_de_decimales);
+
+                        dgvCAT10.Rows[n].Cells[8].Value = String.Concat(GroundSpeed.ToString(), "/", TrackAngle.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[8].Value = "No info."; }
 
                     if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                     {
+                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
+                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+
                         dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                     }
                     else { dgvCAT10.Rows[n].Cells[9].Value = "No info."; }

@@ -81,7 +81,7 @@ namespace LIBRERIACLASES
         public string Mode3ACodeinOctal_decodified = "";
 
         public string TargetAdress = "";
-        public double TargetAdress_decoded;
+        public string TargetAdress_decoded;
 
         public string TargetIdentification = "";
         public string TargetIdentification_decoded = "";
@@ -369,6 +369,10 @@ namespace LIBRERIACLASES
 
             string str1 = paquete.Substring(4, 12);
             Mode3ACodeinOctal_decodified = Convert.ToString(Convert.ToInt32(str1, 2), 8);
+            while (Mode3ACodeinOctal_decodified.Length < 4)
+            {
+                Mode3ACodeinOctal_decodified = String.Concat("0", Mode3ACodeinOctal_decodified); 
+            }
         }
         public void Calculate_TargetIdentification(string paquete)
         {
@@ -819,8 +823,6 @@ namespace LIBRERIACLASES
                     TimeofDay_seconds = Convert.ToInt32(TimeofDay, 2);
                     TimeofDay_seconds = TimeofDay_seconds/128;
 
-                    int a = 0;
-
                 }// 4 I010 / 140 Time of Day
 
                 if (Char.ToString(FSPEC_fake[4]) == "1") // 5 I010 / 041  Position in WGS-84 Co-ordinates 
@@ -960,6 +962,8 @@ namespace LIBRERIACLASES
 
                         GroundSpeed = Convert.ToInt32(gs1, 2) * (Math.Pow(2, -14));
                         TrackAngle = Convert.ToInt32(ta1, 2) * 360 / (Math.Pow(2, 16));
+
+
                     }// 8 I010/200  Calculated Track Velocity in Polar Co-ordinates
 
                     if (Char.ToString(FSPEC_fake[9]) == "1") // 9 I010/202  Calculated Track Velocity in Cartesian Coord
@@ -1062,14 +1066,17 @@ namespace LIBRERIACLASES
                     if (Char.ToString(FSPEC_fake[13]) == "1") // 13  I010 / 220 Target Adress 
                     {
                         string string1 = Convert.ToString(paquete[data_position]);
+                        string str1 = string1;
                         string1 = Convert.ToString(Convert.ToInt32(string1, 16), 2);
                         string1 = AddZeros(string1);
 
                         string string2 = Convert.ToString(paquete[data_position + 1]);
+                        string str2 = string2;
                         string2 = Convert.ToString(Convert.ToInt32(string2, 16), 2);
                         string2 = AddZeros(string2);
 
                         string string3 = Convert.ToString(paquete[data_position + 2]);
+                        string str3 = string3;
                         string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
                         string3 = AddZeros(string3);
 
@@ -1077,7 +1084,8 @@ namespace LIBRERIACLASES
 
                         data_position = data_position + 3;
 
-                        TargetAdress_decoded = Convert.ToInt32(TargetAdress, 2);
+                        TargetAdress_decoded = String.Concat(str1, str2, str3);
+
                     }// 13  I010 / 220 Target Adress 
 
                     if (Char.ToString(FSPEC_fake[14]) == "1") // 14  I010/245 Target Identification   

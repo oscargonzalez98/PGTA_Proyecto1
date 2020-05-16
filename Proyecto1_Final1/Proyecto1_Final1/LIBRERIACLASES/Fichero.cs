@@ -114,18 +114,18 @@ namespace LIBRERIACLASES
 
                 if (CAT == 10)
                 {
-                    try
-                    {
+                    //try
+                    //{
                         CAT10 newcat10 = new CAT10(arraystring);
                         newcat10.Calculate_FSPEC(newcat10.paquete);
                         listaCAT10.Add(newcat10);
 
-                    }
-                    catch
-                    {
-                        Console.WriteLine(q);
-                        Console.ReadKey();
-                    }
+                    //}
+                    //catch
+                    //{
+                    //    Console.WriteLine(q);
+                    //    Console.ReadKey();
+                    //}
                 }
 
 
