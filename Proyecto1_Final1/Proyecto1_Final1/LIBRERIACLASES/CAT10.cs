@@ -81,7 +81,7 @@ namespace LIBRERIACLASES
         public string Mode3ACodeinOctal_decodified = "";
 
         public string TargetAdress = "";
-        public string TargetAdress_decoded;
+        public string TargetAdress_decoded = "";
 
         public string TargetIdentification = "";
         public string TargetIdentification_decoded = "";
@@ -220,59 +220,55 @@ namespace LIBRERIACLASES
             if (typ=="110") { TYP = "Not defined."; }
             if (typ=="111") { TYP = "Other types."; }
 
-            int dcr1 = Convert.ToInt32(paquete[3]);
-            if (dcr1 == 0) { DCR = "No differential correction (ADS-B)."; }
+            string dcr1 = paquete.Substring(3,1);
+            if (dcr1 == "0") { DCR = "No differential correction (ADS-B)."; }
             else { DCR = "Differential correction (ADS-B)."; }
 
-            int chn1 = Convert.ToInt32(paquete[4]);
-            if (chn1 == 0) { CHN = "Chain 1."; }
+            string chn1 = paquete.Substring(4,1);
+            if (chn1 == "0") { CHN = "Chain 1."; }
             else { CHN = "Chain 2."; }
 
-            int gbs1 = Convert.ToInt32(paquete[5]);
-            if (gbs1 == 0) { GBS = "Transponder Ground bit not set."; }
+            string gbs1 = paquete.Substring(5,1);
+            if (gbs1 == "0") { GBS = "Transponder Ground bit not set."; }
             else { GBS = "Transponder Ground bit set."; }
 
-            int crt1 = Convert.ToInt32(paquete[6]);
-            if (crt1 == 0) { CRT = "No Corrupted reply in multilateration."; }
+            string crt1 = paquete.Substring(6,1);
+            if (crt1 == "0") { CRT = "No Corrupted reply in multilateration."; }
             else { CRT = "Corrupted reply in multilateration."; }
 
 
             if (paquete.Length > 8)
             {
-                int sim1 = Convert.ToInt32(paquete[8]);
-                if (sim1 == 0) { SIM = "Actual target report."; }
+                string sim1 = paquete.Substring(8, 1);
+                if (sim1 == "0") { SIM = "Actual target report."; }
                 else { SIM = "Simulated target report."; }
 
-                int tst1 = Convert.ToInt32(paquete[9]);
-                if (tst1 == 0) { TST = "Default."; }
+                string tst1 = paquete.Substring(9, 1);
+                if (tst1 =="0") { TST = "Default."; }
                 else { TST = "Test target."; }
 
-                int rab1 = Convert.ToInt32(paquete[10]);
-                if (rab1 == 0) { RAB = "Report from target transponder."; }
+                string rab1 = paquete.Substring(10, 1);
+                if (rab1 == "0") { RAB = "Report from target transponder."; }
                 else { RAB = "Report from field monitor (fixed transponder)."; }
 
                 string lop = paquete.Substring(11, 2);
-                int lop1 = Convert.ToInt32(lop[0]);
-                int lop2 = Convert.ToInt32(lop[1]);
-
-                if(lop1==0 && lop2 == 0) { LOP = "Undeterminated."; }
-                if (lop1==0 && lop2 == 1) { LOP = "Loop start."; }
+                if(lop=="00") { LOP = "Undeterminated."; }
+                if (lop=="01") { LOP = "Loop start."; }
                 else { LOP = "Loop finish."; }
 
                 string tot = paquete.Substring(13, 2);
-                int tot1 = Convert.ToInt32(tot[0]);
-                int tot2 = Convert.ToInt32(tot[1]);
-
-                if(tot1==0 && tot2 == 0) { TOT = "Undetermined."; }
-                if(tot1==0 && tot2 == 1) { TOT = "Aircraft."; }
-                if (tot1 == 1 && tot2 == 0) { TOT = "Ground Vehicle."; }
-                else { TOT = "Helicopter."; }
-
+                if(tot == "00") { TOT = "Undetermined."; }
+                if(tot=="01") { TOT = "Aircraft."; }
+                if (tot == "10") 
+                {
+                    TOT = "Ground Vehicle."; 
+                }
+                if(tot == "11") { TOT = "Helicopter."; }
 
                 if (paquete.Length > 16)
                 {
-                    int spi1 = Convert.ToInt32(paquete[6]);
-                    if (spi1 == 0) { SPI = "Absence of SPI"; }
+                    string spi1 = paquete.Substring(16, 1); ;
+                    if (spi1 == "0") { SPI = "Absence of SPI"; }
                     else { SPI = "Special Position Identification."; }
                 }
             }
@@ -822,6 +818,8 @@ namespace LIBRERIACLASES
 
                     TimeofDay_seconds = Convert.ToInt32(TimeofDay, 2);
                     TimeofDay_seconds = TimeofDay_seconds/128;
+
+                    int a = 1;
 
                 }// 4 I010 / 140 Time of Day
 

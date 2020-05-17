@@ -123,8 +123,8 @@ namespace ASTERIX
 
                 if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                 {
-                    double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
-                    double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+                    double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, numero_de_decimales);
+                    double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, numero_de_decimales);
 
                     dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                 }
@@ -225,6 +225,8 @@ namespace ASTERIX
                     dgvCAT10.Rows[n].Cells[25].Value = String.Concat(listaCAT10[i].CalculatedAcceleration_X,"/",listaCAT10[i].CalculatedAcceleration_Y);
                 }
                 else { dgvCAT10.Rows[n].Cells[25].Value = "No info."; }
+
+                dgvCAT10.Rows[n].Cells[26].Value = listaCAT10[i].TOT;
 
                 i = i + 1;
             }
@@ -435,14 +437,32 @@ namespace ASTERIX
 
                 if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                 {
-                    dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                    dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                 }
                 else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
 
-                if(listaCAT21[i].PositioninWGS_coordinates.Length>0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                if(listaCAT21[i].PositioninWGS_coordinates.Length>0) 
+                {
+                    double latWGS84 = listaCAT21[i].latWGS84;
+                    latWGS84 = Math.Round(latWGS84, numero_de_decimales);
+
+                    double lonWGS84 = listaCAT21[i].lonWGS84;
+                    lonWGS84 = Math.Round(lonWGS84, numero_de_decimales);
+
+                    dgvCAT21.Rows[n].Cells[5].Value = String.Concat(latWGS84.ToString(), "/", lonWGS84.ToString());
+                }
                 else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
 
-                if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) 
+                {
+                    double latWGS84_HR = listaCAT21[i].latWGS84_HR;
+                    latWGS84_HR = Math.Round(latWGS84_HR, numero_de_decimales);
+
+                    double lonWGS84_HR = listaCAT21[i].lonWGS84_HR;
+                    lonWGS84_HR = Math.Round(lonWGS84_HR, numero_de_decimales);
+
+                    dgvCAT21.Rows[n].Cells[6].Value = String.Concat(latWGS84_HR.ToString(), "/", lonWGS84_HR.ToString()); 
+                }
                 else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
 
                 // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
@@ -454,7 +474,7 @@ namespace ASTERIX
 
                 if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                 {
-                    dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                    dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                 }
                 else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
 
@@ -486,7 +506,7 @@ namespace ASTERIX
                 dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
 
 
-                double TOMR_Position_seconds = Math.Round( listaCAT21[i].TimeofMessageReception_Position_seconds);
+                double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
 
                 //// Convertimos en horas:mins:secs
                 t = TimeSpan.FromSeconds(TOMR_Position_seconds);
@@ -494,7 +514,7 @@ namespace ASTERIX
 
                 if (listaCAT21[i].TimeofMessageReception_Position.Length>0)
                 {
-                    dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                    dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                 }
                 else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
 
@@ -506,30 +526,30 @@ namespace ASTERIX
 
                 if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
                 {
-                    dgvCAT21.Rows[n].Cells[12].Value =String.Concat( t.Hours + ":" + t.Minutes + ":" + t.Seconds,"/",listaCAT21[i].FSI1);
+                    dgvCAT21.Rows[n].Cells[12].Value =String.Concat( t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds,"/",listaCAT21[i].FSI1);
                 }
                 else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
 
-                double TOMR_HPPVelocity_seconds =Math.Round( listaCAT21[i].TimeofMessageReception_Velocity_seconds);
+                double TOMR_Velocity_seconds =listaCAT21[i].TimeofMessageReception_Velocity_seconds;
 
                 // Convertimos en horas:mins:secs
-                t = TimeSpan.FromSeconds(TOMR_HPPVelocity_seconds);
+                t = TimeSpan.FromSeconds(TOMR_Velocity_seconds);
                 if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
                 {
-                    dgvCAT21.Rows[n].Cells[13].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds, "/", listaCAT21[i].FSI2);
+                    dgvCAT21.Rows[n].Cells[13].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds, "/", listaCAT21[i].FSI2);
                 }
                 else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
 
                 // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
 
-                double TOA_HRVelocity_seconds =Math.Round( listaCAT21[i].TimeofMessageReception_HRVelocity_seconds);
+                double TOA_HRVelocity_seconds = listaCAT21[i].TimeofMessageReception_HRVelocity_seconds;
 
                 // Convertimos en horas:mins:secs
                 t = TimeSpan.FromSeconds(TOA_HRVelocity_seconds);
 
                 if (listaCAT21[i].TimeofMessageReception_HRVelocity.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 14
                 {
-                    dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                    dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                 }
                 else { dgvCAT21.Rows[n].Cells[14].Value = "No info."; }
 
@@ -605,7 +625,13 @@ namespace ASTERIX
                 {
                     if (listaCAT21[i].RE_AGV == "Value in defined range.")
                     {
-                        dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(),"/",listaCAT21[i].TrackAngle.ToString());
+                        double GroundSpeed = listaCAT21[i].GroundSpeed;
+                        GroundSpeed = Math.Round(GroundSpeed, numero_de_decimales);
+
+                        double TrackAngle = listaCAT21[i].TrackAngle;
+                        TrackAngle = Math.Round(TrackAngle, numero_de_decimales);
+
+                        dgvCAT21.Rows[n].Cells[25].Value = String.Concat(GroundSpeed.ToString(),"/",TrackAngle.ToString());
                     }
                     else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
                 }
@@ -625,7 +651,7 @@ namespace ASTERIX
 
                 if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
                 {
-                    dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                    dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds + "." + t.Milliseconds);
                 }
                 else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
 
@@ -809,8 +835,8 @@ namespace ASTERIX
 
                     if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                     {
-                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
-                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, numero_de_decimales);
+                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, numero_de_decimales);
 
                         dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                     }
@@ -911,6 +937,8 @@ namespace ASTERIX
                         dgvCAT10.Rows[n].Cells[25].Value = String.Concat(listaCAT10[i].CalculatedAcceleration_X, "/", listaCAT10[i].CalculatedAcceleration_Y);
                     }
                     else { dgvCAT10.Rows[n].Cells[25].Value = "No info."; }
+
+                    dgvCAT10.Rows[n].Cells[26].Value = listaCAT10[i].TOT;
 
                     i = i + 1;
                 }
@@ -1135,14 +1163,32 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
 
-                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0)
+                    {
+                        double latWGS84 = listaCAT21[i].latWGS84;
+                        latWGS84 = Math.Round(latWGS84, numero_de_decimales);
+
+                        double lonWGS84 = listaCAT21[i].lonWGS84;
+                        lonWGS84 = Math.Round(lonWGS84, numero_de_decimales);
+
+                        dgvCAT21.Rows[n].Cells[5].Value = String.Concat(latWGS84.ToString(), "/", lonWGS84.ToString());
+                    }
                     else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
 
-                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                    {
+                        double latWGS84_HR = listaCAT21[i].latWGS84_HR;
+                        latWGS84_HR = Math.Round(latWGS84_HR, numero_de_decimales);
+
+                        double lonWGS84_HR = listaCAT21[i].lonWGS84_HR;
+                        lonWGS84_HR = Math.Round(lonWGS84_HR, numero_de_decimales);
+
+                        dgvCAT21.Rows[n].Cells[6].Value = String.Concat(latWGS84_HR.ToString(), "/", lonWGS84_HR.ToString());
+                    }
                     else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
 
                     // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
@@ -1154,7 +1200,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
 
@@ -1186,15 +1232,15 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
 
 
-                    double TOMR_Position_seconds = Math.Round(listaCAT21[i].TimeofMessageReception_Position_seconds);
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
 
                     //// Convertimos en horas:mins:secs
-
                     t = TimeSpan.FromSeconds(TOMR_Position_seconds);
+
 
                     if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
 
@@ -1203,19 +1249,20 @@ namespace ASTERIX
 
                     // Convertimos en horas:mins:secs
                     t = TimeSpan.FromSeconds(TOMR_HPPosition_seconds);
+
                     if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[12].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[12].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds, "/", listaCAT21[i].FSI1);
                     }
                     else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
 
-                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+                    double TOMR_Velocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
 
                     // Convertimos en horas:mins:secs
-                    t = TimeSpan.FromSeconds(TOMR_HPPVelocity_seconds);
+                    t = TimeSpan.FromSeconds(TOMR_Velocity_seconds);
                     if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[13].Value = t.Hours + ":" + t.Hours + ":" + t.Hours;
+                        dgvCAT21.Rows[n].Cells[13].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds, "/", listaCAT21[i].FSI2);
                     }
                     else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
 
@@ -1228,7 +1275,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofMessageReception_HRVelocity.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 14
                     {
-                        dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[14].Value = "No info."; }
 
@@ -1304,7 +1351,13 @@ namespace ASTERIX
                     {
                         if (listaCAT21[i].RE_AGV == "Value in defined range.")
                         {
-                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString());
+                            double GroundSpeed = listaCAT21[i].GroundSpeed;
+                            GroundSpeed = Math.Round(GroundSpeed, numero_de_decimales);
+
+                            double TrackAngle = listaCAT21[i].TrackAngle;
+                            TrackAngle = Math.Round(TrackAngle, numero_de_decimales);
+
+                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(GroundSpeed.ToString(), "/", TrackAngle.ToString());
                         }
                         else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
                     }
@@ -1324,7 +1377,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
                     {
-                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds + "." + t.Milliseconds);
                     }
                     else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
 
@@ -1390,7 +1443,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                     {
-                        dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
+                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
                     }
                     else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -1507,8 +1560,8 @@ namespace ASTERIX
 
                     if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                     {
-                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
-                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, numero_de_decimales);
+                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, numero_de_decimales);
 
                         dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                     }
@@ -1831,14 +1884,32 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
 
-                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0)
+                    {
+                        double latWGS84 = listaCAT21[i].latWGS84;
+                        latWGS84 = Math.Round(latWGS84, numero_de_decimales);
+
+                        double lonWGS84 = listaCAT21[i].lonWGS84;
+                        lonWGS84 = Math.Round(lonWGS84, numero_de_decimales);
+
+                        dgvCAT21.Rows[n].Cells[5].Value = String.Concat(latWGS84.ToString(), "/", lonWGS84.ToString());
+                    }
                     else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
 
-                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                    {
+                        double latWGS84_HR = listaCAT21[i].latWGS84_HR;
+                        latWGS84_HR = Math.Round(latWGS84_HR, numero_de_decimales);
+
+                        double lonWGS84_HR = listaCAT21[i].lonWGS84_HR;
+                        lonWGS84_HR = Math.Round(lonWGS84_HR, numero_de_decimales);
+
+                        dgvCAT21.Rows[n].Cells[6].Value = String.Concat(latWGS84_HR.ToString(), "/", lonWGS84_HR.ToString());
+                    }
                     else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
 
                     // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
@@ -1850,7 +1921,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
 
@@ -1882,14 +1953,15 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
 
 
-                    double TOMR_Position_seconds = Math.Round(listaCAT21[i].TimeofMessageReception_Position_seconds);
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
 
-                    //Convertimos en horas: mins: secs
+                    //// Convertimos en horas:mins:secs
                     t = TimeSpan.FromSeconds(TOMR_Position_seconds);
+
 
                     if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
 
@@ -1897,24 +1969,21 @@ namespace ASTERIX
                     double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
 
                     // Convertimos en horas:mins:secs
-
                     t = TimeSpan.FromSeconds(TOMR_HPPosition_seconds);
 
                     if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[12].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[12].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds, "/", listaCAT21[i].FSI1);
                     }
                     else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
 
-                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+                    double TOMR_Velocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
 
                     // Convertimos en horas:mins:secs
-
-                    t = TimeSpan.FromSeconds(TOMR_HPPVelocity_seconds);
-
+                    t = TimeSpan.FromSeconds(TOMR_Velocity_seconds);
                     if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[13].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[13].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds, "/", listaCAT21[i].FSI2);
                     }
                     else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
 
@@ -1923,12 +1992,11 @@ namespace ASTERIX
                     double TOA_HRVelocity_seconds = listaCAT21[i].TimeofMessageReception_HRVelocity_seconds;
 
                     // Convertimos en horas:mins:secs
-
                     t = TimeSpan.FromSeconds(TOA_HRVelocity_seconds);
 
                     if (listaCAT21[i].TimeofMessageReception_HRVelocity.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 14
                     {
-                        dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[14].Value = "No info."; }
 
@@ -2004,7 +2072,13 @@ namespace ASTERIX
                     {
                         if (listaCAT21[i].RE_AGV == "Value in defined range.")
                         {
-                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString());
+                            double GroundSpeed = listaCAT21[i].GroundSpeed;
+                            GroundSpeed = Math.Round(GroundSpeed, numero_de_decimales);
+
+                            double TrackAngle = listaCAT21[i].TrackAngle;
+                            TrackAngle = Math.Round(TrackAngle, numero_de_decimales);
+
+                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(GroundSpeed.ToString(), "/", TrackAngle.ToString());
                         }
                         else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
                     }
@@ -2024,7 +2098,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
                     {
-                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds + "." + t.Milliseconds);
                     }
                     else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
 
@@ -2090,7 +2164,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                     {
-                        dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
+                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
                     }
                     else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -2221,8 +2295,8 @@ namespace ASTERIX
 
                     if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                     {
-                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
-                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, numero_de_decimales);
+                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, numero_de_decimales);
 
                         dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                     }
@@ -2575,14 +2649,32 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
 
-                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0)
+                    {
+                        double latWGS84 = listaCAT21[i].latWGS84;
+                        latWGS84 = Math.Round(latWGS84, numero_de_decimales);
+
+                        double lonWGS84 = listaCAT21[i].lonWGS84;
+                        lonWGS84 = Math.Round(lonWGS84, numero_de_decimales);
+
+                        dgvCAT21.Rows[n].Cells[5].Value = String.Concat(latWGS84.ToString(), "/", lonWGS84.ToString());
+                    }
                     else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
 
-                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                    {
+                        double latWGS84_HR = listaCAT21[i].latWGS84_HR;
+                        latWGS84_HR = Math.Round(latWGS84_HR, numero_de_decimales);
+
+                        double lonWGS84_HR = listaCAT21[i].lonWGS84_HR;
+                        lonWGS84_HR = Math.Round(lonWGS84_HR, numero_de_decimales);
+
+                        dgvCAT21.Rows[n].Cells[6].Value = String.Concat(latWGS84_HR.ToString(), "/", lonWGS84_HR.ToString());
+                    }
                     else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
 
                     // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
@@ -2590,12 +2682,11 @@ namespace ASTERIX
                     double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
 
                     // Convertimos en horas:mins:secs
-
                     t = TimeSpan.FromSeconds(TOA_Velocity_seconds);
 
                     if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
 
@@ -2627,15 +2718,15 @@ namespace ASTERIX
                     dgvCAT21.Rows[n].Cells[10].Value = listaCAT21[i].TargetAdress_real;
 
 
-                    double TOMR_Position_seconds = Math.Round(listaCAT21[i].TimeofMessageReception_Position_seconds);
+                    double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
 
                     //// Convertimos en horas:mins:secs
-
                     t = TimeSpan.FromSeconds(TOMR_Position_seconds);
+
 
                     if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
 
@@ -2643,24 +2734,21 @@ namespace ASTERIX
                     double TOMR_HPPosition_seconds = listaCAT21[i].TimeofMessageReception_HRPosition_seconds;
 
                     // Convertimos en horas:mins:secs
-
                     t = TimeSpan.FromSeconds(TOMR_HPPosition_seconds);
 
                     if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[12].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[12].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds, "/", listaCAT21[i].FSI1);
                     }
                     else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
 
-                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+                    double TOMR_Velocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
 
                     // Convertimos en horas:mins:secs
-
-                    t = TimeSpan.FromSeconds(TOMR_HPPosition_seconds);
-
+                    t = TimeSpan.FromSeconds(TOMR_Velocity_seconds);
                     if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[13].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[13].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds, "/", listaCAT21[i].FSI2);
                     }
                     else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
 
@@ -2669,12 +2757,11 @@ namespace ASTERIX
                     double TOA_HRVelocity_seconds = listaCAT21[i].TimeofMessageReception_HRVelocity_seconds;
 
                     // Convertimos en horas:mins:secs
-
                     t = TimeSpan.FromSeconds(TOA_HRVelocity_seconds);
 
                     if (listaCAT21[i].TimeofMessageReception_HRVelocity.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 14
                     {
-                        dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[14].Value = "No info."; }
 
@@ -2750,7 +2837,13 @@ namespace ASTERIX
                     {
                         if (listaCAT21[i].RE_AGV == "Value in defined range.")
                         {
-                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString());
+                            double GroundSpeed = listaCAT21[i].GroundSpeed;
+                            GroundSpeed = Math.Round(GroundSpeed, numero_de_decimales);
+
+                            double TrackAngle = listaCAT21[i].TrackAngle;
+                            TrackAngle = Math.Round(TrackAngle, numero_de_decimales);
+
+                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(GroundSpeed.ToString(), "/", TrackAngle.ToString());
                         }
                         else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
                     }
@@ -2770,7 +2863,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
                     {
-                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds + "." + t.Milliseconds);
                     }
                     else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
 
@@ -2836,7 +2929,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                     {
-                        dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
+                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
                     }
                     else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -2942,8 +3035,8 @@ namespace ASTERIX
 
                     if (listaCAT10[i].CalculatedTrackVelocityinCartesianCoordinates.Length > 0) //-------------------------------------------------------------------------------- 9
                     {
-                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, 5);
-                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, 5);
+                        double GroundSpeed = Math.Round(listaCAT10[i].Vx_cartesian, numero_de_decimales);
+                        double TrackAngle = Math.Round(listaCAT10[i].Vy_cartesian, numero_de_decimales);
 
                         dgvCAT10.Rows[n].Cells[9].Value = String.Concat(listaCAT10[i].Vx_cartesian.ToString(), "/", listaCAT10[i].Vy_cartesian.ToString());
                     }
@@ -3240,14 +3333,32 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[4].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[4].Value = "No info."; }
 
-                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0) { dgvCAT21.Rows[n].Cells[5].Value = String.Concat(listaCAT21[i].latWGS84.ToString(), "/", listaCAT21[i].lonWGS84.ToString()); }
+                    if (listaCAT21[i].PositioninWGS_coordinates.Length > 0)
+                    {
+                        double latWGS84 = listaCAT21[i].latWGS84;
+                        latWGS84 = Math.Round(latWGS84, numero_de_decimales);
+
+                        double lonWGS84 = listaCAT21[i].lonWGS84;
+                        lonWGS84 = Math.Round(lonWGS84, numero_de_decimales);
+
+                        dgvCAT21.Rows[n].Cells[5].Value = String.Concat(latWGS84.ToString(), "/", lonWGS84.ToString());
+                    }
                     else { dgvCAT21.Rows[n].Cells[5].Value = "No info."; }
 
-                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0) { dgvCAT21.Rows[n].Cells[6].Value = String.Concat(listaCAT21[i].latWGS84_HR.ToString(), "/", listaCAT21[i].lonWGS84_HR.ToString()); }
+                    if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                    {
+                        double latWGS84_HR = listaCAT21[i].latWGS84_HR;
+                        latWGS84_HR = Math.Round(latWGS84_HR, numero_de_decimales);
+
+                        double lonWGS84_HR = listaCAT21[i].lonWGS84_HR;
+                        lonWGS84_HR = Math.Round(lonWGS84_HR, numero_de_decimales);
+
+                        dgvCAT21.Rows[n].Cells[6].Value = String.Concat(latWGS84_HR.ToString(), "/", lonWGS84_HR.ToString());
+                    }
                     else { dgvCAT21.Rows[n].Cells[6].Value = "No info."; }
 
                     // --------------------------------------------------------------------------------------------------------------------------------------------------------------FX
@@ -3255,12 +3366,11 @@ namespace ASTERIX
                     double TOA_Velocity_seconds = listaCAT21[i].TimeofApplicability_Velocity_seconds;
 
                     // Convertimos en horas:mins:secs
-
                     t = TimeSpan.FromSeconds(TOA_Velocity_seconds);
 
                     if (listaCAT21[i].TimeofApplicability_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[7].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[7].Value = "No info."; }
 
@@ -3294,11 +3404,13 @@ namespace ASTERIX
 
                     double TOMR_Position_seconds = listaCAT21[i].TimeofMessageReception_Position_seconds;
 
-                    // Convertimos en horas:mins:secs
+                    //// Convertimos en horas:mins:secs
                     t = TimeSpan.FromSeconds(TOMR_Position_seconds);
+
+
                     if (listaCAT21[i].TimeofMessageReception_Position.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[11].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[11].Value = "No info."; }
 
@@ -3307,19 +3419,20 @@ namespace ASTERIX
 
                     // Convertimos en horas:mins:secs
                     t = TimeSpan.FromSeconds(TOMR_HPPosition_seconds);
+
                     if (listaCAT21[i].TimeofMessageReception_HRPosition.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[12].Value = t.Hours + ":" + t.Hours + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[12].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds, "/", listaCAT21[i].FSI1);
                     }
                     else { dgvCAT21.Rows[n].Cells[12].Value = "No info."; }
 
-                    double TOMR_HPPVelocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
+                    double TOMR_Velocity_seconds = listaCAT21[i].TimeofMessageReception_Velocity_seconds;
 
                     // Convertimos en horas:mins:secs
-                    t = TimeSpan.FromSeconds(TOMR_HPPVelocity_seconds);
+                    t = TimeSpan.FromSeconds(TOMR_Velocity_seconds);
                     if (listaCAT21[i].TimeofMessageReception_Velocity.Length > 0)
                     {
-                        dgvCAT21.Rows[n].Cells[13].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[13].Value = String.Concat(t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds, "/", listaCAT21[i].FSI2);
                     }
                     else { dgvCAT21.Rows[n].Cells[13].Value = "No info."; }
 
@@ -3332,7 +3445,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofMessageReception_HRVelocity.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 14
                     {
-                        dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+                        dgvCAT21.Rows[n].Cells[14].Value = t.Hours + ":" + t.Minutes + ":" + t.Seconds + "." + t.Milliseconds;
                     }
                     else { dgvCAT21.Rows[n].Cells[14].Value = "No info."; }
 
@@ -3408,7 +3521,13 @@ namespace ASTERIX
                     {
                         if (listaCAT21[i].RE_AGV == "Value in defined range.")
                         {
-                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString());
+                            double GroundSpeed = listaCAT21[i].GroundSpeed;
+                            GroundSpeed = Math.Round(GroundSpeed, numero_de_decimales);
+
+                            double TrackAngle = listaCAT21[i].TrackAngle;
+                            TrackAngle = Math.Round(TrackAngle, numero_de_decimales);
+
+                            dgvCAT21.Rows[n].Cells[25].Value = String.Concat(GroundSpeed.ToString(), "/", TrackAngle.ToString());
                         }
                         else { dgvCAT21.Rows[n].Cells[25].Value = String.Concat(listaCAT21[i].GroundSpeed.ToString(), "/", listaCAT21[i].TrackAngle.ToString(), "(Range exceeded.)"); }
                     }
@@ -3428,7 +3547,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 27
                     {
-                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                        dgvCAT21.Rows[n].Cells[27].Value = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds + "." + t.Milliseconds);
                     }
                     else { dgvCAT21.Rows[n].Cells[27].Value = "No info."; }
 
@@ -3494,7 +3613,7 @@ namespace ASTERIX
 
                     if (listaCAT21[i].ModeSMBData.Length > 0) //----------------------------------------------------------------------------------------------------------------------------------------------- 38
                     {
-                        dgvCAT21.Rows[n].Cells[38].Value = ModeSMBData;
+                        dgvCAT21.Rows[n].Cells[38].Value = "Click Here for more information.";
                     }
                     else { dgvCAT21.Rows[n].Cells[38].Value = "No info."; }
 
@@ -3515,8 +3634,6 @@ namespace ASTERIX
                         dgvCAT21.Rows[n].Cells[41].Value = "Click Here for more information.";
                     }
                     else { dgvCAT21.Rows[n].Cells[41].Value = "No info."; }
-
-
 
 
                     i = i + 1;

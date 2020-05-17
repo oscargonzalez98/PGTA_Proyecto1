@@ -133,7 +133,7 @@ namespace LIBRERIACLASES
         public double TrackAngleRate_degs;
 
         public string TimeofASTERIXReportTransmission = "";
-        public int TimeofASTERIXReportTransmission_seconds;
+        public double TimeofASTERIXReportTransmission_seconds;
 
         public string TargetIdentification = "";
         public string TargetIdentification_decoded = "";
@@ -1152,7 +1152,7 @@ namespace LIBRERIACLASES
             }
             if (ecat == 20)
             {
-                ECAT = "Suerface emergency vehicle";
+                ECAT = "Surface emergency vehicle";
             }
             if (ecat == 21)
             {
@@ -2502,6 +2502,7 @@ namespace LIBRERIACLASES
                             {
                                 int int1 = Convert.ToInt32(Mode3ACode_bin, 2); // pasamos de binario a decimal
                                 Mode3ACode_oct = Convert.ToString(int1, 8); // pasamos de decimal a octal
+                                while (Mode3ACode_oct.Length < 4) { Mode3ACode_oct = String.Concat("0", Mode3ACode_oct); }
                             }
 
                         }
@@ -2668,7 +2669,10 @@ namespace LIBRERIACLASES
 
                                 data_position = data_position + 3;
 
-                                TimeofASTERIXReportTransmission_seconds = (Convert.ToInt32(TimeofASTERIXReportTransmission, 2)) / 128;
+                                double  int1 = Convert.ToInt32(TimeofASTERIXReportTransmission, 2);
+                                TimeofASTERIXReportTransmission_seconds = int1 / 128;
+
+                                int a = 1;
 
                             }
 

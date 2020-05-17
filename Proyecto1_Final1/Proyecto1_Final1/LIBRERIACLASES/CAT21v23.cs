@@ -575,11 +575,19 @@ namespace Clases
             if (packet1 == 15) { ECAT = "ultralight / handglider / paraglider"; }
             if (packet1 == 16) { ECAT = "parachutist / skydiver"; }
             if (packet1 == 17 || packet1 == 18 || packet1 == 19) { ECAT = "reserved "; }
-            if (packet1 == 20) { ECAT = "surface emergency vehicle "; }
-            if (packet1 == 21) { ECAT = "surface service vehicle"; }
-            if (packet1 == 22) { ECAT = "fixed ground or tethered obstruction"; }
+            if (packet1 == 20) 
+            { 
+                ECAT = "surface emergency vehicle "; 
+            }
+            if (packet1 == 21) 
+            { 
+                ECAT = "surface service vehicle"; 
+            }
+            if (packet1 == 22) 
+            {
+                ECAT = "fixed ground or tethered obstruction"; 
+            }
             if (packet1 == 23 || packet1 == 24) { ECAT = "reserved"; }
-
         }
 
         public void Calculate_IntermediateStateSelectedAltitude(string paquete)

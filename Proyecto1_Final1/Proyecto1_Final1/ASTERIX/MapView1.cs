@@ -57,12 +57,22 @@ namespace ASTERIX
         Stack<GMapOverlay> StackdeOverlays = new Stack<GMapOverlay>();
         List<GMapOverlay> ListaOverlays = new List<GMapOverlay>();
 
-        public int markerlimit = 300;
+        public int markerlimit = 200;
 
         Bitmap blue_plane = (Bitmap)Image.FromFile("img/Planes/plane_blue_small.png");
         Bitmap red_plane = (Bitmap)Image.FromFile("img/Planes/plane_red_small.png");
         Bitmap green_plane = (Bitmap)Image.FromFile("img/Planes/plane_green_small.png");
         Bitmap white_plane = (Bitmap)Image.FromFile("img/Planes/plane_white_small.png");
+        //Bitmap green_plane = (Bitmap)Image.FromFile("img/Pushbacks/bushback_blue_small.png");
+
+        Bitmap blue_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_blue_small.png");
+        Bitmap red_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_red_small.png");
+        Bitmap green_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_green_small.png");
+        Bitmap white_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_white_small.png");
+
+        int posicion_primer_segundo_1vuelo_CAT10;
+        int posicion_primer_segundo_1vuelo_CAT21;
+        int posicion_primer_segundo_1vuelo_CAT21v23;
 
         public MapView1(List<CAT10> listaCAT10, List<CAT21> listaCAT21, List<CAT21v23> listaCAT21v23)
         {
@@ -70,6 +80,7 @@ namespace ASTERIX
             this.listaCAT10 = listaCAT10;
             this.listaCAT21 = listaCAT21;
             this.listaCAT21v23 = listaCAT21v23;
+
         }
 
         private void MapView1_Load(object sender, EventArgs e)
@@ -224,6 +235,7 @@ namespace ASTERIX
             // Definimos valor inicial del contador contador
 
             secondCounter = secondCounterInicial;
+            //secondCounter = 81860;
 
             // Labels del tiempo
 
@@ -308,8 +320,6 @@ namespace ASTERIX
         private void bt_PlotAllFlights_Click(object sender, EventArgs e)
         {
             Mapa.Overlays.Clear();
-            
-
 
             // creamos un overlay solo para el load
             GMapOverlay overlayLoad = new GMapOverlay();
@@ -325,62 +335,69 @@ namespace ASTERIX
                     int SAC = listaCAT10[j].SAC;
                     int SIC = listaCAT10[j].SIC;
 
-                    if (SAC == 0 && SIC == 7) //SMR
+                    if(cb_SMR.Checked == true)
                     {
-                        if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                        if (SAC == 0 && SIC == 7) //SMR
                         {
-                            double[] coordenadas = NewCoordinatesSMR(listaCAT10[j].Rho, listaCAT10[j].Theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
-                            overlayLoad.Markers.Add(marker);
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                            {
+                                double[] coordenadas = NewCoordinatesSMR(listaCAT10[j].Rho, listaCAT10[j].Theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
+                                overlayLoad.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                            if (listaCAT10[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[j].Tracknumber_value); }
-                        }
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[j].Tracknumber_value); }
+                            }
 
-                        if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
-                        {
-                            double rho = Math.Sqrt((listaCAT10[j].X_cartesian) * (listaCAT10[j].X_cartesian) + (listaCAT10[j].Y_cartesian) * (listaCAT10[j].Y_cartesian));
-                            double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian);
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                            {
+                                double rho = Math.Sqrt((listaCAT10[j].X_cartesian) * (listaCAT10[j].X_cartesian) + (listaCAT10[j].Y_cartesian) * (listaCAT10[j].Y_cartesian));
+                                double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian);
 
-                            double[] coordenadas = NewCoordinatesSMR(rho, theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
-                            overlayLoad.Markers.Add(marker);
+                                double[] coordenadas = NewCoordinatesSMR(rho, theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
+                                overlayLoad.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                            if (listaCAT10[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[j].Tracknumber_value); }
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[j].Tracknumber_value); }
+                            }
                         }
                     }
 
-                    if (SAC == 0 && SIC == 107) //MLAT
+                    if(cb_MLAT.Checked == true)
                     {
-                        if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                        if (SAC == 0 && SIC == 107) //MLAT
                         {
-                            double[] coordenadas = NewCoordinatesMLAT(listaCAT10[j].Rho, listaCAT10[j].Theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
-                            overlayLoad.Markers.Add(marker);
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                            {
+                                double[] coordenadas = NewCoordinatesMLAT(listaCAT10[j].Rho, listaCAT10[j].Theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                                overlayLoad.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                            if (listaCAT10[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[j].TargetIdentification_decoded); }
-                            else if (listaCAT10[j].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[j].TargetAdress_decoded); }
-                            else if (listaCAT10[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[j].Tracknumber_value); }
-                        }
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[j].TargetIdentification_decoded); }
+                                else if (listaCAT10[j].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[j].TargetAdress_decoded); }
+                                else if (listaCAT10[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[j].Tracknumber_value); }
+                            }
 
-                        if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
-                        {
-                            double rho = Math.Sqrt((listaCAT10[j].X_cartesian) * (listaCAT10[j].X_cartesian) + (listaCAT10[j].Y_cartesian) * (listaCAT10[j].Y_cartesian));
-                            double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian);
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                            {
+                                double rho = Math.Sqrt((listaCAT10[j].X_cartesian) * (listaCAT10[j].X_cartesian) + (listaCAT10[j].Y_cartesian) * (listaCAT10[j].Y_cartesian));
+                                double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian);
 
-                            double[] coordenadas = NewCoordinatesMLAT(rho, theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
-                            overlayLoad.Markers.Add(marker);
+                                double[] coordenadas = NewCoordinatesMLAT(rho, theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                                overlayLoad.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                            if (listaCAT10[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[j].TargetIdentification_decoded); }
-                            else if (listaCAT10[j].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[j].TargetAdress_decoded); }
-                            else if (listaCAT10[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[j].Tracknumber_value); }
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[j].TargetIdentification_decoded); }
+                                else if (listaCAT10[j].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[j].TargetAdress_decoded); }
+                                else if (listaCAT10[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[j].Tracknumber_value); }
 
+                            }
                         }
                     }
+
                     j = j + 1;
                 }
             }
@@ -390,45 +407,76 @@ namespace ASTERIX
                 int j = 0;
                 while (j < listaCAT21.Count)
                 {
-                    if (listaCAT21[j].PositioninWGS_HRcoordinates.Length > 0)
+                    if(CB_CAT21.Checked == true)
                     {
-                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84_HR, listaCAT21[j].lonWGS84_HR), green_plane);
-                        overlayLoad.Markers.Add(marker);
+                        if (listaCAT21[j].PositioninWGS_HRcoordinates.Length > 0)
+                        {
 
-                        marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                        if (listaCAT21[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[j].TargetIdentification_decoded); }
-                        else if (listaCAT21[j].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[j].TargetAdress_real); }
-                        else if (listaCAT21[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[j].TrackNumber_number); }
-                    }
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84_HR, listaCAT21[j].lonWGS84_HR), green_plane);
+                            if(listaCAT21[j].EmitterCategory.Length<1 || listaCAT21[j].ECAT != "Suerface emergency vehicle" || listaCAT21[j].ECAT != "Surface service vehicle." || listaCAT21[j].ECAT != "Fixed ground or tethered obstruction.")
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84_HR, listaCAT21[j].lonWGS84_HR), green_plane);
+                                overlayLoad.Markers.Add(marker);
+                            }
+                            else
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84_HR, listaCAT21[j].lonWGS84_HR), green_pushback);
+                                overlayLoad.Markers.Add(marker);
+                            }
 
-                    if (listaCAT21[j].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[j].PositioninWGS_HRcoordinates.Length > 0)
-                    {
-                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84, listaCAT21[j].lonWGS84), green_plane);
-                        overlayLoad.Markers.Add(marker);
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[j].TargetIdentification_decoded); }
+                            else if (listaCAT21[j].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[j].TargetAdress_real); }
+                            else if (listaCAT21[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[j].TrackNumber_number); }
+                        }
 
-                        marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                        if (listaCAT21[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[j].TargetIdentification_decoded); }
-                        else if (listaCAT21[j].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[j].TargetAdress_real); }
-                        else if (listaCAT21[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[j].TrackNumber_number); }
+                        if (listaCAT21[j].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[j].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84, listaCAT21[j].lonWGS84), green_plane);
+                            if (listaCAT21v23[j].EmitterCategory.Length < 1 || listaCAT21[j].ECAT != "Suerface emergency vehicle" || listaCAT21[j].ECAT != "Surface service vehicle." || listaCAT21[j].ECAT != "Fixed ground or tethered obstruction.")
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84, listaCAT21[j].lonWGS84), green_plane);
+                                overlayLoad.Markers.Add(marker);
+                            }
+                            else
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84, listaCAT21[j].lonWGS84), green_pushback);
+                                overlayLoad.Markers.Add(marker);
+                            }
+
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[j].TargetIdentification_decoded); }
+                            else if (listaCAT21[j].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[j].TargetAdress_real); }
+                            else if (listaCAT21[j].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[j].TrackNumber_number); }
+                        }
                     }
 
                     j = j + 1;
                 }
             }
 
-            if (listaCAT21v23.Count > 0) // Plot lista CAT21v23
+            if (listaCAT21v23.Count > 0) // Plot lista CAT21v23 ---- Si hay paquetes CAT21v23
             {
                 int j = 0;
                 while (j < listaCAT21v23.Count)
                 {
-                    if (listaCAT21v23[j].PositioninWGS_coordinates.Length > 0)
+                    if(cb_CAT21v23.Checked == true) // Si tenemos activado el checkbox de esta categoria
                     {
-                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[j].latWGS84, listaCAT21v23[j].lonWGS84), red_plane);
-                        overlayLoad.Markers.Add(marker);
+                        if (listaCAT21v23[j].PositioninWGS_coordinates.Length > 0) // Si hay informacion de este data item
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[j].latWGS84, listaCAT21v23[j].lonWGS84), red_plane); // Genero el marker (no me deja hacerlo de otra manera)
+                            if(listaCAT21v23[j].EmitterCategory.Length<1 || listaCAT21v23[j].ECAT != "surface emergency vehicle " || listaCAT21v23[j].ECAT != "surface service vehicle" || listaCAT21v23[j].ECAT != "fixed ground or tethered obstruction")
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[j].latWGS84, listaCAT21v23[j].lonWGS84), red_plane);
+                            }
+                            else { marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[j].latWGS84, listaCAT21v23[j].lonWGS84), red_pushback); }
 
-                        marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                        if (listaCAT21v23[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21v23[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21v23[j].TargetIdentification_decoded); }
-                        else if (listaCAT21v23[j].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21v23[j].TargetAdress_real); }
+                            overlayLoad.Markers.Add(marker);
+
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21v23[j].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21v23[j].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21v23[j].TargetIdentification_decoded); }
+                            else if (listaCAT21v23[j].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21v23[j].TargetAdress_real); }
+                        }
                     }
 
                     j = j + 1;
@@ -803,7 +851,7 @@ namespace ASTERIX
             int j = 0;
             while(j<listaCAT10.Count)
             {
-                if (listaCAT10[j].TimeofDay_seconds==second)
+                if (Math.Floor(listaCAT10[j].TimeofDay_seconds)==second)
                 {
                     lista.Add(j);
                 }
@@ -818,7 +866,7 @@ namespace ASTERIX
             int j = 0;
             while (j < listaCAT21.Count)
             {
-                if (listaCAT21[j].TimeofASTERIXReportTransmission_seconds == second)
+                if (Math.Floor(listaCAT21[j].TimeofASTERIXReportTransmission_seconds) == second)
                 {
                     lista.Add(j);
                 }
@@ -833,7 +881,7 @@ namespace ASTERIX
             int j = 0;
             while (j < listaCAT21v23.Count)
             {
-                if (listaCAT21v23[j].TimeofDay_seconds == second)
+                if (Math.Floor(listaCAT21v23[j].TimeofDay_seconds) == second)
                 {
                     lista.Add(j);
                 }
@@ -855,17 +903,17 @@ namespace ASTERIX
                     string TargetAddressActual = listaCAT10[j].TargetAdress_decoded.ToString();
                     string TrackAngleActual = listaCAT10[j].Tracknumber_value.ToString();
 
-                    if (listaCAT10[j].TimeofDay_seconds == second && TargetIdentificationActual == targetidentification)
+                    if (Math.Floor(listaCAT10[j].TimeofDay_seconds) == second && TargetIdentificationActual == targetidentification)
                     {
                         lista.Add(j);
                     }
 
-                    else if (listaCAT10[j].TimeofDay_seconds == second && TargetAddressActual == targetidentification)
+                    else if (Math.Floor(listaCAT10[j].TimeofDay_seconds) == second && TargetAddressActual == targetidentification)
                     {
                         lista.Add(j);
                     }
 
-                    else if (listaCAT10[j].TimeofDay_seconds == second && TrackAngleActual == targetidentification)
+                    else if (Math.Floor(listaCAT10[j].TimeofDay_seconds) == second && TrackAngleActual == targetidentification)
                     {
                         lista.Add(j);
                     }
@@ -875,7 +923,7 @@ namespace ASTERIX
                 {
                     string TrackAngleActual = listaCAT10[j].Tracknumber_value.ToString();
 
-                    if (listaCAT10[j].TimeofDay_seconds == second && TrackAngleActual == targetidentification)
+                    if (Math.Floor(listaCAT10[j].TimeofDay_seconds) == second && TrackAngleActual == targetidentification)
                     {
                         lista.Add(j);
                     }
@@ -896,17 +944,17 @@ namespace ASTERIX
                 string TargetAddressActual = listaCAT21[j].TargetAdress_real;
                 string TrackNumberActual = listaCAT21[j].TrackNumber_number.ToString();
 
-                if (listaCAT21[j].TimeofASTERIXReportTransmission_seconds == second && TargetIdentificationActual == targetidentification)
+                if (Math.Floor(listaCAT21[j].TimeofASTERIXReportTransmission_seconds) == second && TargetIdentificationActual == targetidentification)
                 {
                     lista.Add(j);
                 }
 
-                else if (listaCAT21[j].TimeofASTERIXReportTransmission_seconds == second && TargetAddressActual == targetidentification)
+                else if (Math.Floor(listaCAT21[j].TimeofASTERIXReportTransmission_seconds) == second && TargetAddressActual == targetidentification)
                 {
                     lista.Add(j);
                 }
 
-                else if (listaCAT21[j].TimeofASTERIXReportTransmission_seconds == second && TrackNumberActual == targetidentification)
+                else if (Math.Floor(listaCAT21[j].TimeofASTERIXReportTransmission_seconds) == second && TrackNumberActual == targetidentification)
                 {
                     lista.Add(j);
                 }
@@ -925,12 +973,12 @@ namespace ASTERIX
                 string TargetIdentificationActual = listaCAT21v23[j].TargetIdentification_decoded;
                 string TargetAddressActual = listaCAT21v23[j].TargetAdress_real;
 
-                if (listaCAT21v23[j].TimeofDay_seconds == second && TargetIdentificationActual == targetidentification)
+                if (Math.Floor(listaCAT21v23[j].TimeofDay_seconds) == second && TargetIdentificationActual == targetidentification)
                 {
                     lista.Add(j);
                 }
 
-                else if(listaCAT21v23[j].TimeofDay_seconds == second && TargetAddressActual == targetidentification)
+                else if(Math.Floor(listaCAT21v23[j].TimeofDay_seconds) == second && TargetAddressActual == targetidentification)
                 {
                     lista.Add(j);
                 }
@@ -944,13 +992,13 @@ namespace ASTERIX
         {
             listasecondsCAT10.Clear();
 
-            double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[0].TimeofDay_seconds)));
+            double sec = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT10[0].TimeofDay_seconds)));
             listasecondsCAT10.Add(sec);
 
             int i = 1;
             while (i < listaCAT10.Count)
             {
-                int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
+                int second = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
                 if (second > listasecondsCAT10.Last())
                 {
                     listasecondsCAT10.Add(second);
@@ -962,13 +1010,13 @@ namespace ASTERIX
         {
             listasecondsCAT21.Clear();
 
-            double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21[0].TimeofASTERIXReportTransmission_seconds)));
+            double sec = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT21[0].TimeofASTERIXReportTransmission_seconds)));
             listasecondsCAT21.Add(sec);
 
             int i = 1;
             while (i < listaCAT21.Count)
             {
-                int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21[i].TimeofASTERIXReportTransmission_seconds)));
+                int second = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT21[i].TimeofASTERIXReportTransmission_seconds)));
                 if (second > listasecondsCAT21.Last())
                 {
                     listasecondsCAT21.Add(second);
@@ -980,13 +1028,13 @@ namespace ASTERIX
         {
             listasecondsCAT21v23.Clear();
 
-            double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21v23[0].TimeofDay_seconds)));
+            double sec = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT21v23[0].TimeofDay_seconds)));
             listasecondsCAT21v23.Add(sec);
 
             int i = 1;
             while (i < listaCAT21v23.Count)
             {
-                int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21v23[i].TimeofDay_seconds)));
+                int second = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT21v23[i].TimeofDay_seconds)));
                 if (second > listasecondsCAT21v23.Last())
                 {
                     listasecondsCAT21v23.Add(second);
@@ -999,20 +1047,31 @@ namespace ASTERIX
         {
             listasecondsCAT10.Clear();
 
-            double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[0].TimeofDay_seconds)));
+            int j = 0;
+            while (j < listaCAT10.Count)
+            {
+                if (listaCAT10[j].TargetIdentification_decoded.ToString() == TargetIdentification || listaCAT10[j].TargetAdress_decoded.ToString() == TargetIdentification || listaCAT10[j].Tracknumber_value.ToString() == TargetIdentification)
+                {
+                    posicion_primer_segundo_1vuelo_CAT10 = j;
+                    break;
+                }
+                j = j + 1;
+            }
+
+            double sec = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT10[posicion_primer_segundo_1vuelo_CAT10].TimeofDay_seconds)));
             listasecondsCAT10.Add(sec);
 
-            int i = 1;
+            int i = posicion_primer_segundo_1vuelo_CAT10 + 1;
             while (i < listaCAT10.Count)
             {
 
                 if(listaCAT10[i].SAC == 0 && listaCAT10[i].SIC == 107)
                 {
-                    string TargetIdentificationActual = listaCAT10[i].TargetIdentification_decoded;
+                    string TargetIdentificationActual = listaCAT10[i].TargetIdentification_decoded.ToString(); ;
                     string TargetAddressActual = listaCAT10[i].TargetAdress_decoded.ToString();
                     string TrackNumberActual = listaCAT10[i].Tracknumber_value.ToString();
 
-                    int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
+                    int second = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
                     if (second > listasecondsCAT10.Last() && TargetIdentificationActual == TargetIdentification)
                     {
                         listasecondsCAT10.Add(second);
@@ -1033,7 +1092,7 @@ namespace ASTERIX
                 {
                     string TrackNumberActual = listaCAT10[i].Tracknumber_value.ToString();
 
-                    int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
+                    int second = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT10[i].TimeofDay_seconds)));
                     if (second > listasecondsCAT10.Last() && TrackNumberActual == TargetIdentification)
                     {
                         listasecondsCAT10.Add(second);
@@ -1047,17 +1106,28 @@ namespace ASTERIX
         {
             listasecondsCAT21.Clear();
 
-            double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21[0].TimeofASTERIXReportTransmission_seconds)));
+            int j = 0;
+            while (j < listaCAT21.Count)
+            {
+                if (listaCAT21[j].TargetIdentification_decoded.ToString() == TargetIdentification || listaCAT21[j].TargetAdress_real.ToString() == TargetIdentification || listaCAT21[j].TrackNumber_number.ToString() == TargetIdentification)
+                {
+                    posicion_primer_segundo_1vuelo_CAT21 = j;
+                    break;
+                }
+                j = j + 1;
+            }
+
+            double sec = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT21[posicion_primer_segundo_1vuelo_CAT21].TimeofASTERIXReportTransmission_seconds)));
             listasecondsCAT21.Add(sec);
 
-            int i = 1;
+            int i = posicion_primer_segundo_1vuelo_CAT21 + 1;
             while (i < listaCAT21.Count)
             {
                 string TargetIdentificationActual = listaCAT21[i].TargetIdentification_decoded;
                 string TargetAddressActual = listaCAT21[i].TargetAdress_real;
                 string TrackNumberActual = listaCAT21[i].TrackNumber_number.ToString();
 
-                int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21[i].TimeofASTERIXReportTransmission_seconds)));
+                int second = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT21[i].TimeofASTERIXReportTransmission_seconds)));
                 if (second > listasecondsCAT21.Last() && TargetIdentification == TargetIdentificationActual)
                 {
                     listasecondsCAT21.Add(second);
@@ -1080,16 +1150,27 @@ namespace ASTERIX
         {
             listasecondsCAT21v23.Clear();
 
-            double sec = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21v23[0].TimeofDay_seconds)));
+            int j = 0;
+            while (j < listaCAT21v23.Count)
+            {
+                if (listaCAT21v23[j].TargetIdentification_decoded.ToString() == TargetIdentification || listaCAT21v23[j].TargetAdress_real.ToString() == TargetIdentification)
+                {
+                    posicion_primer_segundo_1vuelo_CAT21v23 = j;
+                    break;
+                }
+                j = j + 1;
+            }
+
+            double sec = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT21v23[posicion_primer_segundo_1vuelo_CAT21v23].TimeofDay_seconds)));
             listasecondsCAT21v23.Add(sec);
 
-            int i = 1;
+            int i = posicion_primer_segundo_1vuelo_CAT21v23 + 1;
             while (i < listaCAT21v23.Count)
             {
                 string TargetIdentificationActual = listaCAT21v23[i].TargetIdentification_decoded;
                 string TargetAddressActual = listaCAT21v23[i].TargetAdress_real;
 
-                int second = Convert.ToInt32(Math.Round(Convert.ToDouble(listaCAT21v23[i].TimeofDay_seconds)));
+                int second = Convert.ToInt32(Math.Floor(Convert.ToDouble(listaCAT21v23[i].TimeofDay_seconds)));
                 if (second > listasecondsCAT21v23.Last() && TargetIdentificationActual == TargetIdentification)
                 {
                     listasecondsCAT21v23.Add(second);
@@ -1124,91 +1205,146 @@ namespace ASTERIX
 
                     if (SAC == 0 && SIC == 7) //SMR
                     {
-                        if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                        if(cb_SMR.Checked == true)
                         {
-                            double[] coordenadas = NewCoordinatesSMR(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
-                            overlay.Markers.Add(marker);
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                            {
+                                double[] coordenadas = NewCoordinatesSMR(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
+                                overlay.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                            if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
-                        }
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
 
-                        if (listaCAT10[vuelosCAT10[i]].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[vuelosCAT10[i]].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
-                        {
-                            double rho = Math.Sqrt((listaCAT10[vuelosCAT10[i]].X_cartesian) * (listaCAT10[vuelosCAT10[i]].X_cartesian) + (listaCAT10[vuelosCAT10[i]].Y_cartesian) * (listaCAT10[vuelosCAT10[i]].Y_cartesian));
-                            double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[vuelosCAT10[i]].X_cartesian, listaCAT10[vuelosCAT10[i]].Y_cartesian);
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                            {
+                                double rho = Math.Sqrt((listaCAT10[vuelosCAT10[i]].X_cartesian) * (listaCAT10[vuelosCAT10[i]].X_cartesian) + (listaCAT10[vuelosCAT10[i]].Y_cartesian) * (listaCAT10[vuelosCAT10[i]].Y_cartesian));
+                                double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[vuelosCAT10[i]].X_cartesian, listaCAT10[vuelosCAT10[i]].Y_cartesian);
 
-                            double[] coordenadas = NewCoordinatesSMR(rho, theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
-                            overlay.Markers.Add(marker);
+                                double[] coordenadas = NewCoordinatesSMR(rho, theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
+                                overlay.Markers.Add(marker);
 
-                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                            if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
                         }
                     }
 
                     if (SAC == 0 && SIC == 107) //MLAT
                     {
-                        if (listaCAT10[vuelosCAT10[i]].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+
+                        if(cb_MLAT.Checked == true)
                         {
-                            double[] coordenadas = NewCoordinatesMLAT(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
-                            overlay.Markers.Add(marker);
+                            if (listaCAT10[vuelosCAT10[i]].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                            {
+                                double[] coordenadas = NewCoordinatesMLAT(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
 
-                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[vuelosCAT10[i]].TOT == "Ground Vehicle." )
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_pushback);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                }
+                                else
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                }
 
-                            if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
-                            else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
-                            else if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
-                        }
 
-                        if (listaCAT10[vuelosCAT10[i]].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[vuelosCAT10[i]].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
-                        {
-                            double rho = Math.Sqrt((listaCAT10[vuelosCAT10[i]].X_cartesian) * (listaCAT10[vuelosCAT10[i]].X_cartesian) + (listaCAT10[vuelosCAT10[i]].Y_cartesian) * (listaCAT10[vuelosCAT10[i]].Y_cartesian));
-                            double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[vuelosCAT10[i]].X_cartesian, listaCAT10[vuelosCAT10[i]].Y_cartesian);
 
-                            double[] coordenadas = NewCoordinatesMLAT(rho, theta);
-                            var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
-                            overlay.Markers.Add(marker);
+                                if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
 
-                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                            if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
-                            else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
-                            else if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            if (listaCAT10[vuelosCAT10[i]].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[vuelosCAT10[i]].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                            {
+                                double rho = Math.Sqrt((listaCAT10[vuelosCAT10[i]].X_cartesian) * (listaCAT10[vuelosCAT10[i]].X_cartesian) + (listaCAT10[vuelosCAT10[i]].Y_cartesian) * (listaCAT10[vuelosCAT10[i]].Y_cartesian));
+                                double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[vuelosCAT10[i]].X_cartesian, listaCAT10[vuelosCAT10[i]].Y_cartesian);
 
+                                double[] coordenadas = NewCoordinatesMLAT(rho, theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+
+                                if (listaCAT10[i].TOT == "Ground Vehicle."|| listaCAT10[vuelosCAT10[i]].Mode3ACodeinOctal.Length == 0)
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_pushback);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                }
+                                else
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                }
+
+                                overlay.Markers.Add(marker);
+
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
                         }
                     }
                     i = i + 1;
                 }
             }
 
-            if (vuelosCAT21.Count > 0) // plot lista CAT21
+            if (listaCAT21.Count > 0) // plot lista CAT21
             {
                 int j = 0;
                 while (j < vuelosCAT21.Count)
                 {
-                    if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
+                    if (CB_CAT21.Checked == true)
                     {
-                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
-                        overlay.Markers.Add(marker);
+                        if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
+                        {
 
-                        marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                        if (listaCAT21[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
-                        else if (listaCAT21[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
-                        else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction.")
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_pushback);
+                                overlay.Markers.Add(marker);
+                            }
+                            else
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
+                                overlay.Markers.Add(marker);
+                            }
+
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
+                            else if (listaCAT21[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
+                            else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
+                        }
+
+                        if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction.")
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
+                                overlay.Markers.Add(marker);
+                            }
+                            else
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_pushback);
+                                overlay.Markers.Add(marker);
+                            }
+
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
+                            else if (listaCAT21[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
+                            else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
+                        }
                     }
 
-                    if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
-                    {
-                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
-                        overlay.Markers.Add(marker);
-
-                        marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                        if (listaCAT21v23[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
-                        else if (listaCAT21v23[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
-                        else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
-                    }
                     j = j + 1;
                 }
             }
@@ -1218,17 +1354,27 @@ namespace ASTERIX
                 int j = 0;
                 while (j < vuelosCAT21v23.Count)
                 {
-                    if (listaCAT21v23[vuelosCAT21v23[j]].PositioninWGS_coordinates.Length > 0)
+                    if(cb_CAT21v23.Checked == true)
                     {
-                        var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane);
-                        overlay.Markers.Add(marker);
+                        if (listaCAT21v23[vuelosCAT21v23[j]].PositioninWGS_coordinates.Length > 0)
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane); // Genero el marker (no me deja hacerlo de otra manera)
+                            if (listaCAT21v23[vuelosCAT21v23[j]].ECAT == "surface emergency vehicle " || listaCAT21v23[vuelosCAT21v23[j]].ECAT == "surface service vehicle" || listaCAT21v23[vuelosCAT21v23[j]].ECAT == "fixed ground or tethered obstruction")
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_pushback);
+                            }
+                            else { marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane); }
 
-                        marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                        if (listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification.Length>0 && Convert.ToInt64(listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification, 2)>1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification_decoded); }
-                        else if (listaCAT21v23[vuelosCAT21v23[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21v23[vuelosCAT21v23[j]].TargetAdress_real); }
+                            overlay.Markers.Add(marker);
+                            //var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane);
+                            //overlay.Markers.Add(marker);
 
-
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification_decoded); }
+                            else if (listaCAT21v23[vuelosCAT21v23[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21v23[vuelosCAT21v23[j]].TargetAdress_real); }
+                        }
                     }
+
                     j = j + 1;
                 }
             }
@@ -1334,6 +1480,11 @@ namespace ASTERIX
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
