@@ -100,7 +100,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.6842F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.3158F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel1.Controls.Add(this.Mapa, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 2, 3);
@@ -191,7 +191,7 @@
             this.panel2.Location = new System.Drawing.Point(1052, 123);
             this.panel2.Name = "panel2";
             this.tableLayoutPanel1.SetRowSpan(this.panel2, 2);
-            this.panel2.Size = new System.Drawing.Size(351, 74);
+            this.panel2.Size = new System.Drawing.Size(350, 74);
             this.panel2.TabIndex = 4;
             // 
             // tableLayoutPanel3
@@ -218,7 +218,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(351, 68);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(350, 68);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // label7
@@ -288,7 +288,7 @@
             this.lb_HoraFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold);
             this.lb_HoraFinal.Location = new System.Drawing.Point(249, 0);
             this.lb_HoraFinal.Name = "lb_HoraFinal";
-            this.lb_HoraFinal.Size = new System.Drawing.Size(99, 47);
+            this.lb_HoraFinal.Size = new System.Drawing.Size(98, 47);
             this.lb_HoraFinal.TabIndex = 2;
             this.lb_HoraFinal.Text = "label2";
             this.lb_HoraFinal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -330,7 +330,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(249, 47);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 21);
+            this.label6.Size = new System.Drawing.Size(98, 21);
             this.label6.TabIndex = 6;
             this.label6.Text = "Hora Final";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -344,7 +344,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(1052, 100);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(351, 20);
+            this.label1.Size = new System.Drawing.Size(350, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "----------------------------------------------------------";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -358,7 +358,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(1052, 200);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(351, 20);
+            this.label4.Size = new System.Drawing.Size(350, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "----------------------------------------------------------";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -371,7 +371,7 @@
             this.groupBox1.Controls.Add(this.tableLayoutPanel4);
             this.groupBox1.Location = new System.Drawing.Point(1052, 223);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 24);
+            this.groupBox1.Size = new System.Drawing.Size(350, 24);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -398,7 +398,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(351, 24);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(350, 24);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // rb_20
@@ -409,7 +409,7 @@
             this.rb_20.AutoSize = true;
             this.rb_20.Location = new System.Drawing.Point(293, 3);
             this.rb_20.Name = "rb_20";
-            this.rb_20.Size = new System.Drawing.Size(55, 18);
+            this.rb_20.Size = new System.Drawing.Size(54, 18);
             this.rb_20.TabIndex = 5;
             this.rb_20.TabStop = true;
             this.rb_20.Text = "x20";
@@ -499,7 +499,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_AllFlights.Location = new System.Drawing.Point(1052, 293);
             this.bt_AllFlights.Name = "bt_AllFlights";
-            this.bt_AllFlights.Size = new System.Drawing.Size(351, 34);
+            this.bt_AllFlights.Size = new System.Drawing.Size(350, 34);
             this.bt_AllFlights.TabIndex = 8;
             this.bt_AllFlights.Text = "Simulate all Flights";
             this.bt_AllFlights.UseVisualStyleBackColor = true;
@@ -513,7 +513,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(1052, 330);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(351, 20);
+            this.label8.Size = new System.Drawing.Size(350, 20);
             this.label8.TabIndex = 9;
             this.label8.Text = "or";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -525,7 +525,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_TargetIdentification.Location = new System.Drawing.Point(1052, 353);
             this.tb_TargetIdentification.Name = "tb_TargetIdentification";
-            this.tb_TargetIdentification.Size = new System.Drawing.Size(351, 20);
+            this.tb_TargetIdentification.Size = new System.Drawing.Size(350, 20);
             this.tb_TargetIdentification.TabIndex = 10;
             // 
             // bt_SingleFlight
@@ -535,7 +535,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_SingleFlight.Location = new System.Drawing.Point(1052, 383);
             this.bt_SingleFlight.Name = "bt_SingleFlight";
-            this.bt_SingleFlight.Size = new System.Drawing.Size(351, 34);
+            this.bt_SingleFlight.Size = new System.Drawing.Size(350, 34);
             this.bt_SingleFlight.TabIndex = 11;
             this.bt_SingleFlight.Text = "Simulate single flight (The one writren above)";
             this.bt_SingleFlight.UseVisualStyleBackColor = true;
@@ -559,7 +559,7 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(351, 94);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(350, 94);
             this.tableLayoutPanel5.TabIndex = 13;
             // 
             // bt_Forward
@@ -569,7 +569,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_Forward.Location = new System.Drawing.Point(247, 3);
             this.bt_Forward.Name = "bt_Forward";
-            this.bt_Forward.Size = new System.Drawing.Size(101, 88);
+            this.bt_Forward.Size = new System.Drawing.Size(100, 88);
             this.bt_Forward.TabIndex = 4;
             this.bt_Forward.Text = "Step Forward";
             this.bt_Forward.UseVisualStyleBackColor = true;
@@ -608,7 +608,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_PlotAllFlights.Location = new System.Drawing.Point(1052, 754);
             this.bt_PlotAllFlights.Name = "bt_PlotAllFlights";
-            this.bt_PlotAllFlights.Size = new System.Drawing.Size(351, 44);
+            this.bt_PlotAllFlights.Size = new System.Drawing.Size(350, 44);
             this.bt_PlotAllFlights.TabIndex = 13;
             this.bt_PlotAllFlights.Text = "Plot all Flights (Zoom in/out after clicking to update map)";
             this.bt_PlotAllFlights.UseVisualStyleBackColor = true;
@@ -630,7 +630,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel6.Controls.Add(this.label11, 8, 0);
             this.tableLayoutPanel6.Controls.Add(this.label10, 6, 0);
             this.tableLayoutPanel6.Controls.Add(this.pb_GreenPlane, 5, 0);
@@ -761,7 +761,7 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel7.Controls.Add(this.cb_SMR, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.cb_MLAT, 3, 0);

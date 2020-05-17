@@ -1242,7 +1242,7 @@ namespace ASTERIX
                                 double[] coordenadas = NewCoordinatesMLAT(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
                                 var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
 
-                                if (listaCAT10[vuelosCAT10[i]].TOT == "Ground Vehicle." )
+                                if (listaCAT10[vuelosCAT10[i]].TOT == "Ground Vehicle." || listaCAT10[vuelosCAT10[i]].Mode3ACodeinOctal.Length == 0)
                                 {
                                     marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_pushback);
                                     overlay.Markers.Add(marker);
@@ -1270,7 +1270,7 @@ namespace ASTERIX
                                 double[] coordenadas = NewCoordinatesMLAT(rho, theta);
                                 var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
 
-                                if (listaCAT10[i].TOT == "Ground Vehicle."|| listaCAT10[vuelosCAT10[i]].Mode3ACodeinOctal.Length == 0)
+                                if (listaCAT10[i].TOT == "Ground Vehicle." || listaCAT10[vuelosCAT10[i]].Mode3ACodeinOctal.Length == 0)
                                 {
                                     marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_pushback);
                                     overlay.Markers.Add(marker);
@@ -1307,7 +1307,7 @@ namespace ASTERIX
                         {
 
                             var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
-                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction.")
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction." || listaCAT21[vuelosCAT21[j]].Mode3ACode_oct.Length == 0)
                             {
                                 marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_pushback);
                                 overlay.Markers.Add(marker);
@@ -1327,7 +1327,7 @@ namespace ASTERIX
                         if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
                         {
                             var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
-                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction.")
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction." || listaCAT21[vuelosCAT21[j]].Mode3ACode_oct.Length == 0)
                             {
                                 marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
                                 overlay.Markers.Add(marker);
