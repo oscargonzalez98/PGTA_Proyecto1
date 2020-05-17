@@ -80,31 +80,6 @@
             this.ReceiverID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataAges = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCAT20 = new System.Windows.Forms.DataGridView();
-            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SAC_SIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetReportDescriptorv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeofDayv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PositioninWGS84Coordv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetAdressv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GeometricAltitudev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FigureofMertiv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LinkTechnologyv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RollAnglev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FlightLevelv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AirSpeedv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrueAirSpeedv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MagneticHeadingv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BarometircVerticalRatev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GeometricVerticalRatev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GroundVectorv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RateofTurnv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Targetidentificationv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeofDayAccuracy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetStatusv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmitterCategoryv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MetReportv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IntermediateStateSelectedAltitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FinalStateSelectedAltitudev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCAT10 = new System.Windows.Forms.DataGridView();
             this.bt_FastBackward = new System.Windows.Forms.Button();
             this.bt_Backward = new System.Windows.Forms.Button();
@@ -137,7 +112,31 @@
             this.Presence = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmplitudeofPrimaryPlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CalculatedAcceleration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SAC_SIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetReportDescriptorv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofDayv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositioninWGS84Coordv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetAdressv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GeometricAltitudev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FigureofMertiv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LinkTechnologyv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RollAnglev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FlightLevelv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AirSpeedv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrueAirSpeedv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MagneticHeadingv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BarometircVerticalRatev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GeometricVerticalRatev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroundVectorv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RateofTurnv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Targetidentificationv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofDayAccuracy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetStatusv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmitterCategoryv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MetReportv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IntermediateStateSelectedAltitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FinalStateSelectedAltitudev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpTables.SuspendLayout();
             this.panelCAT10.SuspendLayout();
             this.panelCAT20.SuspendLayout();
@@ -651,181 +650,6 @@
             this.dgvCAT20.TabIndex = 0;
             this.dgvCAT20.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCAT20_CellClick);
             // 
-            // numero
-            // 
-            this.numero.HeaderText = "#";
-            this.numero.MinimumWidth = 6;
-            this.numero.Name = "numero";
-            this.numero.Width = 125;
-            // 
-            // SAC_SIC
-            // 
-            this.SAC_SIC.HeaderText = "SAC/SIC";
-            this.SAC_SIC.MinimumWidth = 6;
-            this.SAC_SIC.Name = "SAC_SIC";
-            this.SAC_SIC.Width = 125;
-            // 
-            // TargetReportDescriptorv23
-            // 
-            this.TargetReportDescriptorv23.HeaderText = "Target Report Descriptor";
-            this.TargetReportDescriptorv23.MinimumWidth = 6;
-            this.TargetReportDescriptorv23.Name = "TargetReportDescriptorv23";
-            this.TargetReportDescriptorv23.Width = 125;
-            // 
-            // TimeofDayv23
-            // 
-            this.TimeofDayv23.HeaderText = "Time of Day (h:m:s)";
-            this.TimeofDayv23.MinimumWidth = 6;
-            this.TimeofDayv23.Name = "TimeofDayv23";
-            this.TimeofDayv23.Width = 125;
-            // 
-            // PositioninWGS84Coordv23
-            // 
-            this.PositioninWGS84Coordv23.HeaderText = "Position in WGS-84 Coordinates (lat/lon)";
-            this.PositioninWGS84Coordv23.MinimumWidth = 6;
-            this.PositioninWGS84Coordv23.Name = "PositioninWGS84Coordv23";
-            this.PositioninWGS84Coordv23.Width = 125;
-            // 
-            // TargetAdressv23
-            // 
-            this.TargetAdressv23.HeaderText = "Target Address";
-            this.TargetAdressv23.MinimumWidth = 6;
-            this.TargetAdressv23.Name = "TargetAdressv23";
-            this.TargetAdressv23.Width = 125;
-            // 
-            // GeometricAltitudev23
-            // 
-            this.GeometricAltitudev23.HeaderText = "Geometric Altitude (ft)";
-            this.GeometricAltitudev23.MinimumWidth = 6;
-            this.GeometricAltitudev23.Name = "GeometricAltitudev23";
-            this.GeometricAltitudev23.Width = 125;
-            // 
-            // FigureofMertiv23
-            // 
-            this.FigureofMertiv23.HeaderText = "Figure of Merit";
-            this.FigureofMertiv23.MinimumWidth = 6;
-            this.FigureofMertiv23.Name = "FigureofMertiv23";
-            this.FigureofMertiv23.Width = 125;
-            // 
-            // LinkTechnologyv23
-            // 
-            this.LinkTechnologyv23.HeaderText = "Link Technology";
-            this.LinkTechnologyv23.MinimumWidth = 6;
-            this.LinkTechnologyv23.Name = "LinkTechnologyv23";
-            this.LinkTechnologyv23.Width = 125;
-            // 
-            // RollAnglev23
-            // 
-            this.RollAnglev23.HeaderText = "Roll Angle (º)";
-            this.RollAnglev23.MinimumWidth = 6;
-            this.RollAnglev23.Name = "RollAnglev23";
-            this.RollAnglev23.Width = 125;
-            // 
-            // FlightLevelv23
-            // 
-            this.FlightLevelv23.HeaderText = "Flight Level";
-            this.FlightLevelv23.MinimumWidth = 6;
-            this.FlightLevelv23.Name = "FlightLevelv23";
-            this.FlightLevelv23.Width = 125;
-            // 
-            // AirSpeedv23
-            // 
-            this.AirSpeedv23.HeaderText = "Air Speed (NM/s)";
-            this.AirSpeedv23.MinimumWidth = 6;
-            this.AirSpeedv23.Name = "AirSpeedv23";
-            this.AirSpeedv23.Width = 125;
-            // 
-            // TrueAirSpeedv23
-            // 
-            this.TrueAirSpeedv23.HeaderText = "True Air Speed (kt)";
-            this.TrueAirSpeedv23.MinimumWidth = 6;
-            this.TrueAirSpeedv23.Name = "TrueAirSpeedv23";
-            this.TrueAirSpeedv23.Width = 125;
-            // 
-            // MagneticHeadingv23
-            // 
-            this.MagneticHeadingv23.HeaderText = "Magnetic Heading (º)";
-            this.MagneticHeadingv23.MinimumWidth = 6;
-            this.MagneticHeadingv23.Name = "MagneticHeadingv23";
-            this.MagneticHeadingv23.Width = 125;
-            // 
-            // BarometircVerticalRatev23
-            // 
-            this.BarometircVerticalRatev23.HeaderText = "Barometric Vertical Rate (ft/s)";
-            this.BarometircVerticalRatev23.MinimumWidth = 6;
-            this.BarometircVerticalRatev23.Name = "BarometircVerticalRatev23";
-            this.BarometircVerticalRatev23.Width = 125;
-            // 
-            // GeometricVerticalRatev23
-            // 
-            this.GeometricVerticalRatev23.HeaderText = "Geometric Vertical Rate (ft/min)";
-            this.GeometricVerticalRatev23.MinimumWidth = 6;
-            this.GeometricVerticalRatev23.Name = "GeometricVerticalRatev23";
-            this.GeometricVerticalRatev23.Width = 125;
-            // 
-            // GroundVectorv23
-            // 
-            this.GroundVectorv23.HeaderText = "Ground vector [GroundSpeed/TRackAngle] (kt/º)";
-            this.GroundVectorv23.MinimumWidth = 6;
-            this.GroundVectorv23.Name = "GroundVectorv23";
-            this.GroundVectorv23.Width = 125;
-            // 
-            // RateofTurnv23
-            // 
-            this.RateofTurnv23.HeaderText = "Rate of Turn (º)";
-            this.RateofTurnv23.MinimumWidth = 6;
-            this.RateofTurnv23.Name = "RateofTurnv23";
-            this.RateofTurnv23.Width = 125;
-            // 
-            // Targetidentificationv23
-            // 
-            this.Targetidentificationv23.HeaderText = "Target Identification";
-            this.Targetidentificationv23.MinimumWidth = 6;
-            this.Targetidentificationv23.Name = "Targetidentificationv23";
-            this.Targetidentificationv23.Width = 125;
-            // 
-            // TimeofDayAccuracy
-            // 
-            this.TimeofDayAccuracy.HeaderText = "Time of Day Accuracy";
-            this.TimeofDayAccuracy.MinimumWidth = 6;
-            this.TimeofDayAccuracy.Name = "TimeofDayAccuracy";
-            this.TimeofDayAccuracy.Width = 125;
-            // 
-            // TargetStatusv23
-            // 
-            this.TargetStatusv23.HeaderText = "Target Status";
-            this.TargetStatusv23.MinimumWidth = 6;
-            this.TargetStatusv23.Name = "TargetStatusv23";
-            this.TargetStatusv23.Width = 125;
-            // 
-            // EmitterCategoryv23
-            // 
-            this.EmitterCategoryv23.HeaderText = "Emitter Category";
-            this.EmitterCategoryv23.MinimumWidth = 6;
-            this.EmitterCategoryv23.Name = "EmitterCategoryv23";
-            this.EmitterCategoryv23.Width = 125;
-            // 
-            // MetReportv23
-            // 
-            this.MetReportv23.HeaderText = "Met Report";
-            this.MetReportv23.MinimumWidth = 6;
-            this.MetReportv23.Name = "MetReportv23";
-            this.MetReportv23.Width = 125;
-            // 
-            // IntermediateStateSelectedAltitude
-            // 
-            this.IntermediateStateSelectedAltitude.HeaderText = "Intermediate State Selected Altitude (ft) (Click for more info)";
-            this.IntermediateStateSelectedAltitude.MinimumWidth = 6;
-            this.IntermediateStateSelectedAltitude.Name = "IntermediateStateSelectedAltitude";
-            this.IntermediateStateSelectedAltitude.Width = 125;
-            // 
-            // FinalStateSelectedAltitudev23
-            // 
-            this.FinalStateSelectedAltitudev23.HeaderText = "Final State Selected Altitude (ft) (Click for more info)";
-            this.FinalStateSelectedAltitudev23.MinimumWidth = 6;
-            this.FinalStateSelectedAltitudev23.Name = "FinalStateSelectedAltitudev23";
-            this.FinalStateSelectedAltitudev23.Width = 125;
-            // 
             // dgvCAT10
             // 
             this.dgvCAT10.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
@@ -856,8 +680,7 @@
             this.StandardDeviationofPosition,
             this.Presence,
             this.AmplitudeofPrimaryPlot,
-            this.CalculatedAcceleration,
-            this.TOT});
+            this.CalculatedAcceleration});
             this.dgvCAT10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCAT10.Location = new System.Drawing.Point(0, 0);
             this.dgvCAT10.Margin = new System.Windows.Forms.Padding(2);
@@ -1121,10 +944,180 @@
             this.CalculatedAcceleration.Name = "CalculatedAcceleration";
             this.CalculatedAcceleration.Width = 125;
             // 
-            // TOT
+            // numero
             // 
-            this.TOT.HeaderText = "TOT";
-            this.TOT.Name = "TOT";
+            this.numero.HeaderText = "#";
+            this.numero.MinimumWidth = 6;
+            this.numero.Name = "numero";
+            this.numero.Width = 125;
+            // 
+            // SAC_SIC
+            // 
+            this.SAC_SIC.HeaderText = "SAC/SIC";
+            this.SAC_SIC.MinimumWidth = 6;
+            this.SAC_SIC.Name = "SAC_SIC";
+            this.SAC_SIC.Width = 125;
+            // 
+            // TargetReportDescriptorv23
+            // 
+            this.TargetReportDescriptorv23.HeaderText = "Target Report Descriptor";
+            this.TargetReportDescriptorv23.MinimumWidth = 6;
+            this.TargetReportDescriptorv23.Name = "TargetReportDescriptorv23";
+            this.TargetReportDescriptorv23.Width = 125;
+            // 
+            // TimeofDayv23
+            // 
+            this.TimeofDayv23.HeaderText = "Time of Day (h:m:s)";
+            this.TimeofDayv23.MinimumWidth = 6;
+            this.TimeofDayv23.Name = "TimeofDayv23";
+            this.TimeofDayv23.Width = 125;
+            // 
+            // PositioninWGS84Coordv23
+            // 
+            this.PositioninWGS84Coordv23.HeaderText = "Position in WGS-84 Coordinates (lat/lon)";
+            this.PositioninWGS84Coordv23.MinimumWidth = 6;
+            this.PositioninWGS84Coordv23.Name = "PositioninWGS84Coordv23";
+            this.PositioninWGS84Coordv23.Width = 125;
+            // 
+            // TargetAdressv23
+            // 
+            this.TargetAdressv23.HeaderText = "Target Address";
+            this.TargetAdressv23.MinimumWidth = 6;
+            this.TargetAdressv23.Name = "TargetAdressv23";
+            this.TargetAdressv23.Width = 125;
+            // 
+            // GeometricAltitudev23
+            // 
+            this.GeometricAltitudev23.HeaderText = "Geometric Altitude (ft)";
+            this.GeometricAltitudev23.MinimumWidth = 6;
+            this.GeometricAltitudev23.Name = "GeometricAltitudev23";
+            this.GeometricAltitudev23.Width = 125;
+            // 
+            // FigureofMertiv23
+            // 
+            this.FigureofMertiv23.HeaderText = "Figure of Merit";
+            this.FigureofMertiv23.MinimumWidth = 6;
+            this.FigureofMertiv23.Name = "FigureofMertiv23";
+            this.FigureofMertiv23.Width = 125;
+            // 
+            // LinkTechnologyv23
+            // 
+            this.LinkTechnologyv23.HeaderText = "Link Technology";
+            this.LinkTechnologyv23.MinimumWidth = 6;
+            this.LinkTechnologyv23.Name = "LinkTechnologyv23";
+            this.LinkTechnologyv23.Width = 125;
+            // 
+            // RollAnglev23
+            // 
+            this.RollAnglev23.HeaderText = "Roll Angle (º)";
+            this.RollAnglev23.MinimumWidth = 6;
+            this.RollAnglev23.Name = "RollAnglev23";
+            this.RollAnglev23.Width = 125;
+            // 
+            // FlightLevelv23
+            // 
+            this.FlightLevelv23.HeaderText = "Flight Level";
+            this.FlightLevelv23.MinimumWidth = 6;
+            this.FlightLevelv23.Name = "FlightLevelv23";
+            this.FlightLevelv23.Width = 125;
+            // 
+            // AirSpeedv23
+            // 
+            this.AirSpeedv23.HeaderText = "Air Speed (NM/s)";
+            this.AirSpeedv23.MinimumWidth = 6;
+            this.AirSpeedv23.Name = "AirSpeedv23";
+            this.AirSpeedv23.Width = 125;
+            // 
+            // TrueAirSpeedv23
+            // 
+            this.TrueAirSpeedv23.HeaderText = "True Air Speed (kt)";
+            this.TrueAirSpeedv23.MinimumWidth = 6;
+            this.TrueAirSpeedv23.Name = "TrueAirSpeedv23";
+            this.TrueAirSpeedv23.Width = 125;
+            // 
+            // MagneticHeadingv23
+            // 
+            this.MagneticHeadingv23.HeaderText = "Magnetic Heading (º)";
+            this.MagneticHeadingv23.MinimumWidth = 6;
+            this.MagneticHeadingv23.Name = "MagneticHeadingv23";
+            this.MagneticHeadingv23.Width = 125;
+            // 
+            // BarometircVerticalRatev23
+            // 
+            this.BarometircVerticalRatev23.HeaderText = "Barometric Vertical Rate (ft/s)";
+            this.BarometircVerticalRatev23.MinimumWidth = 6;
+            this.BarometircVerticalRatev23.Name = "BarometircVerticalRatev23";
+            this.BarometircVerticalRatev23.Width = 125;
+            // 
+            // GeometricVerticalRatev23
+            // 
+            this.GeometricVerticalRatev23.HeaderText = "Geometric Vertical Rate (ft/min)";
+            this.GeometricVerticalRatev23.MinimumWidth = 6;
+            this.GeometricVerticalRatev23.Name = "GeometricVerticalRatev23";
+            this.GeometricVerticalRatev23.Width = 125;
+            // 
+            // GroundVectorv23
+            // 
+            this.GroundVectorv23.HeaderText = "Ground Vector [GroundSpeed/TRackAngle] (kt/º)";
+            this.GroundVectorv23.MinimumWidth = 6;
+            this.GroundVectorv23.Name = "GroundVectorv23";
+            this.GroundVectorv23.Width = 125;
+            // 
+            // RateofTurnv23
+            // 
+            this.RateofTurnv23.HeaderText = "Rate of Turn (º)";
+            this.RateofTurnv23.MinimumWidth = 6;
+            this.RateofTurnv23.Name = "RateofTurnv23";
+            this.RateofTurnv23.Width = 125;
+            // 
+            // Targetidentificationv23
+            // 
+            this.Targetidentificationv23.HeaderText = "Target Identification";
+            this.Targetidentificationv23.MinimumWidth = 6;
+            this.Targetidentificationv23.Name = "Targetidentificationv23";
+            this.Targetidentificationv23.Width = 125;
+            // 
+            // TimeofDayAccuracy
+            // 
+            this.TimeofDayAccuracy.HeaderText = "Time of Day Accuracy";
+            this.TimeofDayAccuracy.MinimumWidth = 6;
+            this.TimeofDayAccuracy.Name = "TimeofDayAccuracy";
+            this.TimeofDayAccuracy.Width = 125;
+            // 
+            // TargetStatusv23
+            // 
+            this.TargetStatusv23.HeaderText = "Target Status";
+            this.TargetStatusv23.MinimumWidth = 6;
+            this.TargetStatusv23.Name = "TargetStatusv23";
+            this.TargetStatusv23.Width = 125;
+            // 
+            // EmitterCategoryv23
+            // 
+            this.EmitterCategoryv23.HeaderText = "Emitter Category";
+            this.EmitterCategoryv23.MinimumWidth = 6;
+            this.EmitterCategoryv23.Name = "EmitterCategoryv23";
+            this.EmitterCategoryv23.Width = 125;
+            // 
+            // MetReportv23
+            // 
+            this.MetReportv23.HeaderText = "Met Report";
+            this.MetReportv23.MinimumWidth = 6;
+            this.MetReportv23.Name = "MetReportv23";
+            this.MetReportv23.Width = 125;
+            // 
+            // IntermediateStateSelectedAltitude
+            // 
+            this.IntermediateStateSelectedAltitude.HeaderText = "Intermediate State Selected Altitude (ft) (Click for more info)";
+            this.IntermediateStateSelectedAltitude.MinimumWidth = 6;
+            this.IntermediateStateSelectedAltitude.Name = "IntermediateStateSelectedAltitude";
+            this.IntermediateStateSelectedAltitude.Width = 125;
+            // 
+            // FinalStateSelectedAltitudev23
+            // 
+            this.FinalStateSelectedAltitudev23.HeaderText = "Final State Selected Altitude (ft) (Click for more info)";
+            this.FinalStateSelectedAltitudev23.MinimumWidth = 6;
+            this.FinalStateSelectedAltitudev23.Name = "FinalStateSelectedAltitudev23";
+            this.FinalStateSelectedAltitudev23.Width = 125;
             // 
             // Tables
             // 
@@ -1207,31 +1200,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ACASResolutionAdvisoryReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiverID;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataAges;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SAC_SIC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TargetReportDescriptorv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeofDayv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PositioninWGS84Coordv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TargetAdressv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GeometricAltitudev23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FigureofMertiv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LinkTechnologyv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RollAnglev23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FlightLevelv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AirSpeedv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TrueAirSpeedv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MagneticHeadingv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BarometircVerticalRatev23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GeometricVerticalRatev23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GroundVectorv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RateofTurnv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Targetidentificationv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeofDayAccuracy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TargetStatusv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmitterCategoryv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MetReportv23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IntermediateStateSelectedAltitude;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FinalStateSelectedAltitudev23;
         private System.Windows.Forms.DataGridViewTextBoxColumn Number1;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataSourceIdentifier;
         private System.Windows.Forms.DataGridViewTextBoxColumn MessageType;
@@ -1258,6 +1226,30 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Presence;
         private System.Windows.Forms.DataGridViewTextBoxColumn AmplitudeofPrimaryPlot;
         private System.Windows.Forms.DataGridViewTextBoxColumn CalculatedAcceleration;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TOT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SAC_SIC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TargetReportDescriptorv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeofDayv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PositioninWGS84Coordv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TargetAdressv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GeometricAltitudev23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FigureofMertiv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LinkTechnologyv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RollAnglev23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FlightLevelv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AirSpeedv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrueAirSpeedv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MagneticHeadingv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BarometircVerticalRatev23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GeometricVerticalRatev23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroundVectorv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RateofTurnv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Targetidentificationv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeofDayAccuracy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TargetStatusv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmitterCategoryv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MetReportv23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IntermediateStateSelectedAltitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FinalStateSelectedAltitudev23;
     }
 }

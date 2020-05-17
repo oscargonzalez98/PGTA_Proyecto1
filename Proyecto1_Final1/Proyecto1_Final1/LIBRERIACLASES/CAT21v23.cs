@@ -722,7 +722,10 @@ namespace Clases
 
                 TimeofDay = String.Concat(string1, string2, string3);
 
-                TimeofDay_seconds = Convert.ToInt32(TimeofDay, 2) / 128;
+                double a = Convert.ToInt32(TimeofDay, 2);
+                TimeofDay_seconds = a / 128;
+
+                int ab = 1;
 
             }// 3 I010 / 140 Time of Day
 
