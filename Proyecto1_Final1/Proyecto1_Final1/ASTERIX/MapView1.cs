@@ -57,18 +57,22 @@ namespace ASTERIX
         Stack<GMapOverlay> StackdeOverlays = new Stack<GMapOverlay>();
         List<GMapOverlay> ListaOverlays = new List<GMapOverlay>();
 
-        public int markerlimit = 200;
+        public int markerlimit = 1000;
 
         Bitmap blue_plane = (Bitmap)Image.FromFile("img/Planes/plane_blue_small.png");
         Bitmap red_plane = (Bitmap)Image.FromFile("img/Planes/plane_red_small.png");
         Bitmap green_plane = (Bitmap)Image.FromFile("img/Planes/plane_green_small.png");
         Bitmap white_plane = (Bitmap)Image.FromFile("img/Planes/plane_white_small.png");
-        //Bitmap green_plane = (Bitmap)Image.FromFile("img/Pushbacks/bushback_blue_small.png");
 
         Bitmap blue_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_blue_small.png");
         Bitmap red_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_red_small.png");
         Bitmap green_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_green_small.png");
         Bitmap white_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_white_small.png");
+
+        Bitmap blue_circle = (Bitmap)Image.FromFile("img/Circles/circle_blue_small.png");
+        Bitmap red_circle = (Bitmap)Image.FromFile("img/Circles/circle_red_small.png");
+        Bitmap green_circle = (Bitmap)Image.FromFile("img/Circles/circle_green_small.png");
+        Bitmap white_circle = (Bitmap)Image.FromFile("img/Circles/circle_white_small.png");
 
         int posicion_primer_segundo_1vuelo_CAT10;
         int posicion_primer_segundo_1vuelo_CAT21;
@@ -117,18 +121,102 @@ namespace ASTERIX
                 lb_Hora.Visible = true;
                 lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
 
-                overlay = CalcularNuevosPuntos(secondCounter, overlay); // 
+                overlay.Clear();
                 Mapa.Overlays.Clear();
+
+                overlay = CalcularNuevosPuntos(secondCounter, overlay);
                 Mapa.Overlays.Add(overlay);
 
-                if (overlay.Markers.Count > markerlimit)
-                {
-                    overlay.Clear();
-                    overlay = CalcularNuevosPuntos(secondCounter - 1, overlay);
-                    Mapa.Overlays.Add(overlay);
-                    overlay = CalcularNuevosPuntos(secondCounter, overlay);
-                    Mapa.Overlays.Add(overlay);
-                }
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter-1, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 2, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 3, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 4, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 5, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 6, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 7, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 8, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 9, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 10, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 11, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 12, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 13, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 14, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 15, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 16, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 17, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 18, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 19, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 20, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 21, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 22, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 23, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 24, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 25, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 26, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 27, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 28, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 29, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 30, overlay);
+                Mapa.Overlays.Add(overlay);
+
 
                 secondCounter = secondCounter + 1;
 
@@ -442,7 +530,7 @@ namespace ASTERIX
                         {
 
                             var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84_HR, listaCAT21[j].lonWGS84_HR), green_plane);
-                            if (listaCAT21[j].ECAT == "Surface emergency vehicle" || listaCAT21[j].ECAT == "Surface service vehicle." || listaCAT21[j].ECAT == "Fixed ground or tethered obstruction." || listaCAT21[j].Mode3ACode_oct.Length == 0)
+                            if (listaCAT21[j].ECAT == "Surface emergency vehicle" || listaCAT21[j].ECAT == "Surface service vehicle." || listaCAT21[j].ECAT == "Fixed ground or tethered obstruction.")
                             {
                                 marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84_HR, listaCAT21[j].lonWGS84_HR), green_pushback);
                                 overlayLoad.Markers.Add(marker);
@@ -462,7 +550,7 @@ namespace ASTERIX
                         if (listaCAT21[j].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[j].PositioninWGS_HRcoordinates.Length > 0)
                         {
                             var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84, listaCAT21[j].lonWGS84), green_plane);
-                            if (listaCAT21[j].ECAT == "Surface emergency vehicle" || listaCAT21[j].ECAT == "Surface service vehicle." || listaCAT21[j].ECAT == "Fixed ground or tethered obstruction." || listaCAT21[j].Mode3ACode_oct.Length == 0)
+                            if (listaCAT21[j].ECAT == "Surface emergency vehicle" || listaCAT21[j].ECAT == "Surface service vehicle." || listaCAT21[j].ECAT == "Fixed ground or tethered obstruction.")
                             {
                                 marker = new GMarkerGoogle(new PointLatLng(listaCAT21[j].latWGS84, listaCAT21[j].lonWGS84), green_plane);
                                 overlayLoad.Markers.Add(marker);
@@ -534,17 +622,102 @@ namespace ASTERIX
                 lb_Hora.Visible = true;
                 lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
 
-
-                overlay = CalcularNuevosPuntos(secondCounter, overlay); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo. Luego calculo las coordenadas y las añado al overlay
+                overlay.Clear();
                 Mapa.Overlays.Clear();
+
+                overlay = CalcularNuevosPuntos(secondCounter, overlay);
                 Mapa.Overlays.Add(overlay);
 
-                if (overlay.Markers.Count > markerlimit)
-                {
-                    overlay.Clear();
-                    overlay = CalcularNuevosPuntos(secondCounter, overlay);
-                    Mapa.Overlays.Add(overlay);
-                }
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 1, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 2, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 3, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 4, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 5, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 6, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 7, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 8, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 9, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 10, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 11, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 12, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 13, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 14, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 15, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 16, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 17, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 18, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 19, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 20, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 21, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 22, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 23, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 24, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 25, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 26, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 27, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 28, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 29, overlay);
+                Mapa.Overlays.Add(overlay);
+
+                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 30, overlay);
+                Mapa.Overlays.Add(overlay);
+
 
                 secondCounter = secondCounter + 1;
 
@@ -1338,7 +1511,7 @@ namespace ASTERIX
                         {
 
                             var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
-                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction." || listaCAT21[vuelosCAT21[j]].Mode3ACode_oct.Length == 0)
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction.")
                             {
                                 marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_pushback);
                                 overlay.Markers.Add(marker);
@@ -1358,7 +1531,7 @@ namespace ASTERIX
                         if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
                         {
                             var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
-                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction." || listaCAT21[vuelosCAT21[j]].Mode3ACode_oct.Length == 0)
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction.")
                             {
                                 marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
                                 overlay.Markers.Add(marker);
@@ -1531,7 +1704,7 @@ namespace ASTERIX
                         {
 
                             var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
-                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction." || listaCAT21[vuelosCAT21[j]].Mode3ACode_oct.Length == 0)
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction.")
                             {
                                 marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_pushback);
                                 overlay.Markers.Add(marker);
@@ -1551,7 +1724,7 @@ namespace ASTERIX
                         if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
                         {
                             var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
-                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction." || listaCAT21[vuelosCAT21[j]].Mode3ACode_oct.Length == 0)
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction.")
                             {
                                 marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
                                 overlay.Markers.Add(marker);
@@ -1594,6 +1767,398 @@ namespace ASTERIX
                             //overlay.Markers.Add(marker);
 
                             marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification_decoded); }
+                            else if (listaCAT21v23[vuelosCAT21v23[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21v23[vuelosCAT21v23[j]].TargetAdress_real); }
+                        }
+                    }
+
+                    j = j + 1;
+                }
+            }
+
+            return overlay;
+        }
+
+        public GMapOverlay CalcularNuevosPuntos_DiubujarBola(double secondCounter, GMapOverlay overlay)
+        {
+            List<int> vuelosCAT10 = VuelosCAT10Ahora(secondCounter); // Lista de vuelos en CAT10 con ese tiempo
+            List<int> vuelosCAT21 = VuelosCAT21Ahora(secondCounter); // Lista de vuelos en CAT21 con ese tiempo
+            List<int> vuelosCAT21v23 = VuelosCAT21v23Ahora(secondCounter); // Lista de vuelos en CAT21v23 con ese tiempo
+
+            if (vuelosCAT10.Count > 0) // Plot lista CAT10
+            {
+                int i = 0;
+
+                while (i < vuelosCAT10.Count)
+                {
+                    int j = vuelosCAT10[i];
+
+                    int SAC = listaCAT10[vuelosCAT10[i]].SAC;
+                    int SIC = listaCAT10[vuelosCAT10[i]].SIC;
+
+                    if (SAC == 0 && SIC == 7) //SMR
+                    {
+                        if (cb_SMR.Checked == true)
+                        {
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                            {
+                                double[] coordenadas = NewCoordinatesSMR(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_circle);
+                                overlay.Markers.Add(marker);
+
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
+
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                            {
+                                double rho = Math.Sqrt((listaCAT10[vuelosCAT10[i]].X_cartesian) * (listaCAT10[vuelosCAT10[i]].X_cartesian) + (listaCAT10[vuelosCAT10[i]].Y_cartesian) * (listaCAT10[vuelosCAT10[i]].Y_cartesian));
+                                double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[vuelosCAT10[i]].X_cartesian, listaCAT10[vuelosCAT10[i]].Y_cartesian);
+
+                                double[] coordenadas = NewCoordinatesSMR(rho, theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_circle);
+                                overlay.Markers.Add(marker);
+
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
+                        }
+                    }
+
+                    if (SAC == 0 && SIC == 107) //MLAT
+                    {
+
+                        if (cb_MLAT.Checked == true)
+                        {
+                            if (listaCAT10[vuelosCAT10[i]].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                            {
+                                double[] coordenadas = NewCoordinatesMLAT(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+
+                                if (listaCAT10[vuelosCAT10[i]].TOT == "Ground Vehicle." || listaCAT10[vuelosCAT10[i]].Mode3ACodeinOctal.Length == 0)
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_circle);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                }
+                                else
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_circle);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                }
+
+
+
+                                if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
+
+                            if (listaCAT10[vuelosCAT10[i]].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[vuelosCAT10[i]].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                            {
+                                double rho = Math.Sqrt((listaCAT10[vuelosCAT10[i]].X_cartesian) * (listaCAT10[vuelosCAT10[i]].X_cartesian) + (listaCAT10[vuelosCAT10[i]].Y_cartesian) * (listaCAT10[vuelosCAT10[i]].Y_cartesian));
+                                double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[vuelosCAT10[i]].X_cartesian, listaCAT10[vuelosCAT10[i]].Y_cartesian);
+
+                                double[] coordenadas = NewCoordinatesMLAT(rho, theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+
+                                if (listaCAT10[i].TOT == "Ground Vehicle." || listaCAT10[vuelosCAT10[i]].Mode3ACodeinOctal.Length == 0)
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_circle);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                }
+                                else
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_circle);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                }
+
+                                overlay.Markers.Add(marker);
+
+                                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                                if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
+                        }
+                    }
+                    i = i + 1;
+                }
+            }
+
+            if (listaCAT21.Count > 0) // plot lista CAT21
+            {
+                int j = 0;
+                while (j < vuelosCAT21.Count)
+                {
+                    if (CB_CAT21.Checked == true)
+                    {
+                        if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction." )
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_circle);
+                                overlay.Markers.Add(marker);
+                            }
+                            else
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_circle);
+                                overlay.Markers.Add(marker);
+                            }
+
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
+                            else if (listaCAT21[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
+                            else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
+                        }
+
+                        if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction." )
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_circle);
+                                overlay.Markers.Add(marker);
+                            }
+                            else
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_circle);
+                                overlay.Markers.Add(marker);
+                            }
+
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
+                            else if (listaCAT21[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
+                            else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
+                        }
+                    }
+
+                    j = j + 1;
+                }
+            }
+
+            if (vuelosCAT21v23.Count > 0) // Plot lista CAT21v23
+            {
+                int j = 0;
+                while (j < vuelosCAT21v23.Count)
+                {
+                    if (cb_CAT21v23.Checked == true)
+                    {
+                        if (listaCAT21v23[vuelosCAT21v23[j]].PositioninWGS_coordinates.Length > 0)
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane); // Genero el marker (no me deja hacerlo de otra manera)
+                            if (listaCAT21v23[vuelosCAT21v23[j]].ECAT == "surface emergency vehicle " || listaCAT21v23[vuelosCAT21v23[j]].ECAT == "surface service vehicle" || listaCAT21v23[vuelosCAT21v23[j]].ECAT == "fixed ground or tethered obstruction")
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_circle);
+                            }
+                            else { marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_circle); }
+
+                            overlay.Markers.Add(marker);
+                            //var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane);
+                            //overlay.Markers.Add(marker);
+
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                            if (listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification_decoded); }
+                            else if (listaCAT21v23[vuelosCAT21v23[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21v23[vuelosCAT21v23[j]].TargetAdress_real); }
+                        }
+                    }
+
+                    j = j + 1;
+                }
+            }
+
+            return overlay;
+        }
+
+        public GMapOverlay CalcularNuevosPuntosDibujarEtiqueta(double secondCounter, GMapOverlay overlay)
+        {
+            List<int> vuelosCAT10 = VuelosCAT10Ahora(secondCounter); // Lista de vuelos en CAT10 con ese tiempo
+            List<int> vuelosCAT21 = VuelosCAT21Ahora(secondCounter); // Lista de vuelos en CAT21 con ese tiempo
+            List<int> vuelosCAT21v23 = VuelosCAT21v23Ahora(secondCounter); // Lista de vuelos en CAT21v23 con ese tiempo
+
+            if (vuelosCAT10.Count > 0) // Plot lista CAT10
+            {
+                int i = 0;
+
+                while (i < vuelosCAT10.Count)
+                {
+                    int j = vuelosCAT10[i];
+
+                    int SAC = listaCAT10[vuelosCAT10[i]].SAC;
+                    int SIC = listaCAT10[vuelosCAT10[i]].SIC;
+
+                    if (SAC == 0 && SIC == 7) //SMR
+                    {
+                        if (cb_SMR.Checked == true)
+                        {
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                            {
+                                double[] coordenadas = NewCoordinatesSMR(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
+                                overlay.Markers.Add(marker);
+
+                                marker.ToolTipMode = MarkerTooltipMode.Always;
+                                if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
+
+                            if (listaCAT10[j].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[j].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                            {
+                                double rho = Math.Sqrt((listaCAT10[vuelosCAT10[i]].X_cartesian) * (listaCAT10[vuelosCAT10[i]].X_cartesian) + (listaCAT10[vuelosCAT10[i]].Y_cartesian) * (listaCAT10[vuelosCAT10[i]].Y_cartesian));
+                                double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[vuelosCAT10[i]].X_cartesian, listaCAT10[vuelosCAT10[i]].Y_cartesian);
+
+                                double[] coordenadas = NewCoordinatesSMR(rho, theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), white_plane);
+                                overlay.Markers.Add(marker);
+
+                                marker.ToolTipMode = MarkerTooltipMode.Always;
+                                if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
+                        }
+                    }
+
+                    if (SAC == 0 && SIC == 107) //MLAT
+                    {
+
+                        if (cb_MLAT.Checked == true)
+                        {
+                            if (listaCAT10[vuelosCAT10[i]].MeasuredPositioninPolarCoordinates.Length > 0) // si tenemos coordenadas polares
+                            {
+                                double[] coordenadas = NewCoordinatesMLAT(listaCAT10[vuelosCAT10[i]].Rho, listaCAT10[vuelosCAT10[i]].Theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+
+                                if (listaCAT10[vuelosCAT10[i]].TOT == "Ground Vehicle." || listaCAT10[vuelosCAT10[i]].Mode3ACodeinOctal.Length == 0)
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_pushback);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.Always;
+                                }
+                                else
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.Always;
+                                }
+
+
+
+                                if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
+
+                            if (listaCAT10[vuelosCAT10[i]].MeasuredPositioninPolarCoordinates.Length == 0 && listaCAT10[vuelosCAT10[i]].PositioninCartesianCoordinates.Length > 0) // si no tenemos coordenadas polares pero si coordenadas cartesianas
+                            {
+                                double rho = Math.Sqrt((listaCAT10[vuelosCAT10[i]].X_cartesian) * (listaCAT10[vuelosCAT10[i]].X_cartesian) + (listaCAT10[vuelosCAT10[i]].Y_cartesian) * (listaCAT10[vuelosCAT10[i]].Y_cartesian));
+                                double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[vuelosCAT10[i]].X_cartesian, listaCAT10[vuelosCAT10[i]].Y_cartesian);
+
+                                double[] coordenadas = NewCoordinatesMLAT(rho, theta);
+                                var marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+
+                                if (listaCAT10[i].TOT == "Ground Vehicle." || listaCAT10[vuelosCAT10[i]].Mode3ACodeinOctal.Length == 0)
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_pushback);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.Always;
+                                }
+                                else
+                                {
+                                    marker = new GMarkerGoogle(new PointLatLng(coordenadas[0], coordenadas[1]), blue_plane);
+                                    overlay.Markers.Add(marker);
+                                    marker.ToolTipMode = MarkerTooltipMode.Always;
+                                }
+
+                                overlay.Markers.Add(marker);
+
+                                marker.ToolTipMode = MarkerTooltipMode.Always;
+                                if (listaCAT10[vuelosCAT10[i]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT10[vuelosCAT10[i]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT10[vuelosCAT10[i]].TargetIdentification_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TargetAdress.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT10[vuelosCAT10[i]].TargetAdress_decoded); }
+                                else if (listaCAT10[vuelosCAT10[i]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT10[vuelosCAT10[i]].Tracknumber_value); }
+                            }
+                        }
+                    }
+                    i = i + 1;
+                }
+            }
+
+            if (listaCAT21.Count > 0) // plot lista CAT21
+            {
+                int j = 0;
+                while (j < vuelosCAT21.Count)
+                {
+                    if (CB_CAT21.Checked == true)
+                    {
+                        if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction.")
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_pushback);
+                                overlay.Markers.Add(marker);
+                            }
+                            else
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84_HR, listaCAT21[vuelosCAT21[j]].lonWGS84_HR), green_plane);
+                                overlay.Markers.Add(marker);
+                            }
+
+                            marker.ToolTipMode = MarkerTooltipMode.Always;
+                            if (listaCAT21[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
+                            else if (listaCAT21[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
+                            else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
+                        }
+
+                        if (listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length < 1 && listaCAT21[vuelosCAT21[j]].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
+                            if (listaCAT21[vuelosCAT21[j]].ECAT == "Surface emergency vehicle" || listaCAT21[vuelosCAT21[j]].ECAT == "Surface service vehicle." || listaCAT21[vuelosCAT21[j]].ECAT == "Fixed ground or tethered obstruction." )
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_plane);
+                                overlay.Markers.Add(marker);
+                            }
+                            else
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21[vuelosCAT21[j]].latWGS84, listaCAT21[vuelosCAT21[j]].lonWGS84), green_pushback);
+                                overlay.Markers.Add(marker);
+                            }
+
+                            marker.ToolTipMode = MarkerTooltipMode.Always;
+                            if (listaCAT21[vuelosCAT21[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21[vuelosCAT21[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21[vuelosCAT21[j]].TargetIdentification_decoded); }
+                            else if (listaCAT21[vuelosCAT21[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21[vuelosCAT21[j]].TargetAdress_real); }
+                            else if (listaCAT21[vuelosCAT21[j]].TrackNumber.Length > 0) { marker.ToolTipText = string.Concat("Track Number: ", listaCAT21[vuelosCAT21[j]].TrackNumber_number); }
+                        }
+                    }
+
+                    j = j + 1;
+                }
+            }
+
+            if (vuelosCAT21v23.Count > 0) // Plot lista CAT21v23
+            {
+                int j = 0;
+                while (j < vuelosCAT21v23.Count)
+                {
+                    if (cb_CAT21v23.Checked == true)
+                    {
+                        if (listaCAT21v23[vuelosCAT21v23[j]].PositioninWGS_coordinates.Length > 0)
+                        {
+                            var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane); // Genero el marker (no me deja hacerlo de otra manera)
+                            if (listaCAT21v23[vuelosCAT21v23[j]].ECAT == "surface emergency vehicle " || listaCAT21v23[vuelosCAT21v23[j]].ECAT == "surface service vehicle" || listaCAT21v23[vuelosCAT21v23[j]].ECAT == "fixed ground or tethered obstruction")
+                            {
+                                marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_pushback);
+                            }
+                            else { marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane); }
+
+                            overlay.Markers.Add(marker);
+                            //var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane);
+                            //overlay.Markers.Add(marker);
+
+                            marker.ToolTipMode = MarkerTooltipMode.Always;
                             if (listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification_decoded); }
                             else if (listaCAT21v23[vuelosCAT21v23[j]].TargetAddress_bin.Length > 0) { marker.ToolTipText = string.Concat("Target Address: ", listaCAT21v23[vuelosCAT21v23[j]].TargetAdress_real); }
                         }
