@@ -810,7 +810,7 @@ namespace LIBRERIACLASES
 
                     string string3 = Convert.ToString(paquete[data_position + 2]);
                     string3 = Convert.ToString(Convert.ToInt32(string3, 16), 2);
-                    string3 = AddZeros(string2);
+                    string3 = AddZeros(string3);
 
                     data_position = data_position + 3;
 
