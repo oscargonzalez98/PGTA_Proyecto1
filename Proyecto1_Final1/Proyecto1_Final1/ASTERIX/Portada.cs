@@ -67,5 +67,10 @@ namespace ASTERIX
             Export Export1 = new Export(listaCAT10, listaCAT21, listaCAT21v23);
             Export1.ShowDialog();
         }
+
+        private void lbErrores_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -36,7 +36,6 @@
             this.lbErrores = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.bt_Export = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lb_Title
@@ -47,7 +46,7 @@
             this.lb_Title.AutoSize = true;
             this.lb_Title.BackColor = System.Drawing.Color.White;
             this.lb_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.lb_Title.Location = new System.Drawing.Point(98, 61);
+            this.lb_Title.Location = new System.Drawing.Point(40, 58);
             this.lb_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb_Title.Name = "lb_Title";
             this.lb_Title.Size = new System.Drawing.Size(403, 46);
@@ -56,7 +55,7 @@
             // 
             // bt_BrowseFile
             // 
-            this.bt_BrowseFile.Location = new System.Drawing.Point(57, 235);
+            this.bt_BrowseFile.Location = new System.Drawing.Point(58, 214);
             this.bt_BrowseFile.Margin = new System.Windows.Forms.Padding(2);
             this.bt_BrowseFile.Name = "bt_BrowseFile";
             this.bt_BrowseFile.Size = new System.Drawing.Size(76, 32);
@@ -68,7 +67,7 @@
             // lb_Instructions
             // 
             this.lb_Instructions.AutoSize = true;
-            this.lb_Instructions.Location = new System.Drawing.Point(310, 164);
+            this.lb_Instructions.Location = new System.Drawing.Point(238, 137);
             this.lb_Instructions.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb_Instructions.Name = "lb_Instructions";
             this.lb_Instructions.Size = new System.Drawing.Size(35, 13);
@@ -77,7 +76,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(137, 235);
+            this.button1.Location = new System.Drawing.Point(138, 214);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(76, 32);
@@ -91,17 +90,18 @@
             this.lbErrores.AutoSize = true;
             this.lbErrores.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lbErrores.ForeColor = System.Drawing.Color.Red;
-            this.lbErrores.Location = new System.Drawing.Point(53, 312);
+            this.lbErrores.Location = new System.Drawing.Point(227, 278);
             this.lbErrores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbErrores.Name = "lbErrores";
             this.lbErrores.Size = new System.Drawing.Size(46, 18);
             this.lbErrores.TabIndex = 8;
             this.lbErrores.Text = "label1";
             this.lbErrores.Visible = false;
+            this.lbErrores.Click += new System.EventHandler(this.lbErrores_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(218, 235);
+            this.button3.Location = new System.Drawing.Point(219, 214);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(95, 32);
             this.button3.TabIndex = 9;
@@ -110,27 +110,17 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(420, 235);
+            this.button2.Location = new System.Drawing.Point(320, 214);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(95, 32);
             this.button2.TabIndex = 10;
             this.button2.Text = "More Info";
             // 
-            // bt_Export
-            // 
-            this.bt_Export.Location = new System.Drawing.Point(319, 235);
-            this.bt_Export.Name = "bt_Export";
-            this.bt_Export.Size = new System.Drawing.Size(95, 32);
-            this.bt_Export.TabIndex = 11;
-            this.bt_Export.Text = "Export";
-            this.bt_Export.Click += new System.EventHandler(this.bt_Export_Click);
-            // 
             // Portada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(606, 405);
-            this.Controls.Add(this.bt_Export);
+            this.ClientSize = new System.Drawing.Size(542, 352);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.lbErrores);
@@ -156,7 +146,6 @@
         private System.Windows.Forms.Label lbErrores;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button bt_Export;
     }
 }
 

@@ -67,10 +67,10 @@ namespace ASTERIX
         Bitmap green_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_green_small.png");
         Bitmap white_pushback = (Bitmap)Image.FromFile("img/Pushbacks/bushback_white_small.png");
 
-        Bitmap blue_circle = (Bitmap)Image.FromFile("img/Circles/circle_blue_small.png");
-        Bitmap red_circle = (Bitmap)Image.FromFile("img/Circles/circle_red_small.png");
-        Bitmap green_circle = (Bitmap)Image.FromFile("img/Circles/circle_green_small.png");
-        Bitmap white_circle = (Bitmap)Image.FromFile("img/Circles/circle_white_small.png");
+        Bitmap blue_circle = (Bitmap)Image.FromFile("img/Circles1/circle_blue_small.png");
+        Bitmap red_circle = (Bitmap)Image.FromFile("img/Circles1/circle_red_small.png");
+        Bitmap green_circle = (Bitmap)Image.FromFile("img/Circles1/circle_green_small.png");
+        Bitmap white_circle = (Bitmap)Image.FromFile("img/Circles1/circle_white_small.png");
 
         int posicion_primer_segundo_1vuelo_CAT10;
         int posicion_primer_segundo_1vuelo_CAT21;
@@ -267,14 +267,14 @@ namespace ASTERIX
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
 
-                if (overlay.Markers.Count > markerlimit)
-                {
-                    overlay.Clear();
-                    overlay = CalcularNuevosPuntos(secondCounter - 1, overlay);
-                    Mapa.Overlays.Add(overlay);
-                    overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
-                    Mapa.Overlays.Add(overlay);
-                }
+                //if (overlay.Markers.Count > markerlimit)
+                //{
+                //    overlay.Clear();
+                //    overlay = CalcularNuevosPuntos(secondCounter - 1, overlay);
+                //    Mapa.Overlays.Add(overlay);
+                //    overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
+                //    Mapa.Overlays.Add(overlay);
+                //}
 
                 secondCounter = secondCounter + 0.5;
 
@@ -801,13 +801,6 @@ namespace ASTERIX
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
 
-                if (overlay.Markers.Count > markerlimit)
-                {
-                    overlay.Clear();
-                    overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
-                    Mapa.Overlays.Add(overlay);
-                }
-
                 secondCounter = secondCounter + 0.5;
 
                 if (secondCounter > secondCounterFinal)
@@ -1238,12 +1231,12 @@ namespace ASTERIX
                 string TargetIdentificationActual = listaCAT21v23[j].TargetIdentification_decoded;
                 string TargetAddressActual = listaCAT21v23[j].TargetAdress_real;
 
-                if (Math.Floor(listaCAT21v23[j].TimeofDay_seconds) == second && TargetIdentificationActual == targetidentification)
+                if (Math.Floor(2*listaCAT21v23[j].TimeofDay_seconds)/2 == second && TargetIdentificationActual == targetidentification)
                 {
                     lista.Add(j);
                 }
 
-                else if (Math.Floor(listaCAT21v23[j].TimeofDay_seconds) == second && TargetAddressActual == targetidentification)
+                else if (Math.Floor(2*listaCAT21v23[j].TimeofDay_seconds)/2 == second && TargetAddressActual == targetidentification)
                 {
                     lista.Add(j);
                 }
