@@ -48,7 +48,7 @@ namespace ASTERIX
         private void button1_Click(object sender, EventArgs e)
         {
             Tables Tables1 = new Tables(listaCAT10, listaCAT20, listaCAT21, listaCAT21v23);
-            Tables1.ShowDialog();
+            Tables1.Show();
         }
 
         private void Portada_Load(object sender, EventArgs e)
@@ -59,18 +59,18 @@ namespace ASTERIX
         private void button3_Click(object sender, EventArgs e)
         {
             MapView1 MapView = new MapView1(listaCAT10, listaCAT21, listaCAT21v23);
-            MapView.ShowDialog();
-        }
-
-        private void bt_Export_Click(object sender, EventArgs e)
-        {
-            Export Export1 = new Export(listaCAT10, listaCAT21, listaCAT21v23);
-            Export1.ShowDialog();
+            MapView.Show();
         }
 
         private void lbErrores_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void bt_ED_Click(object sender, EventArgs e)
+        {
+            ED newED = new ED(listaCAT10, listaCAT21);
+            newED.ShowDialog();
         }
     }
 }

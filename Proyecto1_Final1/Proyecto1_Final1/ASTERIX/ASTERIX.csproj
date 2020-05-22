@@ -76,6 +76,12 @@
     <Compile Include="DataAgesCAT21.Designer.cs">
       <DependentUpon>DataAgesCAT21.cs</DependentUpon>
     </Compile>
+    <Compile Include="ED.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ED.Designer.cs">
+      <DependentUpon>ED.cs</DependentUpon>
+    </Compile>
     <Compile Include="Export.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataAgesCAT21.resx">
       <DependentUpon>DataAgesCAT21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ED.resx">
+      <DependentUpon>ED.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Export.resx">
       <DependentUpon>Export.cs</DependentUpon>

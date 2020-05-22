@@ -106,12 +106,12 @@ namespace ASTERIX
         public void timer_Tick(object sender, EventArgs e)
         {
             // establecemos timer speed
-            if (rb_05.Checked == true) { timer.Interval = Convert.ToInt32(timer.Interval / 0.5); }
-            if (rb_1.Checked == true) { timer.Interval = Convert.ToInt32(timer.Interval / 1); }
-            if (rb_2.Checked == true) { timer.Interval = Convert.ToInt32(timer.Interval / 2); }
-            if (rb_4.Checked == true) { timer.Interval = Convert.ToInt32(timer.Interval / 4); }
-            if (rb_10.Checked == true) { timer.Interval = Convert.ToInt32(timer.Interval / 10); }
-            if (rb_20.Checked == true) { timer.Interval = Convert.ToInt32(timer.Interval / 20); }
+            if (rb_05.Checked == true) { timer.Interval = Convert.ToInt32(500 / 0.5); }
+            if (rb_1.Checked == true) { timer.Interval = Convert.ToInt32(500 / 1); }
+            if (rb_2.Checked == true) { timer.Interval = Convert.ToInt32(500 / 2); }
+            if (rb_4.Checked == true) { timer.Interval = Convert.ToInt32(500 / 4); }
+            if (rb_10.Checked == true) { timer.Interval = Convert.ToInt32(500 / 10); }
+            if (rb_20.Checked == true) { timer.Interval = Convert.ToInt32(500 / 20); }
 
             if (boolAllFlights == true && boolSingleFlight == false)
             {
@@ -267,14 +267,6 @@ namespace ASTERIX
                 Mapa.Overlays.Clear();
                 Mapa.Overlays.Add(overlay);
 
-                //if (overlay.Markers.Count > markerlimit)
-                //{
-                //    overlay.Clear();
-                //    overlay = CalcularNuevosPuntos(secondCounter - 1, overlay);
-                //    Mapa.Overlays.Add(overlay);
-                //    overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
-                //    Mapa.Overlays.Add(overlay);
-                //}
 
                 secondCounter = secondCounter + 0.5;
 

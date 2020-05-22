@@ -691,7 +691,6 @@ namespace LIBRERIACLASES
                     string sil1 = paquete.Substring(9, 2);
                     SIL = Convert.ToInt32(sil1, 2).ToString();
 
-
                     if(paquete.Length>16)
                     {
                         string str6 = paquete.Substring(18,1);
