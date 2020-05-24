@@ -351,17 +351,17 @@ namespace LIBRERIACLASES
         }
         public void Calculate_Mode3ACode_octal(string paquete)
         {
-            int v1 = Convert.ToInt32(paquete[0]);
-            if (v1 == 0) { V = "Code validated."; }
-            else { V = "Code not validated."; }
+            string v1 = paquete.Substring(0,1);
+            if (v1 == "0") { V = "Code validated."; }
+            if (v1 == "1"){ V = "Code not validated."; }
 
-            int g1 = Convert.ToInt32(paquete[1]);
-            if (g1 == 0) { G = "Default."; }
-            else { G = "Garbled code."; }
+            string g1 = paquete.Substring(1,1);
+            if (g1 == "0") { G = "Default."; }
+            if (g1 == "1") { G = "Garbled code."; }
 
-            int l1 = Convert.ToInt32(paquete[2]);
-            if (l1 == 0) { L = "Mode-3/A code derived from the reply of the transponder."; }
-            else { L = "Mode-3/A code not extracted during the last scan."; }
+            string l1 = paquete.Substring(2,1);
+            if (l1 == "0") { L = "Mode-3/A code derived from the reply of the transponder."; }
+            if (l1 == "1") { L = "Mode-3/A code not extracted during the last scan."; }
 
             string str1 = paquete.Substring(4, 12);
             Mode3ACodeinOctal_decodified = Convert.ToString(Convert.ToInt32(str1, 2), 8);
@@ -543,7 +543,6 @@ namespace LIBRERIACLASES
 
         }
 
-    
         public int Calculate_ModeSMBData(string[] paquete, int pos)
         {
             //contador dels octets q ocupa

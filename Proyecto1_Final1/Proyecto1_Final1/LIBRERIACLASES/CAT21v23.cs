@@ -308,7 +308,7 @@ namespace Clases
         {
             string velocity = paquete.Substring(1, 15);
 
-            if (Convert.ToInt32(paquete[0]) == 0)
+            if (paquete.Substring(0,1) == "0")
             {
                 IM = "IAS";
                 double vel1 = Convert.ToInt32(velocity);
@@ -325,7 +325,7 @@ namespace Clases
 
         public void Calculate_TrueAirSpeed(string paquete)
         {
-            string ra1 = Convert.ToString(paquete[0]);
+            string ra1 = paquete.Substring(0,1);
 
             if (ra1 == "0")
             {
@@ -592,7 +592,7 @@ namespace Clases
 
         public void Calculate_IntermediateStateSelectedAltitude(string paquete)
         {
-            string sas = paquete[0].ToString();
+            string sas = paquete.Substring(0,1);
             if (sas == "0") { SAS = "No source information provided"; }
             else { SAS = "Source Information provided"; }
 
@@ -608,22 +608,17 @@ namespace Clases
 
         public void Calculate_FinalStateSelectedAltitude(string paquete)
         {
-            string mv = paquete[0].ToString();
+            string mv = paquete.Substring(0,1);
             if (mv == "0") { MV = "Not active"; }
             if (mv == "1"){ MV = "Active"; }
 
-            string ah = paquete[0].ToString();
+            string ah = paquete.Substring(0,1);
             if (ah == "0") { MV = "Not active"; }
             if (ah == "1") { MV = "Active"; }
 
             string alt = paquete.Substring(3,13);
             FSS_Altitude = Calculate_ComplementoA2(alt) * 25;
         }
-
-
-
-
-
 
         public void Calculate_FSPEC(string[] paquete)
         {
@@ -724,8 +719,6 @@ namespace Clases
 
                 double a = Convert.ToInt32(TimeofDay, 2);
                 TimeofDay_seconds = a / 128;
-
-                int ab = 1;
 
             }// 3 I010 / 140 Time of Day
 
@@ -1040,7 +1033,6 @@ namespace Clases
 
             if (Char.ToString(FSPEC_fake[20]) == "1") // 19 I021/095 Velocity Accuracy
             {
-                int a = 1;
 
             }// 19 I021/095 Velocity Accuracy
 
@@ -1105,10 +1097,10 @@ namespace Clases
                 data_position = data_position + 1;
                 MetInfo = indexpacket;
 
-                if(indexpacket[7].ToString()=="1")
+                if(indexpacket.Substring(7,1)=="1")
                 {
 
-                    if (indexpacket[0].ToString() == "1")
+                    if (indexpacket.Substring(0,1) == "1")
                     {
                         string string1 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string string2 = Convert.ToString(Convert.ToInt32(paquete[data_position + 1], 16), 2);
@@ -1120,7 +1112,7 @@ namespace Clases
                         data_position = data_position + 2;
                     }
 
-                    if (indexpacket[1].ToString() == "1")
+                    if (indexpacket.Substring(1,1) == "1")
                     {
                         string string1 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string string2 = Convert.ToString(Convert.ToInt32(paquete[data_position + 1], 16), 2);
@@ -1132,7 +1124,7 @@ namespace Clases
                         data_position = data_position + 2;
                     }
 
-                    if (indexpacket[2].ToString() == "1")
+                    if (indexpacket.Substring(2,1) == "1")
                     {
                         string string1 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string string2 = Convert.ToString(Convert.ToInt32(paquete[data_position + 1], 16), 2);
@@ -1144,7 +1136,7 @@ namespace Clases
                         data_position = data_position + 2;
                     }
 
-                    if (indexpacket[3].ToString() == "1")
+                    if (indexpacket.Substring(3,1) == "1")
                     {
                         string string1 = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
                         string turb = string1;

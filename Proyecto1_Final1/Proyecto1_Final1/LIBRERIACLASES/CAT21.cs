@@ -351,88 +351,88 @@ namespace LIBRERIACLASES
                 ARC = "Invalid .";
             }
 
-            int rc1 = Convert.ToInt32(paquete[5]);
+            string rc1 = paquete.Substring(5,1);
 
-            if (rc1 == 0)
+            if (rc1 == "0")
             {
                 RC = "Default.";
             }
 
-            else
+            if (rc1 == "1")
             {
                 RC = "Range Check passed, CPR Validation pending.";
             }
 
-            int rab1 = Convert.ToInt32(paquete[6]);
+            string rab1 = paquete.Substring(6,1);
 
-            if (rab1 == 0)
+            if (rab1 == "0")
             {
                 RAB = "Report from target transponder.";
             }
 
-            else
+            if (rab1 == "1")
             {
                 RAB = "Report from field monitor (fixed transponder).";
             }
 
             if (paquete.Length > 8)
             {
-                int dcr1 = Convert.ToInt32(paquete[8]);
+                string dcr1 = paquete.Substring(8,1);
 
-                if (dcr1 == 0)
+                if (dcr1 == "0")
                 {
                     DCR = "No differential correction (ADS-B).";
                 }
 
-                else
+                if (dcr1 == "1")
                 {
                     DCR = "Differential correction (ADS-B)";
                 }
 
-                int gbs1 = Convert.ToInt32(paquete[9]);
+                string gbs1 = paquete.Substring(9,1);
 
-                if (gbs1 == 0)
+                if (gbs1 == "0")
                 {
                     GBS = "Ground Bit not set.";
                 }
 
-                else
+                if (gbs1 == "1")
                 {
                     GBS = "Ground Bit set.";
                 }
 
-                int sim1 = Convert.ToInt32(paquete[10]);
+                string sim1 = paquete.Substring(10,1);
 
-                if (sim1 == 0)
+                if (sim1 == "0")
                 {
                     SIM = "Actual target report.";
                 }
 
-                else
+                if (sim1 == "1")
                 {
                     SIM = "Simulated target report.";
                 }
 
-                int tst1 = Convert.ToInt32(paquete[11]);
+                string tst1 = paquete.Substring(11,1);
 
-                if (tst1 == 0)
+                if (tst1 == "0")
                 {
                     TST = "Default.";
                 }
 
-                else
+                if (tst1 == "1")
                 {
                     TST = "Test Target.";
                 }
 
-                int saa1 = Convert.ToInt32(paquete[12]);
+                string saa1 = paquete.Substring(12,1);
 
-                if (saa1 == 0)
+                if (saa1 == "0")
                 {
                     SAA = "Equipment capable to provide Selected Altitude.";
                 }
 
-                else
+                if (saa1 == "1")
                 {
                     SAA = "Equipment not capable to provide Selected Altitude.";
                 }
@@ -457,62 +457,62 @@ namespace LIBRERIACLASES
 
                 if (paquete.Length > 16)
                 {
-                    int ipc1 = Convert.ToInt32(paquete[18]);
+                    string ipc1 = paquete.Substring(18,1);
 
-                    if (ipc1 == 0)
+                    if (ipc1 == "0")
                     {
                         IPC = "Independent Position Check = 0 default";
                     }
 
-                    else
+                    if (ipc1 == "1")
                     {
                         IPC = "Independent Position Check failed.";
                     }
 
-                    int nogo1 = Convert.ToInt32(paquete[18]);
+                    string nogo1 = paquete.Substring(18,1);
 
-                    if (nogo1 == 0)
+                    if (nogo1 == "0")
                     {
                         NOGO = "NOGO-bit not set.";
                     }
 
-                    else
+                    if (nogo1 == "1")
                     {
                         NOGO = "NOGO-bit set.";
                     }
 
-                    int cpr1 = Convert.ToInt32(paquete[19]);
+                    string cpr1 = paquete.Substring(19,1);
 
-                    if (cpr1 == 0)
+                    if (cpr1 == "0")
                     {
                         CPR = "CPR Validation correct.";
                     }
 
-                    else
+                    if (cpr1 == "1")
                     {
                         CPR = "CPR Validation failed.";
                     }
 
-                    int ldpj1 = Convert.ToInt32(paquete[20]);
+                    string ldpj1 = paquete.Substring(20,1);
 
-                    if (ldpj1 == 0)
+                    if (ldpj1 == "0")
                     {
                         LDPJ = "LDPJ not detected.";
                     }
 
-                    else
+                    if (ldpj1 == "1")
                     {
                         LDPJ = "LDPJ detected.";
                     }
 
-                    int rcf1 = Convert.ToInt32(paquete[21]);
+                    string rcf1 = paquete.Substring(21,1);
 
-                    if (rcf1 == 0)
+                    if (rcf1 == "0")
                     {
                         RCF = "Default.";
                     }
 
-                    else
+                    if (rcf1 == "1")
                     {
                         RCF = "Range Check failed .";
                     }
@@ -775,24 +775,24 @@ namespace LIBRERIACLASES
         }
         public void Calculate_TargetStatus(string paquete)
         {
-            int icf1 = Convert.ToInt32(paquete[0]);
-            if (icf1 == 0)
+            string icf1 = paquete.Substring(0,1);
+            if (icf1 == "0")
             {
                 ICF = "No intent change active.";
             }
 
-            else
+            if (icf1 == "1")
             {
                 ICF = "Intent change active.";
             }
 
-            int lnav1 = Convert.ToInt32(paquete[1]);
-            if (icf1 == 0)
+            string lnav1 = paquete.Substring(1,1);
+            if (icf1 == "0")
             {
                 LNAV = "LNAV Mode engaged.";
             }
 
-            else
+            else if (icf1 == "1")
             {
                 LNAV = "LNAV Mode not engaged.";
             }
@@ -1454,7 +1454,9 @@ namespace LIBRERIACLASES
         public void Calculate_AircraftOperationalStatus(string paquete)
         {
 
-            if (int.Parse(Char.ToString(paquete[1])) == 1)
+            string ra1 = paquete.Substring(1, 1);
+
+            if (ra1 == "1")
             {
                 RA = "TCAS RA active";
             }
@@ -1487,57 +1489,65 @@ namespace LIBRERIACLASES
                 TC = "Reserved.";
             }
 
-            if (int.Parse(Char.ToString(paquete[3])) == 0)
+            string ta1 = paquete.Substring(3, 1);
+
+            if (ta1=="0")
             {
                 TS = "No capability to support Target State Reports.";
             }
 
-            if (int.Parse(Char.ToString(paquete[3])) == 1)
+            if (ta1 == "1")
             {
                 TS = "Capable of supporting target State Reports.";
             }
 
-            if (int.Parse(Char.ToString(paquete[4])) == 0)
+            string arv1 = paquete.Substring(4, 1);
+
+            if (arv1 == "0")
             {
                 ARV = "No capability to generate ARV-reports.";
             }
 
-            if (int.Parse(Char.ToString(paquete[4])) == 1)
+            if (arv1 == "1")
             {
                 ARV = "Capable of generate ARV-reports.";
             }
 
-            if (int.Parse(Char.ToString(paquete[5])) == 0)
+            string cdti_a1 = paquete.Substring(5, 1);
+
+            if (cdti_a1 == "0")
             {
                 CDTI_A = "CDTI not operational.";
             }
 
-            if (int.Parse(Char.ToString(paquete[5])) == 1)
+            if (cdti_a1 == "1")
             {
                 CDTI_A = "CDTI operational.";
             }
 
-            if (int.Parse(Char.ToString(paquete[6])) == 0)
+            string tcas1 = paquete.Substring(6, 1);
+
+            if (tcas1 == "0")
             {
                 TCAS = "TCAS operational.";
             }
 
-            if (int.Parse(Char.ToString(paquete[6])) == 1)
+            if (tcas1 == "1")
             {
                 TCAS = "TCAS not operational.";
             }
 
-            if (int.Parse(Char.ToString(paquete[7])) == 0)
+            string sa1 = paquete.Substring(7, 1);
+
+            if (sa1 == "0")
             {
                 SA = "Antenna Diversity.";
             }
 
-            if (int.Parse(Char.ToString(paquete[7])) == 1)
+            if (sa1 == "1")
             {
                 SA = "Single Antenna only.";
             }
-
-
         }
         public void Calculate_SurfaceCapabilitiesandCharacterístics(string paquete)
         {
@@ -1580,7 +1590,6 @@ namespace LIBRERIACLASES
             {
                 RAS = "Aircraft receiving ATC services.";
             }
-
 
             string ident1 = paquete.Substring(6, 2);
             if (ident1 == "0")
@@ -2721,8 +2730,6 @@ namespace LIBRERIACLASES
 
                                 if (Char.ToString(FSPEC_fake[34]) == "1") // 31 I021/220 Met Information
                                 {
-                                    // primero leemos el primer paquete y lo pasamos a binario
-
                                     // primero leemos el primer paquete y lo pasamos a binario
 
                                     string string_packet = Convert.ToString(Convert.ToInt32(paquete[data_position], 16), 2);
