@@ -72,5 +72,11 @@ namespace ASTERIX
             ED newED = new ED(listaCAT10, listaCAT21);
             newED.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MoreInfo MoreInfo1 = new MoreInfo();
+            MoreInfo1.Show();
+        }
     }
 }

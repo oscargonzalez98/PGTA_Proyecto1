@@ -117,7 +117,14 @@ namespace ASTERIX
             {
                 TimeSpan t = TimeSpan.FromSeconds(secondCounter);
                 lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                string hours = t.Hours.ToString();
+                string minutes = t.Minutes.ToString();
+                string seconds = t.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours;}
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
+
+                lb_Hora.Text = String.Concat(hours, ":", minutes, ":", seconds);
 
                 overlay.Clear();
                 Mapa.Overlays.Clear();
@@ -261,7 +268,14 @@ namespace ASTERIX
             {
                 TimeSpan t = TimeSpan.FromSeconds(secondCounter);
                 lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                string hours = t.Hours.ToString();
+                string minutes = t.Minutes.ToString();
+                string seconds = t.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
+
+                lb_Hora.Text = String.Concat(hours, ":", minutes, ":", seconds);
 
                 overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text);
                 Mapa.Overlays.Clear();
@@ -349,11 +363,25 @@ namespace ASTERIX
 
             TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
             lb_HoraInicial.Visible = true;
-            lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+            string hours = t.Hours.ToString();
+            string minutes = t.Minutes.ToString();
+            string seconds = t.Seconds.ToString();
+            if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+            if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+            if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
 
-            t = TimeSpan.FromSeconds(secondCounterFinal);
+            lb_HoraInicial.Text = String.Concat(hours, ":", minutes, ":", seconds);
+
+            TimeSpan t1 = TimeSpan.FromSeconds(secondCounterFinal);
             lb_HoraFinal.Visible = true;
-            lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+            hours = t1.Hours.ToString();
+            minutes = t1.Minutes.ToString();
+            seconds = t1.Seconds.ToString();
+            if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+            if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+            if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
+
+            lb_HoraFinal.Text = String.Concat(hours, ":", minutes, ":", seconds);
 
             //  Establecemos que boton esta encendido y cual no
             boolAllFlights = true;
@@ -411,11 +439,25 @@ namespace ASTERIX
 
             TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
             lb_HoraInicial.Visible = true;
-            lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+            string hours = t.Hours.ToString();
+            string minutes = t.Minutes.ToString();
+            string seconds = t.Seconds.ToString();
+            if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+            if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+            if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
 
-            t = TimeSpan.FromSeconds(secondCounterFinal);
+            lb_HoraInicial.Text = String.Concat(hours, ":", minutes, ":", seconds);
+
+            TimeSpan t1 = TimeSpan.FromSeconds(secondCounterFinal);
             lb_HoraFinal.Visible = true;
-            lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+            hours = t1.Hours.ToString();
+            minutes = t1.Minutes.ToString();
+            seconds = t1.Seconds.ToString();
+            if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+            if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+            if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
+
+            lb_HoraFinal.Text = String.Concat(hours, ":", minutes, ":", seconds);
 
 
             //  Establecemos que boton esta encendido y cual no
@@ -643,7 +685,14 @@ namespace ASTERIX
             {
                 TimeSpan t = TimeSpan.FromSeconds(secondCounter);
                 lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                string hours = t.Hours.ToString();
+                string minutes = t.Minutes.ToString();
+                string seconds = t.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
+
+                lb_Hora.Text = String.Concat(hours, ":", minutes, ":", seconds);
 
                 overlay.Clear();
                 Mapa.Overlays.Clear();
@@ -787,7 +836,14 @@ namespace ASTERIX
             {
                 TimeSpan t = TimeSpan.FromSeconds(secondCounter);
                 lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                string hours = t.Hours.ToString();
+                string minutes = t.Minutes.ToString();
+                string seconds = t.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
+
+                lb_Hora.Text = String.Concat(hours, ":", minutes, ":", seconds);
 
                 overlay = CalcularNuevosPuntosPorNombre(secondCounter, overlay, tb_TargetIdentification.Text); // Saco 3 listas (una por clase) con las posiciones en la listaCAT de los paquetes que hay en ese segundo y con esa identificacion. Luego calculo las coordenadas y las añado al overlay
                 Mapa.Overlays.Clear();
@@ -858,15 +914,36 @@ namespace ASTERIX
 
                 TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
                 lb_HoraInicial.Visible = true;
-                lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                string hours = t.Hours.ToString();
+                string minutes = t.Minutes.ToString();
+                string seconds = t.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
 
-                t = TimeSpan.FromSeconds(secondCounterFinal);
+                lb_HoraInicial.Text = String.Concat(hours, ":", minutes, ":", seconds);
+
+                TimeSpan t1 = TimeSpan.FromSeconds(secondCounterFinal);
                 lb_HoraFinal.Visible = true;
-                lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                hours = t1.Hours.ToString();
+                minutes = t1.Minutes.ToString();
+                seconds = t1.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
 
-                t = TimeSpan.FromSeconds(secondCounterInicial);
+                lb_HoraFinal.Text = String.Concat(hours, ":", minutes, ":", seconds);
+
+                TimeSpan t2 = TimeSpan.FromSeconds(secondCounter);
                 lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                hours = t2.Hours.ToString();
+                minutes = t2.Minutes.ToString();
+                seconds = t2.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
+
+                lb_Hora.Text = String.Concat(hours, ":", minutes, ":", seconds);
             }
 
             if (boolAllFlights == false && boolSingleFlight == true)
@@ -920,15 +997,36 @@ namespace ASTERIX
 
                 TimeSpan t = TimeSpan.FromSeconds(secondCounterInicial);
                 lb_HoraInicial.Visible = true;
-                lb_HoraInicial.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                string hours = t.Hours.ToString();
+                string minutes = t.Minutes.ToString();
+                string seconds = t.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
 
-                t = TimeSpan.FromSeconds(secondCounterFinal);
+                lb_HoraInicial.Text = String.Concat(hours, ":", minutes, ":", seconds);
+
+                TimeSpan t1 = TimeSpan.FromSeconds(secondCounterFinal);
                 lb_HoraFinal.Visible = true;
-                lb_HoraFinal.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                hours = t1.Hours.ToString();
+                minutes = t1.Minutes.ToString();
+                seconds = t1.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
 
-                t = TimeSpan.FromSeconds(secondCounterInicial);
+                lb_HoraFinal.Text = String.Concat(hours, ":", minutes, ":", seconds);
+
+                TimeSpan t2 = TimeSpan.FromSeconds(secondCounter);
                 lb_Hora.Visible = true;
-                lb_Hora.Text = String.Concat(t.Hours, ":", t.Minutes, ":", t.Seconds);
+                hours = t2.Hours.ToString();
+                minutes = t2.Minutes.ToString();
+                seconds = t2.Seconds.ToString();
+                if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
+                if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
+                if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
+
+                lb_Hora.Text = String.Concat(hours, ":", minutes, ":", seconds);
             }
         }
 

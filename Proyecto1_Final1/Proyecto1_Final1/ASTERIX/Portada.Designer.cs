@@ -116,6 +116,7 @@
             this.button2.Size = new System.Drawing.Size(95, 32);
             this.button2.TabIndex = 10;
             this.button2.Text = "More Info";
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // bt_ED
             // 
