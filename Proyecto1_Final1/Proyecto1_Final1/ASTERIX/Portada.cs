@@ -78,5 +78,11 @@ namespace ASTERIX
             MoreInfo MoreInfo1 = new MoreInfo();
             MoreInfo1.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Export export1 = new Export(listaCAT10, listaCAT21, listaCAT21v23);
+            export1.ShowDialog();
+        }
     }
 }

@@ -143,7 +143,7 @@ namespace ASTERIX
                                 double distanciaADSB = CalculateDistanceBetweenCoordinates(coord_ARP, coord_finales);
                                 double distanciaMLAT = CalculateDistanceBetweenCoordinates(coord_ARP, coord_finales);
 
-                                if (distanciaADSB < (10 * 1852) && distanciaMLAT <= (10 * 1852))
+                                if (distanciaADSB <= (10 * 1852) && distanciaMLAT <= (10 * 1852))
                                 {
                                     double distancia = CalculateDistanceBetweenCoordinates(coord_iniciales, coord_finales) / 1000; // en metros
                                     //double distancia1 = CalculateDistanceBetweenCoordinates2(coord_iniciales, coord_finales) / 1000; // en metros
