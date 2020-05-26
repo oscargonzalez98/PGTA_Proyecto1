@@ -317,8 +317,8 @@ namespace ASTERIX
                 {
                     if (listaMLAT[j].TargetIdentification_decoded == Nombre1)
                     {
-                        double rho = Math.Sqrt((listaCAT10[j].X_cartesian) * (listaCAT10[j].X_cartesian) + (listaCAT10[j].Y_cartesian) * (listaCAT10[j].Y_cartesian));
-                        double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian);
+                        double rho = Math.Sqrt((listaMLAT[j].X_cartesian) * (listaMLAT[j].X_cartesian) + (listaMLAT[j].Y_cartesian) * (listaMLAT[j].Y_cartesian));
+                        double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[j].X_cartesian, listaMLAT[j].Y_cartesian);
                         double[] coordenadas = NewCoordinatesMLAT(rho, theta);
 
                         string latWGS84 = coordenadas[0].ToString();
@@ -361,8 +361,8 @@ namespace ASTERIX
                         {
                             if (listaMLAT[j].TargetIdentification_decoded == Nombre)
                             {
-                                double rho = Math.Sqrt((listaCAT10[j].X_cartesian) * (listaCAT10[j].X_cartesian) + (listaCAT10[j].Y_cartesian) * (listaCAT10[j].Y_cartesian));
-                                double theta = (180 / Math.PI) * Math.Atan2(listaCAT10[j].X_cartesian, listaCAT10[j].Y_cartesian);
+                                double rho = Math.Sqrt((listaMLAT[j].X_cartesian) * (listaMLAT[j].X_cartesian) + (listaMLAT[j].Y_cartesian) * (listaMLAT[j].Y_cartesian));
+                                double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[j].X_cartesian, listaMLAT[j].Y_cartesian);
                                 double[] coordenadas = NewCoordinatesMLAT(rho, theta);
 
                                 string latWGS84 = coordenadas[0].ToString();
@@ -386,6 +386,111 @@ namespace ASTERIX
             }
 
 
+            //-------------------------------------------------------------------------------------------------------------------------------------------------------------- SMR
+
+            if (listaSMR.Count > 0)
+            {
+                listaNombresCAT10.Clear();
+
+                int i = 0;
+                while (listaSMR[i].Tracknumber_value.ToString() == "") { i = i + 1; }
+
+                string Nombre1 = listaSMR[i].Tracknumber_value.ToString();
+                listaNombresCAT10.Add(Nombre1);
+
+                f.WriteLine("\t\t<name>" + Nombre1 + "</name>");
+                f.WriteLine("\t\t <styleUrl>#" + "white" + "</styleUrl>");
+                f.WriteLine(body[3]);
+                f.WriteLine("\t\t\t<coordinates>");
+
+                int j = 0;
+                while (j < listaSMR.Count)
+                {
+                    if (listaSMR[j].Tracknumber_value.ToString() == Nombre1 && listaSMR[j].MeasuredPositioninPolarCoordinates.Length>0)
+                    {
+                        double rho = Math.Sqrt((listaSMR[j].X_cartesian) * (listaSMR[j].X_cartesian) + (listaSMR[j].Y_cartesian) * (listaSMR[j].Y_cartesian));
+                        double theta = (180 / Math.PI) * Math.Atan2(listaSMR[j].X_cartesian, listaSMR[j].Y_cartesian);
+                        double[] coordenadas = NewCoordinatesSMR(rho, theta);
+
+                        string latWGS84 = coordenadas[0].ToString();
+                        string lonWGS84 = coordenadas[1].ToString();
+
+                        latWGS84 = latWGS84.Replace(",", ".");
+                        lonWGS84 = lonWGS84.Replace(",", ".");
+
+                        f.WriteLine("\t\t\t" + lonWGS84 + "," + latWGS84);
+                    }
+                    j = j + 1;
+                }
+
+                f.WriteLine("\t\t\t</coordinates>");
+                f.WriteLine("\t\t</LineString>");
+                f.WriteLine("\t</Placemark>");
+
+                //Ahora lo hacemos para el resto
+
+                while (i < listaSMR.Count)
+                {
+                    string Nombre = listaSMR[i].Tracknumber_value.ToString();
+
+                    if (listaNombresCAT10.Contains(Nombre) == true && Nombre != "") // si numero esta ern la lista quiere decir que ya lo hemos dibujado y pasamos al siguiente nombre
+                    {
+                    }
+
+                    if (listaNombresCAT10.Contains(Nombre) == false && Nombre != "") // Si el numero no esta en la lista tenemos que dinujarlo
+                    {
+                        listaNombresCAT10.Add(Nombre);
+
+                        f.WriteLine("\t<Placemark>");
+                        f.WriteLine("\t\t<name>" + Nombre + "</name>");
+                        f.WriteLine("\t\t <styleUrl>#" + "white" + "</styleUrl>");
+                        f.WriteLine(body[3]);
+                        f.WriteLine("\t\t\t<coordinates>");
+
+                        j = 0;
+                        while (j < listaSMR.Count)
+                        {
+                            if (listaSMR[j].Tracknumber_value.ToString() == Nombre)
+                            {
+                                if(listaSMR[j].PositioninCartesianCoordinates.Length>0)
+                                {
+                                    double rho = Math.Sqrt((listaSMR[j].X_cartesian) * (listaSMR[j].X_cartesian) + (listaSMR[j].Y_cartesian) * (listaSMR[j].Y_cartesian));
+                                    double theta = (180 / Math.PI) * Math.Atan2(listaSMR[j].X_cartesian, listaSMR[j].Y_cartesian);
+                                    double[] coordenadas = NewCoordinatesSMR(rho, theta);
+
+                                    string latWGS84 = coordenadas[0].ToString();
+                                    string lonWGS84 = coordenadas[1].ToString();
+
+                                    latWGS84 = latWGS84.Replace(",", ".");
+                                    lonWGS84 = lonWGS84.Replace(",", ".");
+
+                                    f.WriteLine("\t\t\t" + lonWGS84 + "," + latWGS84);
+                                }
+
+                                else if (listaSMR[j].MeasuredPositioninPolarCoordinates.Length > 0)
+                                {
+                                    double[] coordenadas = NewCoordinatesMLAT(listaCAT10[j].Rho, listaCAT10[j].Theta);
+
+                                    string latWGS84 = coordenadas[0].ToString();
+                                    string lonWGS84 = coordenadas[1].ToString();
+
+                                    latWGS84 = latWGS84.Replace(",", ".");
+                                    lonWGS84 = lonWGS84.Replace(",", ".");
+
+                                    f.WriteLine("\t\t\t" + lonWGS84 + "," + latWGS84);
+                                }
+                            }
+                            j = j + 1;
+                        }
+
+                        f.WriteLine("\t\t\t</coordinates>");
+                        f.WriteLine("\t\t</LineString>");
+                        f.WriteLine("\t</Placemark>");
+                    }
+
+                    i = i + 1;
+                }
+            }
 
 
 
@@ -513,6 +618,81 @@ namespace ASTERIX
 
 
             return listaCoordenadas;
+        }
+
+        public double[] NewCoordinatesSMR(double distance, double bearing)
+        {
+            double[] listaCoordenadas = new double[2];
+
+            double φ1 = toRadians(LatSMR);
+            double λ1 = toRadians(LonSMR);
+            double α1 = toRadians(bearing);
+            double s = distance;
+
+            // allow alternative ellipsoid to be specified
+            double a = 6378137.0;
+            double b = 6356752.314245;
+            double f = 1 / 298.257223563;
+
+            double sinα1 = Math.Sin(α1);
+            double cosα1 = Math.Cos(α1);
+
+            double tanU1 = (1 - f) * Math.Tan(φ1), cosU1 = 1 / Math.Sqrt((1 + tanU1 * tanU1)), sinU1 = tanU1 * cosU1;
+            double σ1 = Math.Atan2(tanU1, cosα1); // σ1 = angular distance on the sphere from the equator to P1
+            double sinα = cosU1 * sinα1;          // α = azimuth of the geodesic at the equator
+            double cosSqα = 1 - sinα * sinα;
+            double uSq = cosSqα * (a * a - b * b) / (b * b);
+            double A = 1 + uSq / 16384 * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq)));
+            double B = uSq / 1024 * (256 + uSq * (-128 + uSq * (74 - 47 * uSq)));
+
+            double σ = s / (b * A);
+            double sinσ;
+            double cosσ;
+            double Δσ; // σ = angular distance P₁ P₂ on the sphere
+            double cos2σₘ; // σₘ = angular distance on the sphere from the equator to the midpoint of the line
+
+            double σ_prima; int iterations = 0;
+            do
+            {
+                cos2σₘ = Math.Cos(2 * σ1 + σ);
+                sinσ = Math.Sin(σ);
+                cosσ = Math.Cos(σ);
+                Δσ = B * sinσ * (cos2σₘ + B / 4 * (cosσ * (-1 + 2 * cos2σₘ * cos2σₘ) -
+                    B / 6 * cos2σₘ * (-3 + 4 * sinσ * sinσ) * (-3 + 4 * cos2σₘ * cos2σₘ)));
+                σ_prima = σ;
+                σ = s / (b * A) + Δσ;
+            } while (Math.Abs(σ - σ_prima) > 1e-12 && ++iterations < 100);
+            //if (iterations >= 100) throw new EvalError('Vincenty formula failed to converge'); // not possible?
+
+            double x = sinU1 * sinσ - cosU1 * cosσ * cosα1;
+            double φ2 = Math.Atan2(sinU1 * cosσ + cosU1 * sinσ * cosα1, (1 - f) * Math.Sqrt(sinα * sinα + x * x));
+            double λ = Math.Atan2(sinσ * sinα1, cosU1 * cosσ - sinU1 * sinσ * cosα1);
+            double C = f / 16 * cosSqα * (4 + f * (4 - 3 * cosSqα));
+            double L = λ - (1 - C) * f * sinα * (σ + C * sinσ * (cos2σₘ + C * cosσ * (-1 + 2 * cos2σₘ * cos2σₘ)));
+            double λ2 = λ1 + L;
+
+            double α2 = Math.Atan2(sinα, -x);
+
+            listaCoordenadas[0] = toDegrees(φ2);
+            listaCoordenadas[1] = toDegrees(λ2);
+
+            double coord1 = φ2;
+            int sec1 = (int)Math.Round(coord1 * 3600);
+            int deg1 = sec1 / 3600;
+            sec1 = Math.Abs(sec1 % 3600);
+            int min1 = sec1 / 60;
+            sec1 %= 60;
+
+            double coord2 = λ2;
+            int sec2 = (int)Math.Round(coord2 * 3600);
+            int deg2 = sec2 / 3600;
+            sec2 = Math.Abs(sec2 % 3600);
+            int min2 = sec2 / 60;
+            sec2 %= 60;
+
+
+            return listaCoordenadas;
+
         }
 
     }
