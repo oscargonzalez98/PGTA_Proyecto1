@@ -42,6 +42,8 @@ namespace ASTERIX
         double lonARP = 02.0442;
         double[] coord_ARP = new double[2];
 
+        public List<string> listanombres = new List<string>();
+
         public ED(List<CAT10> listaCAT10, List<CAT21> listaCAT21)
         {
             InitializeComponent();
@@ -65,18 +67,18 @@ namespace ASTERIX
             double db2;
 
             if (listasecondsMLAT.Count == 0) { db1 = 10e6; }
-            else { db1 = listasecondsMLAT.First(); }
+            else { db1 = listasecondsMLAT.Min(); }
 
             if (listasecondsCAT21.Count == 0) { db2 = 10e6; }
-            else { db2 = listasecondsCAT21.First(); }
+            else { db2 = listasecondsCAT21.Min(); }
 
             secondCounterInicial = new[] { db1, db2 }.Min();
 
             if (listasecondsMLAT.Count == 0) { db1 = 0; }
-            else { db1 = listasecondsMLAT.Last(); }
+            else { db1 = listasecondsMLAT.Max(); }
 
             if (listasecondsCAT21.Count == 0) { db2 = 0; }
-            else { db2 = listasecondsCAT21.Last(); }
+            else { db2 = listasecondsCAT21.Max(); }
 
             secondCounterFinal = new[] { db1, db2 }.Max();
 
@@ -101,6 +103,20 @@ namespace ASTERIX
                 }
                 i = i + 1;
             }
+
+            // Calculamos todos los nombres MLAT que hay para hacer la progress bar
+
+            i = 0;
+            while(i<listaMLAT.Count)
+            {
+                string name = listaMLAT[i].TargetAdress_decoded;
+                if(listanombres.Contains(name) == false && name!="")
+                {
+                    listanombres.Add(name);
+                }
+                i = i + 1;
+            }
+
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -175,6 +191,57 @@ namespace ASTERIX
             double precentile95 = (lista_distancias[p_ceil] + lista_distancias[p_floor])/2;
             lb_95percentile.Text =Math.Round(precentile95, 3) + " m";
             lb_95percentile.Visible = true;
+        }
+
+        private void lb_ProbabilityofUpdate_Click(object sender, EventArgs e)
+        {
+            pb_probabilityofupdate.Maximum =listanombres.Count;
+            pb_probabilityofupdate.Value = 0;
+
+            List<string> aviones_mal = new List<string>();
+
+            int i = 0;
+            while(i<listanombres.Count) // Bucle que vaya avion por avion
+            {
+                // primero sacamosel nombre de ese avion
+                string nombre = listanombres[i];
+
+                //Ahora sacamos su segundo maximo y su segundo minimo de ese avion
+                var lista_seconds_de_este_avion = CalculateListaSecondsMLATporNombre(nombre);
+
+                double secondinicial = lista_seconds_de_este_avion.Min();
+                double secondfinal = lista_seconds_de_este_avion.Max();
+                double secondactual = lista_seconds_de_este_avion[1];
+
+                int counter_bien = 0;
+                int counter_total = 0;
+
+                //Bucle que pase pr todos los segundos y compruebe que entre un mensaje y otro hay 1 seg como max
+                int j = 1;
+                while(j< lista_seconds_de_este_avion.Count)
+                {
+                    if(lista_seconds_de_este_avion[j] - lista_seconds_de_este_avion[j-1]<=1)
+                    {
+                        counter_bien = counter_bien + 1;
+                    }
+                    j = j + 1;
+                    counter_total = counter_total + 1;
+                }
+
+                if (Convert.ToDouble(counter_bien) / Convert.ToDouble(counter_total) < 0.95) { aviones_mal.Add(nombre); }
+                i = i + 1;
+                pb_probabilityofupdate.Value = pb_probabilityofupdate.Value + 1;
+            }
+
+            i = 0;
+
+            lb_aviones_mal.Text = "Target Address: ";
+            while(i<aviones_mal.Count)
+            {
+                lb_aviones_mal.Visible = true;
+                lb_aviones_mal.Text = "     " + lb_aviones_mal.Text + aviones_mal[i] + ". ";
+                i = i + 1;
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -370,6 +437,38 @@ namespace ASTERIX
                 i = i + 1;
             }
         }
+
+        public List<double> CalculateListaSecondsMLATporNombre(string nombre)
+        {
+            int i = 0;
+
+            List<double> lista = new List<double>();
+            List<double> listaquedevolvemos = new List<double>();
+             
+            while(i<listaMLAT.Count)
+            {
+                lista.Add(listaMLAT[i].TimeofDay_seconds);
+                i = i + 1;
+            }
+
+            double sec = lista.Min(); ;
+            listaquedevolvemos.Add(sec);
+
+            i = 0;
+            while (i < listaMLAT.Count)
+            {
+                double second = listaMLAT[i].TimeofDay_seconds;
+                if (second > listasecondsMLAT.Last() && listaMLAT[i].TargetAdress.Length>0 && listaMLAT[i].TargetAdress_decoded == nombre)
+                {
+                    listaquedevolvemos.Add(second);
+                }
+                i = i + 1;
+            }
+
+            return listaquedevolvemos;
+
+        }
+
         public void CalculateListaSecondsCAT21()
         {
             listasecondsCAT21.Clear();
@@ -404,6 +503,23 @@ namespace ASTERIX
             }
             return lista;
         }
+
+        public List<int> VuelosMLATAhoraporNombre(double second,string nombre)
+        {
+            List<int> lista = new List<int>();
+
+            int j = 0;
+            while (j < listaMLAT.Count)
+            {
+                if ((Math.Floor(listaMLAT[j].TimeofDay_seconds)) == second && listaMLAT[j].TOT != "Ground Vehicle." && listaMLAT[j].Mode3ACodeinOctal.Length >= 0 && listaMLAT[j].TargetAdress.Length>0 && listaMLAT[j].TargetAdress_decoded == nombre)
+                {
+                    lista.Add(j);
+                }
+                j = j + 1;
+            }
+            return lista;
+        }
+
         public List<int> VuelosCAT21Ahora(double second)
         {
             List<int> lista = new List<int>();
@@ -424,5 +540,7 @@ namespace ASTERIX
         {
 
         }
+
+
     }
 }
