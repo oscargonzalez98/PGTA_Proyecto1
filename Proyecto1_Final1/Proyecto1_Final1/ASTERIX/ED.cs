@@ -165,7 +165,6 @@ namespace ASTERIX
             lista_distancias.Sort();
 
             double p = lista_distancias.Count;
-            lista_distancias.Reverse();
 
             p = p + 1;
             p = p * 0.95;
