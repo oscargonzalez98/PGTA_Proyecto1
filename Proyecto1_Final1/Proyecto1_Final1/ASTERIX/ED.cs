@@ -107,11 +107,9 @@ namespace ASTERIX
             pb_PrecissionAccuracy.Maximum = Convert.ToInt32(secondCounterFinal - secondCounterInicial);
             pb_PrecissionAccuracy.Value = 0;
 
-            double contador_de_casos = 0;
-            double contador_de_casos_bien_contados = 0;
-            double contador_de_casos_mal_contados = 0;
+            List<double> lista_distancias = new List<double>();
 
-            if (listaCAT10.Count > 0 && listaCAT21.Count > 0) // Si en el .AST hay CAT10 y CAT21
+            if(listaCAT10.Count > 0 && listaCAT21.Count > 0) // Si en el .AST hay CAT10 y CAT21
             {
                 int i = 0;//recorre todos los segundos
                 while (secondCounter < secondCounterFinal) // Mientras no hayamos hecho todos los segunds
@@ -145,47 +143,8 @@ namespace ASTERIX
 
                                 if (distanciaADSB <= (10 * 1852) && distanciaMLAT <= (10 * 1852))
                                 {
-                                    double distancia = CalculateDistanceBetweenCoordinates(coord_iniciales, coord_finales) / 1000; // en metros
-                                    //double distancia1 = CalculateDistanceBetweenCoordinates2(coord_iniciales, coord_finales) / 1000; // en metros
-                                    int NACp = listaCAT21[vuelosCAT21[j]].NACp;
-
-                                    if (NACp == 11 && distancia < 3) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 11 && distancia >= 3) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 10 && distancia < 10) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 10 && distancia >= 10) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 9 && distancia < 30) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 9 && distancia >= 30) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 8 && distancia < 92.6) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 8 && distancia >= 92.6) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 7 && distancia < 185.2) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 7 && distancia >= 185.2) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 6 && distancia < 555.6) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 6 && distancia >= 555.6) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 5 && distancia < 926) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 5 && distancia >= 926) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 4 && distancia < 1852) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 4 && distancia >= 1852) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 3 && distancia < 3704) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 3 && distancia >= 3704) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 2 && distancia < 7408) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 2 && distancia >= 7408) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 1 && distancia < 18.52 * 1000) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 1 && distancia >= 18.52 * 1000) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    if (NACp == 0 && distancia >= 18.52 * 1000) { contador_de_casos_bien_contados = contador_de_casos_bien_contados + 1; }
-                                    else if (NACp == 0 && distancia < 18.52 * 1000) { contador_de_casos_mal_contados = contador_de_casos_mal_contados + 1; }
-
-                                    contador_de_casos = contador_de_casos + 1;
+                                    double distancia = CalculateDistanceBetweenCoordinates(coord_iniciales, coord_finales)/1000 ; // en metros
+                                    lista_distancias.Add(distancia);
                                 }
                             }
                             k = k + 1;
@@ -199,8 +158,24 @@ namespace ASTERIX
             }
             else { /* Enseñamos un error */}
 
-            double aciertos = (contador_de_casos_bien_contados / contador_de_casos) * 100;
-            lb_PrecissionAccuracy.Text = lb_PrecissionAccuracy.Text + "  " + Math.Round(aciertos, 3);
+            double distancia_media = lista_distancias.Sum() / lista_distancias.Count();
+            lb_meandistance.Text = Math.Round(distancia_media, 3) + " m";
+            lb_meandistance.Visible = true;
+
+            lista_distancias.Sort();
+
+            double p = lista_distancias.Count;
+            lista_distancias.Reverse();
+
+            p = p + 1;
+            p = p * 0.95;
+            p = p - 1;
+            int p_ceil = Convert.ToInt32(Math.Ceiling(p));
+            int p_floor = Convert.ToInt32(Math.Floor(p));
+
+            double precentile95 = (lista_distancias[p_ceil] + lista_distancias[p_floor])/2;
+            lb_95percentile.Text =Math.Round(precentile95, 3) + " m";
+            lb_95percentile.Visible = true;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -444,6 +419,11 @@ namespace ASTERIX
                 j = j + 1;
             }
             return lista;
+        }
+
+        private void lb_meandistance_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
