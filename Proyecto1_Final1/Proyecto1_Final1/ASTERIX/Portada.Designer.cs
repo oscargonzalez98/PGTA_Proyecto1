@@ -48,7 +48,7 @@
             this.lb_Title.AutoSize = true;
             this.lb_Title.BackColor = System.Drawing.Color.White;
             this.lb_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.lb_Title.Location = new System.Drawing.Point(40, 58);
+            this.lb_Title.Location = new System.Drawing.Point(130, 55);
             this.lb_Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb_Title.Name = "lb_Title";
             this.lb_Title.Size = new System.Drawing.Size(403, 46);
@@ -69,7 +69,7 @@
             // lb_Instructions
             // 
             this.lb_Instructions.AutoSize = true;
-            this.lb_Instructions.Location = new System.Drawing.Point(238, 137);
+            this.lb_Instructions.Location = new System.Drawing.Point(317, 130);
             this.lb_Instructions.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb_Instructions.Name = "lb_Instructions";
             this.lb_Instructions.Size = new System.Drawing.Size(35, 13);
@@ -92,7 +92,7 @@
             this.lbErrores.AutoSize = true;
             this.lbErrores.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lbErrores.ForeColor = System.Drawing.Color.Red;
-            this.lbErrores.Location = new System.Drawing.Point(227, 278);
+            this.lbErrores.Location = new System.Drawing.Point(306, 276);
             this.lbErrores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbErrores.Name = "lbErrores";
             this.lbErrores.Size = new System.Drawing.Size(46, 18);
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 352);
+            this.ClientSize = new System.Drawing.Size(689, 352);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.bt_ED);
             this.Controls.Add(this.button2);

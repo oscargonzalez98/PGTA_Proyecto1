@@ -69,8 +69,31 @@ namespace ASTERIX
 
         private void bt_ED_Click(object sender, EventArgs e)
         {
-            ED newED = new ED(listaCAT10, listaCAT21);
-            newED.ShowDialog();
+            List<CAT10> listaMLAT = new List<CAT10>();
+            List<CAT10> listaSMR = new List<CAT10>();
+
+            int i = 0;
+            while (i < listaCAT10.Count)
+            {
+                int SAC = listaCAT10[i].SAC;
+                int SIC = listaCAT10[i].SIC;
+
+                if (SAC == 0 && SIC == 7)
+                {
+                    listaSMR.Add(listaCAT10[i]);
+                }
+                if (SAC == 0 && SIC == 107)
+                {
+                    listaMLAT.Add(listaCAT10[i]);
+                }
+                i = i + 1;
+            }
+
+            if(listaMLAT.Count>0 && listaCAT21.Count>0)
+            {
+                ED newED = new ED(listaCAT10, listaCAT21);
+                newED.ShowDialog();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

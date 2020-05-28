@@ -35,6 +35,8 @@ namespace ASTERIX
         double LatMLAT = 41.297063;
         double LonMLAT = 2.078447;
 
+        string direccion;
+
         public Export(List<CAT10> listaCAT10, List<CAT21> listaCAT21, List<CAT21v23> listaCAT21v23)
         {
             InitializeComponent();
@@ -67,73 +69,80 @@ namespace ASTERIX
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Generamos el nuevo documento
-            // Generamos el nuevo documento
-            StreamWriter f = File.CreateText(tb_direction.Text);
-
-            // Leemos las partes del documento 
-            string[] startinglines = File.ReadAllLines("docs/start.txt");
-            string[] blue_style = File.ReadAllLines("docs/1Blue_style.txt");
-            string[] green_style = File.ReadAllLines("docs/1Green_style.txt");
-            string[] red_style = File.ReadAllLines("docs/1Red_style.txt");
-            string[] white_style = File.ReadAllLines("docs/1White_style.txt");
-            string[] body = File.ReadAllLines("docs/body.txt");
-
-
-            f.WriteLine(startinglines[0]);
-            f.WriteLine(startinglines[1]);
-            f.WriteLine(startinglines[2]);
-            f.WriteLine(startinglines[3]);
-
-            f.WriteLine(blue_style[0]);
-            f.WriteLine(blue_style[1]);
-            f.WriteLine(blue_style[2]);
-            f.WriteLine(blue_style[3]);
-            f.WriteLine(blue_style[4]);
-            f.WriteLine(blue_style[5]);
-            f.WriteLine(blue_style[6]);
-            f.WriteLine(blue_style[7]);
-            f.WriteLine(blue_style[8]);
-
-            f.WriteLine(green_style[0]);
-            f.WriteLine(green_style[1]);
-            f.WriteLine(green_style[2]);
-            f.WriteLine(green_style[3]);
-            f.WriteLine(green_style[4]);
-            f.WriteLine(green_style[5]);
-            f.WriteLine(green_style[6]);
-            f.WriteLine(green_style[7]);
-            f.WriteLine(green_style[8]);
-
-            f.WriteLine(red_style[0]);
-            f.WriteLine(red_style[1]);
-            f.WriteLine(red_style[2]);
-            f.WriteLine(red_style[3]);
-            f.WriteLine(red_style[4]);
-            f.WriteLine(red_style[5]);
-            f.WriteLine(red_style[6]);
-            f.WriteLine(red_style[7]);
-            f.WriteLine(red_style[8]);
-
-            f.WriteLine(white_style[0]);
-            f.WriteLine(white_style[1]);
-            f.WriteLine(white_style[2]);
-            f.WriteLine(white_style[3]);
-            f.WriteLine(white_style[4]);
-            f.WriteLine(white_style[5]);
-            f.WriteLine(white_style[6]);
-            f.WriteLine(white_style[7]);
-            f.WriteLine(white_style[8]);
-
-            f.WriteLine(body[0]);
-
-            //Codigo para plotear todos los aviones
-            //...................................................................................................................... CAT21v23
-
-            //Lo hacemos una vez para el primer avion
-
-            if(listaCAT21v23.Count>0)
+           if(listaCAT21v23.Count>0)
             {
+                // Generamos el nuevo documento
+
+                direccion = tb_direction.Text;
+
+                int abc1 = tb_direction.Text.Length - 1 - 4;
+
+                tb_direction.Text = tb_direction.Text.Substring(0, abc1);
+                tb_direction.Text = tb_direction.Text + "CAT21v023" + ".kml";
+
+                StreamWriter f = File.CreateText(tb_direction.Text);
+
+                // Leemos las partes del documento 
+                string[] startinglines = File.ReadAllLines("docs/start.txt");
+                string[] blue_style = File.ReadAllLines("docs/1Blue_style.txt");
+                string[] green_style = File.ReadAllLines("docs/1Green_style.txt");
+                string[] red_style = File.ReadAllLines("docs/1Red_style.txt");
+                string[] white_style = File.ReadAllLines("docs/1White_style.txt");
+                string[] body = File.ReadAllLines("docs/body.txt");
+
+
+                f.WriteLine(startinglines[0]);
+                f.WriteLine(startinglines[1]);
+                f.WriteLine(startinglines[2]);
+                f.WriteLine("\t<name>" + "CAT21v0.23" + "</name>");
+
+                f.WriteLine(blue_style[0]);
+                f.WriteLine(blue_style[1]);
+                f.WriteLine(blue_style[2]);
+                f.WriteLine(blue_style[3]);
+                f.WriteLine(blue_style[4]);
+                f.WriteLine(blue_style[5]);
+                f.WriteLine(blue_style[6]);
+                f.WriteLine(blue_style[7]);
+                f.WriteLine(blue_style[8]);
+
+                f.WriteLine(green_style[0]);
+                f.WriteLine(green_style[1]);
+                f.WriteLine(green_style[2]);
+                f.WriteLine(green_style[3]);
+                f.WriteLine(green_style[4]);
+                f.WriteLine(green_style[5]);
+                f.WriteLine(green_style[6]);
+                f.WriteLine(green_style[7]);
+                f.WriteLine(green_style[8]);
+
+                f.WriteLine(red_style[0]);
+                f.WriteLine(red_style[1]);
+                f.WriteLine(red_style[2]);
+                f.WriteLine(red_style[3]);
+                f.WriteLine(red_style[4]);
+                f.WriteLine(red_style[5]);
+                f.WriteLine(red_style[6]);
+                f.WriteLine(red_style[7]);
+                f.WriteLine(red_style[8]);
+
+                f.WriteLine(white_style[0]);
+                f.WriteLine(white_style[1]);
+                f.WriteLine(white_style[2]);
+                f.WriteLine(white_style[3]);
+                f.WriteLine(white_style[4]);
+                f.WriteLine(white_style[5]);
+                f.WriteLine(white_style[6]);
+                f.WriteLine(white_style[7]);
+                f.WriteLine(white_style[8]);
+
+                f.WriteLine(body[0]);
+
+                //Codigo para plotear todos los aviones
+                //...................................................................................................................... CAT21v23
+
+                //Lo hacemos una vez para el primer avion
+
                 listaNombresCAT21v23.Clear();
 
                 string Nombre1 = listaCAT21v23[0].TargetIdentification_decoded;
@@ -147,7 +156,7 @@ namespace ASTERIX
                 int i = 0;
                 while (i < listaCAT21v23.Count)
                 {
-                    if (listaCAT21v23[i].TargetIdentification_decoded == Nombre1 && listaCAT21v23[i].TargetIdentification.Length>0)
+                    if (listaCAT21v23[i].TargetIdentification_decoded == Nombre1 && listaCAT21v23[i].TargetIdentification.Length > 0)
                     {
                         string latWGS84 = listaCAT21v23[i].latWGS84.ToString();
                         string lonWGS84 = listaCAT21v23[i].lonWGS84.ToString();
@@ -172,7 +181,7 @@ namespace ASTERIX
 
                     if (Nombre == "VLG1291")
                     {
-                        int a = 0;
+                        int ab = 0;
                     }
 
                     if (listaNombresCAT21v23.Contains(Nombre) == false && Nombre != "") // Si el numero no esta en la lista tenemos que dinujarlo
@@ -199,7 +208,7 @@ namespace ASTERIX
                                 latWGS84 = latWGS84.Replace(",", ".");
                                 lonWGS84 = lonWGS84.Replace(",", ".");
 
-                                if(a != Double.NaN && b!=Double.NaN)
+                                if (a != Double.NaN && b != Double.NaN)
                                 {
                                     f.WriteLine("\t\t\t" + lonWGS84 + "," + latWGS84);
                                 }
@@ -214,12 +223,84 @@ namespace ASTERIX
 
                     i = i + 1;
                 }
-            }
+
+
+                f.WriteLine(" </Document> </kml>");
+                f.Close();
+
+                tb_direction.Text = direccion;
+           }
 
             //-------------------------------------------------------------------------------------------------------------------------------------------------------------- CAT21
 
-            if(listaCAT21.Count>0)
+            if (listaCAT21.Count > 0)
             {
+                // Generamos el nuevo documento
+                direccion = tb_direction.Text;
+
+                int abc1 = tb_direction.Text.Length - 1 - 4;
+
+                tb_direction.Text = tb_direction.Text.Substring(0, abc1);
+                tb_direction.Text = tb_direction.Text + "CAT21v21" + ".kml";
+
+                StreamWriter f = File.CreateText(tb_direction.Text);
+
+                // Leemos las partes del documento 
+                string[] startinglines = File.ReadAllLines("docs/start.txt");
+                string[] blue_style = File.ReadAllLines("docs/1Blue_style.txt");
+                string[] green_style = File.ReadAllLines("docs/1Green_style.txt");
+                string[] red_style = File.ReadAllLines("docs/1Red_style.txt");
+                string[] white_style = File.ReadAllLines("docs/1White_style.txt");
+                string[] body = File.ReadAllLines("docs/body.txt");
+
+
+                f.WriteLine(startinglines[0]);
+                f.WriteLine(startinglines[1]);
+                f.WriteLine(startinglines[2]);
+                f.WriteLine("\t<name>" + "CAT21v2.1" + "</name>");
+
+                f.WriteLine(blue_style[0]);
+                f.WriteLine(blue_style[1]);
+                f.WriteLine(blue_style[2]);
+                f.WriteLine(blue_style[3]);
+                f.WriteLine(blue_style[4]);
+                f.WriteLine(blue_style[5]);
+                f.WriteLine(blue_style[6]);
+                f.WriteLine(blue_style[7]);
+                f.WriteLine(blue_style[8]);
+
+                f.WriteLine(green_style[0]);
+                f.WriteLine(green_style[1]);
+                f.WriteLine(green_style[2]);
+                f.WriteLine(green_style[3]);
+                f.WriteLine(green_style[4]);
+                f.WriteLine(green_style[5]);
+                f.WriteLine(green_style[6]);
+                f.WriteLine(green_style[7]);
+                f.WriteLine(green_style[8]);
+
+                f.WriteLine(red_style[0]);
+                f.WriteLine(red_style[1]);
+                f.WriteLine(red_style[2]);
+                f.WriteLine(red_style[3]);
+                f.WriteLine(red_style[4]);
+                f.WriteLine(red_style[5]);
+                f.WriteLine(red_style[6]);
+                f.WriteLine(red_style[7]);
+                f.WriteLine(red_style[8]);
+
+                f.WriteLine(white_style[0]);
+                f.WriteLine(white_style[1]);
+                f.WriteLine(white_style[2]);
+                f.WriteLine(white_style[3]);
+                f.WriteLine(white_style[4]);
+                f.WriteLine(white_style[5]);
+                f.WriteLine(white_style[6]);
+                f.WriteLine(white_style[7]);
+                f.WriteLine(white_style[8]);
+
+                f.WriteLine(body[0]);
+
                 listaNombresCAT21.Clear();
 
                 string Nombre1 = listaCAT21[0].TargetIdentification_decoded;
@@ -281,7 +362,7 @@ namespace ASTERIX
                                 latWGS84 = latWGS84.Replace(",", ".");
                                 lonWGS84 = lonWGS84.Replace(",", ".");
 
-                                if(latWGS84 != "0" && lonWGS84 != "0") { f.WriteLine("\t\t\t" + lonWGS84 + "," + latWGS84); }
+                                if (latWGS84 != "0" && lonWGS84 != "0") { f.WriteLine("\t\t\t" + lonWGS84 + "," + latWGS84); }
                             }
                             j = j + 1;
                         }
@@ -293,18 +374,93 @@ namespace ASTERIX
 
                     i = i + 1;
                 }
+
+                f.WriteLine(" </Document> </kml>");
+                f.Close();
+
+                tb_direction.Text = direccion;
+
             }
+
+
 
             //-------------------------------------------------------------------------------------------------------------------------------------------------------------- MLAT
 
             if (listaMLAT.Count > 0)
             {
-                listaNombresCAT10.Count();
+                // Generamos el nuevo documento
+
+                direccion = tb_direction.Text;
+
+                int abc1 = tb_direction.Text.Length - 1 - 4;
+
+                tb_direction.Text = tb_direction.Text.Substring(0, abc1);
+                tb_direction.Text = tb_direction.Text + "CAT10MLAT" + ".kml";
+
+                StreamWriter f = File.CreateText(tb_direction.Text);
+
+                // Leemos las partes del documento 
+                string[] startinglines = File.ReadAllLines("docs/start.txt");
+                string[] blue_style = File.ReadAllLines("docs/1Blue_style.txt");
+                string[] green_style = File.ReadAllLines("docs/1Green_style.txt");
+                string[] red_style = File.ReadAllLines("docs/1Red_style.txt");
+                string[] white_style = File.ReadAllLines("docs/1White_style.txt");
+                string[] body = File.ReadAllLines("docs/body.txt");
+
+
+                f.WriteLine(startinglines[0]);
+                f.WriteLine(startinglines[1]);
+                f.WriteLine(startinglines[2]);
+                f.WriteLine("\t<name>" + "CAT10_ MLAT" + "</name>");
+
+                f.WriteLine(blue_style[0]);
+                f.WriteLine(blue_style[1]);
+                f.WriteLine(blue_style[2]);
+                f.WriteLine(blue_style[3]);
+                f.WriteLine(blue_style[4]);
+                f.WriteLine(blue_style[5]);
+                f.WriteLine(blue_style[6]);
+                f.WriteLine(blue_style[7]);
+                f.WriteLine(blue_style[8]);
+
+                f.WriteLine(green_style[0]);
+                f.WriteLine(green_style[1]);
+                f.WriteLine(green_style[2]);
+                f.WriteLine(green_style[3]);
+                f.WriteLine(green_style[4]);
+                f.WriteLine(green_style[5]);
+                f.WriteLine(green_style[6]);
+                f.WriteLine(green_style[7]);
+                f.WriteLine(green_style[8]);
+
+                f.WriteLine(red_style[0]);
+                f.WriteLine(red_style[1]);
+                f.WriteLine(red_style[2]);
+                f.WriteLine(red_style[3]);
+                f.WriteLine(red_style[4]);
+                f.WriteLine(red_style[5]);
+                f.WriteLine(red_style[6]);
+                f.WriteLine(red_style[7]);
+                f.WriteLine(red_style[8]);
+
+                f.WriteLine(white_style[0]);
+                f.WriteLine(white_style[1]);
+                f.WriteLine(white_style[2]);
+                f.WriteLine(white_style[3]);
+                f.WriteLine(white_style[4]);
+                f.WriteLine(white_style[5]);
+                f.WriteLine(white_style[6]);
+                f.WriteLine(white_style[7]);
+                f.WriteLine(white_style[8]);
+
+                f.WriteLine(body[0]);
+
+                listaNombresCAT10.Clear();
 
                 int i = 0;
-                while(listaMLAT[i].TargetIdentification_decoded == "") { i = i + 1; }
+                while (listaMLAT[i].TargetIdentification_decoded == "") { i = i + 1; }
 
-                string Nombre1 = listaCAT10[i].TargetIdentification_decoded;
+                string Nombre1 = listaMLAT[i].TargetIdentification_decoded;
                 listaNombresCAT10.Add(Nombre1);
 
                 f.WriteLine("\t\t<name>" + Nombre1 + "</name>");
@@ -383,13 +539,84 @@ namespace ASTERIX
 
                     i = i + 1;
                 }
-            }
 
+                f.WriteLine(" </Document> </kml>");
+                f.Close();
+
+                tb_direction.Text = direccion;
+            }
 
             //-------------------------------------------------------------------------------------------------------------------------------------------------------------- SMR
 
             if (listaSMR.Count > 0)
             {
+                // Generamos el nuevo documento
+
+                direccion = tb_direction.Text;
+
+                int abc1 = tb_direction.Text.Length - 1 - 4;
+
+                tb_direction.Text = tb_direction.Text.Substring(0, abc1);
+                tb_direction.Text = tb_direction.Text + "CAT10SMR" + ".kml";
+
+                StreamWriter f = File.CreateText(tb_direction.Text);
+
+                // Leemos las partes del documento 
+                string[] startinglines = File.ReadAllLines("docs/start.txt");
+                string[] blue_style = File.ReadAllLines("docs/1Blue_style.txt");
+                string[] green_style = File.ReadAllLines("docs/1Green_style.txt");
+                string[] red_style = File.ReadAllLines("docs/1Red_style.txt");
+                string[] white_style = File.ReadAllLines("docs/1White_style.txt");
+                string[] body = File.ReadAllLines("docs/body.txt");
+
+
+                f.WriteLine(startinglines[0]);
+                f.WriteLine(startinglines[1]);
+                f.WriteLine(startinglines[2]);
+                f.WriteLine("\t<name>" + "CAT10_SMR" + "</name>");
+
+                f.WriteLine(blue_style[0]);
+                f.WriteLine(blue_style[1]);
+                f.WriteLine(blue_style[2]);
+                f.WriteLine(blue_style[3]);
+                f.WriteLine(blue_style[4]);
+                f.WriteLine(blue_style[5]);
+                f.WriteLine(blue_style[6]);
+                f.WriteLine(blue_style[7]);
+                f.WriteLine(blue_style[8]);
+
+                f.WriteLine(green_style[0]);
+                f.WriteLine(green_style[1]);
+                f.WriteLine(green_style[2]);
+                f.WriteLine(green_style[3]);
+                f.WriteLine(green_style[4]);
+                f.WriteLine(green_style[5]);
+                f.WriteLine(green_style[6]);
+                f.WriteLine(green_style[7]);
+                f.WriteLine(green_style[8]);
+
+                f.WriteLine(red_style[0]);
+                f.WriteLine(red_style[1]);
+                f.WriteLine(red_style[2]);
+                f.WriteLine(red_style[3]);
+                f.WriteLine(red_style[4]);
+                f.WriteLine(red_style[5]);
+                f.WriteLine(red_style[6]);
+                f.WriteLine(red_style[7]);
+                f.WriteLine(red_style[8]);
+
+                f.WriteLine(white_style[0]);
+                f.WriteLine(white_style[1]);
+                f.WriteLine(white_style[2]);
+                f.WriteLine(white_style[3]);
+                f.WriteLine(white_style[4]);
+                f.WriteLine(white_style[5]);
+                f.WriteLine(white_style[6]);
+                f.WriteLine(white_style[7]);
+                f.WriteLine(white_style[8]);
+
+                f.WriteLine(body[0]);
+
                 listaNombresCAT10.Clear();
 
                 int i = 0;
@@ -406,7 +633,7 @@ namespace ASTERIX
                 int j = 0;
                 while (j < listaSMR.Count)
                 {
-                    if (listaSMR[j].Tracknumber_value.ToString() == Nombre1 && listaSMR[j].MeasuredPositioninPolarCoordinates.Length>0)
+                    if (listaSMR[j].Tracknumber_value.ToString() == Nombre1 && listaSMR[j].MeasuredPositioninPolarCoordinates.Length > 0)
                     {
                         double rho = Math.Sqrt((listaSMR[j].X_cartesian) * (listaSMR[j].X_cartesian) + (listaSMR[j].Y_cartesian) * (listaSMR[j].Y_cartesian));
                         double theta = (180 / Math.PI) * Math.Atan2(listaSMR[j].X_cartesian, listaSMR[j].Y_cartesian);
@@ -452,7 +679,7 @@ namespace ASTERIX
                         {
                             if (listaSMR[j].Tracknumber_value.ToString() == Nombre)
                             {
-                                if(listaSMR[j].PositioninCartesianCoordinates.Length>0)
+                                if (listaSMR[j].PositioninCartesianCoordinates.Length > 0)
                                 {
                                     double rho = Math.Sqrt((listaSMR[j].X_cartesian) * (listaSMR[j].X_cartesian) + (listaSMR[j].Y_cartesian) * (listaSMR[j].Y_cartesian));
                                     double theta = (180 / Math.PI) * Math.Atan2(listaSMR[j].X_cartesian, listaSMR[j].Y_cartesian);
@@ -490,13 +717,15 @@ namespace ASTERIX
 
                     i = i + 1;
                 }
+
+                f.WriteLine(" </Document> </kml>");
+                f.Close();
+
+                tb_direction.Text = direccion;
+
             }
 
             //--------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-            f.WriteLine(" </Document> </kml>");
-            f.Close();
 
         }
 

@@ -33,13 +33,14 @@
             this.tb_direction = new System.Windows.Forms.TextBox();
             this.bt_Browse = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bt_ExportKML
             // 
-            this.bt_ExportKML.Location = new System.Drawing.Point(54, 153);
+            this.bt_ExportKML.Location = new System.Drawing.Point(243, 112);
             this.bt_ExportKML.Name = "bt_ExportKML";
-            this.bt_ExportKML.Size = new System.Drawing.Size(191, 82);
+            this.bt_ExportKML.Size = new System.Drawing.Size(231, 37);
             this.bt_ExportKML.TabIndex = 0;
             this.bt_ExportKML.Text = "Export to .kml (Google Earth)";
             this.bt_ExportKML.UseVisualStyleBackColor = true;
@@ -71,11 +72,23 @@
             this.bt_Browse.UseVisualStyleBackColor = true;
             this.bt_Browse.Click += new System.EventHandler(this.bt_Browse_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(144, 170);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(459, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "IMPORTANT: When creating a file to export finish the name with \".kml\". Otherwise " +
+    "it won\'t work";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // Export
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(937, 450);
+            this.ClientSize = new System.Drawing.Size(751, 230);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.bt_Browse);
             this.Controls.Add(this.tb_direction);
             this.Controls.Add(this.label2);
@@ -94,5 +107,6 @@
         private System.Windows.Forms.TextBox tb_direction;
         private System.Windows.Forms.Button bt_Browse;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label label1;
     }
 }
