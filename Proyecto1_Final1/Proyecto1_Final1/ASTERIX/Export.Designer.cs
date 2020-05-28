@@ -34,6 +34,7 @@
             this.bt_Browse = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
+            this.lb_decoding = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bt_ExportKML
@@ -75,19 +76,33 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(144, 170);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(54, 167);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(459, 13);
+            this.label1.Size = new System.Drawing.Size(518, 15);
             this.label1.TabIndex = 6;
             this.label1.Text = "IMPORTANT: When creating a file to export finish the name with \".kml\". Otherwise " +
     "it won\'t work";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lb_decoding
+            // 
+            this.lb_decoding.AutoSize = true;
+            this.lb_decoding.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_decoding.Location = new System.Drawing.Point(290, 198);
+            this.lb_decoding.Name = "lb_decoding";
+            this.lb_decoding.Size = new System.Drawing.Size(57, 20);
+            this.lb_decoding.TabIndex = 7;
+            this.lb_decoding.Text = "label3";
+            this.lb_decoding.Visible = false;
+            // 
             // Export
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(751, 230);
+            this.ClientSize = new System.Drawing.Size(656, 241);
+            this.Controls.Add(this.lb_decoding);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bt_Browse);
             this.Controls.Add(this.tb_direction);
@@ -108,5 +123,6 @@
         private System.Windows.Forms.Button bt_Browse;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lb_decoding;
     }
 }

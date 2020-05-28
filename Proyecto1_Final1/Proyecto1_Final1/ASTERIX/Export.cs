@@ -64,12 +64,14 @@ namespace ASTERIX
                     i = i + 1;
                 }
             }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-           if(listaCAT21v23.Count>0)
+            lb_decoding.Visible = true;
+            lb_decoding.Text = "DECODING";
+
+            if (listaCAT21v23.Count>0)
             {
                 // Generamos el nuevo documento
 
@@ -229,7 +231,7 @@ namespace ASTERIX
                 f.Close();
 
                 tb_direction.Text = direccion;
-           }
+            }
 
             //-------------------------------------------------------------------------------------------------------------------------------------------------------------- CAT21
 
@@ -411,7 +413,7 @@ namespace ASTERIX
                 f.WriteLine(startinglines[0]);
                 f.WriteLine(startinglines[1]);
                 f.WriteLine(startinglines[2]);
-                f.WriteLine("\t<name>" + "CAT10_ MLAT" + "</name>");
+                f.WriteLine("\t<name>" + "CAT10 (MLAT)" + "</name>");
 
                 f.WriteLine(blue_style[0]);
                 f.WriteLine(blue_style[1]);
@@ -573,7 +575,7 @@ namespace ASTERIX
                 f.WriteLine(startinglines[0]);
                 f.WriteLine(startinglines[1]);
                 f.WriteLine(startinglines[2]);
-                f.WriteLine("\t<name>" + "CAT10_SMR" + "</name>");
+                f.WriteLine("\t<name>" + "CAT10 (SMR)" + "</name>");
 
                 f.WriteLine(blue_style[0]);
                 f.WriteLine(blue_style[1]);
@@ -725,6 +727,9 @@ namespace ASTERIX
 
             }
 
+            lb_decoding.Visible = true;
+            lb_decoding.Text = "The file has been decoded successfully.";
+
             //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         }
@@ -736,6 +741,9 @@ namespace ASTERIX
 
         private void bt_Browse_Click(object sender, EventArgs e)
         {
+            lb_decoding.Visible = true;
+            lb_decoding.Text = "DECODING";
+
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string direccion = saveFileDialog1.FileName;
