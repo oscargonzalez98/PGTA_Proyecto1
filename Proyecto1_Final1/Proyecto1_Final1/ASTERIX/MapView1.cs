@@ -38,13 +38,10 @@ namespace ASTERIX
 
         //Listas de Aviones en cada segundo por categoria
         List<double> listasecondsCAT10 = new List<double>(); // lista de segundos en los que se envia un paquete de la categoria CAT10
-        List<List<int>> lista_listavionesCAT10 = new List<List<int>>(); // lista de paquetes CAT10 que hay en cada segundo de la lista de segundos CAT10
 
         List<double> listasecondsCAT21 = new List<double>(); // lista de segundos en los que se envia un paquete de la categoria CAT21
-        List<List<int>> lista_listavionesCAT21 = new List<List<int>>(); // lista de paquetes CAT21 que hay en cada segundo de la lista de segundos CAT21
 
         List<double> listasecondsCAT21v23 = new List<double>(); // lista de segundos en los que se envia un paquete de la categoria CAT21v23
-        List<List<int>> lista_listavionesCAT21v23 = new List<List<int>>(); // lista de paquetes CAT21v23 que hay en cada segundo de la lista de segundos CAT21v23
 
         public double secondCounter;
         public double secondCounterInicial;
@@ -357,7 +354,6 @@ namespace ASTERIX
             // Definimos valor inicial del contador contador
 
             secondCounter = secondCounterInicial;
-            //secondCounter = 81860;
 
             // Labels del tiempo
 
@@ -1714,8 +1710,6 @@ namespace ASTERIX
                             else { marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane); }
 
                             overlay.Markers.Add(marker);
-                            //var marker = new GMarkerGoogle(new PointLatLng(listaCAT21v23[vuelosCAT21v23[j]].latWGS84, listaCAT21v23[vuelosCAT21v23[j]].lonWGS84), red_plane);
-                            //overlay.Markers.Add(marker);
 
                             marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                             if (listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification.Length > 0 && Convert.ToInt64(listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification, 2) > 1) { marker.ToolTipText = string.Concat("Target Identification: ", listaCAT21v23[vuelosCAT21v23[j]].TargetIdentification_decoded); }

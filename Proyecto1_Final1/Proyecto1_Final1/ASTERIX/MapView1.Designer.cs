@@ -100,7 +100,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.6842F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.3158F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.tableLayoutPanel1.Controls.Add(this.Mapa, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 2, 3);
@@ -171,14 +171,14 @@
             this.Mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.Mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.Mapa.ShowTileGridLines = false;
-            this.Mapa.Size = new System.Drawing.Size(975, 845);
+            this.Mapa.Size = new System.Drawing.Size(973, 845);
             this.Mapa.TabIndex = 1;
             this.Mapa.Zoom = 0D;
             // 
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(984, 103);
+            this.panel1.Location = new System.Drawing.Point(982, 103);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(44, 14);
             this.panel1.TabIndex = 3;
@@ -188,10 +188,10 @@
             // 
             this.panel2.Controls.Add(this.tableLayoutPanel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(1034, 123);
+            this.panel2.Location = new System.Drawing.Point(1032, 123);
             this.panel2.Name = "panel2";
             this.tableLayoutPanel1.SetRowSpan(this.panel2, 2);
-            this.panel2.Size = new System.Drawing.Size(344, 74);
+            this.panel2.Size = new System.Drawing.Size(343, 74);
             this.panel2.TabIndex = 4;
             // 
             // tableLayoutPanel3
@@ -218,7 +218,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(344, 68);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(343, 68);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // label7
@@ -288,7 +288,7 @@
             this.lb_HoraFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold);
             this.lb_HoraFinal.Location = new System.Drawing.Point(245, 0);
             this.lb_HoraFinal.Name = "lb_HoraFinal";
-            this.lb_HoraFinal.Size = new System.Drawing.Size(96, 47);
+            this.lb_HoraFinal.Size = new System.Drawing.Size(95, 47);
             this.lb_HoraFinal.TabIndex = 2;
             this.lb_HoraFinal.Text = "label2";
             this.lb_HoraFinal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -330,7 +330,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(245, 47);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 21);
+            this.label6.Size = new System.Drawing.Size(95, 21);
             this.label6.TabIndex = 6;
             this.label6.Text = "Hora Final";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -342,9 +342,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1034, 100);
+            this.label1.Location = new System.Drawing.Point(1032, 100);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(344, 20);
+            this.label1.Size = new System.Drawing.Size(343, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "----------------------------------------------------------";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -356,9 +356,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1034, 200);
+            this.label4.Location = new System.Drawing.Point(1032, 200);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(344, 20);
+            this.label4.Size = new System.Drawing.Size(343, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "----------------------------------------------------------";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -369,9 +369,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox1.Location = new System.Drawing.Point(1034, 223);
+            this.groupBox1.Location = new System.Drawing.Point(1032, 223);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(344, 24);
+            this.groupBox1.Size = new System.Drawing.Size(343, 24);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -398,7 +398,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(344, 24);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(343, 24);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // rb_20
@@ -409,7 +409,7 @@
             this.rb_20.AutoSize = true;
             this.rb_20.Location = new System.Drawing.Point(288, 3);
             this.rb_20.Name = "rb_20";
-            this.rb_20.Size = new System.Drawing.Size(53, 18);
+            this.rb_20.Size = new System.Drawing.Size(52, 18);
             this.rb_20.TabIndex = 5;
             this.rb_20.TabStop = true;
             this.rb_20.Text = "x20";
@@ -497,9 +497,9 @@
             this.bt_AllFlights.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_AllFlights.Location = new System.Drawing.Point(1034, 293);
+            this.bt_AllFlights.Location = new System.Drawing.Point(1032, 293);
             this.bt_AllFlights.Name = "bt_AllFlights";
-            this.bt_AllFlights.Size = new System.Drawing.Size(344, 34);
+            this.bt_AllFlights.Size = new System.Drawing.Size(343, 34);
             this.bt_AllFlights.TabIndex = 8;
             this.bt_AllFlights.Text = "Simulate all Flights";
             this.bt_AllFlights.UseVisualStyleBackColor = true;
@@ -511,9 +511,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1034, 330);
+            this.label8.Location = new System.Drawing.Point(1032, 330);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(344, 20);
+            this.label8.Size = new System.Drawing.Size(343, 20);
             this.label8.TabIndex = 9;
             this.label8.Text = "or";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -523,9 +523,9 @@
             this.tb_TargetIdentification.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_TargetIdentification.Location = new System.Drawing.Point(1034, 353);
+            this.tb_TargetIdentification.Location = new System.Drawing.Point(1032, 353);
             this.tb_TargetIdentification.Name = "tb_TargetIdentification";
-            this.tb_TargetIdentification.Size = new System.Drawing.Size(344, 20);
+            this.tb_TargetIdentification.Size = new System.Drawing.Size(343, 20);
             this.tb_TargetIdentification.TabIndex = 10;
             // 
             // bt_SingleFlight
@@ -533,9 +533,9 @@
             this.bt_SingleFlight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_SingleFlight.Location = new System.Drawing.Point(1034, 383);
+            this.bt_SingleFlight.Location = new System.Drawing.Point(1032, 383);
             this.bt_SingleFlight.Name = "bt_SingleFlight";
-            this.bt_SingleFlight.Size = new System.Drawing.Size(344, 34);
+            this.bt_SingleFlight.Size = new System.Drawing.Size(343, 34);
             this.bt_SingleFlight.TabIndex = 11;
             this.bt_SingleFlight.Text = "Simulate single flight (The one writren above)";
             this.bt_SingleFlight.UseVisualStyleBackColor = true;
@@ -555,11 +555,11 @@
             this.tableLayoutPanel5.Controls.Add(this.bt_Forward, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.bt_PlayPause, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.bt_Restart, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(1034, 634);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(1032, 634);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(344, 94);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(343, 94);
             this.tableLayoutPanel5.TabIndex = 13;
             // 
             // bt_Forward
@@ -567,9 +567,9 @@
             this.bt_Forward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_Forward.Location = new System.Drawing.Point(243, 3);
+            this.bt_Forward.Location = new System.Drawing.Point(241, 3);
             this.bt_Forward.Name = "bt_Forward";
-            this.bt_Forward.Size = new System.Drawing.Size(98, 88);
+            this.bt_Forward.Size = new System.Drawing.Size(99, 88);
             this.bt_Forward.TabIndex = 4;
             this.bt_Forward.Text = "Step Forward";
             this.bt_Forward.UseVisualStyleBackColor = true;
@@ -580,9 +580,9 @@
             this.bt_PlayPause.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_PlayPause.Location = new System.Drawing.Point(123, 3);
+            this.bt_PlayPause.Location = new System.Drawing.Point(122, 3);
             this.bt_PlayPause.Name = "bt_PlayPause";
-            this.bt_PlayPause.Size = new System.Drawing.Size(97, 88);
+            this.bt_PlayPause.Size = new System.Drawing.Size(96, 88);
             this.bt_PlayPause.TabIndex = 2;
             this.bt_PlayPause.Text = "Play/Pause";
             this.bt_PlayPause.UseVisualStyleBackColor = true;
@@ -595,7 +595,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_Restart.Location = new System.Drawing.Point(3, 3);
             this.bt_Restart.Name = "bt_Restart";
-            this.bt_Restart.Size = new System.Drawing.Size(97, 88);
+            this.bt_Restart.Size = new System.Drawing.Size(96, 88);
             this.bt_Restart.TabIndex = 3;
             this.bt_Restart.Text = "Restart";
             this.bt_Restart.UseVisualStyleBackColor = true;
@@ -606,9 +606,9 @@
             this.bt_PlotAllFlights.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_PlotAllFlights.Location = new System.Drawing.Point(1034, 754);
+            this.bt_PlotAllFlights.Location = new System.Drawing.Point(1032, 754);
             this.bt_PlotAllFlights.Name = "bt_PlotAllFlights";
-            this.bt_PlotAllFlights.Size = new System.Drawing.Size(344, 44);
+            this.bt_PlotAllFlights.Size = new System.Drawing.Size(343, 44);
             this.bt_PlotAllFlights.TabIndex = 13;
             this.bt_PlotAllFlights.Text = "Plot all Flights (Zoom in/out after clicking to update map)";
             this.bt_PlotAllFlights.UseVisualStyleBackColor = true;
@@ -630,7 +630,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel6.Controls.Add(this.label11, 8, 0);
             this.tableLayoutPanel6.Controls.Add(this.label10, 6, 0);
             this.tableLayoutPanel6.Controls.Add(this.pb_GreenPlane, 5, 0);
@@ -639,12 +639,12 @@
             this.tableLayoutPanel6.Controls.Add(this.label9, 4, 0);
             this.tableLayoutPanel6.Controls.Add(this.pictureBox1, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label12, 2, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(984, 804);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(982, 804);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(476, 44);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(478, 44);
             this.tableLayoutPanel6.TabIndex = 14;
             // 
             // label11
@@ -672,7 +672,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 44);
             this.label10.TabIndex = 4;
-            this.label10.Text = "CAT21";
+            this.label10.Text = "CAT21 v2.1";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pb_GreenPlane
@@ -718,7 +718,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 44);
             this.label9.TabIndex = 3;
-            this.label9.Text = "CAT10: MLAT";
+            this.label9.Text = "CAT10 MLAT";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
@@ -743,7 +743,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(57, 44);
             this.label12.TabIndex = 8;
-            this.label12.Text = "CAT10: SMR";
+            this.label12.Text = "CAT10 SMR";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel7
@@ -761,17 +761,17 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel7.Controls.Add(this.cb_SMR, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.cb_MLAT, 3, 0);
             this.tableLayoutPanel7.Controls.Add(this.CB_CAT21, 5, 0);
             this.tableLayoutPanel7.Controls.Add(this.cb_CAT21v23, 7, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(984, 53);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(982, 53);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(476, 44);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(478, 44);
             this.tableLayoutPanel7.TabIndex = 15;
             // 
             // cb_SMR
