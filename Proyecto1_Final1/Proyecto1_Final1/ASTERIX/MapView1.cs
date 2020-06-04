@@ -1111,7 +1111,6 @@ namespace ASTERIX
 
 
             return listaCoordenadas;
-
         }
         public double[] NewCoordinatesMLAT(double distance, double initialBearing)
         {
@@ -1183,7 +1182,6 @@ namespace ASTERIX
             sec2 = Math.Abs(sec2 % 3600);
             int min2 = sec2 / 60;
             sec2 %= 60;
-
 
             return listaCoordenadas;
         }
