@@ -2679,9 +2679,6 @@ namespace LIBRERIACLASES
 
                                 double  int1 = Convert.ToInt32(TimeofASTERIXReportTransmission, 2);
                                 TimeofASTERIXReportTransmission_seconds = int1 / 128;
-
-                                int a = 1;
-
                             }
 
                             if (Char.ToString(FSPEC_fake[31]) == "1") // FX - Field extension indicator 

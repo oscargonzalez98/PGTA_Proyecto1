@@ -121,9 +121,24 @@ namespace ASTERIX
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            List<CAT21> listaCAT21TransponderV2 = new List<CAT21>();
+            List<double> listadistancias = new List<double>();
+
+            int k = 0;
+            while(k<listaCAT21.Count)
+            {
+                if(listaCAT21[k].VN == "ED102A/DO-260B [Ref. 11].")
+                {
+                    listaCAT21TransponderV2.Add(listaCAT21[k]);
+                }
+                k = k + 1;
+            }
+
+            pb_PrecissionAccuracy.Maximum = listaCAT21TransponderV2.Count;
+            pb_PrecissionAccuracy.Value = 0;
 
             int i = 0;
-            while (i<listaCAT21.Count)
+            while (i<listaCAT21TransponderV2.Count)
             {
                 // Declaro las variables a usar que canvian para cada paqueteCAT21
 
@@ -131,88 +146,105 @@ namespace ASTERIX
                 string TA_CAT21 = "";
                 double timeCAT21=0;
 
-                int posición;
+                int posición = 0;
 
                 double diferenciadetiempo = 1e6;
 
-                List<double> listadistancias = new List<double>();
+                if (listaCAT21TransponderV2[i].TargetIdentification.Length > 0) { TI_CAT21 = listaCAT21TransponderV2[i].TargetIdentification_decoded; }
+                if (listaCAT21TransponderV2[i].TargetAddress_bin.Length > 0) { TA_CAT21 = listaCAT21TransponderV2[i].TargetAdress_real; }
+                if (listaCAT21TransponderV2[i].TimeofASTERIXReportTransmission.Length > 0) { timeCAT21 = listaCAT21TransponderV2[i].TimeofASTERIXReportTransmission_seconds; }
 
-                if (listaCAT21[i].TargetIdentification.Length > 0) { TI_CAT21 = listaCAT21[i].TargetIdentification; }
-                if (listaCAT21[i].TargetAddress_bin.Length > 0) { TA_CAT21 = listaCAT21[i].TargetAdress_real; }
-                if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) { timeCAT21 = listaCAT21[i].TimeofASTERIXReportTransmission_seconds; }
-
-                if((TI_CAT21.Length>0 && timeCAT21> 0) || (TA_CAT21.Length > 0 && timeCAT21 >= 0))
+                if((TI_CAT21.Length>0 && timeCAT21> 0) || (TA_CAT21.Length > 0 && timeCAT21 > 0))
                 {
-                    string TI_MLAT = "";
-                    string TA_MLAT = "";
-                    double timeMLAT = 0;
-
-                    if (listaCAT21[i].TargetIdentification.Length > 0) { TI_MLAT = listaCAT21[i].TargetIdentification; }
-                    if (listaCAT21[i].TargetAddress_bin.Length > 0) { TA_MLAT = listaCAT21[i].TargetAdress_real; }
-                    if (listaCAT21[i].TimeofASTERIXReportTransmission.Length > 0) { timeMLAT = listaCAT21[i].TimeofASTERIXReportTransmission_seconds; }
-
-                    if ((TI_MLAT.Length > 0 && timeMLAT > 0) || (TA_MLAT.Length > 0 && timeMLAT >= 0))
+                    int j = 0;
+                    while (j< lista_paquetes_precisión.Count)
                     {
-                        int j = 0;
-                        while (j<listaMLAT.Count)
+                        string TI_MLAT = "";
+                        string TA_MLAT = "";
+                        double timeMLAT = 0;
+
+                        if (listaMLAT[j].TargetIdentification.Length > 0) { TI_MLAT = listaMLAT[j].TargetIdentification_decoded; }
+                        if (listaMLAT[j].TargetAdress_decoded.Length > 0) { TA_MLAT = listaMLAT[j].TargetAdress_decoded; }
+                        if (listaMLAT[j].TimeofDay.Length > 0) { timeMLAT = listaMLAT[j].TimeofDay_seconds; }
+
+                        if ((TI_MLAT.Length > 0 && timeMLAT > 0) || (TA_MLAT.Length > 0 && timeMLAT >= 0)) // si tiene info de Target Addres o Target identification ytiempo
                         {
-                            if((Math.Abs(timeCAT21-timeMLAT)<diferenciadetiempo && TI_CAT21 == TI_MLAT) || (Math.Abs(timeCAT21 - timeMLAT) < diferenciadetiempo && TA_CAT21 == TA_MLAT))
+                            double time = Math.Abs(timeCAT21 - timeMLAT);
+
+                            if ( time < diferenciadetiempo && TI_CAT21 == TI_MLAT) // si target address o target ident coinciden con TA o TI de CAT21
                             {
                                 diferenciadetiempo = timeMLAT - timeCAT21;
                                 posición = j;
                             }
-                            j = j + 1;
+
+                            else if(time < diferenciadetiempo && TA_CAT21 == TA_MLAT)
+                            {
+                                diferenciadetiempo = timeMLAT - timeCAT21;
+                                posición = j;
+                            }
                         }
+                        j = j + 1;
+                    }
 
-                        if(diferenciadetiempo == 0 && listaMLAT[j].PositioninCartesianCoordinates.Length>0)
-                        {
-                            double rho = Math.Sqrt((listaMLAT[j].X_cartesian) * (listaMLAT[j].X_cartesian) + (listaMLAT[j].Y_cartesian) * (listaMLAT[j].Y_cartesian));
-                            double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[j].X_cartesian, listaMLAT[j].Y_cartesian);
+                    //hay que substituir j por posicion
 
-                            double[] coord_inicialess = new double[2];
-                            coord_inicialess[0] = LatMLAT;
-                            coord_inicialess[1] = LonMLAT;
+                    if(diferenciadetiempo == 0 && listaMLAT[posición].CalculatedTrackVelocityinCartesianCoordinates.Length>0 && diferenciadetiempo != 1e6)
+                    {
+                        double rho = Math.Sqrt((listaMLAT[posición].X_cartesian) * (listaMLAT[lista_paquetes_precisión[j]].X_cartesian) + (listaMLAT[posición].Y_cartesian) * (listaMLAT[posición].Y_cartesian));
+                        double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[posición].X_cartesian, listaMLAT[posición].Y_cartesian);
 
-                            double[] newcoord = NewCoordinatesMLAT(rho,theta);
-                            listadistancias.Add(CalculateDistanceBetweenCoordinates(coord_inicialess, newcoord));
-                        }
+                        double[] coord_inicialess = new double[2];
+                        coord_inicialess[0] = LatMLAT;
+                        coord_inicialess[1] = LonMLAT;
 
-                        if (diferenciadetiempo > 0 && listaMLAT[j].CalculatedTrackVelocityinCartesianCoordinates.Length > 0)
-                        {
-                            double[] coord_inicialess = new double[2];
-                            coord_inicialess[0] = LatMLAT;
-                            coord_inicialess[1] = LonMLAT;
+                        double[] newcoord = NewCoordinatesMLAT(rho,theta);
+                        listadistancias.Add(CalculateDistanceBetweenCoordinates(coord_inicialess, newcoord));
+                    }
 
-                            double X_real = listaMLAT[j].X_cartesian - listaMLAT[j].Vx_cartesian * diferenciadetiempo;
-                            double Y_real = listaMLAT[j].Y_cartesian - listaMLAT[j].Vy_cartesian * diferenciadetiempo;
+                    if (diferenciadetiempo > 0 && listaMLAT[posición].CalculatedTrackVelocityinCartesianCoordinates.Length > 0 && diferenciadetiempo != 1e6)
+                    {
+                        double[] coord_inicialess = new double[2];
+                        coord_inicialess[0] = LatMLAT;
+                        coord_inicialess[1] = LonMLAT;
 
-                            double rho = Math.Sqrt((X_real) * (X_real) + (Y_real) * (Y_real));
-                            double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[j].X_cartesian, listaMLAT[j].Y_cartesian);
+                        double X_real = listaMLAT[posición].X_cartesian - listaMLAT[posición].Vx_cartesian * Math.Abs(diferenciadetiempo);
+                        double Y_real = listaMLAT[posición].Y_cartesian - listaMLAT[posición].Vy_cartesian * Math.Abs(diferenciadetiempo);
 
-                            double[] newcoord = NewCoordinatesMLAT(rho, theta);
-                            listadistancias.Add(CalculateDistanceBetweenCoordinates(coord_inicialess, newcoord));
-                        }
+                        double rho = Math.Sqrt((X_real) * (X_real) + (Y_real) * (Y_real));
+                        double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[posición].X_cartesian, listaMLAT[posición].Y_cartesian);
 
-                        if (diferenciadetiempo < 0 && listaMLAT[j].PositioninCartesianCoordinates.Length > 0)
-                        {
-                            double[] coord_inicialess = new double[2];
-                            coord_inicialess[0] = LatMLAT;
-                            coord_inicialess[1] = LonMLAT;
+                        double[] newcoord = NewCoordinatesMLAT(rho, theta);
+                        listadistancias.Add(CalculateDistanceBetweenCoordinates(coord_inicialess, newcoord));
+                    }
 
-                            double X_real = listaMLAT[j].X_cartesian + listaMLAT[j].Vx_cartesian * diferenciadetiempo;
-                            double Y_real = listaMLAT[j].Y_cartesian + listaMLAT[j].Vy_cartesian * diferenciadetiempo;
+                    if (diferenciadetiempo < 0 && listaMLAT[posición].CalculatedTrackVelocityinCartesianCoordinates.Length > 0 && diferenciadetiempo != 1e6)
+                    {
+                        double[] coord_inicialess = new double[2];
+                        coord_inicialess[0] = LatMLAT;
+                        coord_inicialess[1] = LonMLAT;
 
-                            double rho = Math.Sqrt((X_real) * (X_real) + (Y_real) * (Y_real));
-                            double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[j].X_cartesian, listaMLAT[j].Y_cartesian);
+                        double X_real = listaMLAT[posición].X_cartesian + listaMLAT[posición].Vx_cartesian * Math.Abs(diferenciadetiempo);
+                        double Y_real = listaMLAT[posición].Y_cartesian + listaMLAT[posición].Vy_cartesian * Math.Abs(diferenciadetiempo);
 
-                            double[] newcoord = NewCoordinatesMLAT(rho, theta);
-                            listadistancias.Add(CalculateDistanceBetweenCoordinates(coord_inicialess, newcoord));
-                        }
+                        double rho = Math.Sqrt((X_real) * (X_real) + (Y_real) * (Y_real));
+                        double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[posición].X_cartesian, listaMLAT[posición].Y_cartesian);
+
+                        double[] newcoord = NewCoordinatesMLAT(rho, theta);
+                        listadistancias.Add(CalculateDistanceBetweenCoordinates(coord_inicialess, newcoord));
                     }
                 }
 
+                pb_PrecissionAccuracy.Value = pb_PrecissionAccuracy.Value + 1;
+
                 i = i + 1;
             }
+
+            listadistancias.Sort();
+
+            lb_meandistance.Text = Convert.ToString(Math.Round(listadistancias.Sum() / Convert.ToDouble(listadistancias.Count),3)) + " m";
+            lb_meandistance.Visible = true;
+
+
         }
 
         private void lb_ProbabilityofUpdate_Click(object sender, EventArgs e)
@@ -391,37 +423,37 @@ namespace ASTERIX
             var deltaSigma = B * sinSigma * (cos2SigmaM + B / 4 * (cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM) - B / 6 * cos2SigmaM * (-3 + 4 * sinSigma * sinSigma) * (-3 + 4 * cos2SigmaM * cos2SigmaM)));
             var s = b * A * (sigma - deltaSigma);
 
-            return s;
+            return s/1000;
         }
 
-        public double CalculateDistanceBetweenCoordinates2(double[] initial_coordinates, double[] final_coordinates)
-        {
-            double φ1 = toRadians(initial_coordinates[0]);
-            double φ2 = toRadians(final_coordinates[0]);
-            double λ1 = toRadians(initial_coordinates[1]);
-            double λ2 = toRadians(final_coordinates[1]);
+        //public double CalculateDistanceBetweenCoordinates2(double[] initial_coordinates, double[] final_coordinates)
+        //{
+        //    double φ1 = toRadians(initial_coordinates[0]);
+        //    double φ2 = toRadians(final_coordinates[0]);
+        //    double λ1 = toRadians(initial_coordinates[1]);
+        //    double λ2 = toRadians(final_coordinates[1]);
 
-            double lat1 = φ1;
-            double lon1 = λ1;
-            double lat2 = φ2;
-            double lon2 = λ2;
+        //    double lat1 = φ1;
+        //    double lon1 = λ1;
+        //    double lat2 = φ2;
+        //    double lon2 = λ2;
 
-            double a = 6378137.0;
-            double b = 6356752.314245;
-            double f = 1 / 298.257223563;
-            double e_sq = 1 - ((b / a) * (b / a));
-            double tmp = Math.Sqrt(1 - e_sq * Math.Sin(lat1));
+        //    double a = 6378137.0;
+        //    double b = 6356752.314245;
+        //    double f = 1 / 298.257223563;
+        //    double e_sq = 1 - ((b / a) * (b / a));
+        //    double tmp = Math.Sqrt(1 - e_sq * Math.Sin(lat1));
 
-            double lat = lat2 - lat1;
-            double lon = lon2 - lon1;
+        //    double lat = lat2 - lat1;
+        //    double lon = lon2 - lon1;
 
-            double x = (a * lon / tmp) * (Math.Cos(lat1) - ((1 - e_sq) / (tmp * tmp)) * Math.Sin(lat1) * lat);
-            double y = (a * (1 - e_sq) / (tmp * tmp * tmp)) * lat + Math.Cos(lat1) * Math.Sin(lat1) * ((3 / 2) * e_sq * lat * lat + ((lon*lon) / (2*tmp)));
+        //    double x = (a * lon / tmp) * (Math.Cos(lat1) - ((1 - e_sq) / (tmp * tmp)) * Math.Sin(lat1) * lat);
+        //    double y = (a * (1 - e_sq) / (tmp * tmp * tmp)) * lat + Math.Cos(lat1) * Math.Sin(lat1) * ((3 / 2) * e_sq * lat * lat + ((lon*lon) / (2*tmp)));
 
-            double s = Math.Sqrt(x * x + y * y);
+        //    double s = Math.Sqrt(x * x + y * y);
 
-            return s;
-        }
+        //    return s;
+        //}
 
         public double[] NewCoordinatesMLAT(double distance, double initialBearing)
         {

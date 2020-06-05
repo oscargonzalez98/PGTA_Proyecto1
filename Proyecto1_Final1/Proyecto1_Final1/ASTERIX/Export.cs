@@ -181,11 +181,6 @@ namespace ASTERIX
                 {
                     string Nombre = listaCAT21v23[i].TargetIdentification_decoded;
 
-                    if (Nombre == "VLG1291")
-                    {
-                        int ab = 0;
-                    }
-
                     if (listaNombresCAT21v23.Contains(Nombre) == false && Nombre != "") // Si el numero no esta en la lista tenemos que dinujarlo
                     {
                         listaNombresCAT21v23.Add(Nombre);
