@@ -80,12 +80,32 @@
             this.ReceiverID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataAges = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCAT20 = new System.Windows.Forms.DataGridView();
+            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SAC_SIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetReportDescriptorv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofDayv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositioninWGS84Coordv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetAdressv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GeometricAltitudev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FigureofMertiv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LinkTechnologyv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RollAnglev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FlightLevelv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AirSpeedv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrueAirSpeedv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MagneticHeadingv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BarometircVerticalRatev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GeometricVerticalRatev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroundVectorv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RateofTurnv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Targetidentificationv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeofDayAccuracy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetStatusv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmitterCategoryv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MetReportv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IntermediateStateSelectedAltitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FinalStateSelectedAltitudev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCAT10 = new System.Windows.Forms.DataGridView();
-            this.bt_FastBackward = new System.Windows.Forms.Button();
-            this.bt_Backward = new System.Windows.Forms.Button();
-            this.bt_Forward = new System.Windows.Forms.Button();
-            this.bt_FastForward = new System.Windows.Forms.Button();
-            this.lb_Pages = new System.Windows.Forms.Label();
             this.Number1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataSourceIdentifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MessageType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -112,31 +132,16 @@
             this.Presence = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmplitudeofPrimaryPlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CalculatedAcceleration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SAC_SIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetReportDescriptorv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeofDayv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PositioninWGS84Coordv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetAdressv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GeometricAltitudev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FigureofMertiv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LinkTechnologyv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RollAnglev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FlightLevelv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AirSpeedv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrueAirSpeedv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MagneticHeadingv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BarometircVerticalRatev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GeometricVerticalRatev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GroundVectorv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RateofTurnv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Targetidentificationv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimeofDayAccuracy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetStatusv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmitterCategoryv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MetReportv23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IntermediateStateSelectedAltitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FinalStateSelectedAltitudev23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bt_FastBackward = new System.Windows.Forms.Button();
+            this.bt_Backward = new System.Windows.Forms.Button();
+            this.bt_Forward = new System.Windows.Forms.Button();
+            this.bt_FastForward = new System.Windows.Forms.Button();
+            this.lb_Pages = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tb_name = new System.Windows.Forms.TextBox();
+            this.lb_FilterCAT21 = new System.Windows.Forms.Button();
             this.tlpTables.SuspendLayout();
             this.panelCAT10.SuspendLayout();
             this.panelCAT20.SuspendLayout();
@@ -144,6 +149,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT10)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpTables
@@ -151,7 +158,7 @@
             this.tlpTables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlpTables.ColumnCount = 8;
+            this.tlpTables.ColumnCount = 9;
             this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
@@ -159,6 +166,7 @@
             this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 450F));
             this.tlpTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpTables.Controls.Add(this.btCAT10, 0, 0);
             this.tlpTables.Controls.Add(this.btCAT20, 1, 0);
@@ -168,14 +176,15 @@
             this.tlpTables.Controls.Add(this.bt_Backward, 4, 0);
             this.tlpTables.Controls.Add(this.bt_Forward, 5, 0);
             this.tlpTables.Controls.Add(this.bt_FastForward, 6, 0);
-            this.tlpTables.Controls.Add(this.lb_Pages, 7, 0);
+            this.tlpTables.Controls.Add(this.lb_Pages, 8, 0);
+            this.tlpTables.Controls.Add(this.panel1, 7, 0);
             this.tlpTables.Location = new System.Drawing.Point(9, 10);
             this.tlpTables.Margin = new System.Windows.Forms.Padding(2);
             this.tlpTables.Name = "tlpTables";
             this.tlpTables.RowCount = 2;
             this.tlpTables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.tlpTables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpTables.Size = new System.Drawing.Size(906, 346);
+            this.tlpTables.Size = new System.Drawing.Size(1626, 346);
             this.tlpTables.TabIndex = 0;
             // 
             // btCAT10
@@ -217,7 +226,7 @@
             this.btCAT21.Name = "btCAT21";
             this.btCAT21.Size = new System.Drawing.Size(86, 37);
             this.btCAT21.TabIndex = 10;
-            this.btCAT21.Text = "CAT21 v0.21";
+            this.btCAT21.Text = "CAT21 v2.1";
             this.btCAT21.UseVisualStyleBackColor = true;
             this.btCAT21.Click += new System.EventHandler(this.btCAT21_Click);
             // 
@@ -226,13 +235,13 @@
             this.panelCAT10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlpTables.SetColumnSpan(this.panelCAT10, 8);
+            this.tlpTables.SetColumnSpan(this.panelCAT10, 9);
             this.panelCAT10.Controls.Add(this.panelCAT20);
             this.panelCAT10.Controls.Add(this.dgvCAT10);
             this.panelCAT10.Location = new System.Drawing.Point(2, 43);
             this.panelCAT10.Margin = new System.Windows.Forms.Padding(2);
             this.panelCAT10.Name = "panelCAT10";
-            this.panelCAT10.Size = new System.Drawing.Size(902, 301);
+            this.panelCAT10.Size = new System.Drawing.Size(1622, 301);
             this.panelCAT10.TabIndex = 11;
             this.panelCAT10.Visible = false;
             // 
@@ -244,7 +253,7 @@
             this.panelCAT20.Location = new System.Drawing.Point(0, 0);
             this.panelCAT20.Margin = new System.Windows.Forms.Padding(2);
             this.panelCAT20.Name = "panelCAT20";
-            this.panelCAT20.Size = new System.Drawing.Size(902, 301);
+            this.panelCAT20.Size = new System.Drawing.Size(1622, 301);
             this.panelCAT20.TabIndex = 2;
             this.panelCAT20.Visible = false;
             // 
@@ -255,7 +264,7 @@
             this.panelCAT21.Location = new System.Drawing.Point(0, 0);
             this.panelCAT21.Margin = new System.Windows.Forms.Padding(2);
             this.panelCAT21.Name = "panelCAT21";
-            this.panelCAT21.Size = new System.Drawing.Size(902, 301);
+            this.panelCAT21.Size = new System.Drawing.Size(1622, 301);
             this.panelCAT21.TabIndex = 1;
             this.panelCAT21.Visible = false;
             // 
@@ -313,7 +322,7 @@
             this.dgvCAT21.Name = "dgvCAT21";
             this.dgvCAT21.RowHeadersWidth = 51;
             this.dgvCAT21.RowTemplate.Height = 24;
-            this.dgvCAT21.Size = new System.Drawing.Size(902, 301);
+            this.dgvCAT21.Size = new System.Drawing.Size(1622, 301);
             this.dgvCAT21.TabIndex = 1;
             this.dgvCAT21.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCAT21_CellClick);
             // 
@@ -646,9 +655,184 @@
             this.dgvCAT20.Name = "dgvCAT20";
             this.dgvCAT20.RowHeadersWidth = 51;
             this.dgvCAT20.RowTemplate.Height = 24;
-            this.dgvCAT20.Size = new System.Drawing.Size(902, 301);
+            this.dgvCAT20.Size = new System.Drawing.Size(1622, 301);
             this.dgvCAT20.TabIndex = 0;
             this.dgvCAT20.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCAT20_CellClick);
+            // 
+            // numero
+            // 
+            this.numero.HeaderText = "#";
+            this.numero.MinimumWidth = 6;
+            this.numero.Name = "numero";
+            this.numero.Width = 125;
+            // 
+            // SAC_SIC
+            // 
+            this.SAC_SIC.HeaderText = "SAC/SIC";
+            this.SAC_SIC.MinimumWidth = 6;
+            this.SAC_SIC.Name = "SAC_SIC";
+            this.SAC_SIC.Width = 125;
+            // 
+            // TargetReportDescriptorv23
+            // 
+            this.TargetReportDescriptorv23.HeaderText = "Target Report Descriptor";
+            this.TargetReportDescriptorv23.MinimumWidth = 6;
+            this.TargetReportDescriptorv23.Name = "TargetReportDescriptorv23";
+            this.TargetReportDescriptorv23.Width = 125;
+            // 
+            // TimeofDayv23
+            // 
+            this.TimeofDayv23.HeaderText = "Time of Day (h:m:s)";
+            this.TimeofDayv23.MinimumWidth = 6;
+            this.TimeofDayv23.Name = "TimeofDayv23";
+            this.TimeofDayv23.Width = 125;
+            // 
+            // PositioninWGS84Coordv23
+            // 
+            this.PositioninWGS84Coordv23.HeaderText = "Position in WGS-84 Coordinates (lat/lon)";
+            this.PositioninWGS84Coordv23.MinimumWidth = 6;
+            this.PositioninWGS84Coordv23.Name = "PositioninWGS84Coordv23";
+            this.PositioninWGS84Coordv23.Width = 125;
+            // 
+            // TargetAdressv23
+            // 
+            this.TargetAdressv23.HeaderText = "Target Address";
+            this.TargetAdressv23.MinimumWidth = 6;
+            this.TargetAdressv23.Name = "TargetAdressv23";
+            this.TargetAdressv23.Width = 125;
+            // 
+            // GeometricAltitudev23
+            // 
+            this.GeometricAltitudev23.HeaderText = "Geometric Altitude (ft)";
+            this.GeometricAltitudev23.MinimumWidth = 6;
+            this.GeometricAltitudev23.Name = "GeometricAltitudev23";
+            this.GeometricAltitudev23.Width = 125;
+            // 
+            // FigureofMertiv23
+            // 
+            this.FigureofMertiv23.HeaderText = "Figure of Merit";
+            this.FigureofMertiv23.MinimumWidth = 6;
+            this.FigureofMertiv23.Name = "FigureofMertiv23";
+            this.FigureofMertiv23.Width = 125;
+            // 
+            // LinkTechnologyv23
+            // 
+            this.LinkTechnologyv23.HeaderText = "Link Technology";
+            this.LinkTechnologyv23.MinimumWidth = 6;
+            this.LinkTechnologyv23.Name = "LinkTechnologyv23";
+            this.LinkTechnologyv23.Width = 125;
+            // 
+            // RollAnglev23
+            // 
+            this.RollAnglev23.HeaderText = "Roll Angle (º)";
+            this.RollAnglev23.MinimumWidth = 6;
+            this.RollAnglev23.Name = "RollAnglev23";
+            this.RollAnglev23.Width = 125;
+            // 
+            // FlightLevelv23
+            // 
+            this.FlightLevelv23.HeaderText = "Flight Level";
+            this.FlightLevelv23.MinimumWidth = 6;
+            this.FlightLevelv23.Name = "FlightLevelv23";
+            this.FlightLevelv23.Width = 125;
+            // 
+            // AirSpeedv23
+            // 
+            this.AirSpeedv23.HeaderText = "Air Speed (NM/s)";
+            this.AirSpeedv23.MinimumWidth = 6;
+            this.AirSpeedv23.Name = "AirSpeedv23";
+            this.AirSpeedv23.Width = 125;
+            // 
+            // TrueAirSpeedv23
+            // 
+            this.TrueAirSpeedv23.HeaderText = "True Air Speed (kt)";
+            this.TrueAirSpeedv23.MinimumWidth = 6;
+            this.TrueAirSpeedv23.Name = "TrueAirSpeedv23";
+            this.TrueAirSpeedv23.Width = 125;
+            // 
+            // MagneticHeadingv23
+            // 
+            this.MagneticHeadingv23.HeaderText = "Magnetic Heading (º)";
+            this.MagneticHeadingv23.MinimumWidth = 6;
+            this.MagneticHeadingv23.Name = "MagneticHeadingv23";
+            this.MagneticHeadingv23.Width = 125;
+            // 
+            // BarometircVerticalRatev23
+            // 
+            this.BarometircVerticalRatev23.HeaderText = "Barometric Vertical Rate (ft/s)";
+            this.BarometircVerticalRatev23.MinimumWidth = 6;
+            this.BarometircVerticalRatev23.Name = "BarometircVerticalRatev23";
+            this.BarometircVerticalRatev23.Width = 125;
+            // 
+            // GeometricVerticalRatev23
+            // 
+            this.GeometricVerticalRatev23.HeaderText = "Geometric Vertical Rate (ft/min)";
+            this.GeometricVerticalRatev23.MinimumWidth = 6;
+            this.GeometricVerticalRatev23.Name = "GeometricVerticalRatev23";
+            this.GeometricVerticalRatev23.Width = 125;
+            // 
+            // GroundVectorv23
+            // 
+            this.GroundVectorv23.HeaderText = "Ground Vector [GroundSpeed/TRackAngle] (kt/º)";
+            this.GroundVectorv23.MinimumWidth = 6;
+            this.GroundVectorv23.Name = "GroundVectorv23";
+            this.GroundVectorv23.Width = 125;
+            // 
+            // RateofTurnv23
+            // 
+            this.RateofTurnv23.HeaderText = "Rate of Turn (º)";
+            this.RateofTurnv23.MinimumWidth = 6;
+            this.RateofTurnv23.Name = "RateofTurnv23";
+            this.RateofTurnv23.Width = 125;
+            // 
+            // Targetidentificationv23
+            // 
+            this.Targetidentificationv23.HeaderText = "Target Identification";
+            this.Targetidentificationv23.MinimumWidth = 6;
+            this.Targetidentificationv23.Name = "Targetidentificationv23";
+            this.Targetidentificationv23.Width = 125;
+            // 
+            // TimeofDayAccuracy
+            // 
+            this.TimeofDayAccuracy.HeaderText = "Time of Day Accuracy";
+            this.TimeofDayAccuracy.MinimumWidth = 6;
+            this.TimeofDayAccuracy.Name = "TimeofDayAccuracy";
+            this.TimeofDayAccuracy.Width = 125;
+            // 
+            // TargetStatusv23
+            // 
+            this.TargetStatusv23.HeaderText = "Target Status";
+            this.TargetStatusv23.MinimumWidth = 6;
+            this.TargetStatusv23.Name = "TargetStatusv23";
+            this.TargetStatusv23.Width = 125;
+            // 
+            // EmitterCategoryv23
+            // 
+            this.EmitterCategoryv23.HeaderText = "Emitter Category";
+            this.EmitterCategoryv23.MinimumWidth = 6;
+            this.EmitterCategoryv23.Name = "EmitterCategoryv23";
+            this.EmitterCategoryv23.Width = 125;
+            // 
+            // MetReportv23
+            // 
+            this.MetReportv23.HeaderText = "Met Report";
+            this.MetReportv23.MinimumWidth = 6;
+            this.MetReportv23.Name = "MetReportv23";
+            this.MetReportv23.Width = 125;
+            // 
+            // IntermediateStateSelectedAltitude
+            // 
+            this.IntermediateStateSelectedAltitude.HeaderText = "Intermediate State Selected Altitude (ft) (Click for more info)";
+            this.IntermediateStateSelectedAltitude.MinimumWidth = 6;
+            this.IntermediateStateSelectedAltitude.Name = "IntermediateStateSelectedAltitude";
+            this.IntermediateStateSelectedAltitude.Width = 125;
+            // 
+            // FinalStateSelectedAltitudev23
+            // 
+            this.FinalStateSelectedAltitudev23.HeaderText = "Final State Selected Altitude (ft) (Click for more info)";
+            this.FinalStateSelectedAltitudev23.MinimumWidth = 6;
+            this.FinalStateSelectedAltitudev23.Name = "FinalStateSelectedAltitudev23";
+            this.FinalStateSelectedAltitudev23.Width = 125;
             // 
             // dgvCAT10
             // 
@@ -687,79 +871,9 @@
             this.dgvCAT10.Name = "dgvCAT10";
             this.dgvCAT10.RowHeadersWidth = 51;
             this.dgvCAT10.RowTemplate.Height = 24;
-            this.dgvCAT10.Size = new System.Drawing.Size(902, 301);
+            this.dgvCAT10.Size = new System.Drawing.Size(1622, 301);
             this.dgvCAT10.TabIndex = 1;
             this.dgvCAT10.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCAT10_CellClick);
-            // 
-            // bt_FastBackward
-            // 
-            this.bt_FastBackward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_FastBackward.Image = ((System.Drawing.Image)(resources.GetObject("bt_FastBackward.Image")));
-            this.bt_FastBackward.Location = new System.Drawing.Point(272, 2);
-            this.bt_FastBackward.Margin = new System.Windows.Forms.Padding(2);
-            this.bt_FastBackward.Name = "bt_FastBackward";
-            this.bt_FastBackward.Size = new System.Drawing.Size(34, 37);
-            this.bt_FastBackward.TabIndex = 12;
-            this.bt_FastBackward.UseVisualStyleBackColor = true;
-            this.bt_FastBackward.Click += new System.EventHandler(this.bt_FastBackward_Click);
-            // 
-            // bt_Backward
-            // 
-            this.bt_Backward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_Backward.Image = ((System.Drawing.Image)(resources.GetObject("bt_Backward.Image")));
-            this.bt_Backward.Location = new System.Drawing.Point(310, 2);
-            this.bt_Backward.Margin = new System.Windows.Forms.Padding(2);
-            this.bt_Backward.Name = "bt_Backward";
-            this.bt_Backward.Size = new System.Drawing.Size(34, 37);
-            this.bt_Backward.TabIndex = 13;
-            this.bt_Backward.UseVisualStyleBackColor = true;
-            this.bt_Backward.Click += new System.EventHandler(this.bt_Backward_Click);
-            // 
-            // bt_Forward
-            // 
-            this.bt_Forward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_Forward.Image = ((System.Drawing.Image)(resources.GetObject("bt_Forward.Image")));
-            this.bt_Forward.Location = new System.Drawing.Point(348, 2);
-            this.bt_Forward.Margin = new System.Windows.Forms.Padding(2);
-            this.bt_Forward.Name = "bt_Forward";
-            this.bt_Forward.Size = new System.Drawing.Size(34, 37);
-            this.bt_Forward.TabIndex = 14;
-            this.bt_Forward.UseVisualStyleBackColor = true;
-            this.bt_Forward.Click += new System.EventHandler(this.bt_Forward_Click);
-            // 
-            // bt_FastForward
-            // 
-            this.bt_FastForward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_FastForward.Image = ((System.Drawing.Image)(resources.GetObject("bt_FastForward.Image")));
-            this.bt_FastForward.Location = new System.Drawing.Point(386, 2);
-            this.bt_FastForward.Margin = new System.Windows.Forms.Padding(2);
-            this.bt_FastForward.Name = "bt_FastForward";
-            this.bt_FastForward.Size = new System.Drawing.Size(34, 37);
-            this.bt_FastForward.TabIndex = 15;
-            this.bt_FastForward.UseVisualStyleBackColor = true;
-            this.bt_FastForward.Click += new System.EventHandler(this.bt_FastForward_Click);
-            // 
-            // lb_Pages
-            // 
-            this.lb_Pages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lb_Pages.AutoSize = true;
-            this.lb_Pages.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.lb_Pages.Location = new System.Drawing.Point(424, 0);
-            this.lb_Pages.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lb_Pages.Name = "lb_Pages";
-            this.lb_Pages.Size = new System.Drawing.Size(480, 41);
-            this.lb_Pages.TabIndex = 16;
-            this.lb_Pages.Text = "          label1";
             // 
             // Number1
             // 
@@ -944,186 +1058,148 @@
             this.CalculatedAcceleration.Name = "CalculatedAcceleration";
             this.CalculatedAcceleration.Width = 125;
             // 
-            // numero
+            // bt_FastBackward
             // 
-            this.numero.HeaderText = "#";
-            this.numero.MinimumWidth = 6;
-            this.numero.Name = "numero";
-            this.numero.Width = 125;
+            this.bt_FastBackward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_FastBackward.Image = ((System.Drawing.Image)(resources.GetObject("bt_FastBackward.Image")));
+            this.bt_FastBackward.Location = new System.Drawing.Point(272, 2);
+            this.bt_FastBackward.Margin = new System.Windows.Forms.Padding(2);
+            this.bt_FastBackward.Name = "bt_FastBackward";
+            this.bt_FastBackward.Size = new System.Drawing.Size(34, 37);
+            this.bt_FastBackward.TabIndex = 12;
+            this.bt_FastBackward.UseVisualStyleBackColor = true;
+            this.bt_FastBackward.Click += new System.EventHandler(this.bt_FastBackward_Click);
             // 
-            // SAC_SIC
+            // bt_Backward
             // 
-            this.SAC_SIC.HeaderText = "SAC/SIC";
-            this.SAC_SIC.MinimumWidth = 6;
-            this.SAC_SIC.Name = "SAC_SIC";
-            this.SAC_SIC.Width = 125;
+            this.bt_Backward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_Backward.Image = ((System.Drawing.Image)(resources.GetObject("bt_Backward.Image")));
+            this.bt_Backward.Location = new System.Drawing.Point(310, 2);
+            this.bt_Backward.Margin = new System.Windows.Forms.Padding(2);
+            this.bt_Backward.Name = "bt_Backward";
+            this.bt_Backward.Size = new System.Drawing.Size(34, 37);
+            this.bt_Backward.TabIndex = 13;
+            this.bt_Backward.UseVisualStyleBackColor = true;
+            this.bt_Backward.Click += new System.EventHandler(this.bt_Backward_Click);
             // 
-            // TargetReportDescriptorv23
+            // bt_Forward
             // 
-            this.TargetReportDescriptorv23.HeaderText = "Target Report Descriptor";
-            this.TargetReportDescriptorv23.MinimumWidth = 6;
-            this.TargetReportDescriptorv23.Name = "TargetReportDescriptorv23";
-            this.TargetReportDescriptorv23.Width = 125;
+            this.bt_Forward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_Forward.Image = ((System.Drawing.Image)(resources.GetObject("bt_Forward.Image")));
+            this.bt_Forward.Location = new System.Drawing.Point(348, 2);
+            this.bt_Forward.Margin = new System.Windows.Forms.Padding(2);
+            this.bt_Forward.Name = "bt_Forward";
+            this.bt_Forward.Size = new System.Drawing.Size(34, 37);
+            this.bt_Forward.TabIndex = 14;
+            this.bt_Forward.UseVisualStyleBackColor = true;
+            this.bt_Forward.Click += new System.EventHandler(this.bt_Forward_Click);
             // 
-            // TimeofDayv23
+            // bt_FastForward
             // 
-            this.TimeofDayv23.HeaderText = "Time of Day (h:m:s)";
-            this.TimeofDayv23.MinimumWidth = 6;
-            this.TimeofDayv23.Name = "TimeofDayv23";
-            this.TimeofDayv23.Width = 125;
+            this.bt_FastForward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_FastForward.Image = ((System.Drawing.Image)(resources.GetObject("bt_FastForward.Image")));
+            this.bt_FastForward.Location = new System.Drawing.Point(386, 2);
+            this.bt_FastForward.Margin = new System.Windows.Forms.Padding(2);
+            this.bt_FastForward.Name = "bt_FastForward";
+            this.bt_FastForward.Size = new System.Drawing.Size(34, 37);
+            this.bt_FastForward.TabIndex = 15;
+            this.bt_FastForward.UseVisualStyleBackColor = true;
+            this.bt_FastForward.Click += new System.EventHandler(this.bt_FastForward_Click);
             // 
-            // PositioninWGS84Coordv23
+            // lb_Pages
             // 
-            this.PositioninWGS84Coordv23.HeaderText = "Position in WGS-84 Coordinates (lat/lon)";
-            this.PositioninWGS84Coordv23.MinimumWidth = 6;
-            this.PositioninWGS84Coordv23.Name = "PositioninWGS84Coordv23";
-            this.PositioninWGS84Coordv23.Width = 125;
+            this.lb_Pages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_Pages.AutoSize = true;
+            this.lb_Pages.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.lb_Pages.Location = new System.Drawing.Point(874, 0);
+            this.lb_Pages.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lb_Pages.Name = "lb_Pages";
+            this.lb_Pages.Size = new System.Drawing.Size(750, 41);
+            this.lb_Pages.TabIndex = 16;
+            this.lb_Pages.Text = "label1";
             // 
-            // TargetAdressv23
+            // panel1
             // 
-            this.TargetAdressv23.HeaderText = "Target Address";
-            this.TargetAdressv23.MinimumWidth = 6;
-            this.TargetAdressv23.Name = "TargetAdressv23";
-            this.TargetAdressv23.Width = 125;
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(425, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(444, 35);
+            this.panel1.TabIndex = 17;
             // 
-            // GeometricAltitudev23
+            // tableLayoutPanel1
             // 
-            this.GeometricAltitudev23.HeaderText = "Geometric Altitude (ft)";
-            this.GeometricAltitudev23.MinimumWidth = 6;
-            this.GeometricAltitudev23.Name = "GeometricAltitudev23";
-            this.GeometricAltitudev23.Width = 125;
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tb_name, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lb_FilterCAT21, 2, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(441, 32);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // FigureofMertiv23
+            // label1
             // 
-            this.FigureofMertiv23.HeaderText = "Figure of Merit";
-            this.FigureofMertiv23.MinimumWidth = 6;
-            this.FigureofMertiv23.Name = "FigureofMertiv23";
-            this.FigureofMertiv23.Width = 125;
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 32);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Filter by Id:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Visible = false;
             // 
-            // LinkTechnologyv23
+            // tb_name
             // 
-            this.LinkTechnologyv23.HeaderText = "Link Technology";
-            this.LinkTechnologyv23.MinimumWidth = 6;
-            this.LinkTechnologyv23.Name = "LinkTechnologyv23";
-            this.LinkTechnologyv23.Width = 125;
+            this.tb_name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_name.Location = new System.Drawing.Point(113, 3);
+            this.tb_name.Name = "tb_name";
+            this.tb_name.Size = new System.Drawing.Size(104, 20);
+            this.tb_name.TabIndex = 1;
+            this.tb_name.Visible = false;
             // 
-            // RollAnglev23
+            // lb_FilterCAT21
             // 
-            this.RollAnglev23.HeaderText = "Roll Angle (º)";
-            this.RollAnglev23.MinimumWidth = 6;
-            this.RollAnglev23.Name = "RollAnglev23";
-            this.RollAnglev23.Width = 125;
-            // 
-            // FlightLevelv23
-            // 
-            this.FlightLevelv23.HeaderText = "Flight Level";
-            this.FlightLevelv23.MinimumWidth = 6;
-            this.FlightLevelv23.Name = "FlightLevelv23";
-            this.FlightLevelv23.Width = 125;
-            // 
-            // AirSpeedv23
-            // 
-            this.AirSpeedv23.HeaderText = "Air Speed (NM/s)";
-            this.AirSpeedv23.MinimumWidth = 6;
-            this.AirSpeedv23.Name = "AirSpeedv23";
-            this.AirSpeedv23.Width = 125;
-            // 
-            // TrueAirSpeedv23
-            // 
-            this.TrueAirSpeedv23.HeaderText = "True Air Speed (kt)";
-            this.TrueAirSpeedv23.MinimumWidth = 6;
-            this.TrueAirSpeedv23.Name = "TrueAirSpeedv23";
-            this.TrueAirSpeedv23.Width = 125;
-            // 
-            // MagneticHeadingv23
-            // 
-            this.MagneticHeadingv23.HeaderText = "Magnetic Heading (º)";
-            this.MagneticHeadingv23.MinimumWidth = 6;
-            this.MagneticHeadingv23.Name = "MagneticHeadingv23";
-            this.MagneticHeadingv23.Width = 125;
-            // 
-            // BarometircVerticalRatev23
-            // 
-            this.BarometircVerticalRatev23.HeaderText = "Barometric Vertical Rate (ft/s)";
-            this.BarometircVerticalRatev23.MinimumWidth = 6;
-            this.BarometircVerticalRatev23.Name = "BarometircVerticalRatev23";
-            this.BarometircVerticalRatev23.Width = 125;
-            // 
-            // GeometricVerticalRatev23
-            // 
-            this.GeometricVerticalRatev23.HeaderText = "Geometric Vertical Rate (ft/min)";
-            this.GeometricVerticalRatev23.MinimumWidth = 6;
-            this.GeometricVerticalRatev23.Name = "GeometricVerticalRatev23";
-            this.GeometricVerticalRatev23.Width = 125;
-            // 
-            // GroundVectorv23
-            // 
-            this.GroundVectorv23.HeaderText = "Ground Vector [GroundSpeed/TRackAngle] (kt/º)";
-            this.GroundVectorv23.MinimumWidth = 6;
-            this.GroundVectorv23.Name = "GroundVectorv23";
-            this.GroundVectorv23.Width = 125;
-            // 
-            // RateofTurnv23
-            // 
-            this.RateofTurnv23.HeaderText = "Rate of Turn (º)";
-            this.RateofTurnv23.MinimumWidth = 6;
-            this.RateofTurnv23.Name = "RateofTurnv23";
-            this.RateofTurnv23.Width = 125;
-            // 
-            // Targetidentificationv23
-            // 
-            this.Targetidentificationv23.HeaderText = "Target Identification";
-            this.Targetidentificationv23.MinimumWidth = 6;
-            this.Targetidentificationv23.Name = "Targetidentificationv23";
-            this.Targetidentificationv23.Width = 125;
-            // 
-            // TimeofDayAccuracy
-            // 
-            this.TimeofDayAccuracy.HeaderText = "Time of Day Accuracy";
-            this.TimeofDayAccuracy.MinimumWidth = 6;
-            this.TimeofDayAccuracy.Name = "TimeofDayAccuracy";
-            this.TimeofDayAccuracy.Width = 125;
-            // 
-            // TargetStatusv23
-            // 
-            this.TargetStatusv23.HeaderText = "Target Status";
-            this.TargetStatusv23.MinimumWidth = 6;
-            this.TargetStatusv23.Name = "TargetStatusv23";
-            this.TargetStatusv23.Width = 125;
-            // 
-            // EmitterCategoryv23
-            // 
-            this.EmitterCategoryv23.HeaderText = "Emitter Category";
-            this.EmitterCategoryv23.MinimumWidth = 6;
-            this.EmitterCategoryv23.Name = "EmitterCategoryv23";
-            this.EmitterCategoryv23.Width = 125;
-            // 
-            // MetReportv23
-            // 
-            this.MetReportv23.HeaderText = "Met Report";
-            this.MetReportv23.MinimumWidth = 6;
-            this.MetReportv23.Name = "MetReportv23";
-            this.MetReportv23.Width = 125;
-            // 
-            // IntermediateStateSelectedAltitude
-            // 
-            this.IntermediateStateSelectedAltitude.HeaderText = "Intermediate State Selected Altitude (ft) (Click for more info)";
-            this.IntermediateStateSelectedAltitude.MinimumWidth = 6;
-            this.IntermediateStateSelectedAltitude.Name = "IntermediateStateSelectedAltitude";
-            this.IntermediateStateSelectedAltitude.Width = 125;
-            // 
-            // FinalStateSelectedAltitudev23
-            // 
-            this.FinalStateSelectedAltitudev23.HeaderText = "Final State Selected Altitude (ft) (Click for more info)";
-            this.FinalStateSelectedAltitudev23.MinimumWidth = 6;
-            this.FinalStateSelectedAltitudev23.Name = "FinalStateSelectedAltitudev23";
-            this.FinalStateSelectedAltitudev23.Width = 125;
+            this.lb_FilterCAT21.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_FilterCAT21.Location = new System.Drawing.Point(223, 3);
+            this.lb_FilterCAT21.Name = "lb_FilterCAT21";
+            this.lb_FilterCAT21.Size = new System.Drawing.Size(104, 26);
+            this.lb_FilterCAT21.TabIndex = 2;
+            this.lb_FilterCAT21.Text = "Filter";
+            this.lb_FilterCAT21.UseVisualStyleBackColor = true;
+            this.lb_FilterCAT21.Visible = false;
+            this.lb_FilterCAT21.Click += new System.EventHandler(this.lb_Filter_Click);
             // 
             // Tables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 366);
+            this.ClientSize = new System.Drawing.Size(1644, 366);
             this.Controls.Add(this.tlpTables);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Tables";
@@ -1137,6 +1213,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCAT10)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1251,5 +1330,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MetReportv23;
         private System.Windows.Forms.DataGridViewTextBoxColumn IntermediateStateSelectedAltitude;
         private System.Windows.Forms.DataGridViewTextBoxColumn FinalStateSelectedAltitudev23;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tb_name;
+        private System.Windows.Forms.Button lb_FilterCAT21;
     }
 }

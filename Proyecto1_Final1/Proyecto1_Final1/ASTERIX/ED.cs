@@ -186,9 +186,12 @@ namespace ASTERIX
                         j = j + 1;
                     }
 
-                    //hay que substituir j por posicion
+                    double[] coord_inicial = new double[2];
+                    coord_inicial[0] = latARP;
+                    coord_inicial[1] = lonARP;
 
-                    if(diferenciadetiempo == 0 && listaMLAT[posición].CalculatedTrackVelocityinCartesianCoordinates.Length>0 && diferenciadetiempo != 1e6)
+
+                    if (diferenciadetiempo == 0 && listaMLAT[posición].CalculatedTrackVelocityinCartesianCoordinates.Length>0 && diferenciadetiempo != 1e6)
                     {
                         double rho = Math.Sqrt((listaMLAT[posición].X_cartesian) * (listaMLAT[lista_paquetes_precisión[j]].X_cartesian) + (listaMLAT[posición].Y_cartesian) * (listaMLAT[posición].Y_cartesian));
                         double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[posición].X_cartesian, listaMLAT[posición].Y_cartesian);
@@ -198,7 +201,44 @@ namespace ASTERIX
                         coord_inicialess[1] = LonMLAT;
 
                         double[] newcoord = NewCoordinatesMLAT(rho,theta);
-                        listadistancias.Add(CalculateDistanceBetweenCoordinates(coord_inicialess, newcoord));
+
+                        if(listaCAT21[i].PositioninWGS_coordinates.Length>0)
+                        {
+                            double[] ARPcoord = new double[2];
+                            ARPcoord[0] = latARP;
+                            ARPcoord[1] = lonARP;
+
+                            double[] CAT21coord = new double[2];
+                            CAT21coord[0] = listaCAT21[i].latWGS84;
+                            CAT21coord[1] = listaCAT21[i].lonWGS84;
+
+                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+
+                            if(distanciaMLAT < 1852*10 && distanciaCAT21 < 1852*10)
+                            {
+                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                            }
+                        }
+
+                        else if(listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+                            double[] ARPcoord = new double[2];
+                            ARPcoord[0] = latARP;
+                            ARPcoord[1] = lonARP;
+
+                            double[] CAT21coord = new double[2];
+                            CAT21coord[0] = listaCAT21[i].latWGS84_HR;
+                            CAT21coord[1] = listaCAT21[i].lonWGS84_HR;
+
+                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+
+                            if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
+                            {
+                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                            }
+                        }
                     }
 
                     if (diferenciadetiempo > 0 && listaMLAT[posición].CalculatedTrackVelocityinCartesianCoordinates.Length > 0 && diferenciadetiempo != 1e6)
@@ -214,7 +254,43 @@ namespace ASTERIX
                         double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[posición].X_cartesian, listaMLAT[posición].Y_cartesian);
 
                         double[] newcoord = NewCoordinatesMLAT(rho, theta);
-                        listadistancias.Add(CalculateDistanceBetweenCoordinates(coord_inicialess, newcoord));
+                        if (listaCAT21[i].PositioninWGS_coordinates.Length > 0)
+                        {
+                            double[] ARPcoord = new double[2];
+                            ARPcoord[0] = latARP;
+                            ARPcoord[1] = lonARP;
+
+                            double[] CAT21coord = new double[2];
+                            CAT21coord[0] = listaCAT21[i].latWGS84;
+                            CAT21coord[1] = listaCAT21[i].lonWGS84;
+
+                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+
+                            if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
+                            {
+                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                            }
+                        }
+
+                        else if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+                            double[] ARPcoord = new double[2];
+                            ARPcoord[0] = latARP;
+                            ARPcoord[1] = lonARP;
+
+                            double[] CAT21coord = new double[2];
+                            CAT21coord[0] = listaCAT21[i].latWGS84_HR;
+                            CAT21coord[1] = listaCAT21[i].lonWGS84_HR;
+
+                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+
+                            if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
+                            {
+                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                            }
+                        }
                     }
 
                     if (diferenciadetiempo < 0 && listaMLAT[posición].CalculatedTrackVelocityinCartesianCoordinates.Length > 0 && diferenciadetiempo != 1e6)
@@ -230,7 +306,43 @@ namespace ASTERIX
                         double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[posición].X_cartesian, listaMLAT[posición].Y_cartesian);
 
                         double[] newcoord = NewCoordinatesMLAT(rho, theta);
-                        listadistancias.Add(CalculateDistanceBetweenCoordinates(coord_inicialess, newcoord));
+                        if (listaCAT21[i].PositioninWGS_coordinates.Length > 0)
+                        {
+                            double[] ARPcoord = new double[2];
+                            ARPcoord[0] = latARP;
+                            ARPcoord[1] = lonARP;
+
+                            double[] CAT21coord = new double[2];
+                            CAT21coord[0] = listaCAT21[i].latWGS84;
+                            CAT21coord[1] = listaCAT21[i].lonWGS84;
+
+                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+
+                            if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
+                            {
+                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                            }
+                        }
+
+                        else if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                        {
+                            double[] ARPcoord = new double[2];
+                            ARPcoord[0] = latARP;
+                            ARPcoord[1] = lonARP;
+
+                            double[] CAT21coord = new double[2];
+                            CAT21coord[0] = listaCAT21[i].latWGS84_HR;
+                            CAT21coord[1] = listaCAT21[i].lonWGS84_HR;
+
+                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+
+                            if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
+                            {
+                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                            }
+                        }
                     }
                 }
 
@@ -426,35 +538,6 @@ namespace ASTERIX
             return s/1000;
         }
 
-        //public double CalculateDistanceBetweenCoordinates2(double[] initial_coordinates, double[] final_coordinates)
-        //{
-        //    double φ1 = toRadians(initial_coordinates[0]);
-        //    double φ2 = toRadians(final_coordinates[0]);
-        //    double λ1 = toRadians(initial_coordinates[1]);
-        //    double λ2 = toRadians(final_coordinates[1]);
-
-        //    double lat1 = φ1;
-        //    double lon1 = λ1;
-        //    double lat2 = φ2;
-        //    double lon2 = λ2;
-
-        //    double a = 6378137.0;
-        //    double b = 6356752.314245;
-        //    double f = 1 / 298.257223563;
-        //    double e_sq = 1 - ((b / a) * (b / a));
-        //    double tmp = Math.Sqrt(1 - e_sq * Math.Sin(lat1));
-
-        //    double lat = lat2 - lat1;
-        //    double lon = lon2 - lon1;
-
-        //    double x = (a * lon / tmp) * (Math.Cos(lat1) - ((1 - e_sq) / (tmp * tmp)) * Math.Sin(lat1) * lat);
-        //    double y = (a * (1 - e_sq) / (tmp * tmp * tmp)) * lat + Math.Cos(lat1) * Math.Sin(lat1) * ((3 / 2) * e_sq * lat * lat + ((lon*lon) / (2*tmp)));
-
-        //    double s = Math.Sqrt(x * x + y * y);
-
-        //    return s;
-        //}
-
         public double[] NewCoordinatesMLAT(double distance, double initialBearing)
         {
             double[] listaCoordenadas = new double[2];
@@ -557,7 +640,10 @@ namespace ASTERIX
              
             while(i<listaMLAT.Count)
             {
-                lista.Add(listaMLAT[i].TimeofDay_seconds);
+                if(listaMLAT[i].TYP == "Mode S multilateration.")
+                {
+                    lista.Add(listaMLAT[i].TimeofDay_seconds);
+                }
                 i = i + 1;
             }
 

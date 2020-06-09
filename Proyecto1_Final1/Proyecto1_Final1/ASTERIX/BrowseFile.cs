@@ -82,10 +82,9 @@ namespace ASTERIX
         {
             if (tbDirection.Text.Length > 0)
             {
-                //try
-                //{
+                try
+                {
                     string path = tbDirection.Text;
-
                     Fichero newfichero = new Fichero(path);
                     newfichero.leer();
 
@@ -94,24 +93,18 @@ namespace ASTERIX
                     listaCAT20 = newfichero.GetListCAT20();
                     listaCAT10 = newfichero.getListCAT10();
 
-                    //panelFondo.Visible = true;
-                    //btTables.BackColor = SystemColors.ActiveCaption;
-
                     this.Close();
-
-                //}
-                //catch
-                //{
-                //    lblError.Text = "Error. Please select a valid file.";
-                //}
+                }
+                catch
+                {
+                    lblError.Text = "Error. Please select a valid file.";
+                }
             }
 
             else
             {
                 lblError.Text = "Please select a file.";
             }
-
-
         }
 
         private void tbDirection_TextChanged(object sender, EventArgs e)

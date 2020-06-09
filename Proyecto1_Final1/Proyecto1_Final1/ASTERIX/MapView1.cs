@@ -189,64 +189,64 @@ namespace ASTERIX
                 overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 10, overlay);
                 Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 10.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 10.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 11, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 11, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 11.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 11.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 12, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 12, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 12.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 12.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 13, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 13, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 13.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 13.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 14, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 14, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 14.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 14.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 15, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 15, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 15.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 15.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 16, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 16, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 16.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 16.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 17, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 17, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 17.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 17.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 18, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 18, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 18.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 18.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 19, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 19, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 19.5, overlay);
-                Mapa.Overlays.Add(overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 19.5, overlay);
+                //Mapa.Overlays.Add(overlay);
 
-                overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 20, overlay);
+                //overlay = CalcularNuevosPuntos_DiubujarBola(secondCounter - 20, overlay);
                 Mapa.Overlays.Add(overlay);
 
 
@@ -449,9 +449,9 @@ namespace ASTERIX
             hours = t1.Hours.ToString();
             minutes = t1.Minutes.ToString();
             seconds = t1.Seconds.ToString();
-            if (t.Hours.ToString().Length == 1) { hours = "0" + t.Hours; }
-            if (t.Minutes.ToString().Length == 1) { minutes = "0" + t.Minutes; }
-            if (t.Seconds.ToString().Length == 1) { seconds = "0" + t.Seconds; }
+            if (t1.Hours.ToString().Length == 1) { hours = "0" + t1.Hours; }
+            if (t1.Minutes.ToString().Length == 1) { minutes = "0" + t1.Minutes; }
+            if (t1.Seconds.ToString().Length == 1) { seconds = "0" + t1.Seconds; }
 
             lb_HoraFinal.Text = String.Concat(hours, ":", minutes, ":", seconds);
 

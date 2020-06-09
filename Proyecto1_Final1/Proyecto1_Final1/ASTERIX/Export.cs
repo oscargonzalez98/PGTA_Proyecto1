@@ -77,7 +77,7 @@ namespace ASTERIX
 
                 direccion = tb_direction.Text;
 
-                int abc1 = tb_direction.Text.Length - 1 - 4;
+                int abc1 = tb_direction.Text.Length - 4;
 
                 tb_direction.Text = tb_direction.Text.Substring(0, abc1);
                 tb_direction.Text = tb_direction.Text + "CAT21v023" + ".kml";
@@ -235,7 +235,7 @@ namespace ASTERIX
                 // Generamos el nuevo documento
                 direccion = tb_direction.Text;
 
-                int abc1 = tb_direction.Text.Length - 1 - 4;
+                int abc1 = tb_direction.Text.Length  - 4;
 
                 tb_direction.Text = tb_direction.Text.Substring(0, abc1);
                 tb_direction.Text = tb_direction.Text + "CAT21v21" + ".kml";
@@ -389,7 +389,7 @@ namespace ASTERIX
 
                 direccion = tb_direction.Text;
 
-                int abc1 = tb_direction.Text.Length - 1 - 4;
+                int abc1 = tb_direction.Text.Length - 4;
 
                 tb_direction.Text = tb_direction.Text.Substring(0, abc1);
                 tb_direction.Text = tb_direction.Text + "CAT10MLAT" + ".kml";
