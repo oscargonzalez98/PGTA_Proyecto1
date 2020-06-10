@@ -117,27 +117,30 @@ namespace ASTERIX
                 }
                 i = i + 1;
             }
-
         }
         private void button1_Click(object sender, EventArgs e)
         {
             List<CAT21> listaCAT21TransponderV2 = new List<CAT21>();
             List<double> listadistancias = new List<double>();
 
+            double contador_bien = 0;
+            double contador_total = 0;
+
             int k = 0;
             while(k<listaCAT21.Count)
             {
-                if(listaCAT21[k].VN == "ED102A/DO-260B [Ref. 11].")
+                if(listaCAT21[k].VN == "ED102A/DO-260B [Ref. 11]." && listaCAT21[k].QualityIndicators.Length>8)
                 {
                     listaCAT21TransponderV2.Add(listaCAT21[k]);
                 }
                 k = k + 1;
             }
-
+              
             pb_PrecissionAccuracy.Maximum = listaCAT21TransponderV2.Count;
             pb_PrecissionAccuracy.Value = 0;
 
             int i = 0;
+            k = 0;
             while (i<listaCAT21TransponderV2.Count)
             {
                 // Declaro las variables a usar que canvian para cada paqueteCAT21
@@ -147,7 +150,6 @@ namespace ASTERIX
                 double timeCAT21=0;
 
                 int posición = 0;
-
                 double diferenciadetiempo = 1e6;
 
                 if (listaCAT21TransponderV2[i].TargetIdentification.Length > 0) { TI_CAT21 = listaCAT21TransponderV2[i].TargetIdentification_decoded; }
@@ -156,8 +158,8 @@ namespace ASTERIX
 
                 if((TI_CAT21.Length>0 && timeCAT21> 0) || (TA_CAT21.Length > 0 && timeCAT21 > 0))
                 {
-                    int j = 0;
-                    while (j< lista_paquetes_precisión.Count)
+                    int j = k;
+                    while (listaMLAT[j].TimeofDay_seconds<= (timeCAT21+2) && j<(listaMLAT.Count-1))
                     {
                         string TI_MLAT = "";
                         string TA_MLAT = "";
@@ -174,26 +176,34 @@ namespace ASTERIX
                             if ( time < diferenciadetiempo && TI_CAT21 == TI_MLAT) // si target address o target ident coinciden con TA o TI de CAT21
                             {
                                 diferenciadetiempo = timeMLAT - timeCAT21;
+                                if (Math.Abs(time) > 1) { diferenciadetiempo = 1e6; }
                                 posición = j;
                             }
 
                             else if(time < diferenciadetiempo && TA_CAT21 == TA_MLAT)
                             {
                                 diferenciadetiempo = timeMLAT - timeCAT21;
+                                if (Math.Abs(time) > 1) { diferenciadetiempo = 1e6; }
                                 posición = j;
                             }
                         }
                         j = j + 1;
                     }
 
+                    k = posición + 1;
+
                     double[] coord_inicial = new double[2];
                     coord_inicial[0] = latARP;
                     coord_inicial[1] = lonARP;
 
 
+                    double distanciaMLAT = 0;
+                    double distanciaCAT21 = 0;
+                    double distanciaCAT21vsMLAT = 0;
+
                     if (diferenciadetiempo == 0 && listaMLAT[posición].CalculatedTrackVelocityinCartesianCoordinates.Length>0 && diferenciadetiempo != 1e6)
                     {
-                        double rho = Math.Sqrt((listaMLAT[posición].X_cartesian) * (listaMLAT[lista_paquetes_precisión[j]].X_cartesian) + (listaMLAT[posición].Y_cartesian) * (listaMLAT[posición].Y_cartesian));
+                        double rho = Math.Sqrt((listaMLAT[posición].X_cartesian) * (listaMLAT[posición].X_cartesian) + (listaMLAT[posición].Y_cartesian) * (listaMLAT[posición].Y_cartesian));
                         double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[posición].X_cartesian, listaMLAT[posición].Y_cartesian);
 
                         double[] coord_inicialess = new double[2];
@@ -209,34 +219,36 @@ namespace ASTERIX
                             ARPcoord[1] = lonARP;
 
                             double[] CAT21coord = new double[2];
-                            CAT21coord[0] = listaCAT21[i].latWGS84;
-                            CAT21coord[1] = listaCAT21[i].lonWGS84;
+                            CAT21coord[0] = listaCAT21TransponderV2[i].latWGS84;
+                            CAT21coord[1] = listaCAT21TransponderV2[i].lonWGS84;
 
-                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
-                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+                            distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
 
                             if(distanciaMLAT < 1852*10 && distanciaCAT21 < 1852*10)
                             {
-                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                                distanciaCAT21vsMLAT = CalculateDistanceBetweenCoordinates(CAT21coord, newcoord);
+                                listadistancias.Add(distanciaCAT21vsMLAT);
                             }
                         }
 
-                        else if(listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                        else if(listaCAT21TransponderV2[i].PositioninWGS_HRcoordinates.Length > 0)
                         {
                             double[] ARPcoord = new double[2];
                             ARPcoord[0] = latARP;
                             ARPcoord[1] = lonARP;
 
                             double[] CAT21coord = new double[2];
-                            CAT21coord[0] = listaCAT21[i].latWGS84_HR;
-                            CAT21coord[1] = listaCAT21[i].lonWGS84_HR;
+                            CAT21coord[0] = listaCAT21TransponderV2[i].latWGS84_HR;
+                            CAT21coord[1] = listaCAT21TransponderV2[i].lonWGS84_HR;
 
-                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
-                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+                            distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
 
                             if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
                             {
-                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                                distanciaCAT21vsMLAT = CalculateDistanceBetweenCoordinates(CAT21coord, newcoord);
+                                listadistancias.Add(distanciaCAT21vsMLAT);
                             }
                         }
                     }
@@ -254,41 +266,43 @@ namespace ASTERIX
                         double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[posición].X_cartesian, listaMLAT[posición].Y_cartesian);
 
                         double[] newcoord = NewCoordinatesMLAT(rho, theta);
-                        if (listaCAT21[i].PositioninWGS_coordinates.Length > 0)
+                        if (listaCAT21TransponderV2[i].PositioninWGS_coordinates.Length > 0)
                         {
                             double[] ARPcoord = new double[2];
                             ARPcoord[0] = latARP;
                             ARPcoord[1] = lonARP;
 
                             double[] CAT21coord = new double[2];
-                            CAT21coord[0] = listaCAT21[i].latWGS84;
-                            CAT21coord[1] = listaCAT21[i].lonWGS84;
+                            CAT21coord[0] = listaCAT21TransponderV2[i].latWGS84;
+                            CAT21coord[1] = listaCAT21TransponderV2[i].lonWGS84;
 
-                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
-                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+                            distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
 
                             if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
                             {
-                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                                distanciaCAT21vsMLAT = CalculateDistanceBetweenCoordinates(CAT21coord, newcoord);
+                                listadistancias.Add(distanciaCAT21vsMLAT);
                             }
                         }
 
-                        else if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                        else if (listaCAT21TransponderV2[i].PositioninWGS_HRcoordinates.Length > 0)
                         {
                             double[] ARPcoord = new double[2];
                             ARPcoord[0] = latARP;
                             ARPcoord[1] = lonARP;
 
                             double[] CAT21coord = new double[2];
-                            CAT21coord[0] = listaCAT21[i].latWGS84_HR;
-                            CAT21coord[1] = listaCAT21[i].lonWGS84_HR;
+                            CAT21coord[0] = listaCAT21TransponderV2[i].latWGS84_HR;
+                            CAT21coord[1] = listaCAT21TransponderV2[i].lonWGS84_HR;
 
-                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
-                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+                            distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
 
                             if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
                             {
-                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                                distanciaCAT21vsMLAT = CalculateDistanceBetweenCoordinates(CAT21coord, newcoord);
+                                listadistancias.Add(distanciaCAT21vsMLAT);
                             }
                         }
                     }
@@ -306,43 +320,120 @@ namespace ASTERIX
                         double theta = (180 / Math.PI) * Math.Atan2(listaMLAT[posición].X_cartesian, listaMLAT[posición].Y_cartesian);
 
                         double[] newcoord = NewCoordinatesMLAT(rho, theta);
-                        if (listaCAT21[i].PositioninWGS_coordinates.Length > 0)
+                        if (listaCAT21TransponderV2[i].PositioninWGS_coordinates.Length > 0)
                         {
                             double[] ARPcoord = new double[2];
                             ARPcoord[0] = latARP;
                             ARPcoord[1] = lonARP;
 
                             double[] CAT21coord = new double[2];
-                            CAT21coord[0] = listaCAT21[i].latWGS84;
-                            CAT21coord[1] = listaCAT21[i].lonWGS84;
+                            CAT21coord[0] = listaCAT21TransponderV2[i].latWGS84;
+                            CAT21coord[1] = listaCAT21TransponderV2[i].lonWGS84;
 
-                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
-                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+                            distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
 
                             if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
                             {
-                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                                distanciaCAT21vsMLAT = CalculateDistanceBetweenCoordinates(CAT21coord, newcoord);
+                                listadistancias.Add(distanciaCAT21vsMLAT);
                             }
                         }
 
-                        else if (listaCAT21[i].PositioninWGS_HRcoordinates.Length > 0)
+                        else if (listaCAT21TransponderV2[i].PositioninWGS_HRcoordinates.Length > 0)
                         {
                             double[] ARPcoord = new double[2];
                             ARPcoord[0] = latARP;
                             ARPcoord[1] = lonARP;
 
                             double[] CAT21coord = new double[2];
-                            CAT21coord[0] = listaCAT21[i].latWGS84_HR;
-                            CAT21coord[1] = listaCAT21[i].lonWGS84_HR;
+                            CAT21coord[0] = listaCAT21TransponderV2[i].latWGS84_HR;
+                            CAT21coord[1] = listaCAT21TransponderV2[i].lonWGS84_HR;
 
-                            double distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
-                            double distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
+                            distanciaMLAT = CalculateDistanceBetweenCoordinates(ARPcoord, newcoord);
+                            distanciaCAT21 = CalculateDistanceBetweenCoordinates(ARPcoord, CAT21coord);
 
                             if (distanciaMLAT < 1852 * 10 && distanciaCAT21 < 1852 * 10)
                             {
-                                listadistancias.Add(CalculateDistanceBetweenCoordinates(CAT21coord, newcoord));
+                                distanciaCAT21vsMLAT = CalculateDistanceBetweenCoordinates(CAT21coord, newcoord);
+                                listadistancias.Add(distanciaCAT21vsMLAT);
                             }
                         }
+                    }
+
+                    if(listaCAT21TransponderV2[i].NACp == 0 && distanciaCAT21vsMLAT>18520)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if(listaCAT21TransponderV2[i].NACp == 1 && distanciaCAT21vsMLAT < 18520)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if (listaCAT21TransponderV2[i].NACp == 2 && distanciaCAT21vsMLAT < 7408)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if (listaCAT21TransponderV2[i].NACp == 3 && distanciaCAT21vsMLAT < 3704)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+                    else if (listaCAT21TransponderV2[i].NACp == 4 && distanciaCAT21vsMLAT < 1852)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if (listaCAT21TransponderV2[i].NACp == 5 && distanciaCAT21vsMLAT < 926)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if (listaCAT21TransponderV2[i].NACp == 6 && distanciaCAT21vsMLAT < 555.6)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if (listaCAT21TransponderV2[i].NACp == 7 && distanciaCAT21vsMLAT < 185.2)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if (listaCAT21TransponderV2[i].NACp == 8 && distanciaCAT21vsMLAT < 92.6)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if (listaCAT21TransponderV2[i].NACp == 9 && distanciaCAT21vsMLAT < 30)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if (listaCAT21TransponderV2[i].NACp == 10 && distanciaCAT21vsMLAT < 10)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+
+                    else if (listaCAT21TransponderV2[i].NACp == 11 && distanciaCAT21vsMLAT < 3)
+                    {
+                        contador_bien = contador_bien + 1;
+                        contador_total = contador_total + 1;
+                    }
+                    else
+                    {
+                        contador_total = contador_total + 1;
                     }
                 }
 
@@ -356,7 +447,17 @@ namespace ASTERIX
             lb_meandistance.Text = Convert.ToString(Math.Round(listadistancias.Sum() / Convert.ToDouble(listadistancias.Count),3)) + " m";
             lb_meandistance.Visible = true;
 
+            double position = (listadistancias.Count + 1) * 0.95;
+            int position_mas = Convert.ToInt32(Math.Ceiling(position+1));
+            int position_menos = Convert.ToInt32(Math.Floor(position+1));
 
+            lb_95percentile.Text = Math.Round((Convert.ToDouble(listadistancias[position_mas]) + Convert.ToDouble(listadistancias[position_menos]))/2,3).ToString() + " m";
+            lb_95percentile.Visible = true;
+
+            lb_PA.Text = Math.Round((contador_bien / contador_total) * 100, 3).ToString() + " %";
+            lb_PA.Visible = true;
+
+            int a = 0;
         }
 
         private void lb_ProbabilityofUpdate_Click(object sender, EventArgs e)
@@ -535,7 +636,7 @@ namespace ASTERIX
             var deltaSigma = B * sinSigma * (cos2SigmaM + B / 4 * (cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM) - B / 6 * cos2SigmaM * (-3 + 4 * sinSigma * sinSigma) * (-3 + 4 * cos2SigmaM * cos2SigmaM)));
             var s = b * A * (sigma - deltaSigma);
 
-            return s/1000;
+            return s;
         }
 
         public double[] NewCoordinatesMLAT(double distance, double initialBearing)

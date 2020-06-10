@@ -914,7 +914,7 @@ namespace ASTERIX
 
         private void lb_Filter_Click(object sender, EventArgs e)
         {
-            if(listaCAT10.Count>0)
+            if(listaCAT10.Count>0 && panelCAT10.Visible==true && panelCAT20.Visible == false && panelCAT21.Visible == false)
             {
                 dgvCAT10.Rows.Clear();
                 int i = 0;
@@ -957,7 +957,7 @@ namespace ASTERIX
                 lb_Pages.Text = "1 - " + j;
             }
 
-            if(listaCAT21v23.Count>0)
+            if(listaCAT21v23.Count>0 && panelCAT10.Visible == true && panelCAT20.Visible == true && panelCAT21.Visible == false)
             {
                 dgvCAT20.Rows.Clear();
                 int i = 0;
@@ -991,7 +991,7 @@ namespace ASTERIX
                 lb_Pages.Text = "1 - " + j;
             }
 
-            if(listaCAT21.Count>0)
+            if(listaCAT21.Count>0 && panelCAT10.Visible == true && panelCAT20.Visible == true && panelCAT21.Visible == true)
             {
                 dgvCAT21.Rows.Clear();
                 int i = 0;
